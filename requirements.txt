@@ -1,0 +1,13 @@
+fastf1
+pandas
+numpy
+scikit-learn
+xgboost
+imbalanced-learn
+matplotlib
+seaborn
+plotly
+jupyter
+fastf1>=2.3
+pandas
+tqdm
