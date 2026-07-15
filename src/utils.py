@@ -10,6 +10,160 @@ Includes:
 from typing import Dict, Any
 import pandas as pd
 
+MIDFIELD_CONSTRUCTORS = [
+    'McLaren',
+    'Alpine',
+    'Aston Martin',
+    'AlphaTauri',
+    'RB',
+    'Sauber',
+    'Haas',
+    'Williams',
+]
+
+TRACK_STATUS_LABELS = {
+    0: 'Green',
+    1: 'Yellow',
+    2: 'Double Yellow',
+    3: 'Red',
+    4: 'Safety Car',
+    5: 'Virtual Safety Car',
+    6: 'Formation Lap',
+    7: 'VSC Ending',
+}
+
+CONSTRUCTOR_MAPPINGS_BY_YEAR = {
+    2022: {
+        'VER': 'Red Bull',
+        'PER': 'Red Bull',
+        'LEC': 'Ferrari',
+        'SAI': 'Ferrari',
+        'HAM': 'Mercedes',
+        'RUS': 'Mercedes',
+        'NOR': 'McLaren',
+        'RIC': 'McLaren',
+        'ALO': 'Aston Martin',
+        'STR': 'Aston Martin',
+        'OCO': 'Alpine',
+        'GAS': 'Alpine',
+        'TSU': 'AlphaTauri',
+        'DEV': 'AlphaTauri',
+        'ZHO': 'Sauber',
+        'BOT': 'Sauber',
+        'MAG': 'Haas',
+        'HUL': 'Haas',
+        'ALB': 'Williams',
+        'SAR': 'Williams',
+        'LAT': 'Williams',
+        'MSC': 'Haas',
+        'VET': 'Aston Martin',
+    },
+    2023: {
+        'VER': 'Red Bull',
+        'PER': 'Red Bull',
+        'LEC': 'Ferrari',
+        'SAI': 'Ferrari',
+        'HAM': 'Mercedes',
+        'RUS': 'Mercedes',
+        'NOR': 'McLaren',
+        'RIC': 'McLaren',
+        'ALO': 'Aston Martin',
+        'STR': 'Aston Martin',
+        'OCO': 'Alpine',
+        'GAS': 'Alpine',
+        'TSU': 'AlphaTauri',
+        'DEV': 'AlphaTauri',
+        'ZHO': 'Sauber',
+        'BOT': 'Sauber',
+        'MAG': 'Haas',
+        'HUL': 'Haas',
+        'ALB': 'Williams',
+        'SAR': 'Williams',
+        'VET': 'Aston Martin',
+        'PIA': 'McLaren',
+    },
+    2024: {
+        'VER': 'Red Bull',
+        'PER': 'Red Bull',
+        'LEC': 'Ferrari',
+        'SAI': 'Ferrari',
+        'HAM': 'Mercedes',
+        'RUS': 'Mercedes',
+        'NOR': 'McLaren',
+        'PIA': 'McLaren',
+        'ALO': 'Aston Martin',
+        'STR': 'Aston Martin',
+        'OCO': 'Alpine',
+        'GAS': 'Alpine',
+        'TSU': 'RB',
+        'RIC': 'RB',
+        'ZHO': 'Sauber',
+        'BOT': 'Sauber',
+        'MAG': 'Haas',
+        'HUL': 'Haas',
+        'ALB': 'Williams',
+        'SAR': 'Williams',
+        'BEA': 'Ferrari',
+        'COL': 'Williams',
+        'DOO': 'Alpine',
+    },
+}
+
+
+def decode_track_status_label(status_int: Any) -> str:
+    """Decode a raw FastF1 TrackStatus code to a human-readable label."""
+    if status_int is None or (isinstance(status_int, float) and pd.isna(status_int)):
+        return 'Unknown'
+    try:
+        status_code = int(status_int)
+    except (TypeError, ValueError):
+        return 'Unknown'
+    return TRACK_STATUS_LABELS.get(status_code, 'Unknown')
+
+
+def get_constructor(driver_code: Any, year: int, round_number: int) -> str:
+    """Return the constructor name for a given driver code, season, and round."""
+    if driver_code is None:
+        raise ValueError('driver_code must be provided')
+    driver_code_str = str(driver_code).strip().upper()
+    if not driver_code_str:
+        raise ValueError('driver_code must be a non-empty string')
+
+    # Special case: RIC in 2023 moved to AlphaTauri from Round 12
+    if year == 2023 and driver_code_str == 'RIC':
+        if round_number >= 12:
+            return 'AlphaTauri'
+        else:
+            raise ValueError(
+                f'RIC was not on the grid in 2023 before Round 12 (requested round {round_number})'
+            )
+
+    # Special case: LAW in 2023 (rounds 13-17) and 2024 (rounds 19-24)
+    if year == 2023 and driver_code_str == 'LAW':
+        if 13 <= round_number <= 17:
+            return 'AlphaTauri'
+        else:
+            raise ValueError(
+                f'LAW was not on the grid in 2023 during round {round_number}'
+            )
+
+    if year == 2024 and driver_code_str == 'LAW':
+        if 19 <= round_number <= 24:
+            return 'RB'
+        else:
+            raise ValueError(
+                f'LAW was not on the grid in 2024 before Round 19 (requested round {round_number})'
+            )
+
+    constructor_map = CONSTRUCTOR_MAPPINGS_BY_YEAR.get(year, {})
+    constructor_name = constructor_map.get(driver_code_str)
+    if constructor_name:
+        return constructor_name
+
+    raise ValueError(
+        f'Unknown constructor mapping for driver code {driver_code_str} in {year} round {round_number}'
+    )
+
 
 def decode_track_status(raw_status: Any) -> Dict[str, bool]:
     """Decode FastF1 raw TrackStatus integer into boolean flags.
@@ -37,7 +191,8 @@ def decode_track_status(raw_status: Any) -> Dict[str, bool]:
         return flags
 
     s = str(int(raw_status)) if isinstance(raw_status, (int, float)) and not pd.isna(raw_status) else str(raw_status)
-    # Check each digit separately
+    # Check each digit separately, but treat some common multi-status codes as
+    # containing Safety Car / VSC indicators.
     for ch in set(s):
         if ch == '1':
             flags['TrackStatus_green'] = True
@@ -51,6 +206,13 @@ def decode_track_status(raw_status: Any) -> Dict[str, bool]:
             flags['TrackStatus_vsc'] = True
         elif ch == '7':
             flags['TrackStatus_vsc_end'] = True
+
+    if s == '12':
+        flags['TrackStatus_sc'] = True
+
+    # Transition codes can include both SC and VSC markers; full SC takes precedence.
+    if flags['TrackStatus_sc'] and flags['TrackStatus_vsc']:
+        flags['TrackStatus_vsc'] = False
 
     return flags
 
@@ -93,7 +255,10 @@ def filter_accurate_laps(df: pd.DataFrame) -> pd.DataFrame:
     """
     if 'IsAccurate' not in df.columns:
         return df.copy()
-    return df[df['IsAccurate'] == True].copy()
+    # Use .loc with a boolean mask to ensure a DataFrame is returned (type-checkers may
+    # interpret direct indexing as possibly returning a Series).
+    mask = df['IsAccurate'] == True
+    return df.loc[mask, :].copy()
 
 
 # Midfield driver mappings (driver codes) per year.
@@ -118,10 +283,11 @@ def filter_midfield_drivers(df: pd.DataFrame, year: int) -> pd.DataFrame:
     is case-insensitive.
     """
     if 'Driver' not in df.columns:
-        return df.iloc[0:0].copy()
+        return df.head(0).copy()
     valid = MIDFIELD_DRIVERS.get(year, [])
     valid_upper = {d.upper() for d in valid}
-    return df[df['Driver'].astype(str).str.upper().isin(valid_upper)].copy()
+    mask = df['Driver'].astype(str).str.upper().isin(valid_upper)
+    return df.loc[mask, :].copy()
 
 
 # Circuit archetype mapping
@@ -147,5 +313,10 @@ def add_circuit_archetype(df: pd.DataFrame, event_col: str = 'EventName') -> pd.
                     return arche
         return 'Other'
 
-    df['CircuitArchetype'] = df.get(event_col, pd.Series([''] * len(df))).apply(_find_archetype)
+    if event_col in df.columns:
+        events = df[event_col].astype(str)
+    else:
+        events = pd.Series([''] * len(df), index=df.index)
+
+    df['CircuitArchetype'] = events.apply(_find_archetype)
     return df
