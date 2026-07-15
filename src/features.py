@@ -133,7 +133,11 @@ def build_base_df():
             sc_active_bool |
             vsc_active_bool
         )
-        pit_eval['is_strategic_stop'] = ~(pit_eval['same_compound'] & ~pit_eval['under_caution'])
+        pit_eval['is_strategic_stop'] = pd.Series(pd.NA, index=pit_eval.index, dtype='boolean')
+        same_compound_mask = pit_eval['same_compound']
+        pit_eval.loc[same_compound_mask, 'is_strategic_stop'] = (
+            pit_eval.loc[same_compound_mask, 'under_caution'].astype('boolean')
+        )
 
         # Assign only on pit-in lap rows; non-pit laps remain NaN.
         laps['is_strategic_stop'] = np.nan
