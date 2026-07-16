@@ -1,0 +1,25 @@
+{
+  "deg_rate_corrected_reliable_counts": {
+    "false": 25798,
+    "nonnull": 74536,
+    "true": 48738
+  },
+  "features_py_commit": "cfb23e18eb244ee49e848e9094b32f3de094c2bd",
+  "final_shape": {
+    "columns": 55,
+    "rows": 74536
+  },
+  "is_strategic_stop_counts": {
+    "false": 387,
+    "nonnull": 602,
+    "true": 215
+  },
+  "raw_inputs_sha256": {
+    "data/raw/2022/f1_2022_laps.csv": "4ba4bca5c4ec87383d18320c0242db130544a8b66306551ba37a3f37114a32c6",
+    "data/raw/2022/f1_2022_pits.csv": "3531c6c10d39b3eaa71ac970dedd94ca6114702858eadabc11558d9894a448f1",
+    "data/raw/2023/f1_2023_laps.csv": "b10806fbde59ff2240332ddb267f9403af35ef51ab4d6538cde3ba076ddde8c3",
+    "data/raw/2023/f1_2023_pits.csv": "fe6eb47c33ced5f9466488a07a8536608e9ae025c75ef2ff4ae84e2d5f0cdaf1",
+    "data/raw/2024/f1_2024_laps.csv": "415706dcf26a2ba63aa15e7cfaa6cf3a6c415012e98f55f21e4f82709cb35090",
+    "data/raw/2024/f1_2024_pits.csv": "cb12f313244bfbc69c105b1c5df86a7144021ca0ab6a02f309b142fbbe27c1cb"
+  }
+}
