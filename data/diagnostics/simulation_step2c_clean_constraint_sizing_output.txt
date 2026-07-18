@@ -1,0 +1,47 @@
+Step 1 - Characterise stints of length <=2
+short_stints_total=124
+flag_sc_vsc_proximity_count=29
+flag_sc_vsc_proximity_pct=0.233871
+flag_start_lap_leq3_count=96
+flag_start_lap_leq3_pct=0.774194
+flag_repeat_short_stints_count=14
+flag_repeat_short_stints_pct=0.112903
+short_stints_with_any_flag=102
+short_stints_unexplained_count=22
+short_stints_unexplained_pct=0.177419
+
+Step 2 - Re-derive minimum stint length from clean subset
+clean_stints_total=2121
+clean_stint_length_min=1
+clean_stint_length_p01_nearest=2
+clean_stint_length_p05_nearest=6
+clean_stint_length_p10_nearest=8
+clean_stint_length_median_nearest=21
+clean_shortest_stint_with_count_gt_10=1
+
+Step 3 - Re-check max_stops on archetype-sampled races
+archetype_sample_has_stop_count_ge_4=True
+revised_max_stops=4
+ Year  Round          EventName Driver       Team  stop_count archetype_race_label
+ 2022      6 Spanish Grand Prix    ALB   Williams           4    Spanish/Barcelona
+ 2022      7  Monaco Grand Prix    TSU AlphaTauri           4               Monaco
+ 2023      1 Bahrain Grand Prix    NOR    McLaren           5              Bahrain
+ 2024     12 British Grand Prix    OCO     Alpine           4  British/Silverstone
+
+Step 4 - Constrained feasible set sizes on validation races
+        race driver    team
+ Monaco 2024    PIA McLaren
+  Monza 2024    PIA McLaren
+Hungary 2024    PIA McLaren
+duplicate_selected_driver_flag=PIA x3
+        race driver    team  max_stops  min_stint_length  original_unconstrained_size  feasible_set_size  reduction_factor_vs_original
+ Monaco 2024    PIA McLaren          4                 1                    110187462          110187462                           1.0
+  Monza 2024    PIA McLaren          4                 1                     22243312           22243312                           1.0
+Hungary 2024    PIA McLaren          4                 1                     70541230           70541230                           1.0
+
+Step 5 - Actual strategy feasibility under revised constraints
+        race driver    team  actual_stop_count actual_stint_lengths  actual_strategy_feasible violation            actual_strategy
+ Monaco 2024    PIA McLaren                  1              [1, 77]                      True      None                [(2, HARD)]
+  Monza 2024    PIA McLaren                  1             [16, 37]                      True      None               [(17, HARD)]
+Hungary 2024    PIA McLaren                  2         [18, 29, 23]                      True      None [(19, HARD), (48, MEDIUM)]
+tractability_status=UNRESOLVED: feasible-set size still in the millions for Monaco 2024: 110187462, Monza 2024: 22243312, Hungary 2024: 70541230
