@@ -1,0 +1,48 @@
+Step 1 - Stop-count distribution for midfield driver-races
+stop_count_0=65
+stop_count_1=542
+stop_count_2=289
+stop_count_3=37
+stop_count_4=7
+stop_count_5+=4
+stop_count_p50_nearest=1
+stop_count_p90_nearest=2
+stop_count_p95_nearest=3
+stop_count_p99_nearest=4
+driver_races_total=944
+driver_races_3_or_fewer=933
+driver_races_4_or_more=11
+proportion_3_or_fewer=0.988347
+proportion_4_or_more=0.011653
+
+Step 2 - Stint-length distribution for midfield stints
+stint_count_total=2223
+stint_length_min=1
+stint_length_p01_nearest=1
+stint_length_p05_nearest=2
+stint_length_p10_nearest=6
+stint_length_median_nearest=20
+shortest_stint_with_count_gt_10=1
+
+Step 3 - Recommended constraints from historical distributions
+recommended_max_stops=4 (set to the nearest-observed 99th percentile of midfield stop counts)
+recommended_min_stint_length=1 (set to the shortest stint length that appears more than 10 times)
+
+Step 4 - Selected midfield subjects for constrained sizing
+        race driver    team
+ Monaco 2024    PIA McLaren
+  Monza 2024    PIA McLaren
+Hungary 2024    PIA McLaren
+duplicate_selected_driver_flag=PIA x3
+
+Step 4 - Constrained feasible set sizes
+        race driver    team  max_stops  min_stint_length  unconstrained_feasible_set_size  feasible_set_size  reduction_factor
+ Monaco 2024    PIA McLaren          4                 1                        110187462          104488752             1.055
+  Monza 2024    PIA McLaren          4                 1                         22243312           20543752             1.083
+Hungary 2024    PIA McLaren          4                 1                         70541230           66472176             1.061
+
+Step 5 - Actual strategy feasibility under proposed constraints
+        race driver    team  actual_stop_count actual_stint_lengths  actual_strategy_feasible violation            actual_strategy
+ Monaco 2024    PIA McLaren                  1              [1, 77]                      True      None                [(2, HARD)]
+  Monza 2024    PIA McLaren                  1             [16, 37]                      True      None               [(17, HARD)]
+Hungary 2024    PIA McLaren                  2         [18, 29, 23]                      True      None [(19, HARD), (48, MEDIUM)]
