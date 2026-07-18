@@ -1,0 +1,51 @@
+====================================================================================================
+Monaco 2024 | Year=2024, Round=8
+====================================================================================================
+selected_driver=LEC
+driver_race_length=78
+starting_compound=MEDIUM
+wet_indicator_column=None
+wet_indicator_value=None
+wet_encoding_note=No explicit wet_race_flag column exists in base_df.csv; wet conditions are encoded via TyreCompound containing INTERMEDIATE/WET.
+is_wet_race=False
+actual_strategy=[(2, 'HARD')]
+====================================================================================================
+Monza 2024 | Year=2024, Round=16
+====================================================================================================
+selected_driver=LEC
+driver_race_length=53
+starting_compound=MEDIUM
+wet_indicator_column=None
+wet_indicator_value=None
+wet_encoding_note=No explicit wet_race_flag column exists in base_df.csv; wet conditions are encoded via TyreCompound containing INTERMEDIATE/WET.
+is_wet_race=False
+actual_strategy=[(16, 'HARD')]
+====================================================================================================
+Hungary 2024 | Year=2024, Round=13
+====================================================================================================
+selected_driver=PIA
+driver_race_length=70
+starting_compound=MEDIUM
+wet_indicator_column=None
+wet_indicator_value=None
+wet_encoding_note=No explicit wet_race_flag column exists in base_df.csv; wet conditions are encoded via TyreCompound containing INTERMEDIATE/WET.
+is_wet_race=False
+actual_strategy=[(19, 'HARD'), (48, 'MEDIUM')]
+
+Step 4 - Feasible set sizes
+        race driver  max_stops  feasible_set_size
+ Monaco 2024    LEC          2              23562
+ Monaco 2024    LEC          3            1925462
+ Monaco 2024    LEC          4          110187462
+  Monza 2024    LEC          2              10712
+  Monza 2024    LEC          3             585312
+  Monza 2024    LEC          4           22243312
+Hungary 2024    PIA          2              18906
+Hungary 2024    PIA          3            1381150
+Hungary 2024    PIA          4           70541230
+
+Step 5 - Actual strategy feasibility
+        race driver  actual_stop_count  checked_with_max_stops  actual_strategy_feasible violation            actual_strategy
+ Monaco 2024    LEC                  1                       1                      True      None                [(2, HARD)]
+  Monza 2024    LEC                  1                       1                      True      None               [(16, HARD)]
+Hungary 2024    PIA                  2                       2                      True      None [(19, HARD), (48, MEDIUM)]
