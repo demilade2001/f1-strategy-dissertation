@@ -5,6 +5,9 @@ import pandas as pd
 from .config import BASE_DF_PATH, DEG_RATE_STATS_PATH, XGB_TEST_PREDICTIONS_PATH
 
 
+XGB_PROBABILITY_COLUMN = "y_pred_xgb_classweight_cal"
+
+
 def _get_single_rate(series: pd.Series):
     non_null = series.dropna()
     if non_null.empty:
@@ -32,6 +35,22 @@ def load_race_state(year: int, round_num: int) -> dict:
     pred_subset = pred_df[(pred_df["Year"] == year) & (pred_df["Round"] == round_num)].copy()
 
     merge_keys = ["Year", "Round", "Driver", "LapNumber"]
+    pred_value_cols = [col for col in pred_subset.columns if col not in merge_keys]
+
+    race_laps = race_laps.merge(
+        pred_subset[merge_keys + pred_value_cols],
+        on=merge_keys,
+        how="left",
+    )
+
+    if XGB_PROBABILITY_COLUMN not in race_laps.columns:
+        race_laps[XGB_PROBABILITY_COLUMN] = pd.NA
+
+    # Rows without lap-level probability (typically each driver's final 1-3 laps from sc_vsc_next3
+    # lookahead truncation) stay in the race timeline and fall back to circuit_sc_rate prior when
+    # sc_sampler.py consumes this state, aligned with the same prior used for R_SC.
+    race_laps["has_lap_level_prob"] = race_laps[XGB_PROBABILITY_COLUMN].notna().astype(bool)
+
     merged_predictions = race_laps[merge_keys].merge(
         pred_subset,
         on=merge_keys,

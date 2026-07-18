@@ -8,6 +8,8 @@ xgb_merge_total_laps=1237
 xgb_merge_success_rate=95.80%
 circuit_sc_rate=0.203392094017094
 circuit_vsc_rate=0.0104166666666666
+has_lap_level_prob_true=1185
+has_lap_level_prob_false=52
 drivers_with_teams:
   ALB: Williams
   ALO: Aston Martin
@@ -102,6 +104,8 @@ xgb_merge_total_laps=1008
 xgb_merge_success_rate=94.05%
 circuit_sc_rate=0.0566037735849056
 circuit_vsc_rate=0.0125786163522012
+has_lap_level_prob_true=948
+has_lap_level_prob_false=60
 drivers_with_teams:
   ALB: Williams
   ALO: Aston Martin
@@ -204,6 +208,8 @@ xgb_merge_total_laps=1355
 xgb_merge_success_rate=95.57%
 circuit_sc_rate=0.0904761904761904
 circuit_vsc_rate=0.0333333333333333
+has_lap_level_prob_true=1295
+has_lap_level_prob_false=60
 drivers_with_teams:
   ALB: Williams
   ALO: Aston Martin
