@@ -11,16 +11,7 @@ from src.simulation.race_state import load_race_state
 
 
 BASE_DF_PATH = ROOT / "data" / "processed" / "base_df.csv"
-
-
-def find_round_for_event(year: int, event_name: str) -> int:
-    df = pd.read_csv(BASE_DF_PATH, usecols=["Year", "Round", "EventName"])
-    match = df[(df["Year"] == year) & (df["EventName"] == event_name)]["Round"].dropna().unique()
-    if len(match) != 1:
-        raise ValueError(
-            f"Expected exactly one round for {event_name} {year}; got {match.tolist()}"
-        )
-    return int(match[0])
+PRED_PATH = ROOT / "data" / "models" / "classweight_test_predictions.csv"
 
 
 def print_case(label: str, year: int, round_num: int):
@@ -58,15 +49,21 @@ def print_case(label: str, year: int, round_num: int):
                 f"Driver={row['Driver']}, LapNumber={int(row['LapNumber'])}"
             )
 
+        pred_subset = pd.read_csv(PRED_PATH)
+        pred_subset = pred_subset[(pred_subset["Year"] == year) & (pred_subset["Round"] == round_num)]
+        key_cols = ["Year", "Round", "Driver", "LapNumber"]
+        print("merge_key_dtypes_laps:")
+        for col in key_cols:
+            print(f"  {col}: {laps[col].dtype}")
+        print("merge_key_dtypes_predictions:")
+        for col in key_cols:
+            print(f"  {col}: {pred_subset[col].dtype}")
+
 
 def main():
-    monaco_round = find_round_for_event(2023, "Monaco Grand Prix")
-    monza_round = find_round_for_event(2023, "Italian Grand Prix")
-    hungary_round = find_round_for_event(2023, "Hungarian Grand Prix")
-
-    print_case("Monaco 2023 (Street)", 2023, monaco_round)
-    print_case("Monza 2023 (Power)", 2023, monza_round)
-    print_case("Hungary 2023 (Technical)", 2023, hungary_round)
+    print_case("Monaco 2024 (Street)", 2024, 8)
+    print_case("Monza 2024 (Power)", 2024, 16)
+    print_case("Hungary 2024 (Technical)", 2024, 13)
 
 
 if __name__ == "__main__":

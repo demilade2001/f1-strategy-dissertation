@@ -1,0 +1,298 @@
+====================================================================================================
+Monaco 2024 (Street) | Year=2024, Round=8
+====================================================================================================
+laps_row_count=1237
+deg_stats_row_count=3
+xgb_merge_matched=1185
+xgb_merge_total_laps=1237
+xgb_merge_success_rate=95.80%
+circuit_sc_rate=0.203392094017094
+circuit_vsc_rate=0.0104166666666666
+drivers_with_teams:
+  ALB: Williams
+  ALO: Aston Martin
+  BOT: Sauber
+  GAS: Alpine
+  HAM: Mercedes
+  HUL: Haas
+  LEC: Ferrari
+  MAG: Haas
+  NOR: McLaren
+  OCO: Alpine
+  PER: Red Bull
+  PIA: McLaren
+  RIC: RB
+  RUS: Mercedes
+  SAI: Ferrari
+  SAR: Williams
+  STR: Aston Martin
+  TSU: RB
+  VER: Red Bull
+  ZHO: Sauber
+unmatched_prediction_keys:
+  Year=2024, Round=8, Driver=LEC, LapNumber=76
+  Year=2024, Round=8, Driver=LEC, LapNumber=77
+  Year=2024, Round=8, Driver=LEC, LapNumber=78
+  Year=2024, Round=8, Driver=PIA, LapNumber=76
+  Year=2024, Round=8, Driver=PIA, LapNumber=77
+  Year=2024, Round=8, Driver=PIA, LapNumber=78
+  Year=2024, Round=8, Driver=SAI, LapNumber=76
+  Year=2024, Round=8, Driver=SAI, LapNumber=77
+  Year=2024, Round=8, Driver=SAI, LapNumber=78
+  Year=2024, Round=8, Driver=NOR, LapNumber=76
+  Year=2024, Round=8, Driver=NOR, LapNumber=77
+  Year=2024, Round=8, Driver=NOR, LapNumber=78
+  Year=2024, Round=8, Driver=RUS, LapNumber=76
+  Year=2024, Round=8, Driver=RUS, LapNumber=77
+  Year=2024, Round=8, Driver=RUS, LapNumber=78
+  Year=2024, Round=8, Driver=VER, LapNumber=76
+  Year=2024, Round=8, Driver=VER, LapNumber=77
+  Year=2024, Round=8, Driver=VER, LapNumber=78
+  Year=2024, Round=8, Driver=HAM, LapNumber=76
+  Year=2024, Round=8, Driver=HAM, LapNumber=77
+  Year=2024, Round=8, Driver=HAM, LapNumber=78
+  Year=2024, Round=8, Driver=TSU, LapNumber=75
+  Year=2024, Round=8, Driver=TSU, LapNumber=76
+  Year=2024, Round=8, Driver=TSU, LapNumber=77
+  Year=2024, Round=8, Driver=ALB, LapNumber=75
+  Year=2024, Round=8, Driver=ALB, LapNumber=76
+  Year=2024, Round=8, Driver=ALB, LapNumber=77
+  Year=2024, Round=8, Driver=GAS, LapNumber=75
+  Year=2024, Round=8, Driver=GAS, LapNumber=76
+  Year=2024, Round=8, Driver=GAS, LapNumber=77
+  Year=2024, Round=8, Driver=ALO, LapNumber=74
+  Year=2024, Round=8, Driver=ALO, LapNumber=75
+  Year=2024, Round=8, Driver=ALO, LapNumber=76
+  Year=2024, Round=8, Driver=RIC, LapNumber=74
+  Year=2024, Round=8, Driver=RIC, LapNumber=75
+  Year=2024, Round=8, Driver=RIC, LapNumber=76
+  Year=2024, Round=8, Driver=BOT, LapNumber=74
+  Year=2024, Round=8, Driver=BOT, LapNumber=75
+  Year=2024, Round=8, Driver=BOT, LapNumber=76
+  Year=2024, Round=8, Driver=STR, LapNumber=74
+  Year=2024, Round=8, Driver=STR, LapNumber=75
+  Year=2024, Round=8, Driver=STR, LapNumber=76
+  Year=2024, Round=8, Driver=SAR, LapNumber=74
+  Year=2024, Round=8, Driver=SAR, LapNumber=75
+  Year=2024, Round=8, Driver=SAR, LapNumber=76
+  Year=2024, Round=8, Driver=ZHO, LapNumber=74
+  Year=2024, Round=8, Driver=ZHO, LapNumber=75
+  Year=2024, Round=8, Driver=ZHO, LapNumber=76
+  Year=2024, Round=8, Driver=OCO, LapNumber=1
+  Year=2024, Round=8, Driver=PER, LapNumber=1
+  Year=2024, Round=8, Driver=HUL, LapNumber=1
+  Year=2024, Round=8, Driver=MAG, LapNumber=1
+merge_key_dtypes_laps:
+  Year: int64
+  Round: int64
+  Driver: object
+  LapNumber: float64
+merge_key_dtypes_predictions:
+  Year: int64
+  Round: int64
+  Driver: object
+  LapNumber: float64
+====================================================================================================
+Monza 2024 (Power) | Year=2024, Round=16
+====================================================================================================
+laps_row_count=1008
+deg_stats_row_count=3
+xgb_merge_matched=948
+xgb_merge_total_laps=1008
+xgb_merge_success_rate=94.05%
+circuit_sc_rate=0.0566037735849056
+circuit_vsc_rate=0.0125786163522012
+drivers_with_teams:
+  ALB: Williams
+  ALO: Aston Martin
+  BOT: Sauber
+  COL: Williams
+  GAS: Alpine
+  HAM: Mercedes
+  HUL: Haas
+  LEC: Ferrari
+  MAG: Haas
+  NOR: McLaren
+  OCO: Alpine
+  PER: Red Bull
+  PIA: McLaren
+  RIC: RB
+  RUS: Mercedes
+  SAI: Ferrari
+  STR: Aston Martin
+  TSU: RB
+  VER: Red Bull
+  ZHO: Sauber
+unmatched_prediction_keys:
+  Year=2024, Round=16, Driver=LEC, LapNumber=51
+  Year=2024, Round=16, Driver=LEC, LapNumber=52
+  Year=2024, Round=16, Driver=LEC, LapNumber=53
+  Year=2024, Round=16, Driver=PIA, LapNumber=51
+  Year=2024, Round=16, Driver=PIA, LapNumber=52
+  Year=2024, Round=16, Driver=PIA, LapNumber=53
+  Year=2024, Round=16, Driver=NOR, LapNumber=51
+  Year=2024, Round=16, Driver=NOR, LapNumber=52
+  Year=2024, Round=16, Driver=NOR, LapNumber=53
+  Year=2024, Round=16, Driver=SAI, LapNumber=51
+  Year=2024, Round=16, Driver=SAI, LapNumber=52
+  Year=2024, Round=16, Driver=SAI, LapNumber=53
+  Year=2024, Round=16, Driver=HAM, LapNumber=51
+  Year=2024, Round=16, Driver=HAM, LapNumber=52
+  Year=2024, Round=16, Driver=HAM, LapNumber=53
+  Year=2024, Round=16, Driver=VER, LapNumber=51
+  Year=2024, Round=16, Driver=VER, LapNumber=52
+  Year=2024, Round=16, Driver=VER, LapNumber=53
+  Year=2024, Round=16, Driver=RUS, LapNumber=51
+  Year=2024, Round=16, Driver=RUS, LapNumber=52
+  Year=2024, Round=16, Driver=RUS, LapNumber=53
+  Year=2024, Round=16, Driver=PER, LapNumber=51
+  Year=2024, Round=16, Driver=PER, LapNumber=52
+  Year=2024, Round=16, Driver=PER, LapNumber=53
+  Year=2024, Round=16, Driver=ALB, LapNumber=51
+  Year=2024, Round=16, Driver=ALB, LapNumber=52
+  Year=2024, Round=16, Driver=ALB, LapNumber=53
+  Year=2024, Round=16, Driver=MAG, LapNumber=51
+  Year=2024, Round=16, Driver=MAG, LapNumber=52
+  Year=2024, Round=16, Driver=MAG, LapNumber=53
+  Year=2024, Round=16, Driver=ALO, LapNumber=51
+  Year=2024, Round=16, Driver=ALO, LapNumber=52
+  Year=2024, Round=16, Driver=ALO, LapNumber=53
+  Year=2024, Round=16, Driver=COL, LapNumber=51
+  Year=2024, Round=16, Driver=COL, LapNumber=52
+  Year=2024, Round=16, Driver=COL, LapNumber=53
+  Year=2024, Round=16, Driver=RIC, LapNumber=51
+  Year=2024, Round=16, Driver=RIC, LapNumber=52
+  Year=2024, Round=16, Driver=RIC, LapNumber=53
+  Year=2024, Round=16, Driver=OCO, LapNumber=50
+  Year=2024, Round=16, Driver=OCO, LapNumber=51
+  Year=2024, Round=16, Driver=OCO, LapNumber=52
+  Year=2024, Round=16, Driver=GAS, LapNumber=50
+  Year=2024, Round=16, Driver=GAS, LapNumber=51
+  Year=2024, Round=16, Driver=GAS, LapNumber=52
+  Year=2024, Round=16, Driver=BOT, LapNumber=50
+  Year=2024, Round=16, Driver=BOT, LapNumber=51
+  Year=2024, Round=16, Driver=BOT, LapNumber=52
+  Year=2024, Round=16, Driver=HUL, LapNumber=50
+  Year=2024, Round=16, Driver=HUL, LapNumber=51
+  Year=2024, Round=16, Driver=HUL, LapNumber=52
+  Year=2024, Round=16, Driver=ZHO, LapNumber=50
+  Year=2024, Round=16, Driver=ZHO, LapNumber=51
+  Year=2024, Round=16, Driver=ZHO, LapNumber=52
+  Year=2024, Round=16, Driver=STR, LapNumber=50
+  Year=2024, Round=16, Driver=STR, LapNumber=51
+  Year=2024, Round=16, Driver=STR, LapNumber=52
+  Year=2024, Round=16, Driver=TSU, LapNumber=5
+  Year=2024, Round=16, Driver=TSU, LapNumber=6
+  Year=2024, Round=16, Driver=TSU, LapNumber=7
+merge_key_dtypes_laps:
+  Year: int64
+  Round: int64
+  Driver: object
+  LapNumber: float64
+merge_key_dtypes_predictions:
+  Year: int64
+  Round: int64
+  Driver: object
+  LapNumber: float64
+====================================================================================================
+Hungary 2024 (Technical) | Year=2024, Round=13
+====================================================================================================
+laps_row_count=1355
+deg_stats_row_count=3
+xgb_merge_matched=1295
+xgb_merge_total_laps=1355
+xgb_merge_success_rate=95.57%
+circuit_sc_rate=0.0904761904761904
+circuit_vsc_rate=0.0333333333333333
+drivers_with_teams:
+  ALB: Williams
+  ALO: Aston Martin
+  BOT: Sauber
+  GAS: Alpine
+  HAM: Mercedes
+  HUL: Haas
+  LEC: Ferrari
+  MAG: Haas
+  NOR: McLaren
+  OCO: Alpine
+  PER: Red Bull
+  PIA: McLaren
+  RIC: RB
+  RUS: Mercedes
+  SAI: Ferrari
+  SAR: Williams
+  STR: Aston Martin
+  TSU: RB
+  VER: Red Bull
+  ZHO: Sauber
+unmatched_prediction_keys:
+  Year=2024, Round=13, Driver=PIA, LapNumber=68
+  Year=2024, Round=13, Driver=PIA, LapNumber=69
+  Year=2024, Round=13, Driver=PIA, LapNumber=70
+  Year=2024, Round=13, Driver=NOR, LapNumber=68
+  Year=2024, Round=13, Driver=NOR, LapNumber=69
+  Year=2024, Round=13, Driver=NOR, LapNumber=70
+  Year=2024, Round=13, Driver=HAM, LapNumber=68
+  Year=2024, Round=13, Driver=HAM, LapNumber=69
+  Year=2024, Round=13, Driver=HAM, LapNumber=70
+  Year=2024, Round=13, Driver=LEC, LapNumber=68
+  Year=2024, Round=13, Driver=LEC, LapNumber=69
+  Year=2024, Round=13, Driver=LEC, LapNumber=70
+  Year=2024, Round=13, Driver=VER, LapNumber=68
+  Year=2024, Round=13, Driver=VER, LapNumber=69
+  Year=2024, Round=13, Driver=VER, LapNumber=70
+  Year=2024, Round=13, Driver=SAI, LapNumber=68
+  Year=2024, Round=13, Driver=SAI, LapNumber=69
+  Year=2024, Round=13, Driver=SAI, LapNumber=70
+  Year=2024, Round=13, Driver=PER, LapNumber=68
+  Year=2024, Round=13, Driver=PER, LapNumber=69
+  Year=2024, Round=13, Driver=PER, LapNumber=70
+  Year=2024, Round=13, Driver=RUS, LapNumber=68
+  Year=2024, Round=13, Driver=RUS, LapNumber=69
+  Year=2024, Round=13, Driver=RUS, LapNumber=70
+  Year=2024, Round=13, Driver=TSU, LapNumber=68
+  Year=2024, Round=13, Driver=TSU, LapNumber=69
+  Year=2024, Round=13, Driver=TSU, LapNumber=70
+  Year=2024, Round=13, Driver=STR, LapNumber=68
+  Year=2024, Round=13, Driver=STR, LapNumber=69
+  Year=2024, Round=13, Driver=STR, LapNumber=70
+  Year=2024, Round=13, Driver=ALO, LapNumber=68
+  Year=2024, Round=13, Driver=ALO, LapNumber=69
+  Year=2024, Round=13, Driver=ALO, LapNumber=70
+  Year=2024, Round=13, Driver=RIC, LapNumber=67
+  Year=2024, Round=13, Driver=RIC, LapNumber=68
+  Year=2024, Round=13, Driver=RIC, LapNumber=69
+  Year=2024, Round=13, Driver=HUL, LapNumber=67
+  Year=2024, Round=13, Driver=HUL, LapNumber=68
+  Year=2024, Round=13, Driver=HUL, LapNumber=69
+  Year=2024, Round=13, Driver=ALB, LapNumber=67
+  Year=2024, Round=13, Driver=ALB, LapNumber=68
+  Year=2024, Round=13, Driver=ALB, LapNumber=69
+  Year=2024, Round=13, Driver=MAG, LapNumber=67
+  Year=2024, Round=13, Driver=MAG, LapNumber=68
+  Year=2024, Round=13, Driver=MAG, LapNumber=69
+  Year=2024, Round=13, Driver=BOT, LapNumber=67
+  Year=2024, Round=13, Driver=BOT, LapNumber=68
+  Year=2024, Round=13, Driver=BOT, LapNumber=69
+  Year=2024, Round=13, Driver=SAR, LapNumber=67
+  Year=2024, Round=13, Driver=SAR, LapNumber=68
+  Year=2024, Round=13, Driver=SAR, LapNumber=69
+  Year=2024, Round=13, Driver=OCO, LapNumber=67
+  Year=2024, Round=13, Driver=OCO, LapNumber=68
+  Year=2024, Round=13, Driver=OCO, LapNumber=69
+  Year=2024, Round=13, Driver=ZHO, LapNumber=67
+  Year=2024, Round=13, Driver=ZHO, LapNumber=68
+  Year=2024, Round=13, Driver=ZHO, LapNumber=69
+  Year=2024, Round=13, Driver=GAS, LapNumber=31
+  Year=2024, Round=13, Driver=GAS, LapNumber=32
+  Year=2024, Round=13, Driver=GAS, LapNumber=33
+merge_key_dtypes_laps:
+  Year: int64
+  Round: int64
+  Driver: object
+  LapNumber: float64
+merge_key_dtypes_predictions:
+  Year: int64
+  Round: int64
+  Driver: object
+  LapNumber: float64
