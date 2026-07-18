@@ -9,6 +9,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from src.simulation.race_state import load_race_state
+from src.simulation.config import is_valid_subject
 from src.simulation.strategy import enumerate_feasible_strategies
 
 
@@ -20,15 +21,19 @@ RACES = [
 ]
 
 
-def pick_reference_driver(laps: pd.DataFrame) -> str:
+def pick_reference_driver(laps: pd.DataFrame) -> tuple[str, str]:
     final_rows = (
         laps.sort_values(["Driver", "LapNumber"])
         .groupby("Driver", as_index=False)
         .tail(1)
         .copy()
     )
+    final_rows = final_rows[final_rows["Team"].apply(is_valid_subject)].copy()
+    if final_rows.empty:
+        raise ValueError("No midfield driver found for validation race")
     final_rows = final_rows.sort_values(["Position", "LapNumber", "Driver"])
-    return str(final_rows.iloc[0]["Driver"])
+    row = final_rows.iloc[0]
+    return str(row["Driver"]), str(row["Team"])
 
 
 def determine_wet_race(race_laps: pd.DataFrame):
@@ -77,13 +82,15 @@ def extract_actual_strategy(driver_laps: pd.DataFrame):
     }
 
 
-def print_driver_race_summary(label: str, race_laps: pd.DataFrame, driver: str):
+def print_driver_race_summary(label: str, race_laps: pd.DataFrame, driver: str, team: str):
     driver_laps = extract_driver_laps(race_laps, driver)
     race_length = int(driver_laps["LapNumber"].max())
     starting_compound = str(driver_laps.loc[driver_laps["LapNumber"] == 1, "TyreCompound"].iloc[0])
     wet_col, wet_val, is_wet_race = determine_wet_race(race_laps)
 
     print(f"selected_driver={driver}")
+    print(f"selected_driver_team={team}")
+    print(f"selected_driver_is_valid_subject={is_valid_subject(team)}")
     print(f"driver_race_length={race_length}")
     print(f"starting_compound={starting_compound}")
     if wet_col is not None:
@@ -107,14 +114,14 @@ def main():
     for label, year, round_num in RACES:
         state = load_race_state(year=year, round_num=round_num)
         race_laps = state["laps"]
-        driver = pick_reference_driver(race_laps)
+        driver, team = pick_reference_driver(race_laps)
 
         print("=" * 100)
         print(f"{label} | Year={year}, Round={round_num}")
         print("=" * 100)
 
         driver_laps, actual_strategy, race_length, starting_compound, is_wet_race = print_driver_race_summary(
-            label, race_laps, driver
+            label, race_laps, driver, team
         )
 
         for max_stops in [2, 3, 4]:
@@ -128,6 +135,7 @@ def main():
                 {
                     "race": label,
                     "driver": driver,
+                    "team": team,
                     "max_stops": max_stops,
                     "feasible_set_size": len(feasible),
                 }
@@ -162,6 +170,7 @@ def main():
             {
                 "race": label,
                 "driver": driver,
+                "team": team,
                 "actual_stop_count": actual_stop_count,
                 "checked_with_max_stops": max(actual_stop_count, 1),
                 "actual_strategy_feasible": is_feasible,

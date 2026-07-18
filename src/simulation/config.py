@@ -1,5 +1,7 @@
 from pathlib import Path
 
+from src.utils import MIDFIELD_CONSTRUCTORS
+
 
 # Added seconds to pit-loss window when scanning for nearby rivals.
 PROXIMITY_MARGIN_S = 5.0
@@ -28,3 +30,9 @@ BASE_DF_PATH = ROOT / "data" / "processed" / "base_df.csv"
 DEG_RATE_STATS_PATH = ROOT / "data" / "diagnostics" / "deg_rate_full_peryear_stats.csv"
 # Calibrated XGBoost test-set predictions used for Phase 3 bias-threshold work.
 XGB_TEST_PREDICTIONS_PATH = ROOT / "data" / "models" / "classweight_test_predictions.csv"
+
+
+# Rivals may be any team including Big Three; only midfield teams may be passed as the
+# driver/subject argument to optimiser.py's argmax_strategy once that module exists.
+def is_valid_subject(team: str) -> bool:
+	return team in MIDFIELD_CONSTRUCTORS
