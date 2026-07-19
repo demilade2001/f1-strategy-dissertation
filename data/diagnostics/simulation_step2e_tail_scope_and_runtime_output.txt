@@ -1,0 +1,62 @@
+Part A - Locked 12-race sample scope check
+phase3_reference_files_checked:
+  - diagnostics/phase3_blockers.py
+  - diagnostics/chapter3_degradation_regeneration.py
+locked_sample_year_round_table:
+archetype               circuit locked_year_round available_year_rounds_in_base_df                                                                                                   lock_source
+   Street     Monaco Grand Prix          UNLOCKED        2022-R7, 2023-R6, 2024-R8 diagnostics/phase3_blockers.py + diagnostics/chapter3_degradation_regeneration.py define event-name sets only
+   Street Azerbaijan Grand Prix          UNLOCKED       2022-R8, 2023-R4, 2024-R17 diagnostics/phase3_blockers.py + diagnostics/chapter3_degradation_regeneration.py define event-name sets only
+   Street  Singapore Grand Prix          UNLOCKED     2022-R17, 2023-R15, 2024-R18 diagnostics/phase3_blockers.py + diagnostics/chapter3_degradation_regeneration.py define event-name sets only
+   Street      Miami Grand Prix          UNLOCKED        2022-R5, 2023-R5, 2024-R6 diagnostics/phase3_blockers.py + diagnostics/chapter3_degradation_regeneration.py define event-name sets only
+    Power    Italian Grand Prix          UNLOCKED     2022-R16, 2023-R14, 2024-R16 diagnostics/phase3_blockers.py + diagnostics/chapter3_degradation_regeneration.py define event-name sets only
+    Power    Belgian Grand Prix          UNLOCKED     2022-R14, 2023-R12, 2024-R14 diagnostics/phase3_blockers.py + diagnostics/chapter3_degradation_regeneration.py define event-name sets only
+    Power    British Grand Prix          UNLOCKED     2022-R10, 2023-R10, 2024-R12 diagnostics/phase3_blockers.py + diagnostics/chapter3_degradation_regeneration.py define event-name sets only
+    Power    Bahrain Grand Prix          UNLOCKED        2022-R1, 2023-R1, 2024-R1 diagnostics/phase3_blockers.py + diagnostics/chapter3_degradation_regeneration.py define event-name sets only
+Technical    Spanish Grand Prix          UNLOCKED       2022-R6, 2023-R7, 2024-R10 diagnostics/phase3_blockers.py + diagnostics/chapter3_degradation_regeneration.py define event-name sets only
+Technical  Hungarian Grand Prix          UNLOCKED     2022-R13, 2023-R11, 2024-R13 diagnostics/phase3_blockers.py + diagnostics/chapter3_degradation_regeneration.py define event-name sets only
+Technical  Abu Dhabi Grand Prix          UNLOCKED     2022-R22, 2023-R22, 2024-R24 diagnostics/phase3_blockers.py + diagnostics/chapter3_degradation_regeneration.py define event-name sets only
+Technical   Japanese Grand Prix          UNLOCKED      2022-R18, 2023-R16, 2024-R4 diagnostics/phase3_blockers.py + diagnostics/chapter3_degradation_regeneration.py define event-name sets only
+locked_sample_note=No per-circuit Year/Round lock was found; prior diagnostics define event-name sets across seasons.
+
+all_midfield_driver_races_with_stop_count_ge_4=11
+ Year  Round             EventName Driver         Team  stop_count
+ 2022      6    Spanish Grand Prix    ALB     Williams           4
+ 2022      7     Monaco Grand Prix    TSU   AlphaTauri           4
+ 2023      1    Bahrain Grand Prix    NOR      McLaren           5
+ 2023      3 Australian Grand Prix    SAR     Williams           5
+ 2023     13      Dutch Grand Prix    LAW   AlphaTauri           5
+ 2023     13      Dutch Grand Prix    MAG         Haas           4
+ 2023     13      Dutch Grand Prix    OCO       Alpine           4
+ 2023     13      Dutch Grand Prix    STR Aston Martin           5
+ 2023     13      Dutch Grand Prix    ZHO       Sauber           4
+ 2024      5    Chinese Grand Prix    STR Aston Martin           4
+ 2024     12    British Grand Prix    OCO       Alpine           4
+
+locked_sample_match_count=0
+locked_sample_match_note=0 because no per-circuit locked Year/Round mapping exists in repository history checked.
+event_name_scope_match_count_if_all_years_used=4
+
+Part B - Non-strategic contamination check for locked-sample matches
+part_b_note=No locked-sample matches to assess because lock mapping is undefined.
+
+part_b_supplementary_event_name_scope_assessment:
+ Year  Round          EventName Driver       Team  stop_count classification  stop_on_caution_any  early_stop_any  extra_stop_preceded_by_outlier_any stop_on_caution_laps early_stop_laps extra_stop_laps
+ 2022      6 Spanish Grand Prix    ALB   Williams           4       reactive                False           False                                True                   []              []            [55]
+ 2022      7  Monaco Grand Prix    TSU AlphaTauri           4       reactive                False           False                                True                   []              []            [57]
+ 2023      1 Bahrain Grand Prix    NOR    McLaren           5 strategic_like                False           False                               False                   []              []        [38, 48]
+ 2024     12 British Grand Prix    OCO     Alpine           4 strategic_like                False           False                               False                   []              []            [39]
+
+Part C - Real runtime benchmark (vectorized evaluation)
+selected_driver=PIA
+selected_team=McLaren
+race_length=53
+grid_spacing=3
+max_stops=3
+strategy_count=22476
+schedule_count=1000
+evaluation_seconds=2.274975
+linear_projection_10k_same_race_seconds=22.749745
+linear_projection_monaco_1k_seconds=7.110763
+linear_projection_monaco_10k_seconds=71.107631
+projection_assumption=Linear in schedules and strategy count
+vectorized_checksum=11238.504494
