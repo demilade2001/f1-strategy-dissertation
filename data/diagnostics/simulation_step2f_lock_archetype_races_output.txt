@@ -1,0 +1,96 @@
+Step 1 - Exclusion list from low_sample flags only
+              circuit  year  compounds_low_sample_count  excluded
+ Abu Dhabi Grand Prix  2022                           0     False
+ Abu Dhabi Grand Prix  2023                           1     False
+ Abu Dhabi Grand Prix  2024                           1     False
+Azerbaijan Grand Prix  2022                           2      True
+Azerbaijan Grand Prix  2023                           2      True
+Azerbaijan Grand Prix  2024                           1     False
+   Bahrain Grand Prix  2022                           0     False
+   Bahrain Grand Prix  2023                           1     False
+   Bahrain Grand Prix  2024                           0     False
+   Belgian Grand Prix  2022                           0     False
+   Belgian Grand Prix  2023                           2      True
+   Belgian Grand Prix  2024                           0     False
+   British Grand Prix  2022                           0     False
+   British Grand Prix  2023                           0     False
+   British Grand Prix  2024                           0     False
+ Hungarian Grand Prix  2022                           0     False
+ Hungarian Grand Prix  2023                           3      True
+ Hungarian Grand Prix  2024                           0     False
+   Italian Grand Prix  2022                           0     False
+   Italian Grand Prix  2023                           0     False
+   Italian Grand Prix  2024                           1     False
+  Japanese Grand Prix  2022                           0     False
+  Japanese Grand Prix  2023                           3      True
+  Japanese Grand Prix  2024                           0     False
+     Miami Grand Prix  2022                           1     False
+     Miami Grand Prix  2023                           1     False
+     Miami Grand Prix  2024                           0     False
+    Monaco Grand Prix  2022                           1     False
+    Monaco Grand Prix  2023                           1     False
+    Monaco Grand Prix  2024                           0     False
+ Singapore Grand Prix  2022                           0     False
+ Singapore Grand Prix  2023                           2      True
+ Singapore Grand Prix  2024                           0     False
+   Spanish Grand Prix  2022                           0     False
+   Spanish Grand Prix  2023                           0     False
+   Spanish Grand Prix  2024                           0     False
+
+Step 2 - Eligible years per circuit
+Abu Dhabi Grand Prix: eligible_years=[2022, 2023, 2024]
+Azerbaijan Grand Prix: eligible_years=[2024]
+Bahrain Grand Prix: eligible_years=[2022, 2023, 2024]
+Belgian Grand Prix: eligible_years=[2022, 2024]
+British Grand Prix: eligible_years=[2022, 2023, 2024]
+Hungarian Grand Prix: eligible_years=[2022, 2024]
+Italian Grand Prix: eligible_years=[2022, 2023, 2024]
+Japanese Grand Prix: eligible_years=[2022, 2024]
+Miami Grand Prix: eligible_years=[2022, 2023, 2024]
+Monaco Grand Prix: eligible_years=[2022, 2023, 2024]
+Singapore Grand Prix: eligible_years=[2022, 2024]
+Spanish Grand Prix: eligible_years=[2022, 2023, 2024]
+
+Step 3 - Seeded random draw per circuit (alphabetical EventName order)
+rng_seed=42
+draw: circuit=Abu Dhabi Grand Prix | eligible_years=[2022, 2023, 2024] | selected_year=2022
+draw: circuit=Azerbaijan Grand Prix | eligible_years=[2024] | selected_year=2024
+draw: circuit=Bahrain Grand Prix | eligible_years=[2022, 2023, 2024] | selected_year=2024
+draw: circuit=Belgian Grand Prix | eligible_years=[2022, 2024] | selected_year=2024
+draw: circuit=British Grand Prix | eligible_years=[2022, 2023, 2024] | selected_year=2023
+draw: circuit=Hungarian Grand Prix | eligible_years=[2022, 2024] | selected_year=2022
+draw: circuit=Italian Grand Prix | eligible_years=[2022, 2023, 2024] | selected_year=2024
+draw: circuit=Japanese Grand Prix | eligible_years=[2022, 2024] | selected_year=2022
+draw: circuit=Miami Grand Prix | eligible_years=[2022, 2023, 2024] | selected_year=2024
+draw: circuit=Monaco Grand Prix | eligible_years=[2022, 2023, 2024] | selected_year=2022
+draw: circuit=Singapore Grand Prix | eligible_years=[2022, 2024] | selected_year=2022
+draw: circuit=Spanish Grand Prix | eligible_years=[2022, 2023, 2024] | selected_year=2023
+
+Step 4 - Final locked archetype races (with rounds)
+archetype            event_name  drawn_year  round
+    Power    Bahrain Grand Prix        2024      1
+    Power    Belgian Grand Prix        2024     14
+    Power    British Grand Prix        2023     10
+    Power    Italian Grand Prix        2024     16
+   Street Azerbaijan Grand Prix        2024     17
+   Street      Miami Grand Prix        2024      6
+   Street     Monaco Grand Prix        2022      7
+   Street  Singapore Grand Prix        2022     17
+Technical  Abu Dhabi Grand Prix        2022     22
+Technical  Hungarian Grand Prix        2022     13
+Technical   Japanese Grand Prix        2022     18
+Technical    Spanish Grand Prix        2023      7
+
+Step 5 payload for config.py (LOCKED_ARCHETYPE_RACES)
+{'archetype': 'Power', 'event_name': 'Bahrain Grand Prix', 'year': 2024, 'round': 1},
+{'archetype': 'Power', 'event_name': 'Belgian Grand Prix', 'year': 2024, 'round': 14},
+{'archetype': 'Power', 'event_name': 'British Grand Prix', 'year': 2023, 'round': 10},
+{'archetype': 'Power', 'event_name': 'Italian Grand Prix', 'year': 2024, 'round': 16},
+{'archetype': 'Street', 'event_name': 'Azerbaijan Grand Prix', 'year': 2024, 'round': 17},
+{'archetype': 'Street', 'event_name': 'Miami Grand Prix', 'year': 2024, 'round': 6},
+{'archetype': 'Street', 'event_name': 'Monaco Grand Prix', 'year': 2022, 'round': 7},
+{'archetype': 'Street', 'event_name': 'Singapore Grand Prix', 'year': 2022, 'round': 17},
+{'archetype': 'Technical', 'event_name': 'Abu Dhabi Grand Prix', 'year': 2022, 'round': 22},
+{'archetype': 'Technical', 'event_name': 'Hungarian Grand Prix', 'year': 2022, 'round': 13},
+{'archetype': 'Technical', 'event_name': 'Japanese Grand Prix', 'year': 2022, 'round': 18},
+{'archetype': 'Technical', 'event_name': 'Spanish Grand Prix', 'year': 2023, 'round': 7},
