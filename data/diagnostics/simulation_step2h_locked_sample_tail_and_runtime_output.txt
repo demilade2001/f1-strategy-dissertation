@@ -1,0 +1,184 @@
+Step 1 - Locked sample from config
+archetype            event_name  year  round
+    Power    Bahrain Grand Prix  2024      1
+    Power    Belgian Grand Prix  2024     14
+    Power    British Grand Prix  2023     10
+    Power    Italian Grand Prix  2024     16
+   Street Azerbaijan Grand Prix  2024     17
+   Street      Miami Grand Prix  2024      6
+   Street     Monaco Grand Prix  2023      6
+   Street  Singapore Grand Prix  2022     17
+Technical  Abu Dhabi Grand Prix  2022     22
+Technical  Hungarian Grand Prix  2022     13
+Technical   Japanese Grand Prix  2022     18
+Technical    Spanish Grand Prix  2023      7
+
+Step 2 - Stop counts recomputed directly for exact locked races
+archetype            event_name  year  round driver         team  stop_count
+    Power    Bahrain Grand Prix  2024      1    ALB     Williams           1
+    Power    Bahrain Grand Prix  2024      1    ALO Aston Martin           1
+    Power    Bahrain Grand Prix  2024      1    BOT       Sauber           1
+    Power    Bahrain Grand Prix  2024      1    GAS       Alpine           2
+    Power    Bahrain Grand Prix  2024      1    HUL         Haas           2
+    Power    Bahrain Grand Prix  2024      1    MAG         Haas           1
+    Power    Bahrain Grand Prix  2024      1    NOR      McLaren           1
+    Power    Bahrain Grand Prix  2024      1    OCO       Alpine           1
+    Power    Bahrain Grand Prix  2024      1    PIA      McLaren           1
+    Power    Bahrain Grand Prix  2024      1    RIC           RB           2
+    Power    Bahrain Grand Prix  2024      1    SAR     Williams           2
+    Power    Bahrain Grand Prix  2024      1    STR Aston Martin           1
+    Power    Bahrain Grand Prix  2024      1    TSU           RB           1
+    Power    Bahrain Grand Prix  2024      1    ZHO       Sauber           1
+    Power    Belgian Grand Prix  2024     14    ALB     Williams           1
+    Power    Belgian Grand Prix  2024     14    ALO Aston Martin           0
+    Power    Belgian Grand Prix  2024     14    BOT       Sauber           2
+    Power    Belgian Grand Prix  2024     14    GAS       Alpine           1
+    Power    Belgian Grand Prix  2024     14    HUL         Haas           2
+    Power    Belgian Grand Prix  2024     14    MAG         Haas           1
+    Power    Belgian Grand Prix  2024     14    NOR      McLaren           1
+    Power    Belgian Grand Prix  2024     14    OCO       Alpine           1
+    Power    Belgian Grand Prix  2024     14    PIA      McLaren           1
+    Power    Belgian Grand Prix  2024     14    RIC           RB           2
+    Power    Belgian Grand Prix  2024     14    SAR     Williams           1
+    Power    Belgian Grand Prix  2024     14    STR Aston Martin           0
+    Power    Belgian Grand Prix  2024     14    TSU           RB           1
+    Power    Belgian Grand Prix  2024     14    ZHO       Sauber           0
+    Power    British Grand Prix  2023     10    ALB     Williams           1
+    Power    British Grand Prix  2023     10    ALO Aston Martin           1
+    Power    British Grand Prix  2023     10    BOT       Sauber           1
+    Power    British Grand Prix  2023     10    DEV   AlphaTauri           2
+    Power    British Grand Prix  2023     10    GAS       Alpine           1
+    Power    British Grand Prix  2023     10    HUL         Haas           2
+    Power    British Grand Prix  2023     10    MAG         Haas           0
+    Power    British Grand Prix  2023     10    NOR      McLaren           1
+    Power    British Grand Prix  2023     10    OCO       Alpine           0
+    Power    British Grand Prix  2023     10    PIA      McLaren           1
+    Power    British Grand Prix  2023     10    SAR     Williams           1
+    Power    British Grand Prix  2023     10    STR Aston Martin           1
+    Power    British Grand Prix  2023     10    TSU   AlphaTauri           2
+    Power    British Grand Prix  2023     10    ZHO       Sauber           2
+    Power    Italian Grand Prix  2024     16    ALB     Williams           1
+    Power    Italian Grand Prix  2024     16    ALO Aston Martin           1
+    Power    Italian Grand Prix  2024     16    BOT       Sauber           1
+    Power    Italian Grand Prix  2024     16    COL     Williams           1
+    Power    Italian Grand Prix  2024     16    GAS       Alpine           1
+    Power    Italian Grand Prix  2024     16    HUL         Haas           1
+    Power    Italian Grand Prix  2024     16    MAG         Haas           1
+    Power    Italian Grand Prix  2024     16    NOR      McLaren           1
+    Power    Italian Grand Prix  2024     16    OCO       Alpine           1
+    Power    Italian Grand Prix  2024     16    PIA      McLaren           1
+    Power    Italian Grand Prix  2024     16    RIC           RB           1
+    Power    Italian Grand Prix  2024     16    STR Aston Martin           2
+    Power    Italian Grand Prix  2024     16    TSU           RB           0
+    Power    Italian Grand Prix  2024     16    ZHO       Sauber           1
+   Street Azerbaijan Grand Prix  2024     17    ALB     Williams           1
+   Street Azerbaijan Grand Prix  2024     17    ALO Aston Martin           1
+   Street Azerbaijan Grand Prix  2024     17    BOT       Sauber           1
+   Street Azerbaijan Grand Prix  2024     17    COL     Williams           1
+   Street Azerbaijan Grand Prix  2024     17    GAS       Alpine           1
+   Street Azerbaijan Grand Prix  2024     17    HUL         Haas           1
+   Street Azerbaijan Grand Prix  2024     17    NOR      McLaren           1
+   Street Azerbaijan Grand Prix  2024     17    OCO       Alpine           1
+   Street Azerbaijan Grand Prix  2024     17    PIA      McLaren           1
+   Street Azerbaijan Grand Prix  2024     17    RIC           RB           1
+   Street Azerbaijan Grand Prix  2024     17    STR Aston Martin           1
+   Street Azerbaijan Grand Prix  2024     17    TSU           RB           1
+   Street Azerbaijan Grand Prix  2024     17    ZHO       Sauber           1
+   Street      Miami Grand Prix  2024      6    ALB     Williams           2
+   Street      Miami Grand Prix  2024      6    ALO Aston Martin           1
+   Street      Miami Grand Prix  2024      6    BOT       Sauber           2
+   Street      Miami Grand Prix  2024      6    GAS       Alpine           1
+   Street      Miami Grand Prix  2024      6    HUL         Haas           2
+   Street      Miami Grand Prix  2024      6    MAG         Haas           1
+   Street      Miami Grand Prix  2024      6    NOR      McLaren           1
+   Street      Miami Grand Prix  2024      6    OCO       Alpine           1
+   Street      Miami Grand Prix  2024      6    PIA      McLaren           2
+   Street      Miami Grand Prix  2024      6    RIC           RB           1
+   Street      Miami Grand Prix  2024      6    SAR     Williams           1
+   Street      Miami Grand Prix  2024      6    STR Aston Martin           2
+   Street      Miami Grand Prix  2024      6    TSU           RB           1
+   Street      Miami Grand Prix  2024      6    ZHO       Sauber           1
+   Street     Monaco Grand Prix  2023      6    ALB     Williams           2
+   Street     Monaco Grand Prix  2023      6    ALO Aston Martin           2
+   Street     Monaco Grand Prix  2023      6    BOT       Sauber           1
+   Street     Monaco Grand Prix  2023      6    DEV   AlphaTauri           1
+   Street     Monaco Grand Prix  2023      6    GAS       Alpine           2
+   Street     Monaco Grand Prix  2023      6    HUL         Haas           3
+   Street     Monaco Grand Prix  2023      6    MAG         Haas           1
+   Street     Monaco Grand Prix  2023      6    NOR      McLaren           2
+   Street     Monaco Grand Prix  2023      6    OCO       Alpine           2
+   Street     Monaco Grand Prix  2023      6    PIA      McLaren           1
+   Street     Monaco Grand Prix  2023      6    SAR     Williams           3
+   Street     Monaco Grand Prix  2023      6    STR Aston Martin           1
+   Street     Monaco Grand Prix  2023      6    TSU   AlphaTauri           1
+   Street     Monaco Grand Prix  2023      6    ZHO       Sauber           2
+   Street  Singapore Grand Prix  2022     17    ALB     Williams           0
+   Street  Singapore Grand Prix  2022     17    ALO Aston Martin           0
+   Street  Singapore Grand Prix  2022     17    BOT       Sauber           1
+   Street  Singapore Grand Prix  2022     17    GAS       Alpine           1
+   Street  Singapore Grand Prix  2022     17    LAT     Williams           0
+   Street  Singapore Grand Prix  2022     17    MAG         Haas           1
+   Street  Singapore Grand Prix  2022     17    MSC         Haas           2
+   Street  Singapore Grand Prix  2022     17    NOR      McLaren           1
+   Street  Singapore Grand Prix  2022     17    OCO       Alpine           0
+   Street  Singapore Grand Prix  2022     17    RIC      McLaren           1
+   Street  Singapore Grand Prix  2022     17    STR Aston Martin           1
+   Street  Singapore Grand Prix  2022     17    TSU   AlphaTauri           1
+   Street  Singapore Grand Prix  2022     17    VET Aston Martin           1
+   Street  Singapore Grand Prix  2022     17    ZHO       Sauber           0
+Technical  Abu Dhabi Grand Prix  2022     22    ALB     Williams           2
+Technical  Abu Dhabi Grand Prix  2022     22    ALO Aston Martin           1
+Technical  Abu Dhabi Grand Prix  2022     22    BOT       Sauber           1
+Technical  Abu Dhabi Grand Prix  2022     22    GAS       Alpine           1
+Technical  Abu Dhabi Grand Prix  2022     22    LAT     Williams           2
+Technical  Abu Dhabi Grand Prix  2022     22    MAG         Haas           1
+Technical  Abu Dhabi Grand Prix  2022     22    MSC         Haas           2
+Technical  Abu Dhabi Grand Prix  2022     22    NOR      McLaren           2
+Technical  Abu Dhabi Grand Prix  2022     22    OCO       Alpine           1
+Technical  Abu Dhabi Grand Prix  2022     22    RIC      McLaren           1
+Technical  Abu Dhabi Grand Prix  2022     22    STR Aston Martin           2
+Technical  Abu Dhabi Grand Prix  2022     22    TSU   AlphaTauri           2
+Technical  Abu Dhabi Grand Prix  2022     22    VET Aston Martin           1
+Technical  Abu Dhabi Grand Prix  2022     22    ZHO       Sauber           2
+Technical  Hungarian Grand Prix  2022     13    ALB     Williams           2
+Technical  Hungarian Grand Prix  2022     13    ALO Aston Martin           1
+Technical  Hungarian Grand Prix  2022     13    BOT       Sauber           1
+Technical  Hungarian Grand Prix  2022     13    GAS       Alpine           2
+Technical  Hungarian Grand Prix  2022     13    LAT     Williams           1
+Technical  Hungarian Grand Prix  2022     13    MAG         Haas           3
+Technical  Hungarian Grand Prix  2022     13    MSC         Haas           2
+Technical  Hungarian Grand Prix  2022     13    NOR      McLaren           2
+Technical  Hungarian Grand Prix  2022     13    OCO       Alpine           1
+Technical  Hungarian Grand Prix  2022     13    RIC      McLaren           2
+Technical  Hungarian Grand Prix  2022     13    STR Aston Martin           2
+Technical  Hungarian Grand Prix  2022     13    TSU   AlphaTauri           2
+Technical  Hungarian Grand Prix  2022     13    VET Aston Martin           1
+Technical  Hungarian Grand Prix  2022     13    ZHO       Sauber           2
+Technical   Japanese Grand Prix  2022     18    ALB     Williams           0
+Technical   Japanese Grand Prix  2022     18    ALO Aston Martin           2
+Technical   Japanese Grand Prix  2022     18    BOT       Sauber           2
+Technical   Japanese Grand Prix  2022     18    GAS       Alpine           2
+Technical   Japanese Grand Prix  2022     18    LAT     Williams           2
+Technical   Japanese Grand Prix  2022     18    MAG         Haas           2
+Technical   Japanese Grand Prix  2022     18    MSC         Haas           2
+Technical   Japanese Grand Prix  2022     18    NOR      McLaren           2
+Technical   Japanese Grand Prix  2022     18    OCO       Alpine           2
+Technical   Japanese Grand Prix  2022     18    RIC      McLaren           2
+Technical   Japanese Grand Prix  2022     18    STR Aston Martin           2
+Technical   Japanese Grand Prix  2022     18    TSU   AlphaTauri           2
+Technical   Japanese Grand Prix  2022     18    VET Aston Martin           2
+Technical   Japanese Grand Prix  2022     18    ZHO       Sauber           2
+Technical    Spanish Grand Prix  2023      7    ALB     Williams           2
+Technical    Spanish Grand Prix  2023      7    ALO Aston Martin           1
+Technical    Spanish Grand Prix  2023      7    BOT       Sauber           1
+Technical    Spanish Grand Prix  2023      7    DEV   AlphaTauri           2
+Technical    Spanish Grand Prix  2023      7    GAS       Alpine           2
+Technical    Spanish Grand Prix  2023      7    HUL         Haas           3
+Technical    Spanish Grand Prix  2023      7    MAG         Haas           3
+Technical    Spanish Grand Prix  2023      7    NOR      McLaren           3
+Technical    Spanish Grand Prix  2023      7    OCO       Alpine           2
+Technical    Spanish Grand Prix  2023      7    PIA      McLaren           2
+Technical    Spanish Grand Prix  2023      7    SAR     Williams           1
+Technical    Spanish Grand Prix  2023      7    STR Aston Martin           1
+Technical    Spanish Grand Prix  2023      7    TSU   AlphaTauri           2
+Technical    Spanish Grand Prix  2023      7    ZHO       Sauber           1
