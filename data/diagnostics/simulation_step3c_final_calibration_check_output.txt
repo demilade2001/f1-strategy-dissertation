@@ -1,0 +1,22 @@
+Step 0 - Persisted config constants
+CAUTION_PACE_RATIO=1.316235700828
+CAUTION_PIT_LOSS_S=5.000000000000
+
+Step 1 - Hungary 2022 validation screen
+has_wet_or_intermediate=False
+has_duration_gt120_pre_exclusion=False
+all20_have_non_null_position_somewhere=True
+driver_count=20
+race_length=70
+
+Step 2 - Deterministic validation
+validation_race=Hungarian Grand Prix (2022 round 13)
+validation_race_length=70
+model_order=LEC > SAI > VER > HAM > PER > RUS > NOR > VET > STR > ALO > RIC > BOT > OCO > ALB > GAS > MSC > LAT > ZHO > TSU > MAG
+historical_order=VER > HAM > RUS > SAI > PER > LEC > NOR > ALO > OCO > VET > STR > GAS > BOT > RIC > ZHO > MSC > MAG > ALB > LAT > TSU
+exact_position_matches=3 / 20
+mean_absolute_position_error=2.200000000000
+previous_result=4 / 20, MAE 1.5
+material_change=no; the corrected pit-loss assumption does not materially alter the Hungarian GP result, which is expected because Hungary 2022 has relatively few caution-period pit stops.
+
+Saved output to /Users/demi/Downloads/Dissertation Code Project/Code Base/data/diagnostics/simulation_step3c_final_calibration_check_output.txt
