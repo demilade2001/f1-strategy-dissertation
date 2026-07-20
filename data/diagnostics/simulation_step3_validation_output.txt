@@ -1,0 +1,53 @@
+Step 0 - Existing points system check
+The standard F1 points table already exists in src/features.py, so config.py was not modified for points.
+
+Step 1 - Caution sampler interface
+sample_caution_schedule(prob_by_lap, rng) returns a per-lap boolean schedule and accepts any per-lap probability source.
+
+Step 2 - Locked-race caution pace ratio
+           event_name  year  round  green_n  caution_n  green_mean  caution_mean    ratio
+   Bahrain Grand Prix  2024      1     1008         16   94.718835     95.492625 1.008169
+   Belgian Grand Prix  2024     14      734         17  106.606027    106.737000 1.001229
+   British Grand Prix  2023     10      802          0   90.695209           NaN      NaN
+   Italian Grand Prix  2024     16      927          0   82.659564           NaN      NaN
+Azerbaijan Grand Prix  2024     17      854         27  106.697906    106.719667 1.000204
+     Miami Grand Prix  2024      6      934          0   90.838122           NaN      NaN
+    Monaco Grand Prix  2023      6     1300        123   81.085275     93.004081 1.146991
+ Singapore Grand Prix  2022     17      619         57  115.620027    118.416930 1.024190
+ Abu Dhabi Grand Prix  2022     22     1017         15   89.192349     89.612467 1.004710
+ Hungarian Grand Prix  2022     13     1138         65   82.798113     83.118954 1.003875
+  Japanese Grand Prix  2022     18      370          0  106.673622           NaN      NaN
+   Spanish Grand Prix  2023      7     1207          0   78.087973           NaN      NaN
+ratio_mean=1.027052648537
+ratio_std=0.053500945302
+valid_ratio_races=7 / 12
+config_CAUTION_PACE_RATIO=1.027052648537
+
+Step 3 - Locked-race caution pit-loss calibration
+           event_name  year  round  caution_pit_stops  pit_loss_rows  mean_pit_loss_s
+   Bahrain Grand Prix  2024      1                  5              5             22.0
+   Belgian Grand Prix  2024     14                  2              2             19.0
+   British Grand Prix  2023     10                 26             26             21.0
+   Italian Grand Prix  2024     16                  0              0              NaN
+Azerbaijan Grand Prix  2024     17                  8              8             26.0
+     Miami Grand Prix  2024      6                 29             29             23.0
+    Monaco Grand Prix  2023      6                 22             22             28.0
+ Singapore Grand Prix  2022     17                 22             22             26.0
+ Abu Dhabi Grand Prix  2022     22                  4              4             22.0
+ Hungarian Grand Prix  2022     13                 13             13             22.0
+  Japanese Grand Prix  2022     18                 19             19             22.0
+   Spanish Grand Prix  2023      7                  0              0              NaN
+caution_pit_stop_count=150
+caution_pit_loss_mean=23.100000000000
+config_CAUTION_PIT_LOSS_S=23.100000000000
+Note: the processed base_df.csv does not include PitDuration_s, so this calibration uses the available pit_loss_s proxy.
+
+Step 6 - Japanese Grand Prix 2022 deterministic validation
+race_length=29
+model_order=VER > ALB > SAI > PER > ALO > RUS > TSU > LEC > VET > STR > HAM > OCO > GAS > LAT > RIC > ZHO > NOR > MAG > BOT > MSC
+historical_order=LEC > PER > OCO > HAM > ALO > VET > RUS > LAT > NOR > RIC > STR > TSU > MAG > BOT > ZHO > GAS > MSC > VER > ALB > SAI
+exact_position_matches=1 / 20
+mean_absolute_position_error=6.100000000000
+shared_driver_count=20
+
+Saved output to /Users/demi/Downloads/Dissertation Code Project/Code Base/data/diagnostics/simulation_step3_validation_output.txt
