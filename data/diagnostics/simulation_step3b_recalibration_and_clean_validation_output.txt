@@ -1,0 +1,156 @@
+Step 0 - Locked races in scope
+archetype            event_name  year  round
+    Power    Bahrain Grand Prix  2024      1
+    Power    Belgian Grand Prix  2024     14
+    Power    British Grand Prix  2023     10
+    Power    Italian Grand Prix  2024     16
+   Street Azerbaijan Grand Prix  2024     17
+   Street      Miami Grand Prix  2024      6
+   Street     Monaco Grand Prix  2023      6
+   Street  Singapore Grand Prix  2022     17
+Technical  Abu Dhabi Grand Prix  2022     22
+Technical  Hungarian Grand Prix  2022     13
+Technical   Japanese Grand Prix  2022     18
+Technical    Spanish Grand Prix  2023      7
+
+Step 1 - Rebuild genuine per-stop pit durations from PitInTime/PitOutTime
+derived_stop_count_total=397
+derived_duration_summary_by_race:
+           event_name  year  round  derived_count  caution_count  green_count  mean_duration_s
+ Hungarian Grand Prix  2022     13             42              4           38        22.909619
+ Singapore Grand Prix  2022     17             21              7           14        31.801333
+  Japanese Grand Prix  2022     18             42             19           23      3272.133643
+ Abu Dhabi Grand Prix  2022     22             31              4           27        22.422516
+    Monaco Grand Prix  2023      6             37             13           24        27.586135
+   Spanish Grand Prix  2023      7             43              0           43        23.121349
+   British Grand Prix  2023     10             24             12           12        29.605500
+   Bahrain Grand Prix  2024      1             43              3           40        26.623070
+     Miami Grand Prix  2024      6             28             14           14        23.406607
+   Belgian Grand Prix  2024     14             34              2           32        23.077147
+   Italian Grand Prix  2024     16             30              0           30        26.164467
+Azerbaijan Grand Prix  2024     17             22              3           19        20.690682
+
+Step 2 - Exclude implausible durations > 120s and calibrate CAUTION_PIT_LOSS_S
+implausible_excluded_count=18
+implausible_exclusions_by_race:
+         event_name  year  round  excluded_count
+Japanese Grand Prix  2022     18              18
+before_after_counts_by_race:
+ stage            event_name  year  round  count
+ after  Abu Dhabi Grand Prix  2022     22     31
+before  Abu Dhabi Grand Prix  2022     22     31
+ after Azerbaijan Grand Prix  2024     17     22
+before Azerbaijan Grand Prix  2024     17     22
+ after    Bahrain Grand Prix  2024      1     43
+before    Bahrain Grand Prix  2024      1     43
+ after    Belgian Grand Prix  2024     14     34
+before    Belgian Grand Prix  2024     14     34
+ after    British Grand Prix  2023     10     24
+before    British Grand Prix  2023     10     24
+ after  Hungarian Grand Prix  2022     13     42
+before  Hungarian Grand Prix  2022     13     42
+ after    Italian Grand Prix  2024     16     30
+before    Italian Grand Prix  2024     16     30
+ after   Japanese Grand Prix  2022     18     24
+before   Japanese Grand Prix  2022     18     42
+ after      Miami Grand Prix  2024      6     28
+before      Miami Grand Prix  2024      6     28
+ after     Monaco Grand Prix  2023      6     37
+before     Monaco Grand Prix  2023      6     37
+ after  Singapore Grand Prix  2022     17     21
+before  Singapore Grand Prix  2022     17     21
+ after    Spanish Grand Prix  2023      7     43
+before    Spanish Grand Prix  2023      7     43
+cleaned_caution_stop_count=63
+cleaned_caution_mean_duration_s=27.672095238095
+previous_config_CAUTION_PIT_LOSS_S=23.100000000000
+chapter3_documented_expectation=~4-6s
+interpretation=Current correction increases CAUTION_PIT_LOSS_S because the earlier 23.1 value was copied from static pit_loss_s, not measured from caution-period stop durations.
+
+Step 3 - Reconcile caution-pace ratio against existing full-dataset finding
+session_step3_filter_logic:
+  - Dataset: only LOCKED_ARCHETYPE_RACES (12 race-year-round tuples)
+  - Green side: IsAccurate == True, sc_active == False, vsc_active == False, PitInTime isna, PitOutTime isna
+  - Caution side: IsAccurate == True, (sc_active OR vsc_active) == True, PitInTime isna, PitOutTime isna
+  - No explicit non-wet compound exclusion
+  - Per-race ratio = caution_mean / green_mean, then cross-race mean over defined ratios
+session_step3_ratio_table:
+           event_name  year  round  green_n  caution_n  green_mean  caution_mean    ratio
+   Bahrain Grand Prix  2024      1     1008         16   94.718835     95.492625 1.008169
+   Belgian Grand Prix  2024     14      734         17  106.606027    106.737000 1.001229
+   British Grand Prix  2023     10      802          0   90.695209           NaN      NaN
+   Italian Grand Prix  2024     16      927          0   82.659564           NaN      NaN
+Azerbaijan Grand Prix  2024     17      854         27  106.697906    106.719667 1.000204
+     Miami Grand Prix  2024      6      934          0   90.838122           NaN      NaN
+    Monaco Grand Prix  2023      6     1300        123   81.085275     93.004081 1.146991
+ Singapore Grand Prix  2022     17      619         57  115.620027    118.416930 1.024190
+ Abu Dhabi Grand Prix  2022     22     1017         15   89.192349     89.612467 1.004710
+ Hungarian Grand Prix  2022     13     1138         65   82.798113     83.118954 1.003875
+  Japanese Grand Prix  2022     18      370          0  106.673622           NaN      NaN
+   Spanish Grand Prix  2023      7     1207          0   78.087973           NaN      NaN
+session_step3_ratio_mean=1.027052648537
+session_step3_ratio_std=0.053500945302
+session_step3_valid_race_count=7 / 12
+phase3_caution_degradation_filter_logic:
+  - Dataset: full 2022-2024 base_df
+  - Base filter: compound_known == True, TyreCompound not in {INTERMEDIATE, WET}, TyreLife notna, fuel_corrected_laptime notna
+  - Caution side: sc_active OR vsc_active
+  - Green side: not sc_active and not vsc_active
+  - No IsAccurate filter
+  - No PitInTime/PitOutTime exclusion
+  - Reported at compound level (SOFT, MEDIUM, HARD) across full dataset
+phase3_recomputed_compound_table:
+compound  caution_n  green_n  caution_mean  green_mean    ratio
+    SOFT       1080     8205    109.191219   86.970590 1.255496
+  MEDIUM       2064    23910    116.291345   87.550892 1.328271
+    HARD       2273    30639    117.743594   88.091484 1.336606
+phase3_full_caution_mean=115.485147314011
+phase3_full_green_mean=87.738956815502
+phase3_full_ratio=1.316235700828
+methodology_differences:
+  - Scope: locked sample (12 races) vs full 2022-2024 dataset
+  - Sample size: locked caution laps are sparse (many zero-caution races) vs thousands of full-dataset caution laps
+  - Exclusions: session method excludes pit laps and requires IsAccurate; phase3 method does neither
+  - Wet handling: session method does not explicitly remove wet compounds; phase3 explicitly excludes WET/INTERMEDIATE
+  - Aggregation: session method averages race-level ratios; phase3 compares global compound/full means
+reconciled_recommendation=Use phase3 full-dataset methodology for CAUTION_PACE_RATIO because caution-slowdown is a global pace-regime effect and the locked-sample estimator is underpowered (5/12 races with zero caution laps).
+recommended_CAUTION_PACE_RATIO=1.316235700828
+
+Step 4 - Screen all 12 locked races for clean deterministic validation
+           event_name  year  round  has_wet_or_intermediate  has_duration_gt120_pre_exclusion  all20_have_non_null_position_somewhere  driver_count  drivers_with_any_position  race_length
+ Hungarian Grand Prix  2022     13                    False                             False                                    True            20                         20           70
+ Singapore Grand Prix  2022     17                     True                             False                                    True            20                         20           59
+  Japanese Grand Prix  2022     18                     True                              True                                   False            20                         18           29
+ Abu Dhabi Grand Prix  2022     22                    False                             False                                    True            20                         20           58
+    Monaco Grand Prix  2023      6                     True                             False                                    True            20                         20           78
+   Spanish Grand Prix  2023      7                    False                             False                                    True            20                         20           66
+   British Grand Prix  2023     10                    False                             False                                    True            20                         20           52
+   Bahrain Grand Prix  2024      1                    False                             False                                    True            20                         20           57
+     Miami Grand Prix  2024      6                    False                             False                                    True            20                         20           57
+   Belgian Grand Prix  2024     14                    False                             False                                    True            20                         20           44
+   Italian Grand Prix  2024     16                    False                             False                                    True            20                         20           53
+Azerbaijan Grand Prix  2024     17                    False                             False                                    True            20                         20           51
+clean_candidates:
+           event_name  year  round  has_wet_or_intermediate  has_duration_gt120_pre_exclusion  all20_have_non_null_position_somewhere  driver_count  drivers_with_any_position  race_length
+ Hungarian Grand Prix  2022     13                    False                             False                                    True            20                         20           70
+   Spanish Grand Prix  2023      7                    False                             False                                    True            20                         20           66
+ Abu Dhabi Grand Prix  2022     22                    False                             False                                    True            20                         20           58
+   Bahrain Grand Prix  2024      1                    False                             False                                    True            20                         20           57
+     Miami Grand Prix  2024      6                    False                             False                                    True            20                         20           57
+   Italian Grand Prix  2024     16                    False                             False                                    True            20                         20           53
+   British Grand Prix  2023     10                    False                             False                                    True            20                         20           52
+Azerbaijan Grand Prix  2024     17                    False                             False                                    True            20                         20           51
+   Belgian Grand Prix  2024     14                    False                             False                                    True            20                         20           44
+selected_validation_race=Hungarian Grand Prix (2022 round 13)
+
+Step 5 - Ground-truth extraction correction
+historical_order_method=For each driver, pick the row with highest LapNumber where Position is non-null (last valid classified position), not the strictly last row.
+
+Step 6 - Deterministic validation on screened clean race
+validation_race_length=70
+model_order=VER > LEC > HAM > PER > SAI > RUS > NOR > VET > ALO > BOT > OCO > STR > RIC > ZHO > GAS > MSC > LAT > ALB > TSU > MAG
+historical_order=VER > HAM > RUS > SAI > PER > LEC > NOR > ALO > OCO > VET > STR > GAS > BOT > RIC > ZHO > MSC > MAG > ALB > LAT > TSU
+exact_position_matches=4 / 20
+mean_absolute_position_error=1.500000000000
+
+Saved output to /Users/demi/Downloads/Dissertation Code Project/Code Base/data/diagnostics/simulation_step3b_recalibration_and_clean_validation_output.txt
