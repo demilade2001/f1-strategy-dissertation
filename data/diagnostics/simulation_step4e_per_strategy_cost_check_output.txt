@@ -1,0 +1,72 @@
+
+====================================================================================================
+Step 1 - Re-verify step 4 output file
+====================================================================================================
+step4_output_path=/Users/demi/Downloads/Dissertation Code Project/Code Base/data/diagnostics/simulation_step4_validation_output.txt
+step4_output_size_bytes=2171
+step4_output_line_count=56
+step4_output_non_empty=True
+previous_step4_commit_empty=False (no step4 re-commit required)
+
+====================================================================================================
+Step 2 - Generate 20 feasible candidate strategies (grid spacing 3, max_stops 2)
+====================================================================================================
+race=Hungarian Grand Prix (2022 R13)
+subject_driver=NOR
+subject_starting_compound=SOFT
+is_wet_race=False
+race_length=70
+candidate_lap_count_grid3=23
+materialized_feasible_count_max2_no_grid_filter=18906
+feasible_count_max2_with_grid3_filter=2070
+sampled_strategy_count=20
+sampled_strategy_first3=
+  strategy_1={'starting_compound': 'SOFT', 'stops': [(1, 'MEDIUM')]}
+  strategy_2={'starting_compound': 'SOFT', 'stops': [(1, 'HARD')]}
+  strategy_3={'starting_compound': 'SOFT', 'stops': [(4, 'MEDIUM')]}
+
+====================================================================================================
+Step 3 - Time 20 run_monte_carlo calls at n_iterations=10000
+====================================================================================================
+strategy_01_elapsed_seconds=13.229738 strategy_01_mean_points=5.112600
+strategy_02_elapsed_seconds=15.581399 strategy_02_mean_points=6.807500
+strategy_03_elapsed_seconds=13.799574 strategy_03_mean_points=5.246200
+strategy_04_elapsed_seconds=13.757846 strategy_04_mean_points=6.470900
+strategy_05_elapsed_seconds=13.621302 strategy_05_mean_points=5.527500
+strategy_06_elapsed_seconds=13.655604 strategy_06_mean_points=6.378400
+strategy_07_elapsed_seconds=13.395651 strategy_07_mean_points=5.729800
+strategy_08_elapsed_seconds=13.360978 strategy_08_mean_points=6.237000
+strategy_09_elapsed_seconds=13.369333 strategy_09_mean_points=5.777800
+strategy_10_elapsed_seconds=13.445219 strategy_10_mean_points=6.140000
+strategy_11_elapsed_seconds=13.660704 strategy_11_mean_points=5.790600
+strategy_12_elapsed_seconds=13.533078 strategy_12_mean_points=6.033600
+strategy_13_elapsed_seconds=13.355747 strategy_13_mean_points=5.768000
+strategy_14_elapsed_seconds=13.353013 strategy_14_mean_points=6.000200
+strategy_15_elapsed_seconds=13.463158 strategy_15_mean_points=5.915600
+strategy_16_elapsed_seconds=13.500492 strategy_16_mean_points=6.000000
+strategy_17_elapsed_seconds=13.342585 strategy_17_mean_points=5.414100
+strategy_18_elapsed_seconds=13.289188 strategy_18_mean_points=6.000000
+strategy_19_elapsed_seconds=13.394544 strategy_19_mean_points=5.191400
+strategy_20_elapsed_seconds=13.571407 strategy_20_mean_points=6.000000
+total_time_for_20_strategies_seconds=271.682019
+mean_time_per_strategy_seconds=13.584101
+full_hungary_grid3_max3_feasible_size=48116
+extrapolated_full_hungary_grid3_max3_seconds=653612.601611
+
+====================================================================================================
+Step 4 - Compare against step 2h vectorized benchmark
+====================================================================================================
+step2h_benchmark_race=Monaco Grand Prix 2023
+step2h_benchmark_strategy_count=73203
+step2h_benchmark_schedule_count=10000
+step2h_benchmark_wall_clock_seconds=86.019160
+step2h_seconds_per_strategy=0.001175076978
+step4e_seconds_per_strategy=13.584100956250
+seconds_per_strategy_ratio_step4e_div_step2h=11560.179642539742
+
+====================================================================================================
+Step 5 - Report only (no fix)
+====================================================================================================
+projected_time_for_73203_strategies_seconds=994396.942300
+projected_time_for_73203_strategies_hours=276.221373
+Conclusion: simple per-strategy run_monte_carlo loop is intractable at locked sizes; optimiser.py would need vectorized/accelerated evaluation before build.
