@@ -1,0 +1,56 @@
+Step 0 - Validation setup
+race=Hungarian Grand Prix (2022 round 13)
+subject_driver=NOR
+subject_team=McLaren
+drivers_in_race=20
+circuit_sc_rate=0.090476190476
+circuit_vsc_rate=0.033333333333
+
+Step 1 - Rival re-simulation evidence
+draw_1_rival=ALB_total_race_time_s=6109.381844943550
+draw_2_rival=ALB_total_race_time_s=6184.687987754304
+draw_3_rival=ALB_total_race_time_s=6134.683825002608
+rival_re_simulation_check=passed
+
+Step 2 - Convergence check on Hungary 2022
+n_100_mean_points=5.800000000000
+n_100_std_points=0.603022689156
+n_100_mean_position=7.100000000000
+n_100_n_iterations=100
+n_100_wall_clock_seconds=0.209251750000
+n_1000_mean_points=5.792000000000
+n_1000_std_points=0.610826578588
+n_1000_mean_position=7.104000000000
+n_1000_n_iterations=1000
+n_1000_wall_clock_seconds=1.397190500000
+n_10000_mean_points=5.774400000000
+n_10000_std_points=0.640269970062
+n_10000_mean_position=7.112800000000
+n_10000_n_iterations=10000
+n_10000_wall_clock_seconds=13.249041625000
+mean_points_abs_diff_1000_vs_10000=0.017600000000
+mean_points_rel_diff_1000_vs_10000=0.304793571626%
+mean_stabilized_1000_vs_10000=True
+
+Step 3 - Seed stability at 10,000 iterations
+seed_42_mean_points=5.774400000000
+seed_43_mean_points=5.774400000000
+seed_44_mean_points=5.791800000000
+seed_45_mean_points=5.778000000000
+seed_46_mean_points=5.787200000000
+seed_mean_std=0.007922625827
+
+Step 4 - Runtime check for a single-strategy 10,000-iteration run
+single_strategy_10k_wall_clock_seconds=13.249041625000
+comparison_to_step2h_full_sweep=This should be dramatically faster than the ~86-second full-strategy sweep because the Monte Carlo loop evaluates one fixed strategy against shared caution schedules, not tens of thousands of candidate strategies.
+
+Step 5 - Probability source distinguishability
+merged_prob_mean_points=5.774400000000
+flat_prob_mean_points=5.837400000000
+mean_points_difference_merged_minus_flat=-0.063000000000
+
+Step 6 - Ground truth check
+historical_order_first5=VER > HAM > RUS > SAI > PER
+historical_order_last5=MSC > MAG > ALB > LAT > TSU
+
+Saved output to /Users/demi/Downloads/Dissertation Code Project/Code Base/data/diagnostics/simulation_step4_validation_output.txt
