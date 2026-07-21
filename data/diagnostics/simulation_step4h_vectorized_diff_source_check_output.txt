@@ -1,0 +1,30 @@
+====================================================================================================
+Step 1 - Caution schedule identity check
+====================================================================================================
+strategy_1_schedule_bitwise_identical=True
+strategy_2_schedule_bitwise_identical=True
+strategy_3_schedule_bitwise_identical=True
+strategy_4_schedule_bitwise_identical=True
+strategy_5_schedule_bitwise_identical=True
+all_5_strategies_schedule_identical=True
+
+====================================================================================================
+Step 2 - Implementation divergence isolation (strategy 1)
+====================================================================================================
+strategy_1_points_distribution_identical=False
+first_iteration_with_points_difference=73
+det_points=4.0, vec_points=6.0
+subject_trace_first_lap_disagreement=1
+det_vs_vec_at_first_diff=effective_age(1.0 vs 1.0), degradation_rate(0.0710343419602045 vs 0.07103434205055237), lap_time_s(108.57101801853769 vs 108.57101440429688), cumulative_time_s(108.57101801853769 vs 108.57101440429688)
+absolute_differences={'effective_age': 0.0, 'degradation_rate': 9.034786807582407e-11, 'lap_time_s': 3.6142408106343282e-06, 'cumulative_time_s': 3.6142408106343282e-06}
+
+====================================================================================================
+Step 4 - Shared vs duplicated constants/physics helpers
+====================================================================================================
+imports_config_constants=True
+local_caution_ratio_definition_present=False
+local_caution_pit_loss_definition_present=False
+imports_shared_degradation_helpers_from_race_model=True
+maintenance_risk=No local duplicate caution constants found in vectorized module
+
+Saved output to /Users/demi/Downloads/Dissertation Code Project/Code Base/data/diagnostics/simulation_step4h_vectorized_diff_source_check_output.txt
