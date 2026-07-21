@@ -1,0 +1,400 @@
+====================================================================================================
+Step 1 - Core per-iteration loop structure in race_model.py and monte_carlo.py
+====================================================================================================
+simulate_car_race source:
+def simulate_car_race(
+    strategy,
+    caution_schedule,
+    degradation_stats,
+    race_length,
+    lambda_,
+    pit_loss_s,
+    caution_pit_loss_s,
+    caution_pace_ratio,
+    degradation_lookup: Optional[Mapping[Tuple[Any, ...], float]] = None,
+    collect_trace: bool = True,
+) -> dict:
+    """Simulate one deterministic race for a single car.
+
+    The strategy is expected to carry the car-specific baseline pace as
+    ``baseline_pace_s`` plus the compound sequence / pit laps.
+    """
+
+    strategy = dict(strategy)
+    starting_compound = _strategy_starting_compound(strategy)
+    stops = _strategy_stops(strategy)
+    baseline_pace_s = _strategy_baseline_pace(strategy)
+    if degradation_lookup is None:
+        degradation_lookup = _build_degradation_lookup(degradation_stats)
+
+    compound_by_lap = _compound_by_lap(starting_compound, stops, int(race_length))
+    stop_map = {int(lap): str(compound) for lap, compound in stops}
+
+    lap_trace: List[Dict[str, Any]] = []
+    cumulative_time_s = 0.0
+    effective_age = 1.0
+
+    for lap_number in range(1, int(race_length) + 1):
+        is_caution = _normalise_bool(caution_schedule.get(lap_number, False))
+        compound = compound_by_lap[lap_number]
+        degradation_rate = _lookup_degradation_rate(strategy, degradation_lookup, compound)
+
+        if is_caution:
+            lap_time_s = baseline_pace_s * float(caution_pace_ratio)
+        else:
+            lap_time_s = baseline_pace_s + (degradation_rate * effective_age)
+
+        pit_loss_added = 0.0
+        if lap_number in stop_map:
+            pit_loss_added = float(caution_pit_loss_s if is_caution else pit_loss_s)
+            lap_time_s += pit_loss_added
+
+        cumulative_time_s += float(lap_time_s)
+        if collect_trace:
+            lap_trace.append(
+                {
+                    "lap_number": lap_number,
+                    "compound": compound,
+                    "is_caution": is_caution,
+                    "effective_age": float(effective_age),
+                    "degradation_rate": float(degradation_rate),
+                    "baseline_pace_s": float(baseline_pace_s),
+                    "pit_loss_s": float(pit_loss_added),
+                    "lap_time_s": float(lap_time_s),
+                    "cumulative_time_s": float(cumulative_time_s),
+                }
+            )
+
+        if lap_number in stop_map:
+            effective_age = 1.0
+        else:
+            effective_age += float(lambda_ if is_caution else 1.0)
+
+    return {
+        "race_time_s": float(cumulative_time_s),
+        "lap_trace": lap_trace if collect_trace else [],
+        "starting_compound": starting_compound,
+        "stops": stops,
+        "baseline_pace_s": float(baseline_pace_s),
+    }
+
+simulate_race_with_driver_laps source:
+def simulate_race_with_driver_laps(
+    race_state,
+    strategies_by_driver,
+    caution_schedule,
+    lambda_,
+    driver_laps_by_driver: Optional[Mapping[str, pd.DataFrame]] = None,
+    collect_trace: bool = True,
+) -> dict:
+    """Simulate a whole race and rank drivers by cumulative time.
+
+    When ``driver_laps_by_driver`` is supplied, each driver's lap slice is reused
+    directly instead of re-filtering the full race dataframe on every call. That
+    keeps repeated Monte Carlo evaluations practical.
+    """
+
+    laps = race_state["laps"].copy()
+    deg_stats = race_state.get("deg_stats")
+    degradation_lookup = _build_degradation_lookup(deg_stats)
+
+    required_drivers = sorted(laps["Driver"].dropna().astype(str).unique().tolist())
+    missing = [driver for driver in required_drivers if driver not in strategies_by_driver]
+    if missing:
+        raise ValueError(f"Missing strategies for drivers: {', '.join(missing)}")
+
+    race_length = int(pd.to_numeric(laps["LapNumber"], errors="coerce").max())
+    event_name = str(laps["EventName"].dropna().iloc[0])
+    year = int(pd.to_numeric(laps["Year"], errors="coerce").dropna().iloc[0])
+    round_num = int(pd.to_numeric(laps["Round"], errors="coerce").dropna().iloc[0])
+    race_baseline_pace = _driver_median_green_pace(laps)
+
+    driver_results: Dict[str, Dict[str, Any]] = {}
+    for driver in required_drivers:
+        if driver_laps_by_driver is not None and driver in driver_laps_by_driver:
+            driver_laps = driver_laps_by_driver[driver].copy()
+        else:
+            driver_laps = laps[laps["Driver"].astype(str) == driver].copy()
+        strategy = dict(strategies_by_driver[driver])
+        strategy.setdefault("event_name", event_name)
+        strategy.setdefault("year", year)
+        strategy.setdefault("round", round_num)
+        if "baseline_pace_s" not in strategy or pd.isna(strategy["baseline_pace_s"]):
+            try:
+                strategy["baseline_pace_s"] = _driver_median_green_pace(driver_laps)
+            except ValueError:
+                strategy["baseline_pace_s"] = race_baseline_pace
+
+        pit_loss_s = _driver_pit_loss(driver_laps)
+        driver_results[driver] = simulate_car_race(
+            strategy=strategy,
+            caution_schedule=caution_schedule,
+            degradation_stats=deg_stats,
+            race_length=race_length,
+            lambda_=lambda_,
+            pit_loss_s=pit_loss_s,
+            caution_pit_loss_s=CAUTION_PIT_LOSS_S,
+            caution_pace_ratio=CAUTION_PACE_RATIO,
+            degradation_lookup=degradation_lookup,
+            collect_trace=collect_trace,
+        )
+
+    ranking = sorted(driver_results.items(), key=lambda item: (item[1]["race_time_s"], item[0]))
+    finishing_order = [driver for driver, _ in ranking]
+    position_by_driver = {driver: idx + 1 for idx, driver in enumerate(finishing_order)}
+    points_by_driver = {driver: _points_for_position(position) for driver, position in position_by_driver.items()}
+
+    return {
+        "driver_results": driver_results,
+        "finishing_order": finishing_order,
+        "position_by_driver": position_by_driver,
+        "points_by_driver": points_by_driver,
+        "race_length": race_length,
+        "event_name": event_name,
+        "year": year,
+        "round": round_num,
+    }
+
+run_monte_carlo source:
+def run_monte_carlo(race_state, subject_driver, subject_strategy, prob_by_lap, lambda_, n_iterations, rng) -> dict:
+    """Run a fixed-strategy Monte Carlo simulation under shared caution schedules.
+
+    All per-driver state is pre-computed once before the iteration loop.
+    The loop body calls only ``simulate_race_from_prepared``, which performs
+    zero DataFrame access and rebuilds no lookup tables per iteration.
+    """
+
+    laps = race_state["laps"].copy()
+    laps["sc_active"] = _to_bool(laps["sc_active"])
+    laps["vsc_active"] = _to_bool(laps["vsc_active"])
+
+    actual_strategies = build_actual_strategies(laps)
+    if subject_driver not in actual_strategies:
+        raise ValueError(f"Subject driver {subject_driver} is not present in the race")
+
+    # Merge the caller-supplied subject strategy (may override compound/stops/pace)
+    # and ensure all metadata fields are present.
+    strategies_by_driver = dict(actual_strategies)
+    subject_strategy = dict(subject_strategy)
+    year = int(pd.to_numeric(laps["Year"], errors="coerce").dropna().iloc[0])
+    round_num = int(pd.to_numeric(laps["Round"], errors="coerce").dropna().iloc[0])
+    event_name = str(laps["EventName"].dropna().iloc[0])
+    subject_strategy.setdefault("year", year)
+    subject_strategy.setdefault("round", round_num)
+    subject_strategy.setdefault("event_name", event_name)
+    strategies_by_driver[subject_driver] = subject_strategy
+
+    # --- Pre-compute everything that is invariant across iterations ---
+
+    # 1. Race length (constant across all iterations)
+    race_length = int(pd.to_numeric(laps["LapNumber"], errors="coerce").max())
+
+    # 2. Degradation lookup built once from deg_stats
+    from .race_model import _build_degradation_lookup, _driver_median_green_pace, _driver_pit_loss
+    degradation_lookup = _build_degradation_lookup(race_state.get("deg_stats"))
+
+    # 3. Per-driver lap slices (used only for pit_loss + baseline_pace fallback)
+    driver_laps_by_driver = {
+        str(driver): driver_laps.copy()
+        for driver, driver_laps in laps.groupby("Driver")
+    }
+
+    # 4. Race-wide fallback pace (used if a driver has no usable laps)
+    race_baseline_pace = _driver_median_green_pace(laps)
+
+    # 5. Fully-resolved strategies (baseline_pace_s guaranteed non-NaN)
+    prepared_strategies: Dict[str, dict] = {}
+    for driver, strategy in strategies_by_driver.items():
+        s = dict(strategy)
+        s.setdefault("event_name", event_name)
+        s.setdefault("year", year)
+        s.setdefault("round", round_num)
+        if "baseline_pace_s" not in s or pd.isna(s.get("baseline_pace_s")):
+            driver_laps = driver_laps_by_driver.get(driver)
+            try:
+                s["baseline_pace_s"] = _driver_median_green_pace(driver_laps) if driver_laps is not None else race_baseline_pace
+            except ValueError:
+                s["baseline_pace_s"] = race_baseline_pace
+        prepared_strategies[driver] = s
+
+    # 6. Pit-loss seconds per driver (constant; uses actual recorded pit duration)
+    pit_loss_by_driver: Dict[str, float] = {
+        driver: _driver_pit_loss(driver_laps_by_driver[driver])
+        if driver in driver_laps_by_driver else 0.0
+        for driver in prepared_strategies
+    }
+
+    # --- Iteration loop: only the caution draw + per-lap simulation runs ---
+    points_samples: List[float] = []
+    position_samples: List[float] = []
+
+    for _ in range(int(n_iterations)):
+        caution_schedule = sample_caution_schedule(prob_by_lap, rng)
+        result = simulate_race_from_prepared(
+            race_length=race_length,
+            prepared_strategies=prepared_strategies,
+            pit_loss_by_driver=pit_loss_by_driver,
+            caution_schedule=caution_schedule,
+            degradation_lookup=degradation_lookup,
+            lambda_=lambda_,
+            collect_trace=False,
+        )
+        subject_position = int(result["position_by_driver"][subject_driver])
+        subject_points = int(result["points_by_driver"][subject_driver])
+        points_samples.append(float(subject_points))
+        position_samples.append(float(subject_position))
+
+    points_array = np.asarray(points_samples, dtype=float)
+    position_array = np.asarray(position_samples, dtype=float)
+
+    return {
+        "subject_driver": subject_driver,
+        "n_iterations": int(n_iterations),
+        "mean_points": float(points_array.mean()),
+        "std_points": float(points_array.std(ddof=1)) if len(points_array) > 1 else 0.0,
+        "points_distribution": points_samples,
+        "mean_position": float(position_array.mean()),
+        "std_position": float(position_array.std(ddof=1)) if len(position_array) > 1 else 0.0,
+    }
+
+Loop classification:
+- Python loop over Monte Carlo iterations in run_monte_carlo: for _ in range(n_iterations)
+- Python loop over drivers in simulate_race_from_prepared (called by run_monte_carlo)
+- Python loop over laps in simulate_car_race: for lap_number in range(1, race_length + 1)
+- No strategy-batch vectorization in the package path; NumPy usage is limited to simple array summaries and RNG.
+Approximate nesting for one run_monte_carlo call on Hungary 2022: 10000 iterations x 20 drivers x 70 laps
+Approximate lap-level updates per strategy evaluation: 14,000,000
+
+====================================================================================================
+Step 2 - Vectorization approach used in step 2h benchmark script
+====================================================================================================
+run_full_vectorized_benchmark source:
+def run_full_vectorized_benchmark(
+    race_length: int,
+    strategy_features: Dict[str, np.ndarray],
+    schedule_count: int,
+) -> Dict[str, float]:
+    n = int(strategy_features["strategy_count"])
+    stop_laps_arr = strategy_features["stop_laps_arr"]
+    stop_counts = strategy_features["stop_counts"]
+    hard_count = strategy_features["hard_count"]
+    soft_count = strategy_features["soft_count"]
+
+    rng = np.random.default_rng(42)
+    caution_schedules = (rng.random((schedule_count, race_length)) < 0.08).astype(np.int8)
+
+    stop_mask = np.zeros((n, race_length), dtype=np.int8)
+    idx = np.arange(n)
+    for col in range(stop_laps_arr.shape[1]):
+        laps = stop_laps_arr[:, col]
+        valid = laps >= 1
+        if valid.any():
+            stop_mask[idx[valid], laps[valid] - 1] = 1
+
+    base_time = (
+        race_length * 90.0
+        + stop_counts * 22.0
+        - hard_count * 0.4
+        + soft_count * 0.2
+    ).astype(np.float32)
+
+    batch_size = 250
+    total_points = np.zeros(n, dtype=np.float64)
+    total_rank = np.zeros(n, dtype=np.float64)
+
+    start = time.perf_counter()
+    for start_col in range(0, schedule_count, batch_size):
+        end_col = min(start_col + batch_size, schedule_count)
+        sched_batch = caution_schedules[start_col:end_col, :]  # B x L
+        b = sched_batch.shape[0]
+
+        caution_hits = stop_mask @ sched_batch.T  # N x B
+        stochastic = rng.normal(loc=0.0, scale=0.35, size=(n, b)).astype(np.float32)
+        total_time = base_time[:, None] - caution_hits.astype(np.float32) * 7.5 + stochastic
+
+        order = np.argsort(total_time, axis=0)
+        ranks = np.empty_like(order, dtype=np.int32)
+        ranks[order, np.arange(b)] = np.arange(1, n + 1, dtype=np.int32)[:, None]
+
+        total_rank += ranks.sum(axis=1, dtype=np.float64)
+
+        capped = np.where(ranks <= 10, ranks, 0)
+        points = POINTS_TABLE[capped]
+        total_points += points.sum(axis=1, dtype=np.float64)
+
+    elapsed = time.perf_counter() - start
+
+    mean_points = total_points / schedule_count
+    mean_rank = total_rank / schedule_count
+    checksum = float(mean_points.mean() + mean_rank.mean())
+
+    return {
+        "wall_clock_seconds": elapsed,
+        "vectorized_checksum": checksum,
+    }
+
+enumerate_strategy_features source:
+def enumerate_strategy_features(
+    race_length: int,
+    starting_compound: str,
+    is_wet_race: bool,
+    grid_spacing: int,
+    max_stops: int,
+):
+    candidate_laps = np.arange(1, race_length, grid_spacing, dtype=np.int16)
+    records = []
+
+    for stop_count in range(1, max_stops + 1):
+        for pit_laps in combinations(candidate_laps.tolist(), stop_count):
+            for compounds in product(DRY_COMPOUNDS, repeat=stop_count):
+                if (not is_wet_race) and (starting_compound in DRY_COMPOUNDS):
+                    used = {starting_compound, *compounds}
+                    if len(used) < 2:
+                        continue
+                records.append((pit_laps, compounds))
+
+    n = len(records)
+    stop_laps_arr = np.full((n, max_stops), -1, dtype=np.int16)
+    stop_counts = np.zeros(n, dtype=np.int8)
+    hard_count = np.zeros(n, dtype=np.int8)
+    soft_count = np.zeros(n, dtype=np.int8)
+
+    for idx, (pit_laps, compounds) in enumerate(records):
+        k = len(pit_laps)
+        stop_counts[idx] = k
+        stop_laps_arr[idx, :k] = np.array(pit_laps, dtype=np.int16)
+        hard_count[idx] = sum(1 for c in compounds if c == "HARD")
+        soft_count[idx] = sum(1 for c in compounds if c == "SOFT")
+
+    return {
+        "strategy_count": n,
+        "stop_laps_arr": stop_laps_arr,
+        "stop_counts": stop_counts.astype(np.float32),
+        "hard_count": hard_count.astype(np.float32),
+        "soft_count": soft_count.astype(np.float32),
+    }
+
+Vectorization summary for step 2h:
+- Strategies dimension N = 73203
+- Schedules dimension S = 10000
+- Laps dimension L = 78
+- Key arrays: caution_schedules shape (S, L), stop_mask shape (N, L), caution_hits shape (N, B) per batch
+- Ranking and points computed with array argsort/rank operations across N strategies for each schedule batch
+- Reported runtime: 86.019160 seconds for N=73203, S=10000
+- Physics level is simplified vs race_model: base_time uses coarse formula with stop counts, compound counts, fixed caution benefit, and Gaussian noise
+- It does not execute per-driver, per-lap degradation aging, lambda caution aging, or per-stop caution-vs-green pit-loss logic from race_model
+
+====================================================================================================
+Step 3 - Structural gap
+====================================================================================================
+race_model/monte_carlo is doing both:
+1) More detailed physical computation per strategy (driver-level lap simulation with degradation/ageing/pit-loss rules).
+2) Python-loop execution over iterations, drivers, and laps rather than vectorizing a strategy batch.
+Therefore the 86-second step 2h result was not a tractability proof for the full package physics; it benchmarked a simpler vectorized surrogate.
+
+====================================================================================================
+Step 4 - Recommendation (no implementation)
+====================================================================================================
+Direction: rewrite Monte Carlo evaluation to vectorize across a strategy-batch dimension sharing the same schedule draws,
+but do not assume step 2h code is physically equivalent as-is. Use step 2h as an array-shape/template reference only,
+then port the real race_model physics into vectorized kernels so optimiser.py can search at locked sizes.
