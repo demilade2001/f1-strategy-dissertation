@@ -1,0 +1,90 @@
+
+====================================================================================================
+Step 1 - Exact preprocessing path used for classweight_test_predictions.csv
+====================================================================================================
+Source script located: src/phase2_model_classweight_check.py
+Exact sequence replicated for scoring rows:
+1) Load data/processed/phase2_features_final.csv
+2) Cast: is_strategic_stop -> BooleanDtype, sc_active -> bool, vsc_active -> bool, caution_active -> bool
+3) Load MODEL_FEATURES from data/processed/model_feature_list.txt
+4) Confirm all MODEL_FEATURES exist; create X = df[MODEL_FEATURES]
+5) Confirm zero nulls in X and target
+6) Load data/models/xgb_classweight_calibrated.pkl via joblib
+7) Score with calibrated_model.predict_proba(X_subset)[:, 1] -> y_pred_xgb_classweight_cal
+
+====================================================================================================
+Step 2 - Locate 7 races in the training feature matrix
+====================================================================================================
+ Year  Round   EventName_expected  rows      EventName_found
+ 2023     10   British Grand Prix   911   British Grand Prix
+ 2023      6    Monaco Grand Prix  1455    Monaco Grand Prix
+ 2022     17 Singapore Grand Prix   885 Singapore Grand Prix
+ 2022     22 Abu Dhabi Grand Prix  1057 Abu Dhabi Grand Prix
+ 2022     13 Hungarian Grand Prix  1323 Hungarian Grand Prix
+ 2022     18  Japanese Grand Prix   451  Japanese Grand Prix
+ 2023      7   Spanish Grand Prix  1252   Spanish Grand Prix
+MODEL_FEATURES count=26
+X_locked shape=(7334, 26)
+X_locked null cells=0
+y_locked null count=0
+
+====================================================================================================
+Step 3 - Generate in-sample predictions for the 7 races
+====================================================================================================
+Saved in-sample predictions: /Users/demi/Downloads/Dissertation Code Project/Code Base/data/models/classweight_in_sample_predictions_2022_2023.csv
+row_count=7334
+sample_5_rows:
+ Year  Round Driver  LapNumber  y_true  y_pred_xgb_classweight_cal  is_in_sample
+ 2022     13    ALB        1.0       1                    0.330947          True
+ 2022     13    ALB        2.0       1                    0.302239          True
+ 2022     13    ALB        3.0       0                    0.165469          True
+ 2022     13    ALB        4.0       0                    0.158344          True
+ 2022     13    ALB        5.0       0                    0.157838          True
+
+====================================================================================================
+Step 4 - In-sample vs held-out metrics
+====================================================================================================
+       metric in_sample_7_races heldout_2024_documented heldout_2024_actual_file gap_in_sample_minus_heldout
+  brier_score          0.104206                   0.097                 0.097141                   +0.007065
+      auc_roc          0.998148                   0.718                 0.718138                   +0.280011
+avg_precision          0.989864                   0.352                 0.351581                   +0.638283
+
+====================================================================================================
+Step 5 - Calibration bin comparison (same fixed 10 bins as Chapter 4 pipeline)
+====================================================================================================
+      bin  count_in_sample mean_predicted_in_sample mean_actual_in_sample gap_pred_minus_actual_in_sample  count_heldout mean_predicted_heldout mean_actual_heldout gap_pred_minus_actual_heldout  flag_meaningfully_worse_in_sample
+[0.0,0.1]                0                      NaN                   NaN                             NaN              0                    NaN                 NaN                           NaN                              False
+[0.1,0.2]             5831                 0.156868              0.000171                       +0.156697          20548               0.161948            0.070080                     +0.091868                               True
+[0.2,0.3]              638                 0.267667              0.694357                       -0.426691           4145               0.238954            0.246562                     -0.007608                               True
+[0.3,0.4]              865                 0.331701              0.982659                       -0.650958            508               0.316579            0.710630                     -0.394051                               True
+[0.4,0.5]                0                      NaN                   NaN                             NaN              0                    NaN                 NaN                           NaN                              False
+[0.5,0.6]                0                      NaN                   NaN                             NaN              0                    NaN                 NaN                           NaN                              False
+[0.6,0.7]                0                      NaN                   NaN                             NaN              0                    NaN                 NaN                           NaN                              False
+[0.7,0.8]                0                      NaN                   NaN                             NaN              0                    NaN                 NaN                           NaN                              False
+[0.8,0.9]                0                      NaN                   NaN                             NaN              0                    NaN                 NaN                           NaN                              False
+[0.9,1.0]                0                      NaN                   NaN                             NaN              0                    NaN                 NaN                           NaN                              False
+Flagged bins (in-sample abs-gap > held-out abs-gap by >0.05):
+      bin  gap_pred_minus_actual_in_sample  gap_pred_minus_actual_heldout
+[0.1,0.2]                         0.156697                       0.091868
+[0.2,0.3]                        -0.426691                      -0.007608
+[0.3,0.4]                        -0.650958                      -0.394051
+
+====================================================================================================
+Step 6 - Probability distribution shape comparison
+====================================================================================================
+stat in_sample_7_races heldout_2024 gap_in_sample_minus_heldout
+mean          0.187127     0.177731                   +0.009397
+ std          0.062419     0.038227                   +0.024193
+ p50          0.154955     0.159377                   -0.004422
+ p75          0.171322     0.185267                   -0.013945
+ p90          0.315530     0.238029                   +0.077501
+ p95          0.338411     0.269462                   +0.068949
+
+====================================================================================================
+Step 7 - Decision gate (report only)
+====================================================================================================
+Gate thresholds:
+- Potential overconfidence if AUC gap > +0.10 or Brier gap < -0.02 or AP gap > +0.08
+- Potential overconfidence if >=2 bins are meaningfully worse (abs-gap delta > 0.05)
+Decision: in-sample predictions show clear signs of overconfidence versus held-out behavior; do not use without guardrails/recalibration.
+No race_state wiring is performed in this step.
