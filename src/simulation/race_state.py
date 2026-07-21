@@ -1,3 +1,4 @@
+from pathlib import Path
 from typing import Dict, List
 
 import pandas as pd
@@ -6,6 +7,7 @@ from .config import BASE_DF_PATH, DEG_RATE_STATS_PATH, XGB_TEST_PREDICTIONS_PATH
 
 
 XGB_PROBABILITY_COLUMN = "y_pred_xgb_classweight_cal"
+XGB_OOF_PREDICTIONS_PATH = Path(XGB_TEST_PREDICTIONS_PATH).parent / "classweight_oof_predictions_2022_2023.csv"
 
 
 def _get_single_rate(series: pd.Series):
@@ -31,10 +33,25 @@ def load_race_state(year: int, round_num: int) -> dict:
     deg_df = pd.read_csv(DEG_RATE_STATS_PATH)
     deg_stats_subset = deg_df[(deg_df["Year"] == year) & (deg_df["EventName"] == event_name)].copy()
 
-    pred_df = pd.read_csv(XGB_TEST_PREDICTIONS_PATH)
-    pred_subset = pred_df[(pred_df["Year"] == year) & (pred_df["Round"] == round_num)].copy()
+    if year <= 2023:
+        pred_source_label = "out_of_fold_2022_2023"
+        pred_path = XGB_OOF_PREDICTIONS_PATH
+    elif year == 2024:
+        pred_source_label = "heldout_2024"
+        pred_path = XGB_TEST_PREDICTIONS_PATH
+    else:
+        pred_source_label = "none"
+        pred_path = None
 
     merge_keys = ["Year", "Round", "Driver", "LapNumber"]
+    if pred_path is None:
+        pred_subset = pd.DataFrame(columns=merge_keys + [XGB_PROBABILITY_COLUMN])
+    else:
+        if not Path(pred_path).exists():
+            raise FileNotFoundError(f"Prediction source file not found: {pred_path}")
+        pred_df = pd.read_csv(pred_path)
+        pred_subset = pred_df[(pred_df["Year"] == year) & (pred_df["Round"] == round_num)].copy()
+
     pred_value_cols = [col for col in pred_subset.columns if col not in merge_keys]
 
     race_laps = race_laps.merge(
@@ -46,10 +63,15 @@ def load_race_state(year: int, round_num: int) -> dict:
     if XGB_PROBABILITY_COLUMN not in race_laps.columns:
         race_laps[XGB_PROBABILITY_COLUMN] = pd.NA
 
+    race_laps["prediction_source"] = "none"
+    has_prob_mask = race_laps[XGB_PROBABILITY_COLUMN].notna()
+    if pred_source_label != "none":
+        race_laps.loc[has_prob_mask, "prediction_source"] = pred_source_label
+
     # Rows without lap-level probability (typically each driver's final 1-3 laps from sc_vsc_next3
     # lookahead truncation) stay in the race timeline and fall back to circuit_sc_rate prior when
     # sc_sampler.py consumes this state, aligned with the same prior used for R_SC.
-    race_laps["has_lap_level_prob"] = race_laps[XGB_PROBABILITY_COLUMN].notna().astype(bool)
+    race_laps["has_lap_level_prob"] = has_prob_mask.astype(bool)
 
     merged_predictions = race_laps[merge_keys].merge(
         pred_subset,

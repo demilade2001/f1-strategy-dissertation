@@ -1,0 +1,106 @@
+
+====================================================================================================
+Step 4d - Full 12-race prediction coverage validation
+====================================================================================================
+locked_race_count=12
+race=Bahrain Grand Prix (2024 R1)
+  laps_row_count=1129
+  has_lap_level_prob_true=1069
+  has_lap_level_prob_false=60
+  coverage_pct=94.69
+  prediction_source_counts=heldout_2024:1069, out_of_fold_2022_2023:0, none:60
+race=Belgian Grand Prix (2024 R14)
+  laps_row_count=841
+  has_lap_level_prob_true=781
+  has_lap_level_prob_false=60
+  coverage_pct=92.87
+  prediction_source_counts=heldout_2024:781, out_of_fold_2022_2023:0, none:60
+race=British Grand Prix (2023 R10)
+  laps_row_count=971
+  has_lap_level_prob_true=911
+  has_lap_level_prob_false=60
+  coverage_pct=93.82
+  prediction_source_counts=heldout_2024:0, out_of_fold_2022_2023:911, none:60
+race=Italian Grand Prix (2024 R16)
+  laps_row_count=1008
+  has_lap_level_prob_true=948
+  has_lap_level_prob_false=60
+  coverage_pct=94.05
+  prediction_source_counts=heldout_2024:948, out_of_fold_2022_2023:0, none:60
+race=Azerbaijan Grand Prix (2024 R17)
+  laps_row_count=973
+  has_lap_level_prob_true=913
+  has_lap_level_prob_false=60
+  coverage_pct=93.83
+  prediction_source_counts=heldout_2024:913, out_of_fold_2022_2023:0, none:60
+race=Miami Grand Prix (2024 R6)
+  laps_row_count=1111
+  has_lap_level_prob_true=1051
+  has_lap_level_prob_false=60
+  coverage_pct=94.60
+  prediction_source_counts=heldout_2024:1051, out_of_fold_2022_2023:0, none:60
+race=Monaco Grand Prix (2023 R6)
+  laps_row_count=1515
+  has_lap_level_prob_true=1455
+  has_lap_level_prob_false=60
+  coverage_pct=96.04
+  prediction_source_counts=heldout_2024:0, out_of_fold_2022_2023:1455, none:60
+race=Singapore Grand Prix (2022 R17)
+  laps_row_count=945
+  has_lap_level_prob_true=885
+  has_lap_level_prob_false=60
+  coverage_pct=93.65
+  prediction_source_counts=heldout_2024:0, out_of_fold_2022_2023:885, none:60
+race=Abu Dhabi Grand Prix (2022 R22)
+  laps_row_count=1117
+  has_lap_level_prob_true=1057
+  has_lap_level_prob_false=60
+  coverage_pct=94.63
+  prediction_source_counts=heldout_2024:0, out_of_fold_2022_2023:1057, none:60
+race=Hungarian Grand Prix (2022 R13)
+  laps_row_count=1383
+  has_lap_level_prob_true=1323
+  has_lap_level_prob_false=60
+  coverage_pct=95.66
+  prediction_source_counts=heldout_2024:0, out_of_fold_2022_2023:1323, none:60
+race=Japanese Grand Prix (2022 R18)
+  laps_row_count=507
+  has_lap_level_prob_true=451
+  has_lap_level_prob_false=56
+  coverage_pct=88.95
+  prediction_source_counts=heldout_2024:0, out_of_fold_2022_2023:451, none:56
+race=Spanish Grand Prix (2023 R7)
+  laps_row_count=1312
+  has_lap_level_prob_true=1252
+  has_lap_level_prob_false=60
+  coverage_pct=95.43
+  prediction_source_counts=heldout_2024:0, out_of_fold_2022_2023:1252, none:60
+
+====================================================================================================
+Coverage summary table
+====================================================================================================
+ Year  Round             EventName  laps_row_count  has_lap_level_prob_true  has_lap_level_prob_false coverage_pct  prediction_source_heldout_2024  prediction_source_out_of_fold_2022_2023  prediction_source_none
+ 2022     13  Hungarian Grand Prix            1383                     1323                        60        95.66                               0                                     1323                      60
+ 2022     17  Singapore Grand Prix             945                      885                        60        93.65                               0                                      885                      60
+ 2022     18   Japanese Grand Prix             507                      451                        56        88.95                               0                                      451                      56
+ 2022     22  Abu Dhabi Grand Prix            1117                     1057                        60        94.63                               0                                     1057                      60
+ 2023      6     Monaco Grand Prix            1515                     1455                        60        96.04                               0                                     1455                      60
+ 2023      7    Spanish Grand Prix            1312                     1252                        60        95.43                               0                                     1252                      60
+ 2023     10    British Grand Prix             971                      911                        60        93.82                               0                                      911                      60
+ 2024      1    Bahrain Grand Prix            1129                     1069                        60        94.69                            1069                                        0                      60
+ 2024      6      Miami Grand Prix            1111                     1051                        60        94.60                            1051                                        0                      60
+ 2024     14    Belgian Grand Prix             841                      781                        60        92.87                             781                                        0                      60
+ 2024     16    Italian Grand Prix            1008                      948                        60        94.05                             948                                        0                      60
+ 2024     17 Azerbaijan Grand Prix             973                      913                        60        93.83                             913                                        0                      60
+
+====================================================================================================
+Seven previously zero-coverage races: post-OOF coverage check
+====================================================================================================
+target_7_mean_coverage_pct=94.03
+target_7_min_coverage_pct=88.95
+target_7_max_coverage_pct=96.04
+heldout_2024_mean_coverage_pct=94.01
+heldout_2024_min_coverage_pct=92.87
+heldout_2024_max_coverage_pct=94.69
+target_7_vast_majority_coverage_ge_90pct=False
+target_7_comparable_to_2024_like_94_96_band=False
