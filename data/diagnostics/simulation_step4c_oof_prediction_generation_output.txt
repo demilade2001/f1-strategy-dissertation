@@ -1,0 +1,203 @@
+/Users/demi/Downloads/Dissertation Code Project/.venv/lib/python3.9/site-packages/xgboost/core.py:158: UserWarning: [21:36:31] WARNING: /Users/runner/work/xgboost/xgboost/src/learner.cc:740: 
+Parameters: { "use_label_encoder" } are not used.
+
+  warnings.warn(smsg, UserWarning)
+/Users/demi/Downloads/Dissertation Code Project/.venv/lib/python3.9/site-packages/xgboost/core.py:158: UserWarning: [21:36:31] WARNING: /Users/runner/work/xgboost/xgboost/src/learner.cc:740: 
+Parameters: { "use_label_encoder" } are not used.
+
+  warnings.warn(smsg, UserWarning)
+/Users/demi/Downloads/Dissertation Code Project/.venv/lib/python3.9/site-packages/xgboost/core.py:158: UserWarning: [21:36:32] WARNING: /Users/runner/work/xgboost/xgboost/src/learner.cc:740: 
+Parameters: { "use_label_encoder" } are not used.
+
+  warnings.warn(smsg, UserWarning)
+/Users/demi/Downloads/Dissertation Code Project/.venv/lib/python3.9/site-packages/xgboost/core.py:158: UserWarning: [21:36:32] WARNING: /Users/runner/work/xgboost/xgboost/src/learner.cc:740: 
+Parameters: { "use_label_encoder" } are not used.
+
+  warnings.warn(smsg, UserWarning)
+/Users/demi/Downloads/Dissertation Code Project/.venv/lib/python3.9/site-packages/xgboost/core.py:158: UserWarning: [21:36:33] WARNING: /Users/runner/work/xgboost/xgboost/src/learner.cc:740: 
+Parameters: { "use_label_encoder" } are not used.
+
+  warnings.warn(smsg, UserWarning)
+/Users/demi/Downloads/Dissertation Code Project/.venv/lib/python3.9/site-packages/xgboost/core.py:158: UserWarning: [21:36:34] WARNING: /Users/runner/work/xgboost/xgboost/src/learner.cc:740: 
+Parameters: { "use_label_encoder" } are not used.
+
+  warnings.warn(smsg, UserWarning)
+/Users/demi/Downloads/Dissertation Code Project/.venv/lib/python3.9/site-packages/xgboost/core.py:158: UserWarning: [21:36:34] WARNING: /Users/runner/work/xgboost/xgboost/src/learner.cc:740: 
+Parameters: { "use_label_encoder" } are not used.
+
+  warnings.warn(smsg, UserWarning)
+/Users/demi/Downloads/Dissertation Code Project/.venv/lib/python3.9/site-packages/xgboost/core.py:158: UserWarning: [21:36:35] WARNING: /Users/runner/work/xgboost/xgboost/src/learner.cc:740: 
+Parameters: { "use_label_encoder" } are not used.
+
+  warnings.warn(smsg, UserWarning)
+/Users/demi/Downloads/Dissertation Code Project/.venv/lib/python3.9/site-packages/xgboost/core.py:158: UserWarning: [21:36:35] WARNING: /Users/runner/work/xgboost/xgboost/src/learner.cc:740: 
+Parameters: { "use_label_encoder" } are not used.
+
+  warnings.warn(smsg, UserWarning)
+/Users/demi/Downloads/Dissertation Code Project/.venv/lib/python3.9/site-packages/xgboost/core.py:158: UserWarning: [21:36:36] WARNING: /Users/runner/work/xgboost/xgboost/src/learner.cc:740: 
+Parameters: { "use_label_encoder" } are not used.
+
+  warnings.warn(smsg, UserWarning)
+/Users/demi/Downloads/Dissertation Code Project/.venv/lib/python3.9/site-packages/xgboost/core.py:158: UserWarning: [21:36:37] WARNING: /Users/runner/work/xgboost/xgboost/src/learner.cc:740: 
+Parameters: { "use_label_encoder" } are not used.
+
+  warnings.warn(smsg, UserWarning)
+/Users/demi/Downloads/Dissertation Code Project/.venv/lib/python3.9/site-packages/xgboost/core.py:158: UserWarning: [21:36:37] WARNING: /Users/runner/work/xgboost/xgboost/src/learner.cc:740: 
+Parameters: { "use_label_encoder" } are not used.
+
+  warnings.warn(smsg, UserWarning)
+/Users/demi/Downloads/Dissertation Code Project/.venv/lib/python3.9/site-packages/xgboost/core.py:158: UserWarning: [21:36:37] WARNING: /Users/runner/work/xgboost/xgboost/src/learner.cc:740: 
+Parameters: { "use_label_encoder" } are not used.
+
+  warnings.warn(smsg, UserWarning)
+/Users/demi/Downloads/Dissertation Code Project/.venv/lib/python3.9/site-packages/xgboost/core.py:158: UserWarning: [21:36:38] WARNING: /Users/runner/work/xgboost/xgboost/src/learner.cc:740: 
+Parameters: { "use_label_encoder" } are not used.
+
+  warnings.warn(smsg, UserWarning)
+/Users/demi/Downloads/Dissertation Code Project/.venv/lib/python3.9/site-packages/xgboost/core.py:158: UserWarning: [21:36:39] WARNING: /Users/runner/work/xgboost/xgboost/src/learner.cc:740: 
+Parameters: { "use_label_encoder" } are not used.
+
+  warnings.warn(smsg, UserWarning)
+/Users/demi/Downloads/Dissertation Code Project/.venv/lib/python3.9/site-packages/xgboost/core.py:158: UserWarning: [21:36:39] WARNING: /Users/runner/work/xgboost/xgboost/src/learner.cc:740: 
+Parameters: { "use_label_encoder" } are not used.
+
+  warnings.warn(smsg, UserWarning)
+/Users/demi/Downloads/Dissertation Code Project/.venv/lib/python3.9/site-packages/xgboost/core.py:158: UserWarning: [21:36:40] WARNING: /Users/runner/work/xgboost/xgboost/src/learner.cc:740: 
+Parameters: { "use_label_encoder" } are not used.
+
+  warnings.warn(smsg, UserWarning)
+/Users/demi/Downloads/Dissertation Code Project/.venv/lib/python3.9/site-packages/xgboost/core.py:158: UserWarning: [21:36:40] WARNING: /Users/runner/work/xgboost/xgboost/src/learner.cc:740: 
+Parameters: { "use_label_encoder" } are not used.
+
+  warnings.warn(smsg, UserWarning)
+/Users/demi/Downloads/Dissertation Code Project/.venv/lib/python3.9/site-packages/xgboost/core.py:158: UserWarning: [21:36:41] WARNING: /Users/runner/work/xgboost/xgboost/src/learner.cc:740: 
+Parameters: { "use_label_encoder" } are not used.
+
+  warnings.warn(smsg, UserWarning)
+/Users/demi/Downloads/Dissertation Code Project/.venv/lib/python3.9/site-packages/xgboost/core.py:158: UserWarning: [21:36:42] WARNING: /Users/runner/work/xgboost/xgboost/src/learner.cc:740: 
+Parameters: { "use_label_encoder" } are not used.
+
+  warnings.warn(smsg, UserWarning)
+/Users/demi/Downloads/Dissertation Code Project/.venv/lib/python3.9/site-packages/xgboost/core.py:158: UserWarning: [21:36:42] WARNING: /Users/runner/work/xgboost/xgboost/src/learner.cc:740: 
+Parameters: { "use_label_encoder" } are not used.
+
+  warnings.warn(smsg, UserWarning)
+/Users/demi/Downloads/Dissertation Code Project/.venv/lib/python3.9/site-packages/xgboost/core.py:158: UserWarning: [21:36:43] WARNING: /Users/runner/work/xgboost/xgboost/src/learner.cc:740: 
+Parameters: { "use_label_encoder" } are not used.
+
+  warnings.warn(smsg, UserWarning)
+/Users/demi/Downloads/Dissertation Code Project/.venv/lib/python3.9/site-packages/xgboost/core.py:158: UserWarning: [21:36:43] WARNING: /Users/runner/work/xgboost/xgboost/src/learner.cc:740: 
+Parameters: { "use_label_encoder" } are not used.
+
+  warnings.warn(smsg, UserWarning)
+/Users/demi/Downloads/Dissertation Code Project/.venv/lib/python3.9/site-packages/xgboost/core.py:158: UserWarning: [21:36:44] WARNING: /Users/runner/work/xgboost/xgboost/src/learner.cc:740: 
+Parameters: { "use_label_encoder" } are not used.
+
+  warnings.warn(smsg, UserWarning)
+/Users/demi/Downloads/Dissertation Code Project/.venv/lib/python3.9/site-packages/xgboost/core.py:158: UserWarning: [21:36:45] WARNING: /Users/runner/work/xgboost/xgboost/src/learner.cc:740: 
+Parameters: { "use_label_encoder" } are not used.
+
+  warnings.warn(smsg, UserWarning)
+
+====================================================================================================
+Step 0 - Exact original training hyperparameters
+====================================================================================================
+Training reference: src/phase2_model_classweight_check.py
+Reference artifact trained there: /Users/demi/Downloads/Dissertation Code Project/Code Base/data/models/xgb_classweight_calibrated.pkl
+XGBClassifier hyperparameters (replicated identically):
+- scale_pos_weight = neg_count / pos_count (computed from training data per fit)
+- use_label_encoder = False
+- eval_metric = 'logloss'
+- random_state = 42
+- n_estimators = 300
+- max_depth = 6
+- learning_rate = 0.05
+CalibratedClassifierCV configuration (replicated identically):
+- cv = 5
+- method = 'sigmoid'
+
+====================================================================================================
+Step 1 - Load training data and apply preprocessing
+====================================================================================================
+rows_year_le_2023=45348
+model_features_count=26
+X_shape=(45348, 26)
+X_null_cells=0
+y_null_count=0
+
+====================================================================================================
+Step 2 - GroupKFold setup by (Year, Round) and split verification
+====================================================================================================
+Sample race fold-purity verification:
+- race 2022_13: rows=1323, assigned_folds=[3]
+- race 2022_17: rows=885, assigned_folds=[4]
+- race 2023_10: rows=911, assigned_folds=[2]
+Hard check passed: every (Year, Round) race group maps to exactly one fold.
+
+====================================================================================================
+Step 3 - Train and score each fold (fresh model per fold)
+====================================================================================================
+fold=1 train_rows=36074 valid_rows=9274 train_races=35 valid_races=9 scale_pos_weight=4.477376
+fold=2 train_rows=36778 valid_rows=8570 train_races=36 valid_races=8 scale_pos_weight=3.954601
+fold=3 train_rows=36088 valid_rows=9260 train_races=35 valid_races=9 scale_pos_weight=4.817830
+fold=4 train_rows=36328 valid_rows=9020 train_races=35 valid_races=9 scale_pos_weight=4.516781
+fold=5 train_rows=36124 valid_rows=9224 train_races=35 valid_races=9 scale_pos_weight=4.534549
+
+====================================================================================================
+Step 4 - Combine OOF predictions and coverage checks
+====================================================================================================
+oof_total_rows=45348
+expected_rows_step1=45348
+row_count_match=True
+duplicate_key_rows=0
+
+====================================================================================================
+Step 5 - OOF vs held-out metrics comparison
+====================================================================================================
+       metric oof_2022_2023 heldout_2024_documented heldout_2024_actual_file gap_oof_minus_heldout
+  brier_score      0.142061                   0.097                 0.097141             +0.044919
+      auc_roc      0.648080                   0.718                 0.718138             -0.070058
+avg_precision      0.345257                   0.352                 0.351581             -0.006324
+
+====================================================================================================
+Step 6 - Calibration bin comparison (OOF vs held-out 2024)
+====================================================================================================
+      bin  count_oof mean_predicted_oof mean_actual_oof gap_pred_minus_actual_oof  count_heldout mean_predicted_heldout mean_actual_heldout gap_pred_minus_actual_heldout  flag_meaningfully_worse_oof
+[0.0,0.1]          0                NaN             NaN                       NaN              0                    NaN                 NaN                           NaN                        False
+[0.1,0.2]      32354           0.155916        0.144403                 +0.011513          20548               0.161948            0.070080                     +0.091868                        False
+[0.2,0.3]      11173           0.229927        0.234762                 -0.004835           4145               0.238954            0.246562                     -0.007608                        False
+[0.3,0.4]       1306           0.332990        0.490046                 -0.157056            508               0.316579            0.710630                     -0.394051                        False
+[0.4,0.5]        515           0.449062        0.768932                 -0.319870              0                    NaN                 NaN                           NaN                        False
+[0.5,0.6]          0                NaN             NaN                       NaN              0                    NaN                 NaN                           NaN                        False
+[0.6,0.7]          0                NaN             NaN                       NaN              0                    NaN                 NaN                           NaN                        False
+[0.7,0.8]          0                NaN             NaN                       NaN              0                    NaN                 NaN                           NaN                        False
+[0.8,0.9]          0                NaN             NaN                       NaN              0                    NaN                 NaN                           NaN                        False
+[0.9,1.0]          0                NaN             NaN                       NaN              0                    NaN                 NaN                           NaN                        False
+No bins flagged as meaningfully worse than held-out.
+
+====================================================================================================
+Step 7 - Distribution shape comparison
+====================================================================================================
+stat oof_2022_2023 heldout_2024 gap_oof_minus_heldout
+mean      0.182580     0.177731             +0.004849
+ std      0.054467     0.038227             +0.016240
+ p50      0.166565     0.159377             +0.007188
+ p75      0.207957     0.185267             +0.022691
+ p90      0.241809     0.238029             +0.003780
+ p95      0.285858     0.269462             +0.016396
+
+====================================================================================================
+Step 8 - Decision gate
+====================================================================================================
+Gate thresholds:
+- fail if AUC gap > +0.10
+- fail if Brier gap < -0.02
+- fail if AP gap > +0.08
+- fail if >=2 bins flagged meaningfully worse (abs-gap delta > 0.05)
+PASS: OOF predictions are acceptable under the configured gate thresholds.
+
+====================================================================================================
+Step 9 - Filter 7 races and save OOF predictions
+====================================================================================================
+saved_oof_locked_races_csv=/Users/demi/Downloads/Dissertation Code Project/Code Base/data/models/classweight_oof_predictions_2022_2023.csv
+saved_row_count=7334
