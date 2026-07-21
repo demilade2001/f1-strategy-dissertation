@@ -1,0 +1,33 @@
+====================================================================================================
+Step 4g setup
+====================================================================================================
+race=Hungarian Grand Prix (2022 round 13)
+subject_driver=NOR
+n_iterations=10000
+schedule_matrix_shape=(10000, 70)
+full_feasible_unfiltered_max_stops3=1381150
+full_feasible_grid3_max_stops3=48116
+
+====================================================================================================
+Step 4 - Correctness validation against trusted deterministic path
+====================================================================================================
+strategy_1: det_mean=5.774400, det_std=0.640270, vec_mean=5.814000, vec_std=0.582270, abs_diff_mean=0.039600
+strategy_2: det_mean=5.112600, det_std=1.328118, vec_mean=5.115900, vec_std=1.326289, abs_diff_mean=0.003300
+strategy_3: det_mean=6.807500, det_std=2.053403, vec_mean=6.807700, vec_std=2.053422, abs_diff_mean=0.000200
+strategy_4: det_mean=5.246200, det_std=1.230015, vec_mean=5.264200, vec_std=1.215626, abs_diff_mean=0.018000
+strategy_5: det_mean=6.470900, det_std=1.475253, vec_mean=6.471100, vec_std=1.475325, abs_diff_mean=0.000200
+max_abs_diff_mean_points_across_5=0.039600
+
+====================================================================================================
+Step 5 - Real runtime benchmark (full Hungary grid3 max_stops3)
+====================================================================================================
+full_hungary_grid3_max_stops3_strategy_count=48116
+vectorized_wall_clock_seconds=121.036329
+naive_extrapolated_seconds_using_13.25=637537.000000
+speedup_vs_naive_extrapolated=5267.319374
+vectorized_seconds_per_strategy=0.002515511033
+projected_monaco_73203_seconds=184.142954
+projected_monaco_73203_hours=0.051151
+tractability_statement=Largest locked race looks tractable (<=10 minutes projected).
+
+Saved output to /Users/demi/Downloads/Dissertation Code Project/Code Base/data/diagnostics/simulation_step4g_vectorized_correctness_and_runtime_output.txt
