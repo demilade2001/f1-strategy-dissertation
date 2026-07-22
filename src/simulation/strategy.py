@@ -2,6 +2,8 @@ from itertools import combinations, product
 from math import comb
 from typing import Iterable, List, Optional, Sequence, Tuple
 
+from .config import MIN_STINT_LENGTH_LAPS
+
 
 StrategyStop = Tuple[int, str]
 
@@ -26,6 +28,7 @@ def is_strategy_feasible(
     stops: Sequence[StrategyStop],
     dry_compounds: Sequence[str],
     max_stops: int,
+    min_stint_length_laps: int = MIN_STINT_LENGTH_LAPS,
 ) -> bool:
     stop_count = len(stops)
     if stop_count < 1 or stop_count > max_stops:
@@ -41,6 +44,11 @@ def is_strategy_feasible(
         if compound not in dry_set:
             return False
         prev_lap = pit_lap
+
+    stint_boundaries = [0] + [int(pit_lap) for pit_lap, _ in stops] + [int(race_length)]
+    stint_lengths = [stint_boundaries[i + 1] - stint_boundaries[i] for i in range(len(stint_boundaries) - 1)]
+    if any(length < int(min_stint_length_laps) for length in stint_lengths):
+        return False
 
     if not is_wet_race and _distinct_dry_compounds_used(starting_compound, stops, dry_compounds) < 2:
         return False
@@ -59,6 +67,7 @@ class FeasibleStrategySpace(list):
         starting_compound: str,
         is_wet_race: bool,
         max_stops: int,
+        min_stint_length_laps: int = MIN_STINT_LENGTH_LAPS,
         dry_compounds: Optional[Sequence[str]] = None,
     ):
         super().__init__()
@@ -66,6 +75,7 @@ class FeasibleStrategySpace(list):
         self.starting_compound = str(starting_compound)
         self.is_wet_race = bool(is_wet_race)
         self.max_stops = int(max_stops)
+        self.min_stint_length_laps = int(min_stint_length_laps)
         self.dry_compounds = list(dry_compounds or ["SOFT", "MEDIUM", "HARD"])
         self._size = self._count_strategies()
 
@@ -79,9 +89,19 @@ class FeasibleStrategySpace(list):
 
     def _count_strategies(self) -> int:
         total = 0
-        pit_lap_choices = self.race_length - 1
+        pit_lap_choices = range(1, self.race_length)
         for stop_count in range(1, self.max_stops + 1):
-            total += comb(pit_lap_choices, stop_count) * self._compound_sequence_count(stop_count)
+            valid_pit_lap_sequences = 0
+            for pit_laps in combinations(pit_lap_choices, stop_count):
+                stint_boundaries = [0] + list(pit_laps) + [self.race_length]
+                stint_lengths = [
+                    stint_boundaries[i + 1] - stint_boundaries[i]
+                    for i in range(len(stint_boundaries) - 1)
+                ]
+                if any(length < self.min_stint_length_laps for length in stint_lengths):
+                    continue
+                valid_pit_lap_sequences += 1
+            total += valid_pit_lap_sequences * self._compound_sequence_count(stop_count)
         return total
 
     def __len__(self) -> int:
@@ -106,6 +126,7 @@ class FeasibleStrategySpace(list):
             stops=stops,
             dry_compounds=self.dry_compounds,
             max_stops=self.max_stops,
+            min_stint_length_laps=self.min_stint_length_laps,
         )
 
     def materialize(self, limit: Optional[int] = None) -> List[dict]:
@@ -126,6 +147,7 @@ class FeasibleStrategySpace(list):
                         stops=stops,
                         dry_compounds=self.dry_compounds,
                         max_stops=self.max_stops,
+                        min_stint_length_laps=self.min_stint_length_laps,
                     ):
                         continue
                     strategies.append(
@@ -142,6 +164,7 @@ def enumerate_feasible_strategies(
     starting_compound: str,
     is_wet_race: bool,
     max_stops: int,
+    min_stint_length_laps: int = MIN_STINT_LENGTH_LAPS,
     dry_compounds: list = ["SOFT", "MEDIUM", "HARD"],
 ) -> list:
     return FeasibleStrategySpace(
@@ -149,5 +172,6 @@ def enumerate_feasible_strategies(
         starting_compound=starting_compound,
         is_wet_race=is_wet_race,
         max_stops=max_stops,
+        min_stint_length_laps=min_stint_length_laps,
         dry_compounds=dry_compounds,
     )

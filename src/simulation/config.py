@@ -17,6 +17,9 @@ N_ITERATIONS = 10_000
 # Keep these centralized so all constrained enumeration paths stay aligned.
 GRID_SPACING = 3
 MAX_STOPS = 3
+# Minimum allowed stint length in laps for strategy-space enumeration.
+# Derived from the step5d worst-case locked-race asymmetry breakeven analysis.
+MIN_STINT_LENGTH_LAPS = 19
 # Conservatism rule anchor used for bias-threshold design.
 CONSERVATISM_REFERENCE = "REGULATORY_MAX_FEASIBLE_LAP"
 # Optional hard cutoff for insufficiency; None keeps continuous r_b reporting.
@@ -65,8 +68,9 @@ LOCKED_ARCHETYPE_RACES = [
 ROOT = Path(__file__).resolve().parents[2]
 # Canonical processed lap-level feature dataset.
 BASE_DF_PATH = ROOT / "data" / "processed" / "base_df.csv"
-# Per-year degradation fit diagnostics produced by Chapter 3 regeneration.
-DEG_RATE_STATS_PATH = ROOT / "data" / "diagnostics" / "deg_rate_full_peryear_stats.csv"
+# Per-year degradation fit diagnostics used by simulation.
+# step5d switches to fuel-corrected rates with R2-based shrinkage adjustments.
+DEG_RATE_STATS_PATH = ROOT / "data" / "diagnostics" / "deg_rate_corrected_shrunk_full_peryear_stats.csv"
 # Calibrated XGBoost test-set predictions used for Phase 3 bias-threshold work.
 XGB_TEST_PREDICTIONS_PATH = ROOT / "data" / "models" / "classweight_test_predictions.csv"
 
