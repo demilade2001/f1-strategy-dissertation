@@ -173,7 +173,15 @@ Step 4 - Hungary short-stint concentration under corrected values
 batch_progress label=hungary_full_search_corrected batch=1/24 scored=2048/48116
 batch_progress label=hungary_full_search_corrected batch=5/24 scored=10240/48116
 batch_progress label=hungary_full_search_corrected batch=10/24 scored=20480/48116
-tint_length=10 count=4600 share=0.095602
+batch_progress label=hungary_full_search_corrected batch=15/24 scored=30720/48116
+batch_progress label=hungary_full_search_corrected batch=20/24 scored=40960/48116
+batch_progress label=hungary_full_search_corrected batch=24/24 scored=48116/48116
+hungary_strategy_count_corrected=48116
+hungary_first_stint_length_distribution_corrected_begin
+first_stint_length=1 count=6184 share=0.128523
+first_stint_length=4 count=5630 share=0.117009
+first_stint_length=7 count=5102 share=0.106035
+first_stint_length=10 count=4600 share=0.095602
 first_stint_length=13 count=4124 share=0.085710
 first_stint_length=16 count=3674 share=0.076357
 first_stint_length=19 count=3250 share=0.067545
@@ -206,8 +214,14 @@ italy_specific_strategy={"baseline_pace_s": 81.42599999999999, "event_name": "It
 italy_specific_strategy_mean_points_corrected=25.000000
 italy_specific_strategy_win_rate_corrected=1.000000
 italy_specific_strategy_mean_rank_corrected=1.000000
+batch_progress label=italy_full_search_corrected batch=1/11 scored=2048/22476
+batch_progress label=italy_full_search_corrected batch=5/11 scored=10240/22476
+batch_progress label=italy_full_search_corrected batch=10/11 scored=20480/22476
+batch_progress label=italy_full_search_corrected batch=11/11 scored=22476/22476
 italy_corrected_argmax_strategy={"baseline_pace_s": 81.42599999999999, "event_name": "Italian Grand Prix", "round": 16, "starting_compound": "MEDIUM", "stops": [[37, "SOFT"]], "year": 2024}
 italy_corrected_argmax_mean_points=25.000000
+italy_corrected_argmax_std_points=0.000000
+italy_corrected_argmax_mean_rank=1.000000
 italy_corrected_argmax_within_epsilon_count=13
 italy_corrected_argmax_same_as_specific_37_16=True
 italy_corrected_margin_argmax_minus_specific_37_16=0.000000
