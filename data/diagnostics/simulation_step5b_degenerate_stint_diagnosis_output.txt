@@ -1,0 +1,167 @@
+====================================================================================================
+Step 5b setup
+====================================================================================================
+output_path=/Users/demi/Downloads/Dissertation Code Project/Code Base/data/diagnostics/simulation_step5b_degenerate_stint_diagnosis_output.txt
+prob_source=lap_level
+information_set=unconditioned
+n_iterations=10000
+seed=42
+progress=loading Hungary 2022 race state and reproducing argmax candidate
+progress=running Hungary 2022 argmax reproduction
+====================================================================================================
+Step 1 - Quadratic stint-length degradation cost confirmation
+====================================================================================================
+race_model_formula=green lap_time_s = baseline_pace_s + degradation_rate * effective_age; effective_age starts at 1.0, increments by 1.0 after each green lap, and resets to 1.0 only on pit laps
+closed_form_green_stint_cost=degradation_rate * sum_{k=1..n} k = degradation_rate * n(n+1)/2
+hungary_subject_driver=NOR
+hungary_subject_green_pit_loss_s=22.000000
+hungary_deg_rate_HARD=-0.004143156111511
+hungary_deg_rate_MEDIUM=0.020511394538781
+hungary_deg_rate_SOFT=0.071034341960205
+single_stint_numeric_check compound=SOFT stint_length=1 expected_s=0.071034341960 simulated_s=0.071034341960 abs_diff_s=0.000000000000e+00
+single_stint_numeric_check compound=SOFT stint_length=15 expected_s=8.524121035225 simulated_s=8.524121035225 abs_diff_s=0.000000000000e+00
+single_stint_numeric_check compound=HARD stint_length=69 expected_s=-10.005722009299 simulated_s=-10.005722009299 abs_diff_s=1.776356839400e-15
+single_stint_numeric_check compound=MEDIUM stint_length=28 expected_s=8.327626182745 simulated_s=8.327626182745 abs_diff_s=0.000000000000e+00
+single_stint_numeric_check compound=HARD stint_length=27 expected_s=-1.566113010151 simulated_s=-1.566113010151 abs_diff_s=2.220446049250e-16
+hungary_actual_strategy={"baseline_pace_s": 82.48599999999999, "event_name": "Hungarian Grand Prix", "round": 13, "starting_compound": "SOFT", "stops": [[15, "MEDIUM"], [43, "HARD"]], "year": 2022}
+hungary_candidate_argmax_strategy={"baseline_pace_s": 82.48599999999999, "event_name": "Hungarian Grand Prix", "round": 13, "starting_compound": "SOFT", "stops": [[1, "HARD"]], "year": 2022}
+hungary_actual_stint_breakdown_begin
+{"compound": "SOFT", "deg_rate_final_assigned": 0.0710343419602045, "degradation_cost_s": 8.52412103522454, "stint_length": 15, "triangular_number": 120}
+{"compound": "MEDIUM", "deg_rate_final_assigned": 0.0205113945387812, "degradation_cost_s": 8.327626182745167, "stint_length": 28, "triangular_number": 406}
+{"compound": "HARD", "deg_rate_final_assigned": -0.0041431561115111, "degradation_cost_s": -1.5661130101511958, "stint_length": 27, "triangular_number": 378}
+hungary_actual_stint_breakdown_end
+hungary_candidate_stint_breakdown_begin
+{"compound": "SOFT", "deg_rate_final_assigned": 0.0710343419602045, "degradation_cost_s": 0.0710343419602045, "stint_length": 1, "triangular_number": 1}
+{"compound": "HARD", "deg_rate_final_assigned": -0.0041431561115111, "degradation_cost_s": -10.005722009299307, "stint_length": 69, "triangular_number": 2415}
+hungary_candidate_stint_breakdown_end
+hungary_actual_total_degradation_cost_s=15.285634
+hungary_candidate_total_degradation_cost_s=-9.934688
+hungary_actual_total_subject_offset_vs_baseline_s=59.285634
+hungary_candidate_total_subject_offset_vs_baseline_s=12.065312
+hungary_candidate_advantage_vs_actual_s=47.220322
+interpretation=Under the current formula, the 1-lap SOFT then long HARD plan converts the strong positive SOFT age slope into a single lap while exploiting the slightly negative HARD slope over 69 laps, and it also saves one full green-flag pit loss relative to the actual 2-stop strategy.
+
+====================================================================================================
+Step 2 - Hungary full-search first-stint distribution and top-100 concentration
+====================================================================================================
+progress=scoring full Hungary 2022 unconditioned search
+batch_progress race=Hungarian Grand Prix batch=1/24 scored_strategies=2048/48116
+batch_progress race=Hungarian Grand Prix batch=10/24 scored_strategies=20480/48116
+batch_progress race=Hungarian Grand Prix batch=20/24 scored_strategies=40960/48116
+batch_progress race=Hungarian Grand Prix batch=24/24 scored_strategies=48116/48116
+hungary_strategy_count=48116
+hungary_first_stint_length_distribution_begin
+first_stint_length=1 count=6184 share=0.128523
+first_stint_length=4 count=5630 share=0.117009
+first_stint_length=7 count=5102 share=0.106035
+first_stint_length=10 count=4600 share=0.095602
+first_stint_length=13 count=4124 share=0.085710
+first_stint_length=16 count=3674 share=0.076357
+first_stint_length=19 count=3250 share=0.067545
+first_stint_length=22 count=2852 share=0.059273
+first_stint_length=25 count=2480 share=0.051542
+first_stint_length=28 count=2134 share=0.044351
+first_stint_length=31 count=1814 share=0.037701
+first_stint_length=34 count=1520 share=0.031590
+first_stint_length=37 count=1252 share=0.026020
+first_stint_length=40 count=1010 share=0.020991
+first_stint_length=43 count=794 share=0.016502
+first_stint_length=46 count=604 share=0.012553
+first_stint_length=49 count=440 share=0.009145
+first_stint_length=52 count=302 share=0.006276
+first_stint_length=55 count=190 share=0.003949
+first_stint_length=58 count=104 share=0.002161
+first_stint_length=61 count=44 share=0.000914
+first_stint_length=64 count=10 share=0.000208
+first_stint_length=67 count=2 share=0.000042
+hungary_first_stint_length_distribution_end
+hungary_top100_short_first_stint_leq3_count=39
+hungary_top100_short_first_stint_leq3_fraction=0.390000
+hungary_top10_strategies_begin
+{"first_stint_length": 1, "mean_points": 6.807700157165527, "std_points": 2.053422212600708, "strategy": {"baseline_pace_s": 82.48599999999999, "event_name": "Hungarian Grand Prix", "round": 13, "starting_compound": "SOFT", "stops": [[1, "HARD"]], "year": 2022}, "strategy_index": 1}
+{"first_stint_length": 4, "mean_points": 6.471099853515625, "std_points": 1.4753245115280151, "strategy": {"baseline_pace_s": 82.48599999999999, "event_name": "Hungarian Grand Prix", "round": 13, "starting_compound": "SOFT", "stops": [[4, "HARD"]], "year": 2022}, "strategy_index": 3}
+{"first_stint_length": 7, "mean_points": 6.377999782562256, "std_points": 1.1232284307479858, "strategy": {"baseline_pace_s": 82.48599999999999, "event_name": "Hungarian Grand Prix", "round": 13, "starting_compound": "SOFT", "stops": [[7, "HARD"]], "year": 2022}, "strategy_index": 5}
+{"first_stint_length": 10, "mean_points": 6.236999988555908, "std_points": 0.7016268372535706, "strategy": {"baseline_pace_s": 82.48599999999999, "event_name": "Hungarian Grand Prix", "round": 13, "starting_compound": "SOFT", "stops": [[10, "HARD"]], "year": 2022}, "strategy_index": 7}
+{"first_stint_length": 13, "mean_points": 6.139999866485596, "std_points": 0.5118849277496338, "strategy": {"baseline_pace_s": 82.48599999999999, "event_name": "Hungarian Grand Prix", "round": 13, "starting_compound": "SOFT", "stops": [[13, "HARD"]], "year": 2022}, "strategy_index": 9}
+{"first_stint_length": 1, "mean_points": 6.051400184631348, "std_points": 0.3177548348903656, "strategy": {"baseline_pace_s": 82.48599999999999, "event_name": "Hungarian Grand Prix", "round": 13, "starting_compound": "SOFT", "stops": [[1, "HARD"], [67, "HARD"]], "year": 2022}, "strategy_index": 221}
+{"first_stint_length": 1, "mean_points": 6.050000190734863, "std_points": 0.31354400515556335, "strategy": {"baseline_pace_s": 82.48599999999999, "event_name": "Hungarian Grand Prix", "round": 13, "starting_compound": "SOFT", "stops": [[1, "HARD"], [67, "MEDIUM"]], "year": 2022}, "strategy_index": 220}
+{"first_stint_length": 1, "mean_points": 6.0472002029418945, "std_points": 0.30492860078811646, "strategy": {"baseline_pace_s": 82.48599999999999, "event_name": "Hungarian Grand Prix", "round": 13, "starting_compound": "SOFT", "stops": [[1, "HARD"], [67, "SOFT"]], "year": 2022}, "strategy_index": 219}
+{"first_stint_length": 1, "mean_points": 6.046000003814697, "std_points": 0.3103121519088745, "strategy": {"baseline_pace_s": 82.48599999999999, "event_name": "Hungarian Grand Prix", "round": 13, "starting_compound": "SOFT", "stops": [[1, "HARD"], [7, "HARD"]], "year": 2022}, "strategy_index": 61}
+{"first_stint_length": 1, "mean_points": 6.0432000160217285, "std_points": 0.2975611388683319, "strategy": {"baseline_pace_s": 82.48599999999999, "event_name": "Hungarian Grand Prix", "round": 13, "starting_compound": "SOFT", "stops": [[1, "MEDIUM"], [7, "HARD"]], "year": 2022}, "strategy_index": 58}
+hungary_top10_strategies_end
+
+====================================================================================================
+Step 3 - Italian GP 2024 exact-25.0 diagnosis
+====================================================================================================
+progress=loading Italian GP 2024 race state and reproducing argmax candidate
+progress=running Italian GP 2024 argmax reproduction
+italy_subject_driver=PIA
+italy_best_strategy={"baseline_pace_s": 81.42599999999999, "event_name": "Italian Grand Prix", "round": 16, "starting_compound": "MEDIUM", "stops": [[37, "SOFT"]], "year": 2024}
+italy_best_mean_points=25.000000
+italy_best_mean_rank=1.000000
+italy_exact_win_rate=1.000000
+italy_all_iterations_rank1=True
+italy_stint_compounds=["MEDIUM", "SOFT"]
+italy_stint_lengths=[37, 16]
+italy_first_stint_length=37
+italy_first_stint_leq3=False
+italy_subject_mean_race_time_s=4510.064883
+italy_rival_mean_time_comparison_begin
+{"rival_driver": "NOR", "rival_mean_race_time_s": 4533.163331982422, "subject_minus_rival_mean_time_s": -23.09844897460971}
+{"rival_driver": "HAM", "rival_mean_race_time_s": 4544.850897509766, "subject_minus_rival_mean_time_s": -34.786014501953105}
+{"rival_driver": "VER", "rival_mean_race_time_s": 4554.941886816407, "subject_minus_rival_mean_time_s": -44.877003808594054}
+{"rival_driver": "LEC", "rival_mean_race_time_s": 4558.315877001953, "subject_minus_rival_mean_time_s": -48.25099399414012}
+{"rival_driver": "RUS", "rival_mean_race_time_s": 4570.743418408203, "subject_minus_rival_mean_time_s": -60.6785354003905}
+{"rival_driver": "SAI", "rival_mean_race_time_s": 4571.205424023437, "subject_minus_rival_mean_time_s": -61.140541015624876}
+{"rival_driver": "PER", "rival_mean_race_time_s": 4577.560363476562, "subject_minus_rival_mean_time_s": -67.49548046874952}
+{"rival_driver": "ALO", "rival_mean_race_time_s": 4607.6862655761715, "subject_minus_rival_mean_time_s": -97.62138256835897}
+{"rival_driver": "MAG", "rival_mean_race_time_s": 4612.148609228516, "subject_minus_rival_mean_time_s": -102.08372622070328}
+{"rival_driver": "HUL", "rival_mean_race_time_s": 4618.548609082031, "subject_minus_rival_mean_time_s": -108.4837260742188}
+{"rival_driver": "ALB", "rival_mean_race_time_s": 4619.281790771484, "subject_minus_rival_mean_time_s": -109.21690776367177}
+{"rival_driver": "GAS", "rival_mean_race_time_s": 4630.047486621093, "subject_minus_rival_mean_time_s": -119.98260361328084}
+{"rival_driver": "RIC", "rival_mean_race_time_s": 4634.01493071289, "subject_minus_rival_mean_time_s": -123.95004770507785}
+{"rival_driver": "COL", "rival_mean_race_time_s": 4635.706395849609, "subject_minus_rival_mean_time_s": -125.64151284179661}
+{"rival_driver": "STR", "rival_mean_race_time_s": 4641.588991796875, "subject_minus_rival_mean_time_s": -131.52410878906267}
+{"rival_driver": "OCO", "rival_mean_race_time_s": 4645.287616845703, "subject_minus_rival_mean_time_s": -135.2227338378907}
+{"rival_driver": "ZHO", "rival_mean_race_time_s": 4664.980708447266, "subject_minus_rival_mean_time_s": -154.91582543945333}
+{"rival_driver": "BOT", "rival_mean_race_time_s": 4666.814829296875, "subject_minus_rival_mean_time_s": -156.7499462890628}
+{"rival_driver": "TSU", "rival_mean_race_time_s": 4707.531591455078, "subject_minus_rival_mean_time_s": -197.46670844726577}
+italy_rival_mean_time_comparison_end
+italy_closest_rival_by_mean={"rival_driver": "NOR", "rival_mean_race_time_s": 4533.163331982422, "subject_minus_rival_mean_time_s": -23.09844897460971}
+italy_closest_rival_min_margin_over_all_iterations_s=0.470703
+italy_closest_rival_mean_margin_s=23.098449
+italy_interpretation=The exact 25.0 mean comes from a 100% simulated win rate, not from a scoring bug in the points mapping itself. The remaining question is whether that universal dominance is physically plausible under the current degradation model or an exploit of missing minimum stint length.
+
+====================================================================================================
+Step 4 - Locked-race compound asymmetry ranking
+====================================================================================================
+locked_race_asymmetry_begin
+{"HARD": 0.0076374576660681, "MEDIUM": -0.0034499880692766, "SOFT": 0.1503374358974321, "abs_asymmetry_magnitude": 0.142699978231364, "archetype": "Street", "event_name": "Monaco Grand Prix", "hard_minus_medium": 0.0110874457353447, "hard_minus_soft": -0.142699978231364, "round": 6, "year": 2023}
+{"HARD": 0.0114238165299363, "MEDIUM": -0.034460722829766, "SOFT": -0.0761025102351055, "abs_asymmetry_magnitude": 0.0875263267650418, "archetype": "Power", "event_name": "British Grand Prix", "hard_minus_medium": 0.0458845393597023, "hard_minus_soft": 0.0875263267650418, "round": 10, "year": 2023}
+{"HARD": -0.0041431561115111, "MEDIUM": 0.0205113945387812, "SOFT": 0.0710343419602045, "abs_asymmetry_magnitude": 0.0751774980717156, "archetype": "Technical", "event_name": "Hungarian Grand Prix", "hard_minus_medium": -0.0246545506502923, "hard_minus_soft": -0.0751774980717156, "round": 13, "year": 2022}
+{"HARD": 0.0216343010689305, "MEDIUM": null, "SOFT": -0.0495738476807391, "abs_asymmetry_magnitude": 0.0712081487496696, "archetype": "Power", "event_name": "Bahrain Grand Prix", "hard_minus_medium": null, "hard_minus_soft": 0.0712081487496696, "round": 1, "year": 2024}
+{"HARD": 0.0069518038772066, "MEDIUM": -0.0496970068310976, "SOFT": null, "abs_asymmetry_magnitude": 0.0566488107083042, "archetype": "Power", "event_name": "Italian Grand Prix", "hard_minus_medium": 0.0566488107083042, "hard_minus_soft": null, "round": 16, "year": 2024}
+{"HARD": 0.0047835975167912, "MEDIUM": 0.0548223832399218, "SOFT": 0.0432893805727266, "abs_asymmetry_magnitude": 0.0500387857231306, "archetype": "Technical", "event_name": "Abu Dhabi Grand Prix", "hard_minus_medium": -0.0500387857231306, "hard_minus_soft": -0.0385057830559354, "round": 22, "year": 2022}
+{"HARD": -0.0182425408715403, "MEDIUM": -0.0597814628163314, "SOFT": -0.0475586037185565, "abs_asymmetry_magnitude": 0.0415389219447911, "archetype": "Power", "event_name": "Belgian Grand Prix", "hard_minus_medium": 0.0415389219447911, "hard_minus_soft": 0.029316062847016197, "round": 14, "year": 2024}
+{"HARD": 0.0002228298472583, "MEDIUM": -0.0082666815781606, "SOFT": -0.0367321207576255, "abs_asymmetry_magnitude": 0.036954950604883796, "archetype": "Technical", "event_name": "Spanish Grand Prix", "hard_minus_medium": 0.008489511425418901, "hard_minus_soft": 0.036954950604883796, "round": 7, "year": 2023}
+{"HARD": -0.0218396644556319, "MEDIUM": -0.0537993856655258, "SOFT": null, "abs_asymmetry_magnitude": 0.031959721209893904, "archetype": "Street", "event_name": "Azerbaijan Grand Prix", "hard_minus_medium": 0.031959721209893904, "hard_minus_soft": null, "round": 17, "year": 2024}
+{"HARD": -0.0441137091520009, "MEDIUM": -0.0601547932550086, "SOFT": -0.0186228417158457, "abs_asymmetry_magnitude": 0.0254908674361552, "archetype": "Street", "event_name": "Miami Grand Prix", "hard_minus_medium": 0.016041084103007704, "hard_minus_soft": -0.0254908674361552, "round": 6, "year": 2024}
+{"HARD": null, "MEDIUM": null, "SOFT": null, "abs_asymmetry_magnitude": null, "archetype": "Technical", "event_name": "Japanese Grand Prix", "hard_minus_medium": null, "hard_minus_soft": null, "round": 18, "year": 2022}
+{"HARD": null, "MEDIUM": -0.230142194373922, "SOFT": -0.0729655250152997, "abs_asymmetry_magnitude": null, "archetype": "Street", "event_name": "Singapore Grand Prix", "hard_minus_medium": null, "hard_minus_soft": null, "round": 17, "year": 2022}
+locked_race_asymmetry_end
+hungary_2022_abs_asymmetry_magnitude=0.075177
+italy_2024_abs_asymmetry_magnitude=0.056649
+italy_2024_hard_minus_soft=None
+italy_2024_hard_minus_medium=0.0566488107083042
+hungary_2022_hard_minus_soft=-0.0751774980717156
+hungary_2022_hard_minus_medium=-0.0246545506502923
+asymmetry_comparison_statement=Italian GP 2024 is not more asymmetric than Hungary 2022 on the available locked-race gap measure; the exact-25 outcome therefore also depends on race-specific baseline pace/rival context, not just a uniquely extreme compound gap.
+
+====================================================================================================
+Step 5 - Recommended minimum-stint rule (report only)
+====================================================================================================
+recommended_minimum_stint_length_laps=16
+recommendation_reasoning=With green-flag pit losses on the order of ~20s and even the most aggressive locked-race HARD-vs-SOFT/MEDIUM slope gaps staying around a few tenths of a second per unit effective age, sub-16-lap stints cannot rationally repay a pit stop through degradation relief alone under this model. A 16-lap floor is therefore a physically grounded anti-exploit rule that is independent of contaminated historical stint-length percentiles and directly targets the pathological 1-lap/4-lap search outcomes exposed here.
+recommendation_scope=Do not trust any B/(a)/(b) benchmark that consumes optimiser argmax outputs until strategy enumeration enforces a non-trivial minimum stint length.
+
+tee_output_target=/Users/demi/Downloads/Dissertation Code Project/Code Base/data/diagnostics/simulation_step5b_degenerate_stint_diagnosis_output.txt
