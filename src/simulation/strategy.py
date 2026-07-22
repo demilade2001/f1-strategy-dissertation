@@ -6,6 +6,7 @@ from .config import MIN_STINT_LENGTH_LAPS
 
 
 StrategyStop = Tuple[int, str]
+WET_COMPOUNDS = {"INTERMEDIATE", "WET"}
 
 
 def _distinct_dry_compounds_used(
@@ -36,19 +37,25 @@ def is_strategy_feasible(
 
     prev_lap = None
     dry_set = set(dry_compounds)
+    allowed_compounds = dry_set | WET_COMPOUNDS
     for pit_lap, compound in stops:
         if pit_lap < 1 or pit_lap > race_length - 1:
             return False
         if prev_lap is not None and pit_lap <= prev_lap:
             return False
-        if compound not in dry_set:
+        if compound not in allowed_compounds:
             return False
         prev_lap = pit_lap
 
     stint_boundaries = [0] + [int(pit_lap) for pit_lap, _ in stops] + [int(race_length)]
     stint_lengths = [stint_boundaries[i + 1] - stint_boundaries[i] for i in range(len(stint_boundaries) - 1)]
-    if any(length < int(min_stint_length_laps) for length in stint_lengths):
-        return False
+    stint_compounds = [str(starting_compound)] + [str(compound) for _, compound in stops]
+    for length, stint_compound in zip(stint_lengths, stint_compounds):
+        # Wet-compound stints are exempt from the dry minimum-stint floor.
+        if stint_compound in WET_COMPOUNDS:
+            continue
+        if length < int(min_stint_length_laps):
+            return False
 
     if not is_wet_race and _distinct_dry_compounds_used(starting_compound, stops, dry_compounds) < 2:
         return False
@@ -90,6 +97,7 @@ class FeasibleStrategySpace(list):
     def _count_strategies(self) -> int:
         total = 0
         pit_lap_choices = range(1, self.race_length)
+        starting_is_wet = self.starting_compound in WET_COMPOUNDS
         for stop_count in range(1, self.max_stops + 1):
             valid_pit_lap_sequences = 0
             for pit_laps in combinations(pit_lap_choices, stop_count):
@@ -98,7 +106,9 @@ class FeasibleStrategySpace(list):
                     stint_boundaries[i + 1] - stint_boundaries[i]
                     for i in range(len(stint_boundaries) - 1)
                 ]
-                if any(length < self.min_stint_length_laps for length in stint_lengths):
+                if not starting_is_wet and stint_lengths[0] < self.min_stint_length_laps:
+                    continue
+                if any(length < self.min_stint_length_laps for length in stint_lengths[1:]):
                     continue
                 valid_pit_lap_sequences += 1
             total += valid_pit_lap_sequences * self._compound_sequence_count(stop_count)
