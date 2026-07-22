@@ -1,0 +1,230 @@
+====================================================================================================
+Step 5c setup
+====================================================================================================
+raw_stats_path=/Users/demi/Downloads/Dissertation Code Project/Code Base/data/diagnostics/deg_rate_full_peryear_stats.csv
+corrected_stats_output_path=/Users/demi/Downloads/Dissertation Code Project/Code Base/data/diagnostics/deg_rate_corrected_full_peryear_stats.csv
+report_output_path=/Users/demi/Downloads/Dissertation Code Project/Code Base/data/diagnostics/simulation_step5c_fuel_correction_check_output.txt
+====================================================================================================
+Step 1 - Locate corrected-degradation fitting logic in features
+====================================================================================================
+features_py_block_path=/Users/demi/Downloads/Dissertation Code Project/Code Base/src/features.py
+features_py_block_lines=1134-1235
+verbatim_corrected_fit_logic_begin
+    # Build eligibility mask same as build_tyre_degradation()
+    deg_eligible = pd.Series(True, index=df.index)
+    deg_eligible &= (df['compound_known'] == True)
+    deg_eligible &= (df['IsAccurate'] == True)
+    deg_eligible &= (df['sc_active'] == False)
+    deg_eligible &= (df['vsc_active'] == False)
+    deg_eligible &= (df['PitInTime'].isna())
+    deg_eligible &= (df['PitOutTime'].isna())
+
+    wet_compounds = {'INTERMEDIATE', 'WET'}
+    deg_eligible &= ~df['TyreCompound'].isin(wet_compounds)
+
+    for (driver, round_num), group in df[deg_eligible].groupby(['Driver', 'Round']):
+        median_time = group['fuel_corrected_laptime'].median()
+        threshold = median_time * 1.07
+        outlier_indices = group[group['fuel_corrected_laptime'] > threshold].index
+        deg_eligible.loc[outlier_indices] = False
+
+    # Fit deg_rate_corrected using the same logic as build_tyre_degradation().
+    deg_rates = {}
+    group_stats = {}
+    linear_count = 0
+    quadratic_count = 0
+    insufficient_count = 0
+
+    for (compound, event, year), group in df[deg_eligible].groupby(['TyreCompound', 'EventName', 'Year']):
+        key = (compound, event, year)
+        if len(group) < 5:
+            deg_rates[key] = np.nan
+            group_stats[key] = {
+                'n_laps': len(group),
+                'model': 'insufficient',
+                'r2_linear': np.nan,
+                'r2_quadratic': np.nan,
+                'deg_rate': np.nan,
+            }
+            insufficient_count += 1
+            continue
+
+        x = group['TyreLife'].values.astype(float)
+        y = group['fuel_corrected_laptime'].values.astype(float)
+
+        if np.isnan(x).any() or np.isnan(y).any():
+            deg_rates[key] = np.nan
+            group_stats[key] = {
+                'n_laps': len(group),
+                'model': 'invalid_data',
+                'r2_linear': np.nan,
+                'r2_quadratic': np.nan,
+                'deg_rate': np.nan,
+            }
+            continue
+
+        try:
+            coeffs_linear = np.polyfit(x, y, 1)
+            y_pred_linear = np.polyval(coeffs_linear, x)
+            ss_res_linear = np.sum((y - y_pred_linear) ** 2)
+            ss_tot = np.sum((y - y.mean()) ** 2)
+            r2_linear = 1 - (ss_res_linear / ss_tot) if ss_tot > 0 else 0
+        except (np.linalg.LinAlgError, ValueError):
+            r2_linear = np.nan
+            coeffs_linear = None
+
+        try:
+            coeffs_quadratic = np.polyfit(x, y, 2)
+            y_pred_quadratic = np.polyval(coeffs_quadratic, x)
+            ss_res_quadratic = np.sum((y - y_pred_quadratic) ** 2)
+            r2_quadratic = 1 - (ss_res_quadratic / ss_tot) if ss_tot > 0 else 0
+        except (np.linalg.LinAlgError, ValueError):
+            r2_quadratic = np.nan
+            coeffs_quadratic = None
+
+        if (not np.isnan(r2_quadratic) and not np.isnan(r2_linear) and
+                r2_quadratic > r2_linear + 0.02):
+            a = coeffs_quadratic[0]
+            b = coeffs_quadratic[1]
+            mean_tyre_life = x.mean()
+            deg_rate = 2 * a * mean_tyre_life + b
+            model_type = 'quadratic'
+            quadratic_count += 1
+        else:
+            if coeffs_linear is not None:
+                deg_rate = coeffs_linear[0]
+            else:
+                deg_rate = np.nan
+            model_type = 'linear'
+            linear_count += 1
+
+        deg_rates[key] = deg_rate
+        group_stats[key] = {
+            'n_laps': len(group),
+            'model': model_type,
+            'r2_linear': r2_linear,
+            'r2_quadratic': r2_quadratic,
+            'deg_rate': deg_rate,
+        }
+
+    deg_rate_values = []
+    for _, row in df.iterrows():
+        key = (row['TyreCompound'], row['EventName'], row['Year'])
+        deg_rate_values.append(deg_rates.get(key, np.nan))
+
+verbatim_corrected_fit_logic_end
+corrected_logic_grouping_confirmation=Yes, it fits per (TyreCompound, EventName, Year), matching the existing per-year stats grouping keys.
+
+====================================================================================================
+Step 2 - Build corrected per-year stats table
+====================================================================================================
+raw_row_count=189
+corrected_row_count=189
+row_count_match=True
+model_status_flag_diff_count=28
+model_status_flag_diffs_begin
+{"EventName": "Australian Grand Prix", "TyreCompound": "HARD", "Year": 2022, "model_corrected": "linear", "model_raw": "quadratic"}
+{"EventName": "Austrian Grand Prix", "TyreCompound": "HARD", "Year": 2022, "model_corrected": "linear", "model_raw": "invalid_data"}
+{"EventName": "Belgian Grand Prix", "TyreCompound": "HARD", "Year": 2024, "model_corrected": "quadratic", "model_raw": "linear"}
+{"EventName": "British Grand Prix", "TyreCompound": "HARD", "Year": 2023, "model_corrected": "linear", "model_raw": "quadratic"}
+{"EventName": "Canadian Grand Prix", "TyreCompound": "HARD", "Year": 2022, "model_corrected": "linear", "model_raw": "quadratic"}
+{"EventName": "Chinese Grand Prix", "TyreCompound": "HARD", "Year": 2024, "model_corrected": "linear", "model_raw": "quadratic"}
+{"EventName": "Monaco Grand Prix", "TyreCompound": "HARD", "Year": 2022, "model_corrected": "quadratic", "model_raw": "invalid_data"}
+{"EventName": "Spanish Grand Prix", "TyreCompound": "HARD", "Year": 2022, "model_corrected": "linear", "model_raw": "quadratic"}
+{"EventName": "Australian Grand Prix", "TyreCompound": "MEDIUM", "Year": 2024, "model_corrected": "quadratic", "model_raw": "linear"}
+{"EventName": "Austrian Grand Prix", "TyreCompound": "MEDIUM", "Year": 2022, "model_corrected": "linear", "model_raw": "invalid_data"}
+{"EventName": "Belgian Grand Prix", "TyreCompound": "MEDIUM", "Year": 2024, "model_corrected": "quadratic", "model_raw": "linear"}
+{"EventName": "Dutch Grand Prix", "TyreCompound": "MEDIUM", "Year": 2022, "model_corrected": "quadratic", "model_raw": "linear"}
+{"EventName": "Hungarian Grand Prix", "TyreCompound": "MEDIUM", "Year": 2024, "model_corrected": "quadratic", "model_raw": "linear"}
+{"EventName": "Italian Grand Prix", "TyreCompound": "MEDIUM", "Year": 2024, "model_corrected": "quadratic", "model_raw": "linear"}
+{"EventName": "Mexico City Grand Prix", "TyreCompound": "MEDIUM", "Year": 2023, "model_corrected": "linear", "model_raw": "quadratic"}
+{"EventName": "Miami Grand Prix", "TyreCompound": "MEDIUM", "Year": 2022, "model_corrected": "linear", "model_raw": "quadratic"}
+{"EventName": "Monaco Grand Prix", "TyreCompound": "MEDIUM", "Year": 2022, "model_corrected": "quadratic", "model_raw": "invalid_data"}
+{"EventName": "Monaco Grand Prix", "TyreCompound": "MEDIUM", "Year": 2023, "model_corrected": "quadratic", "model_raw": "linear"}
+{"EventName": "Saudi Arabian Grand Prix", "TyreCompound": "MEDIUM", "Year": 2023, "model_corrected": "quadratic", "model_raw": "linear"}
+{"EventName": "S\u00e3o Paulo Grand Prix", "TyreCompound": "MEDIUM", "Year": 2022, "model_corrected": "linear", "model_raw": "quadratic"}
+{"EventName": "Abu Dhabi Grand Prix", "TyreCompound": "SOFT", "Year": 2022, "model_corrected": "quadratic", "model_raw": "linear"}
+{"EventName": "Australian Grand Prix", "TyreCompound": "SOFT", "Year": 2024, "model_corrected": "quadratic", "model_raw": "linear"}
+{"EventName": "Belgian Grand Prix", "TyreCompound": "SOFT", "Year": 2022, "model_corrected": "linear", "model_raw": "quadratic"}
+{"EventName": "Monaco Grand Prix", "TyreCompound": "SOFT", "Year": 2024, "model_corrected": "quadratic", "model_raw": "linear"}
+{"EventName": "Saudi Arabian Grand Prix", "TyreCompound": "SOFT", "Year": 2023, "model_corrected": "quadratic", "model_raw": "linear"}
+{"EventName": "Spanish Grand Prix", "TyreCompound": "SOFT", "Year": 2022, "model_corrected": "linear", "model_raw": "quadratic"}
+{"EventName": "S\u00e3o Paulo Grand Prix", "TyreCompound": "SOFT", "Year": 2022, "model_corrected": "linear", "model_raw": "quadratic"}
+{"EventName": "S\u00e3o Paulo Grand Prix", "TyreCompound": "SOFT", "Year": 2023, "model_corrected": "quadratic", "model_raw": "linear"}
+model_status_flag_diffs_end
+low_sample_flag_diff_count=0
+
+====================================================================================================
+Step 3 - Hungary 2022 and Italian GP 2024 slope shifts (raw vs corrected)
+====================================================================================================
+race=Hungarian Grand Prix year=2022
+  HARD: raw=-0.0041431561115111 corrected=0.020674645617123302 shift=0.024817801728634403
+  MEDIUM: raw=0.0205113945387812 corrected=0.05687838963869167 shift=0.03636699509991047
+  SOFT: raw=0.0710343419602045 corrected=0.09171059294391215 shift=0.02067625098370765
+race=Italian Grand Prix year=2024
+  HARD: raw=0.0069518038772066 corrected=0.03219159740375219 shift=0.02523979352654559
+  MEDIUM: raw=-0.0496970068310976 corrected=-0.010852318995101279 shift=0.038844687835996324
+  SOFT: raw=nan corrected=nan shift=nan
+italian_gp_2024_medium_corrected_sign_state=negative
+
+====================================================================================================
+Step 4 - Hungary short-stint concentration under corrected values
+====================================================================================================
+batch_progress label=hungary_full_search_corrected batch=1/24 scored=2048/48116
+batch_progress label=hungary_full_search_corrected batch=5/24 scored=10240/48116
+batch_progress label=hungary_full_search_corrected batch=10/24 scored=20480/48116
+tint_length=10 count=4600 share=0.095602
+first_stint_length=13 count=4124 share=0.085710
+first_stint_length=16 count=3674 share=0.076357
+first_stint_length=19 count=3250 share=0.067545
+first_stint_length=22 count=2852 share=0.059273
+first_stint_length=25 count=2480 share=0.051542
+first_stint_length=28 count=2134 share=0.044351
+first_stint_length=31 count=1814 share=0.037701
+first_stint_length=34 count=1520 share=0.031590
+first_stint_length=37 count=1252 share=0.026020
+first_stint_length=40 count=1010 share=0.020991
+first_stint_length=43 count=794 share=0.016502
+first_stint_length=46 count=604 share=0.012553
+first_stint_length=49 count=440 share=0.009145
+first_stint_length=52 count=302 share=0.006276
+first_stint_length=55 count=190 share=0.003949
+first_stint_length=58 count=104 share=0.002161
+first_stint_length=61 count=44 share=0.000914
+first_stint_length=64 count=10 share=0.000208
+first_stint_length=67 count=2 share=0.000042
+hungary_first_stint_length_distribution_corrected_end
+hungary_top100_short_first_stint_leq3_count_corrected=15
+hungary_top100_short_first_stint_leq3_fraction_corrected=0.150000
+hungary_top100_short_first_stint_leq3_fraction_raw_reference=0.390000
+hungary_top100_short_first_stint_leq3_fraction_delta_corrected_minus_raw=-0.240000
+
+====================================================================================================
+Step 5 - Italian checks under corrected values
+====================================================================================================
+italy_specific_strategy={"baseline_pace_s": 81.42599999999999, "event_name": "Italian Grand Prix", "round": 16, "starting_compound": "MEDIUM", "stops": [[37, "SOFT"]], "year": 2024}
+italy_specific_strategy_mean_points_corrected=25.000000
+italy_specific_strategy_win_rate_corrected=1.000000
+italy_specific_strategy_mean_rank_corrected=1.000000
+italy_corrected_argmax_strategy={"baseline_pace_s": 81.42599999999999, "event_name": "Italian Grand Prix", "round": 16, "starting_compound": "MEDIUM", "stops": [[37, "SOFT"]], "year": 2024}
+italy_corrected_argmax_mean_points=25.000000
+italy_corrected_argmax_within_epsilon_count=13
+italy_corrected_argmax_same_as_specific_37_16=True
+italy_corrected_margin_argmax_minus_specific_37_16=0.000000
+italy_raw_reference_mean_points=25.000000
+italy_raw_reference_win_rate=1.000000
+
+====================================================================================================
+Step 6 - Decision-ready summary
+====================================================================================================
+hungary_resolution_assessment=substantial_reduction
+italy_resolution_assessment=no_meaningful_reduction
+overall_resolution_assessment=one_substantially_reduced
+hungary_short_stint_top100_fraction_delta=-0.240000
+italy_specific_strategy_mean_points_delta=0.000000
+italy_specific_strategy_win_rate_delta=0.000000
+minimum_stint_floor_still_warranted=True
+minimum_stint_floor_defense_in_depth_reason=Even with fuel-corrected slopes, residual asymmetry and model uncertainty can still create unrealistically short-stint incentives; a physically grounded minimum stint remains necessary as defense in depth.
+
+saved_corrected_stats_csv=/Users/demi/Downloads/Dissertation Code Project/Code Base/data/diagnostics/deg_rate_corrected_full_peryear_stats.csv
+report_complete_output_target=/Users/demi/Downloads/Dissertation Code Project/Code Base/data/diagnostics/simulation_step5c_fuel_correction_check_output.txt
