@@ -1,0 +1,60 @@
+====================================================================================================
+Step 1 - Confirm shared defaults
+====================================================================================================
+GRID_SPACING=3
+MAX_STOPS=3
+
+====================================================================================================
+Step 3 - Hungary 2022 argmax (lap_level, unconditioned)
+====================================================================================================
+race=Hungarian Grand Prix (2022 round 13)
+subject_driver=NOR
+best_strategy={"baseline_pace_s": 82.48599999999999, "event_name": "Hungarian Grand Prix", "round": 13, "starting_compound": "SOFT", "stops": [[1, "HARD"]], "year": 2022}
+best_mean_points=6.807700
+within_epsilon_count=1
+within_epsilon_strategies_begin
+{"mean_points": 6.807700157165527, "mean_rank": 6.61359977722168, "std_points": 2.053422212600708, "strategy": {"baseline_pace_s": 82.48599999999999, "event_name": "Hungarian Grand Prix", "round": 13, "starting_compound": "SOFT", "stops": [[1, "HARD"]], "year": 2022}, "strategy_index": 1}
+within_epsilon_strategies_end
+wall_clock_seconds=140.708594
+
+====================================================================================================
+Step 4 - Plausibility check against actual history
+====================================================================================================
+actual_strategy={"baseline_pace_s": 82.48599999999999, "event_name": "Hungarian Grand Prix", "round": 13, "starting_compound": "SOFT", "stops": [[15, "MEDIUM"], [43, "HARD"]], "year": 2022}
+actual_strategy_mean_points=5.814000
+argmax_mean_points=6.807700
+actual_gap_to_argmax=0.993700
+actual_vs_argmax_classification=meaningfully below argmax
+implausible_near_actual=none
+
+====================================================================================================
+Step 5 - Repeat Hungary with static_prior
+====================================================================================================
+lap_level_best_strategy={"baseline_pace_s": 82.48599999999999, "event_name": "Hungarian Grand Prix", "round": 13, "starting_compound": "SOFT", "stops": [[1, "HARD"]], "year": 2022}
+lap_level_best_mean_points=6.807700
+static_prior_best_strategy={"baseline_pace_s": 82.48599999999999, "event_name": "Hungarian Grand Prix", "round": 13, "starting_compound": "SOFT", "stops": [[1, "HARD"]], "year": 2022}
+static_prior_best_mean_points=6.645300
+lap_level_vs_static_prior_same_strategy=True
+lap_level_vs_static_prior_same_mean=False
+
+====================================================================================================
+Step 6 - Runtime sanity check across race sizes
+====================================================================================================
+race=Italian Grand Prix (2024 round 16)
+subject_driver=PIA
+strategy_count=22476
+best_mean_points=25.000000
+wall_clock_seconds=55.314733
+race=Monaco Grand Prix (2023 round 6)
+subject_driver=ALO
+strategy_count=70252
+best_mean_points=24.285299
+wall_clock_seconds=218.339953
+
+used_locked_archetype_races_for_runtime_check_begin
+archetype         event_name  year  round
+    Power Italian Grand Prix  2024     16
+   Street  Monaco Grand Prix  2023      6
+used_locked_archetype_races_for_runtime_check_end
+
+Saved output to /Users/demi/Downloads/Dissertation Code Project/Code Base/data/diagnostics/simulation_step5_validation_output.txt

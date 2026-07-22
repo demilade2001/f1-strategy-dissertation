@@ -13,6 +13,10 @@ INCLUDE_BIG_THREE_AS_RIVALS = True
 LAMBDA_GRID = [1.0, 0.75, 0.5]
 # Number of Monte Carlo iterations per simulation run.
 N_ITERATIONS = 10_000
+# Shared strategy-space defaults used by optimiser and diagnostics.
+# Keep these centralized so all constrained enumeration paths stay aligned.
+GRID_SPACING = 3
+MAX_STOPS = 3
 # Conservatism rule anchor used for bias-threshold design.
 CONSERVATISM_REFERENCE = "REGULATORY_MAX_FEASIBLE_LAP"
 # Optional hard cutoff for insufficiency; None keeps continuous r_b reporting.
@@ -24,9 +28,10 @@ UNIDENTIFIABLE_EPSILON = 1e-6
 
 # Reconciled caution-lap pace multiplier from diagnostics/
 # simulation_step3b_recalibration_and_clean_validation.py (2026-07-20).
-# This uses the full-dataset phase3_caution_degradation methodology because the
-# locked-sample race-level estimator was underpowered (5/12 races with zero
-# caution laps and only 7 defined race ratios).
+# This uses the full-dataset phase3_caution_degradation methodology (wet
+# compounds excluded; 5,417 caution laps and 62,754 green laps across 2022-2024)
+# because the locked-sample race-level estimator was underpowered (5/12 races
+# with zero caution laps and only 7 defined race ratios).
 CAUTION_PACE_RATIO = 1.3162357008284764
 # Chapter 3 documented the caution-period pit-loss opportunity cost as roughly
 # 4-6s; use the midpoint as an explicit assumption rather than a measured stop-
