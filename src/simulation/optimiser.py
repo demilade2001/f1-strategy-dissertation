@@ -1,11 +1,18 @@
 from __future__ import annotations
 
-from typing import Dict, List, Mapping
+from typing import Dict, List, Mapping, Optional, Sequence, Set, Tuple
 
 import numpy as np
 import pandas as pd
 
-from .config import CAUTION_PACE_RATIO, CAUTION_PIT_LOSS_S, GRID_SPACING, MAX_STOPS
+from .config import (
+    CAUTION_PACE_RATIO,
+    CAUTION_PIT_LOSS_S,
+    GRID_SPACING,
+    INCLUDE_BIG_THREE_AS_RIVALS,
+    MAX_STOPS,
+    PROXIMITY_MARGIN_S,
+)
 from .monte_carlo import build_actual_strategies, build_probability_sources
 from .race_model import _build_degradation_lookup, _driver_pit_loss
 from .race_model_vectorized import evaluate_strategy_batch, precompute_rival_times, rank_and_score_batch
@@ -14,6 +21,471 @@ from .strategy import enumerate_feasible_strategies
 
 
 ARGMAX_BATCH_SIZE = 2048
+BIG_THREE_TEAMS = {"Red Bull Racing", "Mercedes", "Ferrari"}
+WET_COMPOUNDS = {"INTERMEDIATE", "WET"}
+
+
+def _strategy_key(strategy: Mapping[str, object]) -> Tuple[str, Tuple[Tuple[int, str], ...]]:
+    return (
+        str(strategy["starting_compound"]),
+        tuple((int(lap), str(compound)) for lap, compound in strategy.get("stops", [])),
+    )
+
+
+def _is_wet_race(actual_strategies: Mapping[str, Mapping[str, object]]) -> bool:
+    for strategy in actual_strategies.values():
+        starting = str(strategy.get("starting_compound", ""))
+        if starting in WET_COMPOUNDS:
+            return True
+        for _, compound in strategy.get("stops", []):
+            if str(compound) in WET_COMPOUNDS:
+                return True
+    return False
+
+
+def _driver_team_map(race_state: dict) -> Dict[str, str]:
+    rows = race_state.get("drivers_with_teams", [])
+    mapping: Dict[str, str] = {}
+    for row in rows:
+        driver = str(row.get("Driver", ""))
+        team = str(row.get("Team", ""))
+        if driver:
+            mapping[driver] = team
+    return mapping
+
+
+def _eligible_rivals(
+    race_state: dict,
+    subject_driver: str,
+    include_big_three_as_rivals: bool = INCLUDE_BIG_THREE_AS_RIVALS,
+) -> Set[str]:
+    team_map = _driver_team_map(race_state)
+    subject_team = team_map.get(str(subject_driver), "")
+    rivals: Set[str] = set()
+    for driver, team in team_map.items():
+        if driver == str(subject_driver):
+            continue
+        if subject_team and team == subject_team:
+            continue
+        if (not include_big_three_as_rivals) and (team in BIG_THREE_TEAMS):
+            continue
+        rivals.add(driver)
+    return rivals
+
+
+def _stops_by_driver(actual_strategies: Mapping[str, Mapping[str, object]]) -> Dict[str, Set[int]]:
+    out: Dict[str, Set[int]] = {}
+    for driver, strategy in actual_strategies.items():
+        out[str(driver)] = {int(lap) for lap, _ in strategy.get("stops", [])}
+    return out
+
+
+def detect_rival_trigger_events(
+    race_state: dict,
+    subject_driver: str,
+    proximity_margin_s: float = PROXIMITY_MARGIN_S,
+    include_big_three_as_rivals: bool = INCLUDE_BIG_THREE_AS_RIVALS,
+) -> Dict[str, object]:
+    laps = race_state["laps"].copy()
+    subject_rows = laps[laps["Driver"].astype(str) == str(subject_driver)].copy()
+    if subject_rows.empty:
+        raise ValueError(f"Subject driver {subject_driver} not found in race laps")
+
+    actual_strategies = build_actual_strategies(laps)
+    if str(subject_driver) not in actual_strategies:
+        raise ValueError(f"Subject driver {subject_driver} not found in actual strategies")
+
+    race_length = int(pd.to_numeric(laps["LapNumber"], errors="coerce").max())
+    rivals_all = _eligible_rivals(
+        race_state=race_state,
+        subject_driver=str(subject_driver),
+        include_big_three_as_rivals=bool(include_big_three_as_rivals),
+    )
+
+    subject_stop_laps = {int(lap) for lap, _ in actual_strategies[str(subject_driver)].get("stops", [])}
+    rival_stop_laps = _stops_by_driver(actual_strategies)
+
+    trigger_events: List[Dict[str, object]] = []
+    threat_basis: Dict[int, Dict[str, object]] = {}
+    for _, row in subject_rows.sort_values("LapNumber").iterrows():
+        lap = int(row["LapNumber"])
+        if lap < 1 or lap >= race_length:
+            continue
+
+        under_flag = bool(row.get("undercut_threat_flag", False))
+        over_flag = bool(row.get("overcut_threat_flag", False))
+        under_idx = float(row.get("undercut_threat_index", np.nan))
+        over_idx = float(row.get("overcut_threat_index", np.nan))
+
+        # threat indexes are dimensionless age/gap ratios in this project, not plain seconds.
+        # use the explicit threat flags to gate rival-eligibility on each lap.
+        threat_active = bool(under_flag or over_flag)
+
+        if not threat_active:
+            # Fallback branch retained for forward-compatibility if threat index semantics change.
+            if np.isfinite(under_idx) and under_idx <= float(proximity_margin_s):
+                threat_active = True
+            if np.isfinite(over_idx) and over_idx <= float(proximity_margin_s):
+                threat_active = True
+
+        rivals_on_lap = set(rivals_all) if threat_active else set()
+        threat_basis[lap] = {
+            "lap": int(lap),
+            "undercut_threat_flag": under_flag,
+            "overcut_threat_flag": over_flag,
+            "undercut_threat_index": under_idx,
+            "overcut_threat_index": over_idx,
+            "rival_set_size": int(len(rivals_on_lap)),
+            "rival_set": sorted(rivals_on_lap),
+        }
+
+        if not rivals_on_lap:
+            continue
+
+        if lap in subject_stop_laps:
+            continue
+
+        triggered_by = sorted(
+            [
+                rival
+                for rival in rivals_on_lap
+                if int(lap) in rival_stop_laps.get(str(rival), set())
+            ]
+        )
+        if triggered_by:
+            trigger_events.append(
+                {
+                    "lap": int(lap),
+                    "triggered_by": triggered_by,
+                    "rival_set_size": int(len(rivals_on_lap)),
+                }
+            )
+
+    return {
+        "race_length": int(race_length),
+        "subject_driver": str(subject_driver),
+        "rivals_eligible": sorted(rivals_all),
+        "subject_stop_laps": sorted(subject_stop_laps),
+        "trigger_events": trigger_events,
+        "threat_basis_by_lap": threat_basis,
+    }
+
+
+def build_reactive_candidate_sets(
+    race_state: dict,
+    subject_driver: str,
+    trigger_events: Sequence[Mapping[str, object]],
+    min_stint_length_laps: int,
+    grid_spacing: int = GRID_SPACING,
+) -> Dict[str, object]:
+    laps = race_state["laps"].copy()
+    actual_strategies = build_actual_strategies(laps)
+    if str(subject_driver) not in actual_strategies:
+        raise ValueError(f"Subject driver {subject_driver} not found in race strategies")
+
+    subject_actual = dict(actual_strategies[str(subject_driver)])
+    race_length = int(pd.to_numeric(laps["LapNumber"], errors="coerce").max())
+    wet_race = _is_wet_race(actual_strategies)
+
+    full_space = enumerate_feasible_strategies(
+        race_length=race_length,
+        starting_compound=str(subject_actual["starting_compound"]),
+        is_wet_race=wet_race,
+        max_stops=MAX_STOPS,
+        min_stint_length_laps=int(min_stint_length_laps),
+    )
+    if hasattr(full_space, "materialize"):
+        materialized = full_space.materialize(limit=2_000_000)
+    else:
+        materialized = list(full_space)
+
+    standard_candidate_laps = set(range(1, race_length, int(grid_spacing)))
+
+    def enrich(strategy: Dict[str, object]) -> Dict[str, object]:
+        row = dict(strategy)
+        row.setdefault("baseline_pace_s", float(subject_actual["baseline_pace_s"]))
+        row.setdefault("year", int(subject_actual["year"]))
+        row.setdefault("round", int(subject_actual["round"]))
+        row.setdefault("event_name", str(subject_actual["event_name"]))
+        return row
+
+    standard: List[Dict[str, object]] = []
+    standard_keys: Set[Tuple[str, Tuple[Tuple[int, str], ...]]] = set()
+    for strategy in materialized:
+        stops = strategy.get("stops", [])
+        if all(int(lap) in standard_candidate_laps for lap, _ in stops):
+            es = enrich(strategy)
+            key = _strategy_key(es)
+            standard.append(es)
+            standard_keys.add(key)
+
+    reactive_only: List[Dict[str, object]] = []
+    reactive_keys: Set[Tuple[str, Tuple[Tuple[int, str], ...]]] = set()
+    trigger_laps = sorted({int(e["lap"]) for e in trigger_events})
+
+    augmented_laps_used: List[int] = []
+    skipped_already_grid: List[int] = []
+    for trigger_lap in trigger_laps:
+        augmented_lap = int(trigger_lap) + 1
+        if augmented_lap <= 0 or augmented_lap >= race_length:
+            continue
+        if augmented_lap in standard_candidate_laps:
+            skipped_already_grid.append(augmented_lap)
+            continue
+
+        augmented_laps_used.append(augmented_lap)
+        allowed = set(standard_candidate_laps)
+        allowed.add(augmented_lap)
+
+        for strategy in materialized:
+            stops = [(int(lap), str(comp)) for lap, comp in strategy.get("stops", [])]
+            if not all(lap in allowed for lap, _ in stops):
+                continue
+            if not any(lap == augmented_lap for lap, _ in stops):
+                continue
+
+            es = enrich(strategy)
+            key = _strategy_key(es)
+            if key in standard_keys or key in reactive_keys:
+                continue
+            reactive_only.append(es)
+            reactive_keys.add(key)
+
+    augmented = list(standard)
+    augmented.extend(reactive_only)
+
+    return {
+        "race_length": int(race_length),
+        "wet_race": bool(wet_race),
+        "subject_actual": subject_actual,
+        "standard_strategies": standard,
+        "reactive_only_strategies": reactive_only,
+        "augmented_strategies": augmented,
+        "standard_count": int(len(standard)),
+        "reactive_only_count": int(len(reactive_only)),
+        "augmented_count": int(len(augmented)),
+        "trigger_laps": trigger_laps,
+        "augmented_laps_used": sorted(set(augmented_laps_used)),
+        "skipped_already_grid_laps": sorted(set(skipped_already_grid)),
+    }
+
+
+def _score_strategy_pool(
+    race_state: dict,
+    subject_driver: str,
+    strategies: Sequence[Mapping[str, object]],
+    prob_source: str,
+    lambda_: float,
+    n_iterations: int,
+    rng,
+) -> Dict[str, object]:
+    if not strategies:
+        raise ValueError("No strategies were provided for scoring")
+
+    laps = race_state["laps"].copy()
+    actual_strategies = build_actual_strategies(laps)
+    subject_actual = dict(actual_strategies[str(subject_driver)])
+
+    prob_by_lap = _resolve_probability_by_source(race_state, prob_source)
+    caution_schedules = _build_caution_schedule_matrix(prob_by_lap, int(n_iterations), rng)
+    precomputed = _precompute_subject_inputs(
+        race_state=race_state,
+        subject_driver=str(subject_driver),
+        caution_schedules=caution_schedules,
+        lambda_=float(lambda_),
+    )
+
+    mean_points = np.zeros(len(strategies), dtype=np.float64)
+    std_points = np.zeros(len(strategies), dtype=np.float64)
+    mean_rank = np.zeros(len(strategies), dtype=np.float64)
+    win_rate = np.zeros(len(strategies), dtype=np.float64)
+
+    for start in range(0, len(strategies), ARGMAX_BATCH_SIZE):
+        end = min(start + ARGMAX_BATCH_SIZE, len(strategies))
+        batch = [dict(s) for s in strategies[start:end]]
+        subject_times = evaluate_strategy_batch(
+            subject_strategies=batch,
+            caution_schedules=caution_schedules,
+            degradation_lookup=precomputed["degradation_lookup"],
+            lambda_=float(lambda_),
+            baseline_pace_s=float(subject_actual["baseline_pace_s"]),
+            pit_loss_s=float(precomputed["pit_loss_s"]),
+            caution_pit_loss_s=CAUTION_PIT_LOSS_S,
+            caution_pace_ratio=CAUTION_PACE_RATIO,
+        )
+        scored = rank_and_score_batch(subject_times, precomputed["rival_times"])
+        mean_points[start:end] = np.asarray(scored["mean_points"], dtype=np.float64)
+        std_points[start:end] = np.asarray(scored["std_points"], dtype=np.float64)
+        mean_rank[start:end] = np.asarray(scored["mean_rank"], dtype=np.float64)
+
+        rank_matrix = np.asarray(scored["rank_matrix"], dtype=np.int16)
+        win_rate[start:end] = np.mean(rank_matrix == 1, axis=1)
+
+    return {
+        "mean_points": mean_points,
+        "std_points": std_points,
+        "mean_rank": mean_rank,
+        "win_rate": win_rate,
+    }
+
+
+def compute_rival_conditioned_benchmarks(
+    race_state: dict,
+    subject_driver: str,
+    prob_source: str,
+    lambda_: float,
+    n_iterations: int,
+    rng,
+    min_stint_length_laps: int,
+    proximity_margin_s: float = PROXIMITY_MARGIN_S,
+    include_big_three_as_rivals: bool = INCLUDE_BIG_THREE_AS_RIVALS,
+) -> Dict[str, object]:
+    trigger_data = detect_rival_trigger_events(
+        race_state=race_state,
+        subject_driver=str(subject_driver),
+        proximity_margin_s=float(proximity_margin_s),
+        include_big_three_as_rivals=bool(include_big_three_as_rivals),
+    )
+
+    candidate_sets = build_reactive_candidate_sets(
+        race_state=race_state,
+        subject_driver=str(subject_driver),
+        trigger_events=trigger_data["trigger_events"],
+        min_stint_length_laps=int(min_stint_length_laps),
+        grid_spacing=int(GRID_SPACING),
+    )
+
+    augmented = candidate_sets["augmented_strategies"]
+    scoring = _score_strategy_pool(
+        race_state=race_state,
+        subject_driver=str(subject_driver),
+        strategies=augmented,
+        prob_source=str(prob_source),
+        lambda_=float(lambda_),
+        n_iterations=int(n_iterations),
+        rng=rng,
+    )
+
+    standard_keys = {_strategy_key(s) for s in candidate_sets["standard_strategies"]}
+    reactive_keys = {_strategy_key(s) for s in candidate_sets["reactive_only_strategies"]}
+    augmented_keys = [_strategy_key(s) for s in augmented]
+
+    standard_idx = [idx for idx, key in enumerate(augmented_keys) if key in standard_keys]
+    reactive_idx = [idx for idx, key in enumerate(augmented_keys) if key in reactive_keys]
+    augmented_idx = list(range(len(augmented)))
+
+    def best_from_indices(indices: Sequence[int]) -> Optional[Dict[str, object]]:
+        if not indices:
+            return None
+        idx_arr = np.asarray(list(indices), dtype=np.int64)
+        local = idx_arr[np.argmax(scoring["mean_points"][idx_arr])]
+        i = int(local)
+        return {
+            "strategy": augmented[i],
+            "mean_points": float(scoring["mean_points"][i]),
+            "std_points": float(scoring["std_points"][i]),
+            "mean_rank": float(scoring["mean_rank"][i]),
+            "win_rate": float(scoring["win_rate"][i]),
+            "index": i,
+        }
+
+    bench_a = best_from_indices(standard_idx)
+    bench_b = best_from_indices(augmented_idx)
+    bench_r = best_from_indices(reactive_idx)
+
+    return {
+        "trigger_data": trigger_data,
+        "candidate_sets": candidate_sets,
+        "benchmark_a": bench_a,
+        "benchmark_b": bench_b,
+        "benchmark_r_anchoring": bench_r,
+        "standard_index_count": int(len(standard_idx)),
+        "reactive_index_count": int(len(reactive_idx)),
+        "augmented_index_count": int(len(augmented_idx)),
+    }
+
+
+def compute_benchmarks_for_trigger_events(
+    race_state: dict,
+    subject_driver: str,
+    trigger_events: Sequence[Mapping[str, object]],
+    prob_source: str,
+    lambda_: float,
+    n_iterations: int,
+    rng,
+    min_stint_length_laps: int,
+) -> Dict[str, object]:
+    candidate_sets = build_reactive_candidate_sets(
+        race_state=race_state,
+        subject_driver=str(subject_driver),
+        trigger_events=trigger_events,
+        min_stint_length_laps=int(min_stint_length_laps),
+        grid_spacing=int(GRID_SPACING),
+    )
+
+    augmented = candidate_sets["augmented_strategies"]
+    scoring = _score_strategy_pool(
+        race_state=race_state,
+        subject_driver=str(subject_driver),
+        strategies=augmented,
+        prob_source=str(prob_source),
+        lambda_=float(lambda_),
+        n_iterations=int(n_iterations),
+        rng=rng,
+    )
+
+    standard_keys = {_strategy_key(s) for s in candidate_sets["standard_strategies"]}
+    reactive_keys = {_strategy_key(s) for s in candidate_sets["reactive_only_strategies"]}
+    augmented_keys = [_strategy_key(s) for s in augmented]
+
+    standard_idx = [idx for idx, key in enumerate(augmented_keys) if key in standard_keys]
+    reactive_idx = [idx for idx, key in enumerate(augmented_keys) if key in reactive_keys]
+    augmented_idx = list(range(len(augmented)))
+
+    def best_from_indices(indices: Sequence[int]) -> Optional[Dict[str, object]]:
+        if not indices:
+            return None
+        idx_arr = np.asarray(list(indices), dtype=np.int64)
+        local = idx_arr[np.argmax(scoring["mean_points"][idx_arr])]
+        i = int(local)
+        return {
+            "strategy": augmented[i],
+            "mean_points": float(scoring["mean_points"][i]),
+            "std_points": float(scoring["std_points"][i]),
+            "mean_rank": float(scoring["mean_rank"][i]),
+            "win_rate": float(scoring["win_rate"][i]),
+            "index": i,
+        }
+
+    return {
+        "candidate_sets": candidate_sets,
+        "benchmark_a": best_from_indices(standard_idx),
+        "benchmark_b": best_from_indices(augmented_idx),
+        "benchmark_r_anchoring": best_from_indices(reactive_idx),
+        "standard_index_count": int(len(standard_idx)),
+        "reactive_index_count": int(len(reactive_idx)),
+        "augmented_index_count": int(len(augmented_idx)),
+    }
+
+
+def score_subject_strategy_pool(
+    race_state: dict,
+    subject_driver: str,
+    strategies: Sequence[Mapping[str, object]],
+    prob_source: str,
+    lambda_: float,
+    n_iterations: int,
+    rng,
+) -> Dict[str, object]:
+    return _score_strategy_pool(
+        race_state=race_state,
+        subject_driver=str(subject_driver),
+        strategies=strategies,
+        prob_source=str(prob_source),
+        lambda_=float(lambda_),
+        n_iterations=int(n_iterations),
+        rng=rng,
+    )
 
 
 def _build_caution_schedule_matrix(prob_by_lap: Mapping[int, float], n_iterations: int, rng) -> np.ndarray:
@@ -188,4 +660,11 @@ def argmax_strategy(
     }
 
 
-__all__ = ["argmax_strategy"]
+__all__ = [
+    "argmax_strategy",
+    "detect_rival_trigger_events",
+    "build_reactive_candidate_sets",
+    "compute_rival_conditioned_benchmarks",
+    "compute_benchmarks_for_trigger_events",
+    "score_subject_strategy_pool",
+]
