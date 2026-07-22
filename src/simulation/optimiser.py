@@ -32,6 +32,11 @@ def _strategy_key(strategy: Mapping[str, object]) -> Tuple[str, Tuple[Tuple[int,
     )
 
 
+def _strategy_has_stop_lap(strategy: Mapping[str, object], lap: int) -> bool:
+    target = int(lap)
+    return any(int(stop_lap) == target for stop_lap, _ in strategy.get("stops", []))
+
+
 def _is_wet_race(actual_strategies: Mapping[str, Mapping[str, object]]) -> bool:
     for strategy in actual_strategies.values():
         starting = str(strategy.get("starting_compound", ""))
@@ -367,11 +372,9 @@ def compute_rival_conditioned_benchmarks(
     )
 
     standard_keys = {_strategy_key(s) for s in candidate_sets["standard_strategies"]}
-    reactive_keys = {_strategy_key(s) for s in candidate_sets["reactive_only_strategies"]}
     augmented_keys = [_strategy_key(s) for s in augmented]
 
     standard_idx = [idx for idx, key in enumerate(augmented_keys) if key in standard_keys]
-    reactive_idx = [idx for idx, key in enumerate(augmented_keys) if key in reactive_keys]
     augmented_idx = list(range(len(augmented)))
 
     def best_from_indices(indices: Sequence[int]) -> Optional[Dict[str, object]]:
@@ -391,7 +394,18 @@ def compute_rival_conditioned_benchmarks(
 
     bench_a = best_from_indices(standard_idx)
     bench_b = best_from_indices(augmented_idx)
-    bench_r = best_from_indices(reactive_idx)
+    benchmark_r_by_trigger_lap: Dict[int, Optional[Dict[str, object]]] = {}
+    for event in trigger_data["trigger_events"]:
+        added_lap = int(event["lap"]) + 1
+        r_idx = [idx for idx, strategy in enumerate(augmented) if _strategy_has_stop_lap(strategy, added_lap)]
+        benchmark_r_by_trigger_lap[int(event["lap"])] = best_from_indices(r_idx)
+
+    r_union_idx = [
+        idx
+        for idx, strategy in enumerate(augmented)
+        if any(_strategy_has_stop_lap(strategy, int(event["lap"]) + 1) for event in trigger_data["trigger_events"])
+    ]
+    bench_r = best_from_indices(r_union_idx)
 
     return {
         "trigger_data": trigger_data,
@@ -399,8 +413,9 @@ def compute_rival_conditioned_benchmarks(
         "benchmark_a": bench_a,
         "benchmark_b": bench_b,
         "benchmark_r_anchoring": bench_r,
+        "benchmark_r_anchoring_by_trigger_lap": benchmark_r_by_trigger_lap,
         "standard_index_count": int(len(standard_idx)),
-        "reactive_index_count": int(len(reactive_idx)),
+        "reactive_index_count": int(len(r_union_idx)),
         "augmented_index_count": int(len(augmented_idx)),
     }
 
@@ -435,11 +450,9 @@ def compute_benchmarks_for_trigger_events(
     )
 
     standard_keys = {_strategy_key(s) for s in candidate_sets["standard_strategies"]}
-    reactive_keys = {_strategy_key(s) for s in candidate_sets["reactive_only_strategies"]}
     augmented_keys = [_strategy_key(s) for s in augmented]
 
     standard_idx = [idx for idx, key in enumerate(augmented_keys) if key in standard_keys]
-    reactive_idx = [idx for idx, key in enumerate(augmented_keys) if key in reactive_keys]
     augmented_idx = list(range(len(augmented)))
 
     def best_from_indices(indices: Sequence[int]) -> Optional[Dict[str, object]]:
@@ -457,13 +470,23 @@ def compute_benchmarks_for_trigger_events(
             "index": i,
         }
 
+    benchmark_r_by_trigger_lap: Dict[int, Optional[Dict[str, object]]] = {}
+    r_union_idx: Set[int] = set()
+    for event in trigger_events:
+        event_lap = int(event["lap"])
+        added_lap = event_lap + 1
+        r_idx = [idx for idx, strategy in enumerate(augmented) if _strategy_has_stop_lap(strategy, added_lap)]
+        benchmark_r_by_trigger_lap[event_lap] = best_from_indices(r_idx)
+        r_union_idx.update(r_idx)
+
     return {
         "candidate_sets": candidate_sets,
         "benchmark_a": best_from_indices(standard_idx),
         "benchmark_b": best_from_indices(augmented_idx),
-        "benchmark_r_anchoring": best_from_indices(reactive_idx),
+        "benchmark_r_anchoring": best_from_indices(sorted(r_union_idx)),
+        "benchmark_r_anchoring_by_trigger_lap": benchmark_r_by_trigger_lap,
         "standard_index_count": int(len(standard_idx)),
-        "reactive_index_count": int(len(reactive_idx)),
+        "reactive_index_count": int(len(r_union_idx)),
         "augmented_index_count": int(len(augmented_idx)),
     }
 

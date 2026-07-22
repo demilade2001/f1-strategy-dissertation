@@ -19,7 +19,9 @@ GRID_SPACING = 3
 MAX_STOPS = 3
 # Minimum allowed stint length in laps for strategy-space enumeration.
 # Derived from the step5d worst-case locked-race asymmetry breakeven analysis.
-MIN_STINT_LENGTH_LAPS = 19
+# Reconciled with step5g: global default is 2 laps to block only pathological
+# 1-lap exploit stints while preserving realistic historical short-stint cases.
+MIN_STINT_LENGTH_LAPS = 2
 # Conservatism rule anchor used for bias-threshold design.
 CONSERVATISM_REFERENCE = "REGULATORY_MAX_FEASIBLE_LAP"
 # Optional hard cutoff for insufficiency; None keeps continuous r_b reporting.
