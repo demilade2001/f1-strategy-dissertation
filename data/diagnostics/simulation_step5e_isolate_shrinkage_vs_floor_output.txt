@@ -1,0 +1,151 @@
+====================================================================================================
+Step 5e - Isolate shrinkage vs floor
+====================================================================================================
+raw_deg_path=/Users/demi/Downloads/Dissertation Code Project/Code Base/data/diagnostics/deg_rate_full_peryear_stats.csv
+shrunk_deg_path=/Users/demi/Downloads/Dissertation Code Project/Code Base/data/diagnostics/deg_rate_corrected_shrunk_full_peryear_stats.csv
+
+====================================================================================================
+Step 1 - Hungary/Italy with shrinkage and no floor (MIN_STINT=1)
+====================================================================================================
+running_step1 race=Hungarian Grand Prix year=2022
+batch_progress race=Hungarian Grand Prix floor_eval_batch=1/24 scored=2048/48116
+batch_progress race=Hungarian Grand Prix floor_eval_batch=10/24 scored=20480/48116
+batch_progress race=Hungarian Grand Prix floor_eval_batch=20/24 scored=40960/48116
+batch_progress race=Hungarian Grand Prix floor_eval_batch=24/24 scored=48116/48116
+step1_result_core={"actual_subject_strategy_in_feasible_set": false, "best_first_stint_length": 7, "best_mean_points": 6.837900161743164, "best_strategy": {"baseline_pace_s": 82.48599999999999, "event_name": "Hungarian Grand Prix", "round": 13, "starting_compound": "SOFT", "stops": [[7, "HARD"], [40, "HARD"]], "year": 2022}, "best_win_rate": 0.0, "race": {"event_name": "Hungarian Grand Prix", "round": 13, "year": 2022}, "strategy_count": 48116, "top_short_stint_leq3_fraction": 0.15}
+first_stint_distribution_begin
+{"count": 6184, "first_stint_length": 1, "share": 0.12852273671959433}
+{"count": 5630, "first_stint_length": 4, "share": 0.11700889517000582}
+{"count": 5102, "first_stint_length": 7, "share": 0.10603541441516336}
+{"count": 4600, "first_stint_length": 10, "share": 0.09560229445506692}
+{"count": 4124, "first_stint_length": 13, "share": 0.08570953528971652}
+{"count": 3674, "first_stint_length": 16, "share": 0.07635713691911214}
+{"count": 3250, "first_stint_length": 19, "share": 0.0675450993432538}
+{"count": 2852, "first_stint_length": 22, "share": 0.05927342256214149}
+{"count": 2480, "first_stint_length": 25, "share": 0.05154210657577521}
+{"count": 2134, "first_stint_length": 28, "share": 0.044351151384154956}
+{"count": 1814, "first_stint_length": 31, "share": 0.03770055698728074}
+{"count": 1520, "first_stint_length": 34, "share": 0.031590323385152545}
+{"count": 1252, "first_stint_length": 37, "share": 0.026020450577770388}
+{"count": 1010, "first_stint_length": 40, "share": 0.02099093856513426}
+{"count": 794, "first_stint_length": 43, "share": 0.01650178734724416}
+{"count": 604, "first_stint_length": 46, "share": 0.012552996924100092}
+{"count": 440, "first_stint_length": 49, "share": 0.009144567295702054}
+{"count": 302, "first_stint_length": 52, "share": 0.006276498462050046}
+{"count": 190, "first_stint_length": 55, "share": 0.003948790423144068}
+{"count": 104, "first_stint_length": 58, "share": 0.0021614431789841217}
+{"count": 44, "first_stint_length": 61, "share": 0.0009144567295702054}
+{"count": 10, "first_stint_length": 64, "share": 0.00020783107490231938}
+{"count": 2, "first_stint_length": 67, "share": 4.156621498046388e-05}
+first_stint_distribution_end
+running_step1 race=Italian Grand Prix year=2024
+batch_progress race=Italian Grand Prix floor_eval_batch=1/11 scored=2048/22476
+batch_progress race=Italian Grand Prix floor_eval_batch=10/11 scored=20480/22476
+batch_progress race=Italian Grand Prix floor_eval_batch=11/11 scored=22476/22476
+step1_result_core={"actual_subject_strategy_in_feasible_set": false, "best_first_stint_length": 1, "best_mean_points": 24.998600006103516, "best_strategy": {"baseline_pace_s": 81.42599999999999, "event_name": "Italian Grand Prix", "round": 16, "starting_compound": "MEDIUM", "stops": [[1, "SOFT"]], "year": 2024}, "best_win_rate": 0.9998, "race": {"event_name": "Italian Grand Prix", "round": 16, "year": 2024}, "strategy_count": 22476, "top_short_stint_leq3_fraction": 0.27}
+first_stint_distribution_begin
+{"count": 3674, "first_stint_length": 1, "share": 0.1634632496885567}
+{"count": 3250, "first_stint_length": 4, "share": 0.1445986830396868}
+{"count": 2852, "first_stint_length": 7, "share": 0.12689090585513438}
+{"count": 2480, "first_stint_length": 10, "share": 0.11033991813489945}
+{"count": 2134, "first_stint_length": 13, "share": 0.09494571987898202}
+{"count": 1814, "first_stint_length": 16, "share": 0.08070831108738209}
+{"count": 1520, "first_stint_length": 19, "share": 0.06762769176009967}
+{"count": 1252, "first_stint_length": 22, "share": 0.05570386189713472}
+{"count": 1010, "first_stint_length": 25, "share": 0.044936821498487274}
+{"count": 794, "first_stint_length": 28, "share": 0.03532657056415733}
+{"count": 604, "first_stint_length": 31, "share": 0.026873109094144865}
+{"count": 440, "first_stint_length": 34, "share": 0.019576437088449902}
+{"count": 302, "first_stint_length": 37, "share": 0.013436554547072432}
+{"count": 190, "first_stint_length": 40, "share": 0.008453461470012458}
+{"count": 104, "first_stint_length": 43, "share": 0.004627157857269977}
+{"count": 44, "first_stint_length": 46, "share": 0.0019576437088449903}
+{"count": 10, "first_stint_length": 49, "share": 0.00044491902473749775}
+{"count": 2, "first_stint_length": 52, "share": 8.898380494749955e-05}
+first_stint_distribution_end
+
+====================================================================================================
+Step 2 - Side-by-side comparison of configurations (a), (b), (c)
+====================================================================================================
+running_step2 race=Hungarian Grand Prix config=a_raw_no_floor
+batch_progress race=Hungarian Grand Prix floor_eval_batch=1/24 scored=2048/48116
+batch_progress race=Hungarian Grand Prix floor_eval_batch=10/24 scored=20480/48116
+batch_progress race=Hungarian Grand Prix floor_eval_batch=20/24 scored=40960/48116
+batch_progress race=Hungarian Grand Prix floor_eval_batch=24/24 scored=48116/48116
+running_step2 race=Hungarian Grand Prix config=b_shrunk_no_floor
+batch_progress race=Hungarian Grand Prix floor_eval_batch=1/24 scored=2048/48116
+batch_progress race=Hungarian Grand Prix floor_eval_batch=10/24 scored=20480/48116
+batch_progress race=Hungarian Grand Prix floor_eval_batch=20/24 scored=40960/48116
+batch_progress race=Hungarian Grand Prix floor_eval_batch=24/24 scored=48116/48116
+running_step2 race=Hungarian Grand Prix config=c_shrunk_floor19
+batch_progress race=Hungarian Grand Prix floor_eval_batch=1/1 scored=102/102
+running_step2 race=Italian Grand Prix config=a_raw_no_floor
+batch_progress race=Italian Grand Prix floor_eval_batch=1/11 scored=2048/22476
+batch_progress race=Italian Grand Prix floor_eval_batch=10/11 scored=20480/22476
+batch_progress race=Italian Grand Prix floor_eval_batch=11/11 scored=22476/22476
+running_step2 race=Italian Grand Prix config=b_shrunk_no_floor
+batch_progress race=Italian Grand Prix floor_eval_batch=1/11 scored=2048/22476
+batch_progress race=Italian Grand Prix floor_eval_batch=10/11 scored=20480/22476
+batch_progress race=Italian Grand Prix floor_eval_batch=11/11 scored=22476/22476
+running_step2 race=Italian Grand Prix config=c_shrunk_floor19
+batch_progress race=Italian Grand Prix floor_eval_batch=1/1 scored=12/12
+step2_comparison_table_begin
+{"actual_subject_strategy_in_feasible_set": false, "argmax_first_stint_length": 1, "config": "a_raw_no_floor", "italy_mean_points": null, "italy_win_rate": null, "race": "Hungarian Grand Prix", "strategy_count": 48116, "top100_short_stint_fraction": 0.39, "top_k_used": 100, "year": 2022}
+{"actual_subject_strategy_in_feasible_set": false, "argmax_first_stint_length": 7, "config": "b_shrunk_no_floor", "italy_mean_points": null, "italy_win_rate": null, "race": "Hungarian Grand Prix", "strategy_count": 48116, "top100_short_stint_fraction": 0.15, "top_k_used": 100, "year": 2022}
+{"actual_subject_strategy_in_feasible_set": false, "argmax_first_stint_length": 19, "config": "c_shrunk_floor19", "italy_mean_points": null, "italy_win_rate": null, "race": "Hungarian Grand Prix", "strategy_count": 102, "top100_short_stint_fraction": 0.0, "top_k_used": 100, "year": 2022}
+{"actual_subject_strategy_in_feasible_set": false, "argmax_first_stint_length": 37, "config": "a_raw_no_floor", "italy_mean_points": 25.0, "italy_win_rate": 1.0, "race": "Italian Grand Prix", "strategy_count": 22476, "top100_short_stint_fraction": 0.12, "top_k_used": 100, "year": 2024}
+{"actual_subject_strategy_in_feasible_set": false, "argmax_first_stint_length": 1, "config": "b_shrunk_no_floor", "italy_mean_points": 24.998600006103516, "italy_win_rate": 0.9998, "race": "Italian Grand Prix", "strategy_count": 22476, "top100_short_stint_fraction": 0.27, "top_k_used": 100, "year": 2024}
+{"actual_subject_strategy_in_feasible_set": false, "argmax_first_stint_length": 19, "config": "c_shrunk_floor19", "italy_mean_points": 24.64579963684082, "italy_win_rate": 0.9494, "race": "Italian Grand Prix", "strategy_count": 12, "top100_short_stint_fraction": null, "top_k_used": 12, "year": 2024}
+step2_comparison_table_end
+
+====================================================================================================
+Step 3 - Minimal floor candidates (2 and 5)
+====================================================================================================
+running_step3 race=Hungarian Grand Prix floor=2
+batch_progress race=Hungarian Grand Prix floor_eval_batch=1/21 scored=2048/41932
+batch_progress race=Hungarian Grand Prix floor_eval_batch=10/21 scored=20480/41932
+batch_progress race=Hungarian Grand Prix floor_eval_batch=20/21 scored=40960/41932
+batch_progress race=Hungarian Grand Prix floor_eval_batch=21/21 scored=41932/41932
+running_step3 race=Italian Grand Prix floor=2
+batch_progress race=Italian Grand Prix floor_eval_batch=1/8 scored=2048/15552
+batch_progress race=Italian Grand Prix floor_eval_batch=8/8 scored=15552/15552
+running_step3 race=Hungarian Grand Prix floor=5
+batch_progress race=Hungarian Grand Prix floor_eval_batch=1/12 scored=2048/22624
+batch_progress race=Hungarian Grand Prix floor_eval_batch=10/12 scored=20480/22624
+batch_progress race=Hungarian Grand Prix floor_eval_batch=12/12 scored=22624/22624
+running_step3 race=Italian Grand Prix floor=5
+batch_progress race=Italian Grand Prix floor_eval_batch=1/4 scored=2048/6372
+batch_progress race=Italian Grand Prix floor_eval_batch=4/4 scored=6372/6372
+step3_floor_race_table_begin
+{"actual_subject_strategy_in_feasible_set": false, "argmax_first_stint_length": 7, "argmax_strategy": {"baseline_pace_s": 82.48599999999999, "event_name": "Hungarian Grand Prix", "round": 13, "starting_compound": "SOFT", "stops": [[7, "HARD"], [40, "HARD"]], "year": 2022}, "floor": 2, "italy_mean_points": null, "italy_win_rate": null, "race": "Hungarian Grand Prix", "strategy_count": 41932, "top100_short_stint_fraction": 0.0, "top_k_used": 100, "year": 2022}
+{"actual_subject_strategy_in_feasible_set": false, "argmax_first_stint_length": 4, "argmax_strategy": {"baseline_pace_s": 81.42599999999999, "event_name": "Italian Grand Prix", "round": 16, "starting_compound": "MEDIUM", "stops": [[4, "SOFT"]], "year": 2024}, "floor": 2, "italy_mean_points": 24.998600006103516, "italy_win_rate": 0.9998, "race": "Italian Grand Prix", "strategy_count": 15552, "top100_short_stint_fraction": 0.0, "top_k_used": 100, "year": 2024}
+{"actual_subject_strategy_in_feasible_set": false, "argmax_first_stint_length": 7, "argmax_strategy": {"baseline_pace_s": 82.48599999999999, "event_name": "Hungarian Grand Prix", "round": 13, "starting_compound": "SOFT", "stops": [[7, "HARD"], [40, "HARD"]], "year": 2022}, "floor": 5, "italy_mean_points": null, "italy_win_rate": null, "race": "Hungarian Grand Prix", "strategy_count": 22624, "top100_short_stint_fraction": 0.0, "top_k_used": 100, "year": 2022}
+{"actual_subject_strategy_in_feasible_set": false, "argmax_first_stint_length": 7, "argmax_strategy": {"baseline_pace_s": 81.42599999999999, "event_name": "Italian Grand Prix", "round": 16, "starting_compound": "MEDIUM", "stops": [[7, "SOFT"]], "year": 2024}, "floor": 5, "italy_mean_points": 24.99720001220703, "italy_win_rate": 0.9996, "race": "Italian Grand Prix", "strategy_count": 6372, "top100_short_stint_fraction": 0.0, "top_k_used": 100, "year": 2024}
+step3_floor_race_table_end
+step3_feasibility_rates_begin
+{"failed_drivers": [], "feasibility_rate": 1.0, "feasible_drivers": 20, "floor": 2, "race": {"event_name": "Hungarian Grand Prix", "round": 13, "year": 2022}, "total_drivers": 20}
+{"failed_drivers": ["TSU"], "feasibility_rate": 0.95, "feasible_drivers": 19, "floor": 2, "race": {"event_name": "Italian Grand Prix", "round": 16, "year": 2024}, "total_drivers": 20}
+{"failed_drivers": [], "feasibility_rate": 1.0, "feasible_drivers": 20, "floor": 2, "race": {"event_name": "Bahrain Grand Prix", "round": 1, "year": 2024}, "total_drivers": 20}
+{"failed_drivers": ["GAS", "OCO", "RIC", "VER"], "feasibility_rate": 0.8, "feasible_drivers": 16, "floor": 2, "race": {"event_name": "Azerbaijan Grand Prix", "round": 17, "year": 2024}, "total_drivers": 20}
+{"failed_drivers": ["ALB", "MAG"], "feasibility_rate": 0.9, "feasible_drivers": 18, "floor": 5, "race": {"event_name": "Hungarian Grand Prix", "round": 13, "year": 2022}, "total_drivers": 20}
+{"failed_drivers": ["STR", "TSU"], "feasibility_rate": 0.9, "feasible_drivers": 18, "floor": 5, "race": {"event_name": "Italian Grand Prix", "round": 16, "year": 2024}, "total_drivers": 20}
+{"failed_drivers": ["HUL"], "feasibility_rate": 0.95, "feasible_drivers": 19, "floor": 5, "race": {"event_name": "Bahrain Grand Prix", "round": 1, "year": 2024}, "total_drivers": 20}
+{"failed_drivers": ["GAS", "OCO", "RIC", "STR", "VER"], "feasibility_rate": 0.75, "feasible_drivers": 15, "floor": 5, "race": {"event_name": "Azerbaijan Grand Prix", "round": 17, "year": 2024}, "total_drivers": 20}
+step3_feasibility_rates_end
+
+====================================================================================================
+Step 4 - Evidence-based recommendation
+====================================================================================================
+italy_2024_real_world_note={"race": "Italian Grand Prix 2024", "source_type": "web_reference", "strategy_note": "One-stop", "winner": "Charles Leclerc"}
+floor_feasibility_summary_begin
+{"floor": 2, "max": 1.0, "mean": 0.9375, "min": 0.8}
+{"floor": 5, "max": 0.95, "mean": 0.875, "min": 0.75}
+floor_feasibility_summary_end
+recommendation_evidence={"b_shrunk_no_floor": {"hungary_top100_short_frac": 0.15, "italy_win_rate": 0.9998}, "c_shrunk_floor19": {"hungary_top100_short_frac": 0.0, "italy_win_rate": 0.9494, "strategy_count_hungary": 102, "strategy_count_italy": 12}, "criterion_feasibility_threshold": 0.8}
+configuration_pass_matrix_begin
+{"config": "b_shrunk_no_floor", "exploit_ok": false, "feasibility_ok": true}
+{"config": "shrunk_floor2", "exploit_ok": false, "feasibility_ok": true}
+{"config": "shrunk_floor5", "exploit_ok": false, "feasibility_ok": false}
+configuration_pass_matrix_end
+any_tested_configuration_meets_both_criteria=False
+recommendation_plain=No tested configuration achieves both strong exploit suppression and >=80% feasibility across all four races.
