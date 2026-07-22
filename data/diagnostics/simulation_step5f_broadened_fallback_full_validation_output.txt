@@ -1,0 +1,377 @@
+====================================================================================================
+Step 5f - Broadened fallback full validation
+====================================================================================================
+v1_input_path=/Users/demi/Downloads/Dissertation Code Project/Code Base/data/diagnostics/deg_rate_corrected_shrunk_full_peryear_stats.csv
+v2_output_path=/Users/demi/Downloads/Dissertation Code Project/Code Base/data/diagnostics/deg_rate_corrected_shrunk_v2_full_peryear_stats.csv
+backstop_floor=2
+
+====================================================================================================
+Step 1 - Broadened fallback trigger
+====================================================================================================
+v1_rows=189
+v2_rows=194
+fallback_triggered_rows_locked=19
+
+====================================================================================================
+Step 2 - Locked race affected compounds and Japanese GP status
+====================================================================================================
+locked_race_fallback_table_begin
+{"Archetype": "Street", "EventName": "Azerbaijan Grand Prix", "Round": 17, "TyreCompound": "HARD", "Year": 2024, "deg_rate_post_fallback_v2": 0.0321915974037521, "deg_rate_pre_fallback_v2": 0.0321915974037521, "model": "linear", "trigger_reason": "thin_r2"}
+{"Archetype": "Street", "EventName": "Azerbaijan Grand Prix", "Round": 17, "TyreCompound": "MEDIUM", "Year": 2024, "deg_rate_post_fallback_v2": 0.0426414044980495, "deg_rate_pre_fallback_v2": 0.0426414044980495, "model": "linear", "trigger_reason": "thin_r2"}
+{"Archetype": "Street", "EventName": "Azerbaijan Grand Prix", "Round": 17, "TyreCompound": "SOFT", "Year": 2024, "deg_rate_post_fallback_v2": 0.0172588501074318, "deg_rate_pre_fallback_v2": NaN, "model": "missing", "trigger_reason": "status_missing"}
+{"Archetype": "Power", "EventName": "Bahrain Grand Prix", "Round": 1, "TyreCompound": "MEDIUM", "Year": 2024, "deg_rate_post_fallback_v2": 0.0426414044980495, "deg_rate_pre_fallback_v2": NaN, "model": "absent_key", "trigger_reason": "absent_key"}
+{"Archetype": "Power", "EventName": "Bahrain Grand Prix", "Round": 1, "TyreCompound": "SOFT", "Year": 2024, "deg_rate_post_fallback_v2": 0.0172588501074318, "deg_rate_pre_fallback_v2": 0.0172588501074318, "model": "linear", "trigger_reason": "thin_r2"}
+{"Archetype": "Power", "EventName": "Belgian Grand Prix", "Round": 14, "TyreCompound": "HARD", "Year": 2024, "deg_rate_post_fallback_v2": 0.0321915974037521, "deg_rate_pre_fallback_v2": 0.0321915974037521, "model": "quadratic", "trigger_reason": "thin_r2"}
+{"Archetype": "Power", "EventName": "Belgian Grand Prix", "Round": 14, "TyreCompound": "MEDIUM", "Year": 2024, "deg_rate_post_fallback_v2": 0.0426414044980495, "deg_rate_pre_fallback_v2": 0.0426414044980495, "model": "quadratic", "trigger_reason": "thin_r2"}
+{"Archetype": "Power", "EventName": "Belgian Grand Prix", "Round": 14, "TyreCompound": "SOFT", "Year": 2024, "deg_rate_post_fallback_v2": 0.0172588501074318, "deg_rate_pre_fallback_v2": 0.0172588501074318, "model": "linear", "trigger_reason": "thin_r2"}
+{"Archetype": "Power", "EventName": "British Grand Prix", "Round": 10, "TyreCompound": "MEDIUM", "Year": 2023, "deg_rate_post_fallback_v2": 0.0426414044980495, "deg_rate_pre_fallback_v2": 0.0426414044980495, "model": "linear", "trigger_reason": "thin_r2"}
+{"Archetype": "Power", "EventName": "Italian Grand Prix", "Round": 16, "TyreCompound": "MEDIUM", "Year": 2024, "deg_rate_post_fallback_v2": 0.0426414044980495, "deg_rate_pre_fallback_v2": 0.0426414044980495, "model": "quadratic", "trigger_reason": "thin_r2"}
+{"Archetype": "Power", "EventName": "Italian Grand Prix", "Round": 16, "TyreCompound": "SOFT", "Year": 2024, "deg_rate_post_fallback_v2": 0.0172588501074318, "deg_rate_pre_fallback_v2": NaN, "model": "insufficient", "trigger_reason": "status_insufficient"}
+{"Archetype": "Technical", "EventName": "Japanese Grand Prix", "Round": 18, "TyreCompound": "HARD", "Year": 2022, "deg_rate_post_fallback_v2": 0.0321915974037521, "deg_rate_pre_fallback_v2": NaN, "model": "absent_key", "trigger_reason": "absent_key"}
+{"Archetype": "Technical", "EventName": "Japanese Grand Prix", "Round": 18, "TyreCompound": "MEDIUM", "Year": 2022, "deg_rate_post_fallback_v2": 0.0426414044980495, "deg_rate_pre_fallback_v2": NaN, "model": "absent_key", "trigger_reason": "absent_key"}
+{"Archetype": "Technical", "EventName": "Japanese Grand Prix", "Round": 18, "TyreCompound": "SOFT", "Year": 2022, "deg_rate_post_fallback_v2": 0.0172588501074318, "deg_rate_pre_fallback_v2": NaN, "model": "absent_key", "trigger_reason": "absent_key"}
+{"Archetype": "Street", "EventName": "Miami Grand Prix", "Round": 6, "TyreCompound": "HARD", "Year": 2024, "deg_rate_post_fallback_v2": 0.0321915974037521, "deg_rate_pre_fallback_v2": 0.0321915974037521, "model": "quadratic", "trigger_reason": "thin_r2"}
+{"Archetype": "Street", "EventName": "Miami Grand Prix", "Round": 6, "TyreCompound": "MEDIUM", "Year": 2024, "deg_rate_post_fallback_v2": 0.0426414044980495, "deg_rate_pre_fallback_v2": 0.0426414044980495, "model": "linear", "trigger_reason": "thin_r2"}
+{"Archetype": "Street", "EventName": "Monaco Grand Prix", "Round": 6, "TyreCompound": "MEDIUM", "Year": 2023, "deg_rate_post_fallback_v2": 0.0426414044980495, "deg_rate_pre_fallback_v2": 0.0426414044980495, "model": "quadratic", "trigger_reason": "thin_r2"}
+{"Archetype": "Street", "EventName": "Singapore Grand Prix", "Round": 17, "TyreCompound": "HARD", "Year": 2022, "deg_rate_post_fallback_v2": 0.0321915974037521, "deg_rate_pre_fallback_v2": NaN, "model": "absent_key", "trigger_reason": "absent_key"}
+{"Archetype": "Technical", "EventName": "Spanish Grand Prix", "Round": 7, "TyreCompound": "SOFT", "Year": 2023, "deg_rate_post_fallback_v2": 0.0172588501074318, "deg_rate_pre_fallback_v2": 0.0172588501074318, "model": "linear", "trigger_reason": "thin_r2"}
+locked_race_fallback_table_end
+japanese_gp_2022_fallback_status={"all_three_compounds_fallback": true, "compounds_with_fallback": ["HARD", "MEDIUM", "SOFT"], "reasons": ["absent_key"]}
+japanese_gp_2022_limitation=Japan 2022 rests entirely on fallback values rather than race-specific fitted degradation rates; this remains a documented limitation regardless of downstream metrics.
+
+====================================================================================================
+Step 3 - Full 12-race argmax revalidation with floor=2
+====================================================================================================
+running_race event=Bahrain Grand Prix year=2024 round=1
+batch_progress race=Bahrain Grand Prix batch=1/11 scored=2048/22476
+batch_progress race=Bahrain Grand Prix batch=10/11 scored=20480/22476
+batch_progress race=Bahrain Grand Prix batch=11/11 scored=22476/22476
+race_argmax_summary={"actual_subject_strategy_in_feasible_set": false, "best_mean_points": 14.078399658203125, "best_strategy": {"baseline_pace_s": 94.282, "event_name": "Bahrain Grand Prix", "round": 1, "starting_compound": "SOFT", "stops": [[40, "MEDIUM"]], "year": 2024}, "best_win_rate": 0.0, "race": {"archetype": "Power", "event_name": "Bahrain Grand Prix", "round": 1, "year": 2024}, "strategy_count": 22476, "subject_driver": "NOR", "top100_short_stint_fraction": 0.0}
+first_stint_distribution_begin
+{"count": 3674, "first_stint_length": 4, "share": 0.1634632496885567}
+{"count": 3250, "first_stint_length": 7, "share": 0.1445986830396868}
+{"count": 2852, "first_stint_length": 10, "share": 0.12689090585513438}
+{"count": 2480, "first_stint_length": 13, "share": 0.11033991813489945}
+{"count": 2134, "first_stint_length": 16, "share": 0.09494571987898202}
+{"count": 1814, "first_stint_length": 19, "share": 0.08070831108738209}
+{"count": 1520, "first_stint_length": 22, "share": 0.06762769176009967}
+{"count": 1252, "first_stint_length": 25, "share": 0.05570386189713472}
+{"count": 1010, "first_stint_length": 28, "share": 0.044936821498487274}
+{"count": 794, "first_stint_length": 31, "share": 0.03532657056415733}
+{"count": 604, "first_stint_length": 34, "share": 0.026873109094144865}
+{"count": 440, "first_stint_length": 37, "share": 0.019576437088449902}
+{"count": 302, "first_stint_length": 40, "share": 0.013436554547072432}
+{"count": 190, "first_stint_length": 43, "share": 0.008453461470012458}
+{"count": 104, "first_stint_length": 46, "share": 0.004627157857269977}
+{"count": 44, "first_stint_length": 49, "share": 0.0019576437088449903}
+{"count": 10, "first_stint_length": 52, "share": 0.00044491902473749775}
+{"count": 2, "first_stint_length": 55, "share": 8.898380494749955e-05}
+first_stint_distribution_end
+running_race event=Belgian Grand Prix year=2024 round=14
+batch_progress race=Belgian Grand Prix batch=1/4 scored=2048/8086
+batch_progress race=Belgian Grand Prix batch=4/4 scored=8086/8086
+race_argmax_summary={"actual_subject_strategy_in_feasible_set": false, "best_mean_points": 23.065500259399414, "best_strategy": {"baseline_pace_s": 105.5615, "event_name": "Belgian Grand Prix", "round": 14, "starting_compound": "MEDIUM", "stops": [[13, "SOFT"]], "year": 2024}, "best_win_rate": 0.7353, "race": {"archetype": "Power", "event_name": "Belgian Grand Prix", "round": 14, "year": 2024}, "strategy_count": 8086, "subject_driver": "PIA", "top100_short_stint_fraction": 0.0}
+first_stint_distribution_begin
+{"count": 1814, "first_stint_length": 4, "share": 0.2243383626020282}
+{"count": 1520, "first_stint_length": 7, "share": 0.18797922334899828}
+{"count": 1252, "first_stint_length": 10, "share": 0.15483551817956961}
+{"count": 1010, "first_stint_length": 13, "share": 0.12490724709374228}
+{"count": 794, "first_stint_length": 16, "share": 0.09819441009151621}
+{"count": 604, "first_stint_length": 19, "share": 0.07469700717289142}
+{"count": 440, "first_stint_length": 22, "share": 0.05441503833786792}
+{"count": 302, "first_stint_length": 25, "share": 0.03734850358644571}
+{"count": 190, "first_stint_length": 28, "share": 0.023497402918624784}
+{"count": 104, "first_stint_length": 31, "share": 0.012861736334405145}
+{"count": 44, "first_stint_length": 34, "share": 0.005441503833786792}
+{"count": 10, "first_stint_length": 37, "share": 0.0012367054167697256}
+{"count": 2, "first_stint_length": 40, "share": 0.0002473410833539451}
+first_stint_distribution_end
+running_race event=British Grand Prix year=2023 round=10
+batch_progress race=British Grand Prix batch=1/8 scored=2048/15552
+batch_progress race=British Grand Prix batch=8/8 scored=15552/15552
+race_argmax_summary={"actual_subject_strategy_in_feasible_set": true, "best_mean_points": 24.998600006103516, "best_strategy": {"baseline_pace_s": 90.202, "event_name": "British Grand Prix", "round": 10, "starting_compound": "MEDIUM", "stops": [[4, "SOFT"]], "year": 2023}, "best_win_rate": 0.9998, "race": {"archetype": "Power", "event_name": "British Grand Prix", "round": 10, "year": 2023}, "strategy_count": 15552, "subject_driver": "NOR", "top100_short_stint_fraction": 0.0}
+first_stint_distribution_begin
+{"count": 2852, "first_stint_length": 4, "share": 0.18338477366255143}
+{"count": 2480, "first_stint_length": 7, "share": 0.15946502057613168}
+{"count": 2134, "first_stint_length": 10, "share": 0.1372170781893004}
+{"count": 1814, "first_stint_length": 13, "share": 0.11664094650205761}
+{"count": 1520, "first_stint_length": 16, "share": 0.09773662551440329}
+{"count": 1252, "first_stint_length": 19, "share": 0.08050411522633745}
+{"count": 1010, "first_stint_length": 22, "share": 0.06494341563786009}
+{"count": 794, "first_stint_length": 25, "share": 0.051054526748971193}
+{"count": 604, "first_stint_length": 28, "share": 0.03883744855967078}
+{"count": 440, "first_stint_length": 31, "share": 0.028292181069958847}
+{"count": 302, "first_stint_length": 34, "share": 0.01941872427983539}
+{"count": 190, "first_stint_length": 37, "share": 0.012217078189300411}
+{"count": 104, "first_stint_length": 40, "share": 0.006687242798353909}
+{"count": 44, "first_stint_length": 43, "share": 0.002829218106995885}
+{"count": 10, "first_stint_length": 46, "share": 0.0006430041152263374}
+{"count": 2, "first_stint_length": 49, "share": 0.0001286008230452675}
+first_stint_distribution_end
+running_race event=Italian Grand Prix year=2024 round=16
+batch_progress race=Italian Grand Prix batch=1/8 scored=2048/15552
+batch_progress race=Italian Grand Prix batch=8/8 scored=15552/15552
+race_argmax_summary={"actual_subject_strategy_in_feasible_set": false, "best_mean_points": 24.15019989013672, "best_strategy": {"baseline_pace_s": 81.42599999999999, "event_name": "Italian Grand Prix", "round": 16, "starting_compound": "MEDIUM", "stops": [[13, "SOFT"]], "year": 2024}, "best_win_rate": 0.8786, "race": {"archetype": "Power", "event_name": "Italian Grand Prix", "round": 16, "year": 2024}, "strategy_count": 15552, "subject_driver": "PIA", "top100_short_stint_fraction": 0.0}
+first_stint_distribution_begin
+{"count": 2852, "first_stint_length": 4, "share": 0.18338477366255143}
+{"count": 2480, "first_stint_length": 7, "share": 0.15946502057613168}
+{"count": 2134, "first_stint_length": 10, "share": 0.1372170781893004}
+{"count": 1814, "first_stint_length": 13, "share": 0.11664094650205761}
+{"count": 1520, "first_stint_length": 16, "share": 0.09773662551440329}
+{"count": 1252, "first_stint_length": 19, "share": 0.08050411522633745}
+{"count": 1010, "first_stint_length": 22, "share": 0.06494341563786009}
+{"count": 794, "first_stint_length": 25, "share": 0.051054526748971193}
+{"count": 604, "first_stint_length": 28, "share": 0.03883744855967078}
+{"count": 440, "first_stint_length": 31, "share": 0.028292181069958847}
+{"count": 302, "first_stint_length": 34, "share": 0.01941872427983539}
+{"count": 190, "first_stint_length": 37, "share": 0.012217078189300411}
+{"count": 104, "first_stint_length": 40, "share": 0.006687242798353909}
+{"count": 44, "first_stint_length": 43, "share": 0.002829218106995885}
+{"count": 10, "first_stint_length": 46, "share": 0.0006430041152263374}
+{"count": 2, "first_stint_length": 49, "share": 0.0001286008230452675}
+first_stint_distribution_end
+running_race event=Azerbaijan Grand Prix year=2024 round=17
+batch_progress race=Azerbaijan Grand Prix batch=1/8 scored=2048/15552
+batch_progress race=Azerbaijan Grand Prix batch=8/8 scored=15552/15552
+race_argmax_summary={"actual_subject_strategy_in_feasible_set": true, "best_mean_points": 16.156600952148438, "best_strategy": {"baseline_pace_s": 105.841, "event_name": "Azerbaijan Grand Prix", "round": 17, "starting_compound": "MEDIUM", "stops": [[13, "SOFT"]], "year": 2024}, "best_win_rate": 0.1513, "race": {"archetype": "Street", "event_name": "Azerbaijan Grand Prix", "round": 17, "year": 2024}, "strategy_count": 15552, "subject_driver": "PIA", "top100_short_stint_fraction": 0.0}
+first_stint_distribution_begin
+{"count": 2852, "first_stint_length": 4, "share": 0.18338477366255143}
+{"count": 2480, "first_stint_length": 7, "share": 0.15946502057613168}
+{"count": 2134, "first_stint_length": 10, "share": 0.1372170781893004}
+{"count": 1814, "first_stint_length": 13, "share": 0.11664094650205761}
+{"count": 1520, "first_stint_length": 16, "share": 0.09773662551440329}
+{"count": 1252, "first_stint_length": 19, "share": 0.08050411522633745}
+{"count": 1010, "first_stint_length": 22, "share": 0.06494341563786009}
+{"count": 794, "first_stint_length": 25, "share": 0.051054526748971193}
+{"count": 604, "first_stint_length": 28, "share": 0.03883744855967078}
+{"count": 440, "first_stint_length": 31, "share": 0.028292181069958847}
+{"count": 302, "first_stint_length": 34, "share": 0.01941872427983539}
+{"count": 190, "first_stint_length": 37, "share": 0.012217078189300411}
+{"count": 104, "first_stint_length": 40, "share": 0.006687242798353909}
+{"count": 44, "first_stint_length": 43, "share": 0.002829218106995885}
+{"count": 10, "first_stint_length": 46, "share": 0.0006430041152263374}
+{"count": 2, "first_stint_length": 49, "share": 0.0001286008230452675}
+first_stint_distribution_end
+running_race event=Miami Grand Prix year=2024 round=6
+batch_progress race=Miami Grand Prix batch=1/11 scored=2048/22476
+batch_progress race=Miami Grand Prix batch=10/11 scored=20480/22476
+batch_progress race=Miami Grand Prix batch=11/11 scored=22476/22476
+race_argmax_summary={"actual_subject_strategy_in_feasible_set": false, "best_mean_points": 25.0, "best_strategy": {"baseline_pace_s": 89.8485, "event_name": "Miami Grand Prix", "round": 6, "starting_compound": "MEDIUM", "stops": [[16, "SOFT"]], "year": 2024}, "best_win_rate": 1.0, "race": {"archetype": "Street", "event_name": "Miami Grand Prix", "round": 6, "year": 2024}, "strategy_count": 22476, "subject_driver": "NOR", "top100_short_stint_fraction": 0.0}
+first_stint_distribution_begin
+{"count": 3674, "first_stint_length": 4, "share": 0.1634632496885567}
+{"count": 3250, "first_stint_length": 7, "share": 0.1445986830396868}
+{"count": 2852, "first_stint_length": 10, "share": 0.12689090585513438}
+{"count": 2480, "first_stint_length": 13, "share": 0.11033991813489945}
+{"count": 2134, "first_stint_length": 16, "share": 0.09494571987898202}
+{"count": 1814, "first_stint_length": 19, "share": 0.08070831108738209}
+{"count": 1520, "first_stint_length": 22, "share": 0.06762769176009967}
+{"count": 1252, "first_stint_length": 25, "share": 0.05570386189713472}
+{"count": 1010, "first_stint_length": 28, "share": 0.044936821498487274}
+{"count": 794, "first_stint_length": 31, "share": 0.03532657056415733}
+{"count": 604, "first_stint_length": 34, "share": 0.026873109094144865}
+{"count": 440, "first_stint_length": 37, "share": 0.019576437088449902}
+{"count": 302, "first_stint_length": 40, "share": 0.013436554547072432}
+{"count": 190, "first_stint_length": 43, "share": 0.008453461470012458}
+{"count": 104, "first_stint_length": 46, "share": 0.004627157857269977}
+{"count": 44, "first_stint_length": 49, "share": 0.0019576437088449903}
+{"count": 10, "first_stint_length": 52, "share": 0.00044491902473749775}
+{"count": 2, "first_stint_length": 55, "share": 8.898380494749955e-05}
+first_stint_distribution_end
+running_race event=Monaco Grand Prix year=2023 round=6
+batch_progress race=Monaco Grand Prix batch=1/31 scored=2048/62250
+batch_progress race=Monaco Grand Prix batch=10/31 scored=20480/62250
+batch_progress race=Monaco Grand Prix batch=20/31 scored=40960/62250
+batch_progress race=Monaco Grand Prix batch=30/31 scored=61440/62250
+batch_progress race=Monaco Grand Prix batch=31/31 scored=62250/62250
+race_argmax_summary={"actual_subject_strategy_in_feasible_set": false, "best_mean_points": 21.878400802612305, "best_strategy": {"baseline_pace_s": 75.572, "event_name": "Monaco Grand Prix", "round": 6, "starting_compound": "HARD", "stops": [[55, "MEDIUM"]], "year": 2023}, "best_win_rate": 0.637, "race": {"archetype": "Street", "event_name": "Monaco Grand Prix", "round": 6, "year": 2023}, "strategy_count": 62250, "subject_driver": "ALO", "top100_short_stint_fraction": 0.0}
+first_stint_distribution_begin
+{"count": 7370, "first_stint_length": 4, "share": 0.11839357429718876}
+{"count": 6764, "first_stint_length": 7, "share": 0.10865863453815261}
+{"count": 6184, "first_stint_length": 10, "share": 0.0993413654618474}
+{"count": 5630, "first_stint_length": 13, "share": 0.09044176706827309}
+{"count": 5102, "first_stint_length": 16, "share": 0.08195983935742972}
+{"count": 4600, "first_stint_length": 19, "share": 0.07389558232931727}
+{"count": 4124, "first_stint_length": 22, "share": 0.06624899598393574}
+{"count": 3674, "first_stint_length": 25, "share": 0.05902008032128514}
+{"count": 3250, "first_stint_length": 28, "share": 0.05220883534136546}
+{"count": 2852, "first_stint_length": 31, "share": 0.04581526104417671}
+{"count": 2480, "first_stint_length": 34, "share": 0.03983935742971888}
+{"count": 2134, "first_stint_length": 37, "share": 0.03428112449799197}
+{"count": 1814, "first_stint_length": 40, "share": 0.029140562248995985}
+{"count": 1520, "first_stint_length": 43, "share": 0.024417670682730923}
+{"count": 1252, "first_stint_length": 46, "share": 0.020112449799196786}
+{"count": 1010, "first_stint_length": 49, "share": 0.016224899598393575}
+{"count": 794, "first_stint_length": 52, "share": 0.012755020080321285}
+{"count": 604, "first_stint_length": 55, "share": 0.00970281124497992}
+{"count": 440, "first_stint_length": 58, "share": 0.007068273092369478}
+{"count": 302, "first_stint_length": 61, "share": 0.00485140562248996}
+{"count": 190, "first_stint_length": 64, "share": 0.0030522088353413654}
+{"count": 104, "first_stint_length": 67, "share": 0.0016706827309236948}
+{"count": 44, "first_stint_length": 70, "share": 0.0007068273092369478}
+{"count": 10, "first_stint_length": 73, "share": 0.0001606425702811245}
+{"count": 2, "first_stint_length": 76, "share": 3.21285140562249e-05}
+first_stint_distribution_end
+running_race event=Singapore Grand Prix year=2022 round=17
+batch_progress race=Singapore Grand Prix batch=1/11 scored=2048/20502
+batch_progress race=Singapore Grand Prix batch=10/11 scored=20480/20502
+batch_progress race=Singapore Grand Prix batch=11/11 scored=20502/20502
+race_argmax_summary={"actual_subject_strategy_in_feasible_set": false, "best_mean_points": 16.98240089416504, "best_strategy": {"baseline_pace_s": 116.533, "event_name": "Singapore Grand Prix", "round": 17, "starting_compound": "INTERMEDIATE", "stops": [[4, "SOFT"], [7, "MEDIUM"]], "year": 2022}, "best_win_rate": 0.0, "race": {"archetype": "Street", "event_name": "Singapore Grand Prix", "round": 17, "year": 2022}, "strategy_count": 20502, "subject_driver": "NOR", "top100_short_stint_fraction": 0.0}
+first_stint_distribution_begin
+{"count": 3366, "first_stint_length": 4, "share": 0.16417910447761194}
+{"count": 2976, "first_stint_length": 7, "share": 0.14515657009072286}
+{"count": 2610, "first_stint_length": 10, "share": 0.1273046532045654}
+{"count": 2268, "first_stint_length": 13, "share": 0.1106233538191396}
+{"count": 1950, "first_stint_length": 16, "share": 0.09511267193444542}
+{"count": 1656, "first_stint_length": 19, "share": 0.08077260755048288}
+{"count": 1386, "first_stint_length": 22, "share": 0.06760316066725197}
+{"count": 1140, "first_stint_length": 25, "share": 0.05560433128475271}
+{"count": 918, "first_stint_length": 28, "share": 0.04477611940298507}
+{"count": 720, "first_stint_length": 31, "share": 0.03511852502194908}
+{"count": 546, "first_stint_length": 34, "share": 0.026631548141644718}
+{"count": 396, "first_stint_length": 37, "share": 0.019315188762071993}
+{"count": 270, "first_stint_length": 40, "share": 0.013169446883230905}
+{"count": 168, "first_stint_length": 43, "share": 0.008194322505121452}
+{"count": 90, "first_stint_length": 46, "share": 0.004389815627743635}
+{"count": 36, "first_stint_length": 49, "share": 0.001755926251097454}
+{"count": 6, "first_stint_length": 52, "share": 0.000292654375182909}
+first_stint_distribution_end
+running_race event=Abu Dhabi Grand Prix year=2022 round=22
+batch_progress race=Abu Dhabi Grand Prix batch=1/11 scored=2048/22476
+batch_progress race=Abu Dhabi Grand Prix batch=10/11 scored=20480/22476
+batch_progress race=Abu Dhabi Grand Prix batch=11/11 scored=22476/22476
+race_argmax_summary={"actual_subject_strategy_in_feasible_set": true, "best_mean_points": 5.6682000160217285, "best_strategy": {"baseline_pace_s": 88.883, "event_name": "Abu Dhabi Grand Prix", "round": 22, "starting_compound": "MEDIUM", "stops": [[13, "HARD"]], "year": 2022}, "best_win_rate": 0.0, "race": {"archetype": "Technical", "event_name": "Abu Dhabi Grand Prix", "round": 22, "year": 2022}, "strategy_count": 22476, "subject_driver": "NOR", "top100_short_stint_fraction": 0.0}
+first_stint_distribution_begin
+{"count": 3674, "first_stint_length": 4, "share": 0.1634632496885567}
+{"count": 3250, "first_stint_length": 7, "share": 0.1445986830396868}
+{"count": 2852, "first_stint_length": 10, "share": 0.12689090585513438}
+{"count": 2480, "first_stint_length": 13, "share": 0.11033991813489945}
+{"count": 2134, "first_stint_length": 16, "share": 0.09494571987898202}
+{"count": 1814, "first_stint_length": 19, "share": 0.08070831108738209}
+{"count": 1520, "first_stint_length": 22, "share": 0.06762769176009967}
+{"count": 1252, "first_stint_length": 25, "share": 0.05570386189713472}
+{"count": 1010, "first_stint_length": 28, "share": 0.044936821498487274}
+{"count": 794, "first_stint_length": 31, "share": 0.03532657056415733}
+{"count": 604, "first_stint_length": 34, "share": 0.026873109094144865}
+{"count": 440, "first_stint_length": 37, "share": 0.019576437088449902}
+{"count": 302, "first_stint_length": 40, "share": 0.013436554547072432}
+{"count": 190, "first_stint_length": 43, "share": 0.008453461470012458}
+{"count": 104, "first_stint_length": 46, "share": 0.004627157857269977}
+{"count": 44, "first_stint_length": 49, "share": 0.0019576437088449903}
+{"count": 10, "first_stint_length": 52, "share": 0.00044491902473749775}
+{"count": 2, "first_stint_length": 55, "share": 8.898380494749955e-05}
+first_stint_distribution_end
+running_race event=Hungarian Grand Prix year=2022 round=13
+batch_progress race=Hungarian Grand Prix batch=1/21 scored=2048/41932
+batch_progress race=Hungarian Grand Prix batch=10/21 scored=20480/41932
+batch_progress race=Hungarian Grand Prix batch=20/21 scored=40960/41932
+batch_progress race=Hungarian Grand Prix batch=21/21 scored=41932/41932
+race_argmax_summary={"actual_subject_strategy_in_feasible_set": false, "best_mean_points": 6.837900161743164, "best_strategy": {"baseline_pace_s": 82.48599999999999, "event_name": "Hungarian Grand Prix", "round": 13, "starting_compound": "SOFT", "stops": [[7, "HARD"], [40, "HARD"]], "year": 2022}, "best_win_rate": 0.0, "race": {"archetype": "Technical", "event_name": "Hungarian Grand Prix", "round": 13, "year": 2022}, "strategy_count": 41932, "subject_driver": "NOR", "top100_short_stint_fraction": 0.0}
+first_stint_distribution_begin
+{"count": 5630, "first_stint_length": 4, "share": 0.13426500047696271}
+{"count": 5102, "first_stint_length": 7, "share": 0.12167318515692073}
+{"count": 4600, "first_stint_length": 10, "share": 0.10970142134885053}
+{"count": 4124, "first_stint_length": 13, "share": 0.09834970905275207}
+{"count": 3674, "first_stint_length": 16, "share": 0.08761804826862539}
+{"count": 3250, "first_stint_length": 19, "share": 0.07750643899647047}
+{"count": 2852, "first_stint_length": 22, "share": 0.06801488123628732}
+{"count": 2480, "first_stint_length": 25, "share": 0.05914337498807593}
+{"count": 2134, "first_stint_length": 28, "share": 0.05089192025183631}
+{"count": 1814, "first_stint_length": 31, "share": 0.043260517027568446}
+{"count": 1520, "first_stint_length": 34, "share": 0.03624916531527234}
+{"count": 1252, "first_stint_length": 37, "share": 0.02985786511494801}
+{"count": 1010, "first_stint_length": 40, "share": 0.02408661642659544}
+{"count": 794, "first_stint_length": 43, "share": 0.018935419250214632}
+{"count": 604, "first_stint_length": 46, "share": 0.01440427358580559}
+{"count": 440, "first_stint_length": 49, "share": 0.01049317943336831}
+{"count": 302, "first_stint_length": 52, "share": 0.007202136792902795}
+{"count": 190, "first_stint_length": 55, "share": 0.004531145664409043}
+{"count": 104, "first_stint_length": 58, "share": 0.0024802060478870554}
+{"count": 44, "first_stint_length": 61, "share": 0.001049317943336831}
+{"count": 10, "first_stint_length": 64, "share": 0.0002384813507583707}
+{"count": 2, "first_stint_length": 67, "share": 4.769627015167414e-05}
+first_stint_distribution_end
+running_race event=Japanese Grand Prix year=2022 round=18
+batch_progress race=Japanese Grand Prix batch=1/1 scored=1512/1512
+race_argmax_summary={"actual_subject_strategy_in_feasible_set": false, "best_mean_points": 1.7785999774932861, "best_strategy": {"baseline_pace_s": 106.522, "event_name": "Japanese Grand Prix", "round": 18, "starting_compound": "INTERMEDIATE", "stops": [[22, "SOFT"], [25, "HARD"]], "year": 2022}, "best_win_rate": 0.0, "race": {"archetype": "Technical", "event_name": "Japanese Grand Prix", "round": 18, "year": 2022}, "strategy_count": 1512, "subject_driver": "OCO", "top100_short_stint_fraction": 0.0}
+first_stint_distribution_begin
+{"count": 546, "first_stint_length": 4, "share": 0.3611111111111111}
+{"count": 396, "first_stint_length": 7, "share": 0.2619047619047619}
+{"count": 270, "first_stint_length": 10, "share": 0.17857142857142858}
+{"count": 168, "first_stint_length": 13, "share": 0.1111111111111111}
+{"count": 90, "first_stint_length": 16, "share": 0.05952380952380952}
+{"count": 36, "first_stint_length": 19, "share": 0.023809523809523808}
+{"count": 6, "first_stint_length": 22, "share": 0.003968253968253968}
+first_stint_distribution_end
+running_race event=Spanish Grand Prix year=2023 round=7
+batch_progress race=Spanish Grand Prix batch=1/18 scored=2048/36302
+batch_progress race=Spanish Grand Prix batch=10/18 scored=20480/36302
+batch_progress race=Spanish Grand Prix batch=18/18 scored=36302/36302
+race_argmax_summary={"actual_subject_strategy_in_feasible_set": false, "best_mean_points": 10.619500160217285, "best_strategy": {"baseline_pace_s": 77.959, "event_name": "Spanish Grand Prix", "round": 7, "starting_compound": "SOFT", "stops": [[40, "MEDIUM"]], "year": 2023}, "best_win_rate": 0.0009, "race": {"archetype": "Technical", "event_name": "Spanish Grand Prix", "round": 7, "year": 2023}, "strategy_count": 36302, "subject_driver": "STR", "top100_short_stint_fraction": 0.0}
+first_stint_distribution_begin
+{"count": 5102, "first_stint_length": 4, "share": 0.14054322075918682}
+{"count": 4600, "first_stint_length": 7, "share": 0.12671478155473528}
+{"count": 4124, "first_stint_length": 10, "share": 0.11360255633298441}
+{"count": 3674, "first_stint_length": 13, "share": 0.10120654509393422}
+{"count": 3250, "first_stint_length": 16, "share": 0.0895267478375847}
+{"count": 2852, "first_stint_length": 19, "share": 0.07856316456393587}
+{"count": 2480, "first_stint_length": 22, "share": 0.06831579527298771}
+{"count": 2134, "first_stint_length": 25, "share": 0.05878463996474023}
+{"count": 1814, "first_stint_length": 28, "share": 0.049969698639193434}
+{"count": 1520, "first_stint_length": 31, "share": 0.04187097129634731}
+{"count": 1252, "first_stint_length": 34, "share": 0.03448845793620186}
+{"count": 1010, "first_stint_length": 37, "share": 0.027822158558757092}
+{"count": 794, "first_stint_length": 40, "share": 0.021872073164013003}
+{"count": 604, "first_stint_length": 43, "share": 0.01663820175196959}
+{"count": 440, "first_stint_length": 46, "share": 0.012120544322626853}
+{"count": 302, "first_stint_length": 49, "share": 0.008319100875984795}
+{"count": 190, "first_stint_length": 52, "share": 0.0052338714120434135}
+{"count": 104, "first_stint_length": 55, "share": 0.0028648559308027104}
+{"count": 44, "first_stint_length": 58, "share": 0.0012120544322626852}
+{"count": 10, "first_stint_length": 61, "share": 0.00027546691642333753}
+{"count": 2, "first_stint_length": 64, "share": 5.509338328466751e-05}
+first_stint_distribution_end
+
+all_race_argmax_table_begin
+{"actual_subject_strategy_in_feasible_set": false, "best_first_stint_length": 40, "best_mean_points": 14.078399658203125, "best_mean_rank": 3.3071999549865723, "best_std_points": 2.049408197402954, "best_strategy": {"baseline_pace_s": 94.282, "event_name": "Bahrain Grand Prix", "round": 1, "starting_compound": "SOFT", "stops": [[40, "MEDIUM"]], "year": 2024}, "best_win_rate": 0.0, "first_stint_distribution": [{"count": 3674, "first_stint_length": 4, "share": 0.1634632496885567}, {"count": 3250, "first_stint_length": 7, "share": 0.1445986830396868}, {"count": 2852, "first_stint_length": 10, "share": 0.12689090585513438}, {"count": 2480, "first_stint_length": 13, "share": 0.11033991813489945}, {"count": 2134, "first_stint_length": 16, "share": 0.09494571987898202}, {"count": 1814, "first_stint_length": 19, "share": 0.08070831108738209}, {"count": 1520, "first_stint_length": 22, "share": 0.06762769176009967}, {"count": 1252, "first_stint_length": 25, "share": 0.05570386189713472}, {"count": 1010, "first_stint_length": 28, "share": 0.044936821498487274}, {"count": 794, "first_stint_length": 31, "share": 0.03532657056415733}, {"count": 604, "first_stint_length": 34, "share": 0.026873109094144865}, {"count": 440, "first_stint_length": 37, "share": 0.019576437088449902}, {"count": 302, "first_stint_length": 40, "share": 0.013436554547072432}, {"count": 190, "first_stint_length": 43, "share": 0.008453461470012458}, {"count": 104, "first_stint_length": 46, "share": 0.004627157857269977}, {"count": 44, "first_stint_length": 49, "share": 0.0019576437088449903}, {"count": 10, "first_stint_length": 52, "share": 0.00044491902473749775}, {"count": 2, "first_stint_length": 55, "share": 8.898380494749955e-05}], "race": {"archetype": "Power", "event_name": "Bahrain Grand Prix", "round": 1, "year": 2024}, "strategy_count": 22476, "subject_driver": "NOR", "top100_short_stint_fraction": 0.0, "top_k": 100, "top_short_stint_leq3_count": 0}
+{"actual_subject_strategy_in_feasible_set": false, "best_first_stint_length": 13, "best_mean_points": 23.065500259399414, "best_mean_rank": 1.2919000387191772, "best_std_points": 3.2604711055755615, "best_strategy": {"baseline_pace_s": 105.5615, "event_name": "Belgian Grand Prix", "round": 14, "starting_compound": "MEDIUM", "stops": [[13, "SOFT"]], "year": 2024}, "best_win_rate": 0.7353, "first_stint_distribution": [{"count": 1814, "first_stint_length": 4, "share": 0.2243383626020282}, {"count": 1520, "first_stint_length": 7, "share": 0.18797922334899828}, {"count": 1252, "first_stint_length": 10, "share": 0.15483551817956961}, {"count": 1010, "first_stint_length": 13, "share": 0.12490724709374228}, {"count": 794, "first_stint_length": 16, "share": 0.09819441009151621}, {"count": 604, "first_stint_length": 19, "share": 0.07469700717289142}, {"count": 440, "first_stint_length": 22, "share": 0.05441503833786792}, {"count": 302, "first_stint_length": 25, "share": 0.03734850358644571}, {"count": 190, "first_stint_length": 28, "share": 0.023497402918624784}, {"count": 104, "first_stint_length": 31, "share": 0.012861736334405145}, {"count": 44, "first_stint_length": 34, "share": 0.005441503833786792}, {"count": 10, "first_stint_length": 37, "share": 0.0012367054167697256}, {"count": 2, "first_stint_length": 40, "share": 0.0002473410833539451}], "race": {"archetype": "Power", "event_name": "Belgian Grand Prix", "round": 14, "year": 2024}, "strategy_count": 8086, "subject_driver": "PIA", "top100_short_stint_fraction": 0.0, "top_k": 100, "top_short_stint_leq3_count": 0}
+{"actual_subject_strategy_in_feasible_set": true, "best_first_stint_length": 4, "best_mean_points": 24.998600006103516, "best_mean_rank": 1.0002000331878662, "best_std_points": 0.09899000823497772, "best_strategy": {"baseline_pace_s": 90.202, "event_name": "British Grand Prix", "round": 10, "starting_compound": "MEDIUM", "stops": [[4, "SOFT"]], "year": 2023}, "best_win_rate": 0.9998, "first_stint_distribution": [{"count": 2852, "first_stint_length": 4, "share": 0.18338477366255143}, {"count": 2480, "first_stint_length": 7, "share": 0.15946502057613168}, {"count": 2134, "first_stint_length": 10, "share": 0.1372170781893004}, {"count": 1814, "first_stint_length": 13, "share": 0.11664094650205761}, {"count": 1520, "first_stint_length": 16, "share": 0.09773662551440329}, {"count": 1252, "first_stint_length": 19, "share": 0.08050411522633745}, {"count": 1010, "first_stint_length": 22, "share": 0.06494341563786009}, {"count": 794, "first_stint_length": 25, "share": 0.051054526748971193}, {"count": 604, "first_stint_length": 28, "share": 0.03883744855967078}, {"count": 440, "first_stint_length": 31, "share": 0.028292181069958847}, {"count": 302, "first_stint_length": 34, "share": 0.01941872427983539}, {"count": 190, "first_stint_length": 37, "share": 0.012217078189300411}, {"count": 104, "first_stint_length": 40, "share": 0.006687242798353909}, {"count": 44, "first_stint_length": 43, "share": 0.002829218106995885}, {"count": 10, "first_stint_length": 46, "share": 0.0006430041152263374}, {"count": 2, "first_stint_length": 49, "share": 0.0001286008230452675}], "race": {"archetype": "Power", "event_name": "British Grand Prix", "round": 10, "year": 2023}, "strategy_count": 15552, "subject_driver": "NOR", "top100_short_stint_fraction": 0.0, "top_k": 100, "top_short_stint_leq3_count": 0}
+{"actual_subject_strategy_in_feasible_set": false, "best_first_stint_length": 13, "best_mean_points": 24.15019989013672, "best_mean_rank": 1.121399998664856, "best_std_points": 2.286255121231079, "best_strategy": {"baseline_pace_s": 81.42599999999999, "event_name": "Italian Grand Prix", "round": 16, "starting_compound": "MEDIUM", "stops": [[13, "SOFT"]], "year": 2024}, "best_win_rate": 0.8786, "first_stint_distribution": [{"count": 2852, "first_stint_length": 4, "share": 0.18338477366255143}, {"count": 2480, "first_stint_length": 7, "share": 0.15946502057613168}, {"count": 2134, "first_stint_length": 10, "share": 0.1372170781893004}, {"count": 1814, "first_stint_length": 13, "share": 0.11664094650205761}, {"count": 1520, "first_stint_length": 16, "share": 0.09773662551440329}, {"count": 1252, "first_stint_length": 19, "share": 0.08050411522633745}, {"count": 1010, "first_stint_length": 22, "share": 0.06494341563786009}, {"count": 794, "first_stint_length": 25, "share": 0.051054526748971193}, {"count": 604, "first_stint_length": 28, "share": 0.03883744855967078}, {"count": 440, "first_stint_length": 31, "share": 0.028292181069958847}, {"count": 302, "first_stint_length": 34, "share": 0.01941872427983539}, {"count": 190, "first_stint_length": 37, "share": 0.012217078189300411}, {"count": 104, "first_stint_length": 40, "share": 0.006687242798353909}, {"count": 44, "first_stint_length": 43, "share": 0.002829218106995885}, {"count": 10, "first_stint_length": 46, "share": 0.0006430041152263374}, {"count": 2, "first_stint_length": 49, "share": 0.0001286008230452675}], "race": {"archetype": "Power", "event_name": "Italian Grand Prix", "round": 16, "year": 2024}, "strategy_count": 15552, "subject_driver": "PIA", "top100_short_stint_fraction": 0.0, "top_k": 100, "top_short_stint_leq3_count": 0}
+{"actual_subject_strategy_in_feasible_set": true, "best_first_stint_length": 13, "best_mean_points": 16.156600952148438, "best_mean_rank": 2.816200017929077, "best_std_points": 4.020732879638672, "best_strategy": {"baseline_pace_s": 105.841, "event_name": "Azerbaijan Grand Prix", "round": 17, "starting_compound": "MEDIUM", "stops": [[13, "SOFT"]], "year": 2024}, "best_win_rate": 0.1513, "first_stint_distribution": [{"count": 2852, "first_stint_length": 4, "share": 0.18338477366255143}, {"count": 2480, "first_stint_length": 7, "share": 0.15946502057613168}, {"count": 2134, "first_stint_length": 10, "share": 0.1372170781893004}, {"count": 1814, "first_stint_length": 13, "share": 0.11664094650205761}, {"count": 1520, "first_stint_length": 16, "share": 0.09773662551440329}, {"count": 1252, "first_stint_length": 19, "share": 0.08050411522633745}, {"count": 1010, "first_stint_length": 22, "share": 0.06494341563786009}, {"count": 794, "first_stint_length": 25, "share": 0.051054526748971193}, {"count": 604, "first_stint_length": 28, "share": 0.03883744855967078}, {"count": 440, "first_stint_length": 31, "share": 0.028292181069958847}, {"count": 302, "first_stint_length": 34, "share": 0.01941872427983539}, {"count": 190, "first_stint_length": 37, "share": 0.012217078189300411}, {"count": 104, "first_stint_length": 40, "share": 0.006687242798353909}, {"count": 44, "first_stint_length": 43, "share": 0.002829218106995885}, {"count": 10, "first_stint_length": 46, "share": 0.0006430041152263374}, {"count": 2, "first_stint_length": 49, "share": 0.0001286008230452675}], "race": {"archetype": "Street", "event_name": "Azerbaijan Grand Prix", "round": 17, "year": 2024}, "strategy_count": 15552, "subject_driver": "PIA", "top100_short_stint_fraction": 0.0, "top_k": 100, "top_short_stint_leq3_count": 0}
+{"actual_subject_strategy_in_feasible_set": false, "best_first_stint_length": 16, "best_mean_points": 25.0, "best_mean_rank": 1.0, "best_std_points": 0.0, "best_strategy": {"baseline_pace_s": 89.8485, "event_name": "Miami Grand Prix", "round": 6, "starting_compound": "MEDIUM", "stops": [[16, "SOFT"]], "year": 2024}, "best_win_rate": 1.0, "first_stint_distribution": [{"count": 3674, "first_stint_length": 4, "share": 0.1634632496885567}, {"count": 3250, "first_stint_length": 7, "share": 0.1445986830396868}, {"count": 2852, "first_stint_length": 10, "share": 0.12689090585513438}, {"count": 2480, "first_stint_length": 13, "share": 0.11033991813489945}, {"count": 2134, "first_stint_length": 16, "share": 0.09494571987898202}, {"count": 1814, "first_stint_length": 19, "share": 0.08070831108738209}, {"count": 1520, "first_stint_length": 22, "share": 0.06762769176009967}, {"count": 1252, "first_stint_length": 25, "share": 0.05570386189713472}, {"count": 1010, "first_stint_length": 28, "share": 0.044936821498487274}, {"count": 794, "first_stint_length": 31, "share": 0.03532657056415733}, {"count": 604, "first_stint_length": 34, "share": 0.026873109094144865}, {"count": 440, "first_stint_length": 37, "share": 0.019576437088449902}, {"count": 302, "first_stint_length": 40, "share": 0.013436554547072432}, {"count": 190, "first_stint_length": 43, "share": 0.008453461470012458}, {"count": 104, "first_stint_length": 46, "share": 0.004627157857269977}, {"count": 44, "first_stint_length": 49, "share": 0.0019576437088449903}, {"count": 10, "first_stint_length": 52, "share": 0.00044491902473749775}, {"count": 2, "first_stint_length": 55, "share": 8.898380494749955e-05}], "race": {"archetype": "Street", "event_name": "Miami Grand Prix", "round": 6, "year": 2024}, "strategy_count": 22476, "subject_driver": "NOR", "top100_short_stint_fraction": 0.0, "top_k": 100, "top_short_stint_leq3_count": 0}
+{"actual_subject_strategy_in_feasible_set": false, "best_first_stint_length": 55, "best_mean_points": 21.878400802612305, "best_mean_rank": 1.5579999685287476, "best_std_points": 4.331938743591309, "best_strategy": {"baseline_pace_s": 75.572, "event_name": "Monaco Grand Prix", "round": 6, "starting_compound": "HARD", "stops": [[55, "MEDIUM"]], "year": 2023}, "best_win_rate": 0.637, "first_stint_distribution": [{"count": 7370, "first_stint_length": 4, "share": 0.11839357429718876}, {"count": 6764, "first_stint_length": 7, "share": 0.10865863453815261}, {"count": 6184, "first_stint_length": 10, "share": 0.0993413654618474}, {"count": 5630, "first_stint_length": 13, "share": 0.09044176706827309}, {"count": 5102, "first_stint_length": 16, "share": 0.08195983935742972}, {"count": 4600, "first_stint_length": 19, "share": 0.07389558232931727}, {"count": 4124, "first_stint_length": 22, "share": 0.06624899598393574}, {"count": 3674, "first_stint_length": 25, "share": 0.05902008032128514}, {"count": 3250, "first_stint_length": 28, "share": 0.05220883534136546}, {"count": 2852, "first_stint_length": 31, "share": 0.04581526104417671}, {"count": 2480, "first_stint_length": 34, "share": 0.03983935742971888}, {"count": 2134, "first_stint_length": 37, "share": 0.03428112449799197}, {"count": 1814, "first_stint_length": 40, "share": 0.029140562248995985}, {"count": 1520, "first_stint_length": 43, "share": 0.024417670682730923}, {"count": 1252, "first_stint_length": 46, "share": 0.020112449799196786}, {"count": 1010, "first_stint_length": 49, "share": 0.016224899598393575}, {"count": 794, "first_stint_length": 52, "share": 0.012755020080321285}, {"count": 604, "first_stint_length": 55, "share": 0.00970281124497992}, {"count": 440, "first_stint_length": 58, "share": 0.007068273092369478}, {"count": 302, "first_stint_length": 61, "share": 0.00485140562248996}, {"count": 190, "first_stint_length": 64, "share": 0.0030522088353413654}, {"count": 104, "first_stint_length": 67, "share": 0.0016706827309236948}, {"count": 44, "first_stint_length": 70, "share": 0.0007068273092369478}, {"count": 10, "first_stint_length": 73, "share": 0.0001606425702811245}, {"count": 2, "first_stint_length": 76, "share": 3.21285140562249e-05}], "race": {"archetype": "Street", "event_name": "Monaco Grand Prix", "round": 6, "year": 2023}, "strategy_count": 62250, "subject_driver": "ALO", "top100_short_stint_fraction": 0.0, "top_k": 100, "top_short_stint_leq3_count": 0}
+{"actual_subject_strategy_in_feasible_set": false, "best_first_stint_length": 4, "best_mean_points": 16.98240089416504, "best_mean_rank": 2.3394999504089355, "best_std_points": 1.6697211265563965, "best_strategy": {"baseline_pace_s": 116.533, "event_name": "Singapore Grand Prix", "round": 17, "starting_compound": "INTERMEDIATE", "stops": [[4, "SOFT"], [7, "MEDIUM"]], "year": 2022}, "best_win_rate": 0.0, "first_stint_distribution": [{"count": 3366, "first_stint_length": 4, "share": 0.16417910447761194}, {"count": 2976, "first_stint_length": 7, "share": 0.14515657009072286}, {"count": 2610, "first_stint_length": 10, "share": 0.1273046532045654}, {"count": 2268, "first_stint_length": 13, "share": 0.1106233538191396}, {"count": 1950, "first_stint_length": 16, "share": 0.09511267193444542}, {"count": 1656, "first_stint_length": 19, "share": 0.08077260755048288}, {"count": 1386, "first_stint_length": 22, "share": 0.06760316066725197}, {"count": 1140, "first_stint_length": 25, "share": 0.05560433128475271}, {"count": 918, "first_stint_length": 28, "share": 0.04477611940298507}, {"count": 720, "first_stint_length": 31, "share": 0.03511852502194908}, {"count": 546, "first_stint_length": 34, "share": 0.026631548141644718}, {"count": 396, "first_stint_length": 37, "share": 0.019315188762071993}, {"count": 270, "first_stint_length": 40, "share": 0.013169446883230905}, {"count": 168, "first_stint_length": 43, "share": 0.008194322505121452}, {"count": 90, "first_stint_length": 46, "share": 0.004389815627743635}, {"count": 36, "first_stint_length": 49, "share": 0.001755926251097454}, {"count": 6, "first_stint_length": 52, "share": 0.000292654375182909}], "race": {"archetype": "Street", "event_name": "Singapore Grand Prix", "round": 17, "year": 2022}, "strategy_count": 20502, "subject_driver": "NOR", "top100_short_stint_fraction": 0.0, "top_k": 100, "top_short_stint_leq3_count": 0}
+{"actual_subject_strategy_in_feasible_set": true, "best_first_stint_length": 13, "best_mean_points": 5.6682000160217285, "best_mean_rank": 7.165900230407715, "best_std_points": 1.2241154909133911, "best_strategy": {"baseline_pace_s": 88.883, "event_name": "Abu Dhabi Grand Prix", "round": 22, "starting_compound": "MEDIUM", "stops": [[13, "HARD"]], "year": 2022}, "best_win_rate": 0.0, "first_stint_distribution": [{"count": 3674, "first_stint_length": 4, "share": 0.1634632496885567}, {"count": 3250, "first_stint_length": 7, "share": 0.1445986830396868}, {"count": 2852, "first_stint_length": 10, "share": 0.12689090585513438}, {"count": 2480, "first_stint_length": 13, "share": 0.11033991813489945}, {"count": 2134, "first_stint_length": 16, "share": 0.09494571987898202}, {"count": 1814, "first_stint_length": 19, "share": 0.08070831108738209}, {"count": 1520, "first_stint_length": 22, "share": 0.06762769176009967}, {"count": 1252, "first_stint_length": 25, "share": 0.05570386189713472}, {"count": 1010, "first_stint_length": 28, "share": 0.044936821498487274}, {"count": 794, "first_stint_length": 31, "share": 0.03532657056415733}, {"count": 604, "first_stint_length": 34, "share": 0.026873109094144865}, {"count": 440, "first_stint_length": 37, "share": 0.019576437088449902}, {"count": 302, "first_stint_length": 40, "share": 0.013436554547072432}, {"count": 190, "first_stint_length": 43, "share": 0.008453461470012458}, {"count": 104, "first_stint_length": 46, "share": 0.004627157857269977}, {"count": 44, "first_stint_length": 49, "share": 0.0019576437088449903}, {"count": 10, "first_stint_length": 52, "share": 0.00044491902473749775}, {"count": 2, "first_stint_length": 55, "share": 8.898380494749955e-05}], "race": {"archetype": "Technical", "event_name": "Abu Dhabi Grand Prix", "round": 22, "year": 2022}, "strategy_count": 22476, "subject_driver": "NOR", "top100_short_stint_fraction": 0.0, "top_k": 100, "top_short_stint_leq3_count": 0}
+{"actual_subject_strategy_in_feasible_set": false, "best_first_stint_length": 7, "best_mean_points": 6.837900161743164, "best_mean_rank": 6.604300022125244, "best_std_points": 2.0271739959716797, "best_strategy": {"baseline_pace_s": 82.48599999999999, "event_name": "Hungarian Grand Prix", "round": 13, "starting_compound": "SOFT", "stops": [[7, "HARD"], [40, "HARD"]], "year": 2022}, "best_win_rate": 0.0, "first_stint_distribution": [{"count": 5630, "first_stint_length": 4, "share": 0.13426500047696271}, {"count": 5102, "first_stint_length": 7, "share": 0.12167318515692073}, {"count": 4600, "first_stint_length": 10, "share": 0.10970142134885053}, {"count": 4124, "first_stint_length": 13, "share": 0.09834970905275207}, {"count": 3674, "first_stint_length": 16, "share": 0.08761804826862539}, {"count": 3250, "first_stint_length": 19, "share": 0.07750643899647047}, {"count": 2852, "first_stint_length": 22, "share": 0.06801488123628732}, {"count": 2480, "first_stint_length": 25, "share": 0.05914337498807593}, {"count": 2134, "first_stint_length": 28, "share": 0.05089192025183631}, {"count": 1814, "first_stint_length": 31, "share": 0.043260517027568446}, {"count": 1520, "first_stint_length": 34, "share": 0.03624916531527234}, {"count": 1252, "first_stint_length": 37, "share": 0.02985786511494801}, {"count": 1010, "first_stint_length": 40, "share": 0.02408661642659544}, {"count": 794, "first_stint_length": 43, "share": 0.018935419250214632}, {"count": 604, "first_stint_length": 46, "share": 0.01440427358580559}, {"count": 440, "first_stint_length": 49, "share": 0.01049317943336831}, {"count": 302, "first_stint_length": 52, "share": 0.007202136792902795}, {"count": 190, "first_stint_length": 55, "share": 0.004531145664409043}, {"count": 104, "first_stint_length": 58, "share": 0.0024802060478870554}, {"count": 44, "first_stint_length": 61, "share": 0.001049317943336831}, {"count": 10, "first_stint_length": 64, "share": 0.0002384813507583707}, {"count": 2, "first_stint_length": 67, "share": 4.769627015167414e-05}], "race": {"archetype": "Technical", "event_name": "Hungarian Grand Prix", "round": 13, "year": 2022}, "strategy_count": 41932, "subject_driver": "NOR", "top100_short_stint_fraction": 0.0, "top_k": 100, "top_short_stint_leq3_count": 0}
+{"actual_subject_strategy_in_feasible_set": false, "best_first_stint_length": 22, "best_mean_points": 1.7785999774932861, "best_mean_rank": 11.20580005645752, "best_std_points": 3.0430102348327637, "best_strategy": {"baseline_pace_s": 106.522, "event_name": "Japanese Grand Prix", "round": 18, "starting_compound": "INTERMEDIATE", "stops": [[22, "SOFT"], [25, "HARD"]], "year": 2022}, "best_win_rate": 0.0, "first_stint_distribution": [{"count": 546, "first_stint_length": 4, "share": 0.3611111111111111}, {"count": 396, "first_stint_length": 7, "share": 0.2619047619047619}, {"count": 270, "first_stint_length": 10, "share": 0.17857142857142858}, {"count": 168, "first_stint_length": 13, "share": 0.1111111111111111}, {"count": 90, "first_stint_length": 16, "share": 0.05952380952380952}, {"count": 36, "first_stint_length": 19, "share": 0.023809523809523808}, {"count": 6, "first_stint_length": 22, "share": 0.003968253968253968}], "race": {"archetype": "Technical", "event_name": "Japanese Grand Prix", "round": 18, "year": 2022}, "strategy_count": 1512, "subject_driver": "OCO", "top100_short_stint_fraction": 0.0, "top_k": 100, "top_short_stint_leq3_count": 0}
+{"actual_subject_strategy_in_feasible_set": false, "best_first_stint_length": 40, "best_mean_points": 10.619500160217285, "best_mean_rank": 4.782199859619141, "best_std_points": 2.675600051879883, "best_strategy": {"baseline_pace_s": 77.959, "event_name": "Spanish Grand Prix", "round": 7, "starting_compound": "SOFT", "stops": [[40, "MEDIUM"]], "year": 2023}, "best_win_rate": 0.0009, "first_stint_distribution": [{"count": 5102, "first_stint_length": 4, "share": 0.14054322075918682}, {"count": 4600, "first_stint_length": 7, "share": 0.12671478155473528}, {"count": 4124, "first_stint_length": 10, "share": 0.11360255633298441}, {"count": 3674, "first_stint_length": 13, "share": 0.10120654509393422}, {"count": 3250, "first_stint_length": 16, "share": 0.0895267478375847}, {"count": 2852, "first_stint_length": 19, "share": 0.07856316456393587}, {"count": 2480, "first_stint_length": 22, "share": 0.06831579527298771}, {"count": 2134, "first_stint_length": 25, "share": 0.05878463996474023}, {"count": 1814, "first_stint_length": 28, "share": 0.049969698639193434}, {"count": 1520, "first_stint_length": 31, "share": 0.04187097129634731}, {"count": 1252, "first_stint_length": 34, "share": 0.03448845793620186}, {"count": 1010, "first_stint_length": 37, "share": 0.027822158558757092}, {"count": 794, "first_stint_length": 40, "share": 0.021872073164013003}, {"count": 604, "first_stint_length": 43, "share": 0.01663820175196959}, {"count": 440, "first_stint_length": 46, "share": 0.012120544322626853}, {"count": 302, "first_stint_length": 49, "share": 0.008319100875984795}, {"count": 190, "first_stint_length": 52, "share": 0.0052338714120434135}, {"count": 104, "first_stint_length": 55, "share": 0.0028648559308027104}, {"count": 44, "first_stint_length": 58, "share": 0.0012120544322626852}, {"count": 10, "first_stint_length": 61, "share": 0.00027546691642333753}, {"count": 2, "first_stint_length": 64, "share": 5.509338328466751e-05}], "race": {"archetype": "Technical", "event_name": "Spanish Grand Prix", "round": 7, "year": 2023}, "strategy_count": 36302, "subject_driver": "STR", "top100_short_stint_fraction": 0.0, "top_k": 100, "top_short_stint_leq3_count": 0}
+all_race_argmax_table_end
+
+====================================================================================================
+Step 4 - Italy plausibility check vs confirmed real result
+====================================================================================================
+italy_result_v2_floor2={"argmax_strategy": {"baseline_pace_s": 81.42599999999999, "event_name": "Italian Grand Prix", "round": 16, "starting_compound": "MEDIUM", "stops": [[13, "SOFT"]], "year": 2024}, "mean_points": 24.15019989013672, "real_world_reference": {"piastri_finish": 2, "winner": "Charles Leclerc", "winner_strategy": "one-stop"}, "win_rate": 0.8786}
+italy_win_rate_red_flag_ge_90pct=False
+italy_plausibility_statement=Italy win-rate is no longer in the >=90% red-flag zone relative to the confirmed real result.
+
+====================================================================================================
+Step 5 - Actual-strategy feasibility across all 12 races
+====================================================================================================
+feasibility_table_begin
+{"failed_drivers": [], "feasibility_rate": 1.0, "feasible_drivers": 20, "race": {"archetype": "Power", "event_name": "Bahrain Grand Prix", "round": 1, "year": 2024}, "total_drivers": 20}
+{"failed_drivers": ["ALO", "PER", "STR", "ZHO"], "feasibility_rate": 0.8, "feasible_drivers": 16, "race": {"archetype": "Power", "event_name": "Belgian Grand Prix", "round": 14, "year": 2024}, "total_drivers": 20}
+{"failed_drivers": ["MAG", "OCO"], "feasibility_rate": 0.9, "feasible_drivers": 18, "race": {"archetype": "Power", "event_name": "British Grand Prix", "round": 10, "year": 2023}, "total_drivers": 20}
+{"failed_drivers": ["TSU"], "feasibility_rate": 0.95, "feasible_drivers": 19, "race": {"archetype": "Power", "event_name": "Italian Grand Prix", "round": 16, "year": 2024}, "total_drivers": 20}
+{"failed_drivers": ["GAS", "OCO", "RIC", "VER"], "feasibility_rate": 0.8, "feasible_drivers": 16, "race": {"archetype": "Street", "event_name": "Azerbaijan Grand Prix", "round": 17, "year": 2024}, "total_drivers": 20}
+{"failed_drivers": [], "feasibility_rate": 1.0, "feasible_drivers": 20, "race": {"archetype": "Street", "event_name": "Miami Grand Prix", "round": 6, "year": 2024}, "total_drivers": 20}
+{"failed_drivers": ["ALB", "ALO", "BOT", "DEV", "GAS", "HAM", "HUL", "LEC", "MAG", "NOR", "OCO", "PER", "PIA", "RUS", "SAI", "SAR", "STR", "TSU", "VER", "ZHO"], "feasibility_rate": 0.0, "feasible_drivers": 0, "race": {"archetype": "Street", "event_name": "Monaco Grand Prix", "round": 6, "year": 2023}, "total_drivers": 20}
+{"failed_drivers": ["ALB", "ALO", "BOT", "GAS", "HAM", "LAT", "LEC", "MAG", "NOR", "OCO", "PER", "RIC", "SAI", "STR", "TSU", "VET", "ZHO"], "feasibility_rate": 0.15, "feasible_drivers": 3, "race": {"archetype": "Street", "event_name": "Singapore Grand Prix", "round": 17, "year": 2022}, "total_drivers": 20}
+{"failed_drivers": [], "feasibility_rate": 1.0, "feasible_drivers": 20, "race": {"archetype": "Technical", "event_name": "Abu Dhabi Grand Prix", "round": 22, "year": 2022}, "total_drivers": 20}
+{"failed_drivers": [], "feasibility_rate": 1.0, "feasible_drivers": 20, "race": {"archetype": "Technical", "event_name": "Hungarian Grand Prix", "round": 13, "year": 2022}, "total_drivers": 20}
+{"failed_drivers": ["ALB", "ALO", "BOT", "GAS", "HAM", "LAT", "LEC", "MAG", "MSC", "NOR", "OCO", "PER", "RIC", "RUS", "SAI", "STR", "TSU", "VER", "VET", "ZHO"], "feasibility_rate": 0.0, "feasible_drivers": 0, "race": {"archetype": "Technical", "event_name": "Japanese Grand Prix", "round": 18, "year": 2022}, "total_drivers": 20}
+{"failed_drivers": [], "feasibility_rate": 1.0, "feasible_drivers": 20, "race": {"archetype": "Technical", "event_name": "Spanish Grand Prix", "round": 7, "year": 2023}, "total_drivers": 20}
+feasibility_table_end
+overall_feasible_drivers=172
+overall_total_drivers=240
+overall_feasibility_rate=0.716667
+per_race_threshold_80pct_pass=False
+overall_threshold_80pct_pass=False
