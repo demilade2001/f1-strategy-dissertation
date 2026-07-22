@@ -1,0 +1,698 @@
+[
+  {
+    "B_unconditioned_first_pit_lap": 43,
+    "B_unconditioned_mean_points": 14.149999618530273,
+    "B_unconditioned_strategy": {
+      "baseline_pace_s": 94.282,
+      "event_name": "Bahrain Grand Prix",
+      "round": 1,
+      "starting_compound": "SOFT",
+      "stops": [
+        [
+          43,
+          "MEDIUM"
+        ]
+      ],
+      "year": 2024
+    },
+    "R_SC_static_prior_first_pit_lap": 40,
+    "R_SC_static_prior_mean_points": 14.720000267028809,
+    "R_SC_static_prior_strategy": {
+      "baseline_pace_s": 94.282,
+      "event_name": "Bahrain Grand Prix",
+      "round": 1,
+      "starting_compound": "SOFT",
+      "stops": [
+        [
+          40,
+          "MEDIUM"
+        ]
+      ],
+      "year": 2024
+    },
+    "X_actual_first_pit_lap": 14,
+    "X_actual_mean_points": 11.006666666666666,
+    "X_actual_strategy": {
+      "baseline_pace_s": 94.282,
+      "event_name": "Bahrain Grand Prix",
+      "round": 1,
+      "starting_compound": "SOFT",
+      "stops": [
+        [
+          14,
+          "HARD"
+        ]
+      ],
+      "year": 2024
+    },
+    "race": {
+      "archetype": "Power",
+      "event_name": "Bahrain Grand Prix",
+      "round": 1,
+      "year": 2024
+    },
+    "race_length_laps": 57,
+    "subject_driver": "NOR"
+  },
+  {
+    "B_unconditioned_first_pit_lap": 13,
+    "B_unconditioned_mean_points": 23.293333053588867,
+    "B_unconditioned_strategy": {
+      "baseline_pace_s": 105.5615,
+      "event_name": "Belgian Grand Prix",
+      "round": 14,
+      "starting_compound": "MEDIUM",
+      "stops": [
+        [
+          13,
+          "SOFT"
+        ]
+      ],
+      "year": 2024
+    },
+    "R_SC_static_prior_first_pit_lap": 13,
+    "R_SC_static_prior_mean_points": 24.303333282470703,
+    "R_SC_static_prior_strategy": {
+      "baseline_pace_s": 105.5615,
+      "event_name": "Belgian Grand Prix",
+      "round": 14,
+      "starting_compound": "MEDIUM",
+      "stops": [
+        [
+          13,
+          "SOFT"
+        ]
+      ],
+      "year": 2024
+    },
+    "X_actual_first_pit_lap": 12,
+    "X_actual_mean_points": 11.833333333333334,
+    "X_actual_strategy": {
+      "baseline_pace_s": 105.5615,
+      "event_name": "Belgian Grand Prix",
+      "round": 14,
+      "starting_compound": "MEDIUM",
+      "stops": [
+        [
+          12,
+          "HARD"
+        ]
+      ],
+      "year": 2024
+    },
+    "race": {
+      "archetype": "Power",
+      "event_name": "Belgian Grand Prix",
+      "round": 14,
+      "year": 2024
+    },
+    "race_length_laps": 44,
+    "subject_driver": "PIA"
+  },
+  {
+    "B_unconditioned_first_pit_lap": 10,
+    "B_unconditioned_mean_points": 17.886667251586914,
+    "B_unconditioned_strategy": {
+      "baseline_pace_s": 90.202,
+      "event_name": "British Grand Prix",
+      "round": 10,
+      "starting_compound": "MEDIUM",
+      "stops": [
+        [
+          10,
+          "SOFT"
+        ]
+      ],
+      "year": 2023
+    },
+    "R_SC_static_prior_first_pit_lap": 10,
+    "R_SC_static_prior_mean_points": 18.27666664123535,
+    "R_SC_static_prior_strategy": {
+      "baseline_pace_s": 90.202,
+      "event_name": "British Grand Prix",
+      "round": 10,
+      "starting_compound": "MEDIUM",
+      "stops": [
+        [
+          10,
+          "SOFT"
+        ]
+      ],
+      "year": 2023
+    },
+    "X_actual_first_pit_lap": 34,
+    "X_actual_mean_points": 14.25,
+    "X_actual_strategy": {
+      "baseline_pace_s": 90.202,
+      "event_name": "British Grand Prix",
+      "round": 10,
+      "starting_compound": "MEDIUM",
+      "stops": [
+        [
+          34,
+          "HARD"
+        ]
+      ],
+      "year": 2023
+    },
+    "race": {
+      "archetype": "Power",
+      "event_name": "British Grand Prix",
+      "round": 10,
+      "year": 2023
+    },
+    "race_length_laps": 52,
+    "subject_driver": "NOR"
+  },
+  {
+    "B_unconditioned_first_pit_lap": 22,
+    "B_unconditioned_mean_points": 24.15999984741211,
+    "B_unconditioned_strategy": {
+      "baseline_pace_s": 81.42599999999999,
+      "event_name": "Italian Grand Prix",
+      "round": 16,
+      "starting_compound": "MEDIUM",
+      "stops": [
+        [
+          22,
+          "SOFT"
+        ]
+      ],
+      "year": 2024
+    },
+    "R_SC_static_prior_first_pit_lap": 10,
+    "R_SC_static_prior_mean_points": 24.60333251953125,
+    "R_SC_static_prior_strategy": {
+      "baseline_pace_s": 81.42599999999999,
+      "event_name": "Italian Grand Prix",
+      "round": 16,
+      "starting_compound": "MEDIUM",
+      "stops": [
+        [
+          10,
+          "SOFT"
+        ]
+      ],
+      "year": 2024
+    },
+    "X_actual_first_pit_lap": 17,
+    "X_actual_mean_points": 18.826666666666668,
+    "X_actual_strategy": {
+      "baseline_pace_s": 81.42599999999999,
+      "event_name": "Italian Grand Prix",
+      "round": 16,
+      "starting_compound": "MEDIUM",
+      "stops": [
+        [
+          17,
+          "HARD"
+        ]
+      ],
+      "year": 2024
+    },
+    "race": {
+      "archetype": "Power",
+      "event_name": "Italian Grand Prix",
+      "round": 16,
+      "year": 2024
+    },
+    "race_length_laps": 53,
+    "subject_driver": "PIA"
+  },
+  {
+    "B_unconditioned_first_pit_lap": 13,
+    "B_unconditioned_mean_points": 16.013334274291992,
+    "B_unconditioned_strategy": {
+      "baseline_pace_s": 105.841,
+      "event_name": "Azerbaijan Grand Prix",
+      "round": 17,
+      "starting_compound": "MEDIUM",
+      "stops": [
+        [
+          13,
+          "SOFT"
+        ]
+      ],
+      "year": 2024
+    },
+    "R_SC_static_prior_first_pit_lap": 13,
+    "R_SC_static_prior_mean_points": 15.90666675567627,
+    "R_SC_static_prior_strategy": {
+      "baseline_pace_s": 105.841,
+      "event_name": "Azerbaijan Grand Prix",
+      "round": 17,
+      "starting_compound": "MEDIUM",
+      "stops": [
+        [
+          13,
+          "SOFT"
+        ]
+      ],
+      "year": 2024
+    },
+    "X_actual_first_pit_lap": 16,
+    "X_actual_mean_points": 13.633333333333333,
+    "X_actual_strategy": {
+      "baseline_pace_s": 105.841,
+      "event_name": "Azerbaijan Grand Prix",
+      "round": 17,
+      "starting_compound": "MEDIUM",
+      "stops": [
+        [
+          16,
+          "HARD"
+        ]
+      ],
+      "year": 2024
+    },
+    "race": {
+      "archetype": "Street",
+      "event_name": "Azerbaijan Grand Prix",
+      "round": 17,
+      "year": 2024
+    },
+    "race_length_laps": 51,
+    "subject_driver": "PIA"
+  },
+  {
+    "B_unconditioned_first_pit_lap": 10,
+    "B_unconditioned_mean_points": 25.0,
+    "B_unconditioned_strategy": {
+      "baseline_pace_s": 89.8485,
+      "event_name": "Miami Grand Prix",
+      "round": 6,
+      "starting_compound": "MEDIUM",
+      "stops": [
+        [
+          10,
+          "SOFT"
+        ]
+      ],
+      "year": 2024
+    },
+    "R_SC_static_prior_first_pit_lap": 7,
+    "R_SC_static_prior_mean_points": 25.0,
+    "R_SC_static_prior_strategy": {
+      "baseline_pace_s": 89.8485,
+      "event_name": "Miami Grand Prix",
+      "round": 6,
+      "starting_compound": "MEDIUM",
+      "stops": [
+        [
+          7,
+          "SOFT"
+        ]
+      ],
+      "year": 2024
+    },
+    "X_actual_first_pit_lap": 30,
+    "X_actual_mean_points": 23.78,
+    "X_actual_strategy": {
+      "baseline_pace_s": 89.8485,
+      "event_name": "Miami Grand Prix",
+      "round": 6,
+      "starting_compound": "MEDIUM",
+      "stops": [
+        [
+          30,
+          "HARD"
+        ]
+      ],
+      "year": 2024
+    },
+    "race": {
+      "archetype": "Street",
+      "event_name": "Miami Grand Prix",
+      "round": 6,
+      "year": 2024
+    },
+    "race_length_laps": 57,
+    "subject_driver": "NOR"
+  },
+  {
+    "B_unconditioned_first_pit_lap": 55,
+    "B_unconditioned_mean_points": 21.969999313354492,
+    "B_unconditioned_strategy": {
+      "baseline_pace_s": 75.572,
+      "event_name": "Monaco Grand Prix",
+      "round": 6,
+      "starting_compound": "HARD",
+      "stops": [
+        [
+          55,
+          "MEDIUM"
+        ]
+      ],
+      "year": 2023
+    },
+    "R_SC_static_prior_first_pit_lap": 55,
+    "R_SC_static_prior_mean_points": 21.16666603088379,
+    "R_SC_static_prior_strategy": {
+      "baseline_pace_s": 75.572,
+      "event_name": "Monaco Grand Prix",
+      "round": 6,
+      "starting_compound": "HARD",
+      "stops": [
+        [
+          55,
+          "MEDIUM"
+        ]
+      ],
+      "year": 2023
+    },
+    "X_actual_first_pit_lap": 55,
+    "X_actual_mean_points": 14.29,
+    "X_actual_strategy": {
+      "baseline_pace_s": 75.572,
+      "event_name": "Monaco Grand Prix",
+      "round": 6,
+      "starting_compound": "HARD",
+      "stops": [
+        [
+          55,
+          "MEDIUM"
+        ],
+        [
+          56,
+          "INTERMEDIATE"
+        ]
+      ],
+      "year": 2023
+    },
+    "race": {
+      "archetype": "Street",
+      "event_name": "Monaco Grand Prix",
+      "round": 6,
+      "year": 2023
+    },
+    "race_length_laps": 78,
+    "subject_driver": "ALO"
+  },
+  {
+    "B_unconditioned_first_pit_lap": 37,
+    "B_unconditioned_mean_points": 1.090000033378601,
+    "B_unconditioned_strategy": {
+      "baseline_pace_s": 116.533,
+      "event_name": "Singapore Grand Prix",
+      "round": 17,
+      "starting_compound": "INTERMEDIATE",
+      "stops": [
+        [
+          37,
+          "SOFT"
+        ],
+        [
+          46,
+          "MEDIUM"
+        ]
+      ],
+      "year": 2022
+    },
+    "R_SC_static_prior_first_pit_lap": 46,
+    "R_SC_static_prior_mean_points": 0.8899999856948853,
+    "R_SC_static_prior_strategy": {
+      "baseline_pace_s": 116.533,
+      "event_name": "Singapore Grand Prix",
+      "round": 17,
+      "starting_compound": "INTERMEDIATE",
+      "stops": [
+        [
+          46,
+          "SOFT"
+        ],
+        [
+          55,
+          "HARD"
+        ]
+      ],
+      "year": 2022
+    },
+    "X_actual_first_pit_lap": 37,
+    "X_actual_mean_points": 2.966666666666667,
+    "X_actual_strategy": {
+      "baseline_pace_s": 116.533,
+      "event_name": "Singapore Grand Prix",
+      "round": 17,
+      "starting_compound": "INTERMEDIATE",
+      "stops": [
+        [
+          37,
+          "MEDIUM"
+        ]
+      ],
+      "year": 2022
+    },
+    "race": {
+      "archetype": "Street",
+      "event_name": "Singapore Grand Prix",
+      "round": 17,
+      "year": 2022
+    },
+    "race_length_laps": 59,
+    "subject_driver": "NOR"
+  },
+  {
+    "B_unconditioned_first_pit_lap": 13,
+    "B_unconditioned_mean_points": 5.699999809265137,
+    "B_unconditioned_strategy": {
+      "baseline_pace_s": 88.883,
+      "event_name": "Abu Dhabi Grand Prix",
+      "round": 22,
+      "starting_compound": "MEDIUM",
+      "stops": [
+        [
+          13,
+          "HARD"
+        ]
+      ],
+      "year": 2022
+    },
+    "R_SC_static_prior_first_pit_lap": 13,
+    "R_SC_static_prior_mean_points": 5.613333225250244,
+    "R_SC_static_prior_strategy": {
+      "baseline_pace_s": 88.883,
+      "event_name": "Abu Dhabi Grand Prix",
+      "round": 22,
+      "starting_compound": "MEDIUM",
+      "stops": [
+        [
+          13,
+          "HARD"
+        ]
+      ],
+      "year": 2022
+    },
+    "X_actual_first_pit_lap": 16,
+    "X_actual_mean_points": 3.6466666666666665,
+    "X_actual_strategy": {
+      "baseline_pace_s": 88.883,
+      "event_name": "Abu Dhabi Grand Prix",
+      "round": 22,
+      "starting_compound": "MEDIUM",
+      "stops": [
+        [
+          16,
+          "HARD"
+        ],
+        [
+          43,
+          "MEDIUM"
+        ]
+      ],
+      "year": 2022
+    },
+    "race": {
+      "archetype": "Technical",
+      "event_name": "Abu Dhabi Grand Prix",
+      "round": 22,
+      "year": 2022
+    },
+    "race_length_laps": 58,
+    "subject_driver": "NOR"
+  },
+  {
+    "B_unconditioned_first_pit_lap": 4,
+    "B_unconditioned_mean_points": 6.793333530426025,
+    "B_unconditioned_strategy": {
+      "baseline_pace_s": 82.48599999999999,
+      "event_name": "Hungarian Grand Prix",
+      "round": 13,
+      "starting_compound": "SOFT",
+      "stops": [
+        [
+          4,
+          "HARD"
+        ],
+        [
+          40,
+          "HARD"
+        ]
+      ],
+      "year": 2022
+    },
+    "R_SC_static_prior_first_pit_lap": 13,
+    "R_SC_static_prior_mean_points": 7.233333110809326,
+    "R_SC_static_prior_strategy": {
+      "baseline_pace_s": 82.48599999999999,
+      "event_name": "Hungarian Grand Prix",
+      "round": 13,
+      "starting_compound": "SOFT",
+      "stops": [
+        [
+          13,
+          "HARD"
+        ]
+      ],
+      "year": 2022
+    },
+    "X_actual_first_pit_lap": 15,
+    "X_actual_mean_points": 6.006666666666667,
+    "X_actual_strategy": {
+      "baseline_pace_s": 82.48599999999999,
+      "event_name": "Hungarian Grand Prix",
+      "round": 13,
+      "starting_compound": "SOFT",
+      "stops": [
+        [
+          15,
+          "MEDIUM"
+        ],
+        [
+          43,
+          "HARD"
+        ]
+      ],
+      "year": 2022
+    },
+    "race": {
+      "archetype": "Technical",
+      "event_name": "Hungarian Grand Prix",
+      "round": 13,
+      "year": 2022
+    },
+    "race_length_laps": 70,
+    "subject_driver": "NOR"
+  },
+  {
+    "B_unconditioned_first_pit_lap": 22,
+    "B_unconditioned_mean_points": 1.90666663646698,
+    "B_unconditioned_strategy": {
+      "baseline_pace_s": 106.522,
+      "event_name": "Japanese Grand Prix",
+      "round": 18,
+      "starting_compound": "INTERMEDIATE",
+      "stops": [
+        [
+          22,
+          "HARD"
+        ],
+        [
+          25,
+          "SOFT"
+        ]
+      ],
+      "year": 2022
+    },
+    "R_SC_static_prior_first_pit_lap": 16,
+    "R_SC_static_prior_mean_points": 0.800000011920929,
+    "R_SC_static_prior_strategy": {
+      "baseline_pace_s": 106.522,
+      "event_name": "Japanese Grand Prix",
+      "round": 18,
+      "starting_compound": "INTERMEDIATE",
+      "stops": [
+        [
+          16,
+          "HARD"
+        ],
+        [
+          22,
+          "SOFT"
+        ]
+      ],
+      "year": 2022
+    },
+    "X_actual_first_pit_lap": 3,
+    "X_actual_mean_points": 0.0,
+    "X_actual_strategy": {
+      "baseline_pace_s": 106.522,
+      "event_name": "Japanese Grand Prix",
+      "round": 18,
+      "starting_compound": "INTERMEDIATE",
+      "stops": [
+        [
+          3,
+          "WET"
+        ],
+        [
+          8,
+          "INTERMEDIATE"
+        ]
+      ],
+      "year": 2022
+    },
+    "race": {
+      "archetype": "Technical",
+      "event_name": "Japanese Grand Prix",
+      "round": 18,
+      "year": 2022
+    },
+    "race_length_laps": 29,
+    "subject_driver": "OCO"
+  },
+  {
+    "B_unconditioned_first_pit_lap": 43,
+    "B_unconditioned_mean_points": 10.609999656677246,
+    "B_unconditioned_strategy": {
+      "baseline_pace_s": 77.959,
+      "event_name": "Spanish Grand Prix",
+      "round": 7,
+      "starting_compound": "SOFT",
+      "stops": [
+        [
+          43,
+          "MEDIUM"
+        ]
+      ],
+      "year": 2023
+    },
+    "R_SC_static_prior_first_pit_lap": 40,
+    "R_SC_static_prior_mean_points": 11.243332862854004,
+    "R_SC_static_prior_strategy": {
+      "baseline_pace_s": 77.959,
+      "event_name": "Spanish Grand Prix",
+      "round": 7,
+      "starting_compound": "SOFT",
+      "stops": [
+        [
+          40,
+          "MEDIUM"
+        ]
+      ],
+      "year": 2023
+    },
+    "X_actual_first_pit_lap": 35,
+    "X_actual_mean_points": 10.32,
+    "X_actual_strategy": {
+      "baseline_pace_s": 77.959,
+      "event_name": "Spanish Grand Prix",
+      "round": 7,
+      "starting_compound": "SOFT",
+      "stops": [
+        [
+          35,
+          "HARD"
+        ]
+      ],
+      "year": 2023
+    },
+    "race": {
+      "archetype": "Technical",
+      "event_name": "Spanish Grand Prix",
+      "round": 7,
+      "year": 2023
+    },
+    "race_length_laps": 66,
+    "subject_driver": "STR"
+  }
+]
