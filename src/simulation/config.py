@@ -30,6 +30,11 @@ INSUFFICIENCY_CUT = None
 RNG_SEED = 42
 # Identifiability epsilon for treating |B - R_b| as effectively zero.
 UNIDENTIFIABLE_EPSILON = 1e-6
+# Practical denominator materiality guard for |B - R_b|.
+# UNIDENTIFIABLE_EPSILON protects float-precision collapse only, while this
+# threshold protects against denominators too small to be meaningful relative
+# to Monte Carlo noise in pilot diagnostics.
+MATERIALITY_THRESHOLD_ABS_B_MINUS_R = 0.88
 
 # Reconciled caution-lap pace multiplier from diagnostics/
 # simulation_step3b_recalibration_and_clean_validation.py (2026-07-20).

@@ -1,7 +1,7 @@
 [
   {
-    "B_unconditioned_first_pit_lap": 43,
-    "B_unconditioned_mean_points": 14.149999618530273,
+    "B_unconditioned_first_pit_lap": 40,
+    "B_unconditioned_mean_points": 14.078399658203125,
     "B_unconditioned_strategy": {
       "baseline_pace_s": 94.282,
       "event_name": "Bahrain Grand Prix",
@@ -9,14 +9,14 @@
       "starting_compound": "SOFT",
       "stops": [
         [
-          43,
+          40,
           "MEDIUM"
         ]
       ],
       "year": 2024
     },
     "R_SC_static_prior_first_pit_lap": 40,
-    "R_SC_static_prior_mean_points": 14.720000267028809,
+    "R_SC_static_prior_mean_points": 14.64900016784668,
     "R_SC_static_prior_strategy": {
       "baseline_pace_s": 94.282,
       "event_name": "Bahrain Grand Prix",
@@ -31,7 +31,7 @@
       "year": 2024
     },
     "X_actual_first_pit_lap": 14,
-    "X_actual_mean_points": 11.006666666666666,
+    "X_actual_mean_points": 10.89780044555664,
     "X_actual_strategy": {
       "baseline_pace_s": 94.282,
       "event_name": "Bahrain Grand Prix",
@@ -45,6 +45,179 @@
       ],
       "year": 2024
     },
+    "anchoring_pairs": [
+      {
+        "B_anchoring_mean_points": 14.270099639892578,
+        "R_anchoring_mean_points": 11.950300216674805,
+        "added_lap_for_r": 3,
+        "computable": true,
+        "r_pool_count": 3674,
+        "trigger_lap": 2,
+        "triggered_by": [
+          "HUL"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 14.270099639892578,
+        "R_anchoring_mean_points": 12.511300086975098,
+        "added_lap_for_r": 11,
+        "computable": true,
+        "r_pool_count": 3674,
+        "trigger_lap": 10,
+        "triggered_by": [
+          "STR",
+          "ZHO"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 14.270099639892578,
+        "R_anchoring_mean_points": 12.694100379943848,
+        "added_lap_for_r": 12,
+        "computable": true,
+        "r_pool_count": 3674,
+        "trigger_lap": 11,
+        "triggered_by": [
+          "OCO",
+          "SAR"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 14.270099639892578,
+        "R_anchoring_mean_points": 12.819199562072754,
+        "added_lap_for_r": 13,
+        "computable": true,
+        "r_pool_count": 6642,
+        "trigger_lap": 12,
+        "triggered_by": [
+          "LEC",
+          "MAG",
+          "RUS"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 14.270099639892578,
+        "R_anchoring_mean_points": 12.725299835205078,
+        "added_lap_for_r": 14,
+        "computable": true,
+        "r_pool_count": 3674,
+        "trigger_lap": 13,
+        "triggered_by": [
+          "BOT",
+          "GAS",
+          "HAM",
+          "PER"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 14.270099639892578,
+        "R_anchoring_mean_points": 12.970199584960938,
+        "added_lap_for_r": 16,
+        "computable": true,
+        "r_pool_count": 7066,
+        "trigger_lap": 15,
+        "triggered_by": [
+          "SAI",
+          "TSU"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 14.270099639892578,
+        "R_anchoring_mean_points": 12.86970043182373,
+        "added_lap_for_r": 17,
+        "computable": true,
+        "r_pool_count": 3674,
+        "trigger_lap": 16,
+        "triggered_by": [
+          "ALB",
+          "ALO"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 14.270099639892578,
+        "R_anchoring_mean_points": 13.060099601745605,
+        "added_lap_for_r": 19,
+        "computable": true,
+        "r_pool_count": 7490,
+        "trigger_lap": 18,
+        "triggered_by": [
+          "VER"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 14.270099639892578,
+        "R_anchoring_mean_points": 13.549200057983398,
+        "added_lap_for_r": 37,
+        "computable": true,
+        "r_pool_count": 7066,
+        "trigger_lap": 36,
+        "triggered_by": [
+          "RIC"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 14.270099639892578,
+        "R_anchoring_mean_points": 14.033699989318848,
+        "added_lap_for_r": 38,
+        "computable": true,
+        "r_pool_count": 3674,
+        "trigger_lap": 37,
+        "triggered_by": [
+          "PER"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 14.270099639892578,
+        "R_anchoring_mean_points": 14.047499656677246,
+        "added_lap_for_r": 39,
+        "computable": true,
+        "r_pool_count": 3674,
+        "trigger_lap": 38,
+        "triggered_by": [
+          "VER"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 14.270099639892578,
+        "R_anchoring_mean_points": 14.270099639892578,
+        "added_lap_for_r": 42,
+        "computable": true,
+        "r_pool_count": 3674,
+        "trigger_lap": 41,
+        "triggered_by": [
+          "SAR"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 14.270099639892578,
+        "R_anchoring_mean_points": 14.048100471496582,
+        "added_lap_for_r": 43,
+        "computable": true,
+        "r_pool_count": 7066,
+        "trigger_lap": 42,
+        "triggered_by": [
+          "HUL"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 14.270099639892578,
+        "R_anchoring_mean_points": 13.915200233459473,
+        "added_lap_for_r": 45,
+        "computable": true,
+        "r_pool_count": 3674,
+        "trigger_lap": 44,
+        "triggered_by": [
+          "GAS"
+        ]
+      }
+    ],
+    "context": {
+      "caution_lap_count": 40,
+      "completed_full_distance": true,
+      "observed_final_position": 6,
+      "race_length_laps": 57,
+      "subject_max_lap": 57,
+      "used_wet_or_intermediate": false
+    },
     "race": {
       "archetype": "Power",
       "event_name": "Bahrain Grand Prix",
@@ -56,7 +229,7 @@
   },
   {
     "B_unconditioned_first_pit_lap": 13,
-    "B_unconditioned_mean_points": 23.293333053588867,
+    "B_unconditioned_mean_points": 23.065500259399414,
     "B_unconditioned_strategy": {
       "baseline_pace_s": 105.5615,
       "event_name": "Belgian Grand Prix",
@@ -70,8 +243,8 @@
       ],
       "year": 2024
     },
-    "R_SC_static_prior_first_pit_lap": 13,
-    "R_SC_static_prior_mean_points": 24.303333282470703,
+    "R_SC_static_prior_first_pit_lap": 16,
+    "R_SC_static_prior_mean_points": 24.116300582885742,
     "R_SC_static_prior_strategy": {
       "baseline_pace_s": 105.5615,
       "event_name": "Belgian Grand Prix",
@@ -79,14 +252,14 @@
       "starting_compound": "MEDIUM",
       "stops": [
         [
-          13,
+          16,
           "SOFT"
         ]
       ],
       "year": 2024
     },
     "X_actual_first_pit_lap": 12,
-    "X_actual_mean_points": 11.833333333333334,
+    "X_actual_mean_points": 12.055000305175781,
     "X_actual_strategy": {
       "baseline_pace_s": 105.5615,
       "event_name": "Belgian Grand Prix",
@@ -100,6 +273,175 @@
       ],
       "year": 2024
     },
+    "anchoring_pairs": [
+      {
+        "B_anchoring_mean_points": 23.065500259399414,
+        "R_anchoring_mean_points": 22.30150032043457,
+        "added_lap_for_r": 9,
+        "computable": true,
+        "r_pool_count": 1814,
+        "trigger_lap": 8,
+        "triggered_by": [
+          "HUL"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 23.065500259399414,
+        "R_anchoring_mean_points": 22.341299057006836,
+        "added_lap_for_r": 10,
+        "computable": true,
+        "r_pool_count": 3578,
+        "trigger_lap": 9,
+        "triggered_by": [
+          "RIC"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 23.065500259399414,
+        "R_anchoring_mean_points": 22.440500259399414,
+        "added_lap_for_r": 11,
+        "computable": true,
+        "r_pool_count": 1814,
+        "trigger_lap": 10,
+        "triggered_by": [
+          "GAS"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 23.065500259399414,
+        "R_anchoring_mean_points": 23.032100677490234,
+        "added_lap_for_r": 12,
+        "computable": true,
+        "r_pool_count": 1814,
+        "trigger_lap": 11,
+        "triggered_by": [
+          "RUS",
+          "VER"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 23.065500259399414,
+        "R_anchoring_mean_points": 22.299400329589844,
+        "added_lap_for_r": 14,
+        "computable": true,
+        "r_pool_count": 1814,
+        "trigger_lap": 13,
+        "triggered_by": [
+          "LEC",
+          "OCO"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 23.065500259399414,
+        "R_anchoring_mean_points": 22.05389976501465,
+        "added_lap_for_r": 17,
+        "computable": true,
+        "r_pool_count": 1814,
+        "trigger_lap": 16,
+        "triggered_by": [
+          "TSU"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 23.065500259399414,
+        "R_anchoring_mean_points": 21.468799591064453,
+        "added_lap_for_r": 19,
+        "computable": true,
+        "r_pool_count": 4166,
+        "trigger_lap": 18,
+        "triggered_by": [
+          "MAG"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 23.065500259399414,
+        "R_anchoring_mean_points": 19.587900161743164,
+        "added_lap_for_r": 22,
+        "computable": true,
+        "r_pool_count": 3872,
+        "trigger_lap": 21,
+        "triggered_by": [
+          "HUL",
+          "SAI"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 23.065500259399414,
+        "R_anchoring_mean_points": 18.846200942993164,
+        "added_lap_for_r": 23,
+        "computable": true,
+        "r_pool_count": 1814,
+        "trigger_lap": 22,
+        "triggered_by": [
+          "PER",
+          "RIC"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 23.065500259399414,
+        "R_anchoring_mean_points": 18.002599716186523,
+        "added_lap_for_r": 25,
+        "computable": true,
+        "r_pool_count": 3872,
+        "trigger_lap": 24,
+        "triggered_by": [
+          "ALB"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 23.065500259399414,
+        "R_anchoring_mean_points": 17.408700942993164,
+        "added_lap_for_r": 26,
+        "computable": true,
+        "r_pool_count": 1814,
+        "trigger_lap": 25,
+        "triggered_by": [
+          "SAR"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 23.065500259399414,
+        "R_anchoring_mean_points": 13.852800369262695,
+        "added_lap_for_r": 30,
+        "computable": true,
+        "r_pool_count": 1814,
+        "trigger_lap": 29,
+        "triggered_by": [
+          "SAI",
+          "VER"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 23.065500259399414,
+        "R_anchoring_mean_points": 13.48960018157959,
+        "added_lap_for_r": 37,
+        "computable": true,
+        "r_pool_count": 4166,
+        "trigger_lap": 36,
+        "triggered_by": [
+          "BOT"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 23.065500259399414,
+        "R_anchoring_mean_points": NaN,
+        "added_lap_for_r": 44,
+        "computable": false,
+        "r_pool_count": 0,
+        "trigger_lap": 43,
+        "triggered_by": [
+          "PER"
+        ]
+      }
+    ],
+    "context": {
+      "caution_lap_count": 19,
+      "completed_full_distance": true,
+      "observed_final_position": 3,
+      "race_length_laps": 44,
+      "subject_max_lap": 44,
+      "used_wet_or_intermediate": false
+    },
     "race": {
       "archetype": "Power",
       "event_name": "Belgian Grand Prix",
@@ -111,7 +453,7 @@
   },
   {
     "B_unconditioned_first_pit_lap": 10,
-    "B_unconditioned_mean_points": 17.886667251586914,
+    "B_unconditioned_mean_points": 17.94729995727539,
     "B_unconditioned_strategy": {
       "baseline_pace_s": 90.202,
       "event_name": "British Grand Prix",
@@ -125,8 +467,8 @@
       ],
       "year": 2023
     },
-    "R_SC_static_prior_first_pit_lap": 10,
-    "R_SC_static_prior_mean_points": 18.27666664123535,
+    "R_SC_static_prior_first_pit_lap": 13,
+    "R_SC_static_prior_mean_points": 18.103700637817383,
     "R_SC_static_prior_strategy": {
       "baseline_pace_s": 90.202,
       "event_name": "British Grand Prix",
@@ -134,14 +476,14 @@
       "starting_compound": "MEDIUM",
       "stops": [
         [
-          10,
+          13,
           "SOFT"
         ]
       ],
       "year": 2023
     },
     "X_actual_first_pit_lap": 34,
-    "X_actual_mean_points": 14.25,
+    "X_actual_mean_points": 13.94320011138916,
     "X_actual_strategy": {
       "baseline_pace_s": 90.202,
       "event_name": "British Grand Prix",
@@ -155,6 +497,133 @@
       ],
       "year": 2023
     },
+    "anchoring_pairs": [
+      {
+        "B_anchoring_mean_points": 18.259700775146484,
+        "R_anchoring_mean_points": 18.259700775146484,
+        "added_lap_for_r": 9,
+        "computable": true,
+        "r_pool_count": 2852,
+        "trigger_lap": 8,
+        "triggered_by": [
+          "HUL"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 18.259700775146484,
+        "R_anchoring_mean_points": 17.871999740600586,
+        "added_lap_for_r": 16,
+        "computable": true,
+        "r_pool_count": 5084,
+        "trigger_lap": 15,
+        "triggered_by": [
+          "TSU"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 18.259700775146484,
+        "R_anchoring_mean_points": 17.79960060119629,
+        "added_lap_for_r": 20,
+        "computable": true,
+        "r_pool_count": 2852,
+        "trigger_lap": 19,
+        "triggered_by": [
+          "LEC"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 18.259700775146484,
+        "R_anchoring_mean_points": 17.49489974975586,
+        "added_lap_for_r": 26,
+        "computable": true,
+        "r_pool_count": 2852,
+        "trigger_lap": 25,
+        "triggered_by": [
+          "ZHO"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 18.259700775146484,
+        "R_anchoring_mean_points": 17.029800415039062,
+        "added_lap_for_r": 28,
+        "computable": true,
+        "r_pool_count": 4712,
+        "trigger_lap": 27,
+        "triggered_by": [
+          "SAI"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 18.259700775146484,
+        "R_anchoring_mean_points": 17.0216007232666,
+        "added_lap_for_r": 29,
+        "computable": true,
+        "r_pool_count": 2852,
+        "trigger_lap": 28,
+        "triggered_by": [
+          "DEV"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 18.259700775146484,
+        "R_anchoring_mean_points": 16.2007999420166,
+        "added_lap_for_r": 30,
+        "computable": true,
+        "r_pool_count": 2852,
+        "trigger_lap": 29,
+        "triggered_by": [
+          "PER",
+          "RUS"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 18.259700775146484,
+        "R_anchoring_mean_points": 15.027400016784668,
+        "added_lap_for_r": 31,
+        "computable": true,
+        "r_pool_count": 4712,
+        "trigger_lap": 30,
+        "triggered_by": [
+          "SAR"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 18.259700775146484,
+        "R_anchoring_mean_points": 14.014599800109863,
+        "added_lap_for_r": 33,
+        "computable": true,
+        "r_pool_count": 2852,
+        "trigger_lap": 32,
+        "triggered_by": [
+          "GAS",
+          "STR"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 18.259700775146484,
+        "R_anchoring_mean_points": 14.748499870300293,
+        "added_lap_for_r": 34,
+        "computable": true,
+        "r_pool_count": 4712,
+        "trigger_lap": 33,
+        "triggered_by": [
+          "ALB",
+          "BOT",
+          "DEV",
+          "HUL",
+          "LEC",
+          "TSU"
+        ]
+      }
+    ],
+    "context": {
+      "caution_lap_count": 125,
+      "completed_full_distance": true,
+      "observed_final_position": 2,
+      "race_length_laps": 52,
+      "subject_max_lap": 52,
+      "used_wet_or_intermediate": false
+    },
     "race": {
       "archetype": "Power",
       "event_name": "British Grand Prix",
@@ -165,8 +634,8 @@
     "subject_driver": "NOR"
   },
   {
-    "B_unconditioned_first_pit_lap": 22,
-    "B_unconditioned_mean_points": 24.15999984741211,
+    "B_unconditioned_first_pit_lap": 13,
+    "B_unconditioned_mean_points": 24.15019989013672,
     "B_unconditioned_strategy": {
       "baseline_pace_s": 81.42599999999999,
       "event_name": "Italian Grand Prix",
@@ -174,14 +643,14 @@
       "starting_compound": "MEDIUM",
       "stops": [
         [
-          22,
+          13,
           "SOFT"
         ]
       ],
       "year": 2024
     },
-    "R_SC_static_prior_first_pit_lap": 10,
-    "R_SC_static_prior_mean_points": 24.60333251953125,
+    "R_SC_static_prior_first_pit_lap": 7,
+    "R_SC_static_prior_mean_points": 24.647899627685547,
     "R_SC_static_prior_strategy": {
       "baseline_pace_s": 81.42599999999999,
       "event_name": "Italian Grand Prix",
@@ -189,14 +658,14 @@
       "starting_compound": "MEDIUM",
       "stops": [
         [
-          10,
+          7,
           "SOFT"
         ]
       ],
       "year": 2024
     },
     "X_actual_first_pit_lap": 17,
-    "X_actual_mean_points": 18.826666666666668,
+    "X_actual_mean_points": 18.571300506591797,
     "X_actual_strategy": {
       "baseline_pace_s": 81.42599999999999,
       "event_name": "Italian Grand Prix",
@@ -210,6 +679,173 @@
       ],
       "year": 2024
     },
+    "anchoring_pairs": [
+      {
+        "B_anchoring_mean_points": 24.15019989013672,
+        "R_anchoring_mean_points": 24.112199783325195,
+        "added_lap_for_r": 7,
+        "computable": true,
+        "r_pool_count": 5456,
+        "trigger_lap": 6,
+        "triggered_by": [
+          "HUL"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 24.15019989013672,
+        "R_anchoring_mean_points": 24.129899978637695,
+        "added_lap_for_r": 12,
+        "computable": true,
+        "r_pool_count": 2852,
+        "trigger_lap": 11,
+        "triggered_by": [
+          "GAS"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 24.15019989013672,
+        "R_anchoring_mean_points": 24.15019989013672,
+        "added_lap_for_r": 13,
+        "computable": true,
+        "r_pool_count": 4712,
+        "trigger_lap": 12,
+        "triggered_by": [
+          "RIC",
+          "RUS"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 24.15019989013672,
+        "R_anchoring_mean_points": 24.133399963378906,
+        "added_lap_for_r": 14,
+        "computable": true,
+        "r_pool_count": 2852,
+        "trigger_lap": 13,
+        "triggered_by": [
+          "ALO"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 24.15019989013672,
+        "R_anchoring_mean_points": 24.124300003051758,
+        "added_lap_for_r": 16,
+        "computable": true,
+        "r_pool_count": 5084,
+        "trigger_lap": 15,
+        "triggered_by": [
+          "MAG"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 24.15019989013672,
+        "R_anchoring_mean_points": 24.13479995727539,
+        "added_lap_for_r": 17,
+        "computable": true,
+        "r_pool_count": 2852,
+        "trigger_lap": 16,
+        "triggered_by": [
+          "HAM",
+          "LEC",
+          "ZHO"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 24.15019989013672,
+        "R_anchoring_mean_points": 24.108200073242188,
+        "added_lap_for_r": 19,
+        "computable": true,
+        "r_pool_count": 5456,
+        "trigger_lap": 18,
+        "triggered_by": [
+          "ALB"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 24.15019989013672,
+        "R_anchoring_mean_points": 24.116600036621094,
+        "added_lap_for_r": 21,
+        "computable": true,
+        "r_pool_count": 2852,
+        "trigger_lap": 20,
+        "triggered_by": [
+          "SAI"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 24.15019989013672,
+        "R_anchoring_mean_points": 19.42919921875,
+        "added_lap_for_r": 33,
+        "computable": true,
+        "r_pool_count": 2852,
+        "trigger_lap": 32,
+        "triggered_by": [
+          "OCO"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 24.15019989013672,
+        "R_anchoring_mean_points": 19.374500274658203,
+        "added_lap_for_r": 35,
+        "computable": true,
+        "r_pool_count": 2852,
+        "trigger_lap": 34,
+        "triggered_by": [
+          "BOT"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 24.15019989013672,
+        "R_anchoring_mean_points": 19.439699172973633,
+        "added_lap_for_r": 37,
+        "computable": true,
+        "r_pool_count": 5084,
+        "trigger_lap": 36,
+        "triggered_by": [
+          "PER"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 24.15019989013672,
+        "R_anchoring_mean_points": 19.38759994506836,
+        "added_lap_for_r": 38,
+        "computable": true,
+        "r_pool_count": 2852,
+        "trigger_lap": 37,
+        "triggered_by": [
+          "STR"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 24.15019989013672,
+        "R_anchoring_mean_points": 19.38010025024414,
+        "added_lap_for_r": 43,
+        "computable": true,
+        "r_pool_count": 5456,
+        "trigger_lap": 42,
+        "triggered_by": [
+          "VER"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 24.15019989013672,
+        "R_anchoring_mean_points": NaN,
+        "added_lap_for_r": 52,
+        "computable": false,
+        "r_pool_count": 0,
+        "trigger_lap": 51,
+        "triggered_by": [
+          "STR"
+        ]
+      }
+    ],
+    "context": {
+      "caution_lap_count": 0,
+      "completed_full_distance": true,
+      "observed_final_position": 2,
+      "race_length_laps": 53,
+      "subject_max_lap": 53,
+      "used_wet_or_intermediate": false
+    },
     "race": {
       "archetype": "Power",
       "event_name": "Italian Grand Prix",
@@ -221,7 +857,7 @@
   },
   {
     "B_unconditioned_first_pit_lap": 13,
-    "B_unconditioned_mean_points": 16.013334274291992,
+    "B_unconditioned_mean_points": 16.156600952148438,
     "B_unconditioned_strategy": {
       "baseline_pace_s": 105.841,
       "event_name": "Azerbaijan Grand Prix",
@@ -236,7 +872,7 @@
       "year": 2024
     },
     "R_SC_static_prior_first_pit_lap": 13,
-    "R_SC_static_prior_mean_points": 15.90666675567627,
+    "R_SC_static_prior_mean_points": 15.756500244140625,
     "R_SC_static_prior_strategy": {
       "baseline_pace_s": 105.841,
       "event_name": "Azerbaijan Grand Prix",
@@ -251,7 +887,7 @@
       "year": 2024
     },
     "X_actual_first_pit_lap": 16,
-    "X_actual_mean_points": 13.633333333333333,
+    "X_actual_mean_points": 13.563799858093262,
     "X_actual_strategy": {
       "baseline_pace_s": 105.841,
       "event_name": "Azerbaijan Grand Prix",
@@ -265,6 +901,143 @@
       ],
       "year": 2024
     },
+    "anchoring_pairs": [
+      {
+        "B_anchoring_mean_points": 16.362199783325195,
+        "R_anchoring_mean_points": 15.115500450134277,
+        "added_lap_for_r": 3,
+        "computable": true,
+        "r_pool_count": 2852,
+        "trigger_lap": 2,
+        "triggered_by": [
+          "STR"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 16.362199783325195,
+        "R_anchoring_mean_points": 15.60319995880127,
+        "added_lap_for_r": 12,
+        "computable": true,
+        "r_pool_count": 2852,
+        "trigger_lap": 11,
+        "triggered_by": [
+          "COL"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 16.362199783325195,
+        "R_anchoring_mean_points": 16.156600952148438,
+        "added_lap_for_r": 13,
+        "computable": true,
+        "r_pool_count": 4712,
+        "trigger_lap": 12,
+        "triggered_by": [
+          "ALO",
+          "BOT"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 16.362199783325195,
+        "R_anchoring_mean_points": 16.362199783325195,
+        "added_lap_for_r": 14,
+        "computable": true,
+        "r_pool_count": 2852,
+        "trigger_lap": 13,
+        "triggered_by": [
+          "HAM",
+          "RUS",
+          "TSU",
+          "VER"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 16.362199783325195,
+        "R_anchoring_mean_points": 15.447999954223633,
+        "added_lap_for_r": 15,
+        "computable": true,
+        "r_pool_count": 2852,
+        "trigger_lap": 14,
+        "triggered_by": [
+          "PER"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 16.362199783325195,
+        "R_anchoring_mean_points": 15.53380012512207,
+        "added_lap_for_r": 16,
+        "computable": true,
+        "r_pool_count": 5084,
+        "trigger_lap": 15,
+        "triggered_by": [
+          "BEA"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 16.362199783325195,
+        "R_anchoring_mean_points": 14.27299976348877,
+        "added_lap_for_r": 18,
+        "computable": true,
+        "r_pool_count": 2852,
+        "trigger_lap": 17,
+        "triggered_by": [
+          "LEC"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 16.362199783325195,
+        "R_anchoring_mean_points": 15.014599800109863,
+        "added_lap_for_r": 19,
+        "computable": true,
+        "r_pool_count": 5084,
+        "trigger_lap": 18,
+        "triggered_by": [
+          "SAI"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 16.362199783325195,
+        "R_anchoring_mean_points": 13.08080005645752,
+        "added_lap_for_r": 33,
+        "computable": true,
+        "r_pool_count": 2852,
+        "trigger_lap": 32,
+        "triggered_by": [
+          "ALB"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 16.362199783325195,
+        "R_anchoring_mean_points": 13.274100303649902,
+        "added_lap_for_r": 36,
+        "computable": true,
+        "r_pool_count": 2852,
+        "trigger_lap": 35,
+        "triggered_by": [
+          "ZHO"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 16.362199783325195,
+        "R_anchoring_mean_points": NaN,
+        "added_lap_for_r": 51,
+        "computable": false,
+        "r_pool_count": 0,
+        "trigger_lap": 50,
+        "triggered_by": [
+          "OCO",
+          "RIC",
+          "VER"
+        ]
+      }
+    ],
+    "context": {
+      "caution_lap_count": 62,
+      "completed_full_distance": true,
+      "observed_final_position": 1,
+      "race_length_laps": 51,
+      "subject_max_lap": 51,
+      "used_wet_or_intermediate": false
+    },
     "race": {
       "archetype": "Street",
       "event_name": "Azerbaijan Grand Prix",
@@ -275,7 +1048,7 @@
     "subject_driver": "PIA"
   },
   {
-    "B_unconditioned_first_pit_lap": 10,
+    "B_unconditioned_first_pit_lap": 16,
     "B_unconditioned_mean_points": 25.0,
     "B_unconditioned_strategy": {
       "baseline_pace_s": 89.8485,
@@ -284,13 +1057,13 @@
       "starting_compound": "MEDIUM",
       "stops": [
         [
-          10,
+          16,
           "SOFT"
         ]
       ],
       "year": 2024
     },
-    "R_SC_static_prior_first_pit_lap": 7,
+    "R_SC_static_prior_first_pit_lap": 13,
     "R_SC_static_prior_mean_points": 25.0,
     "R_SC_static_prior_strategy": {
       "baseline_pace_s": 89.8485,
@@ -299,14 +1072,14 @@
       "starting_compound": "MEDIUM",
       "stops": [
         [
-          7,
+          13,
           "SOFT"
         ]
       ],
       "year": 2024
     },
     "X_actual_first_pit_lap": 30,
-    "X_actual_mean_points": 23.78,
+    "X_actual_mean_points": 23.595600128173828,
     "X_actual_strategy": {
       "baseline_pace_s": 89.8485,
       "event_name": "Miami Grand Prix",
@@ -320,6 +1093,158 @@
       ],
       "year": 2024
     },
+    "anchoring_pairs": [
+      {
+        "B_anchoring_mean_points": 25.0,
+        "R_anchoring_mean_points": 24.999000549316406,
+        "added_lap_for_r": 12,
+        "computable": true,
+        "r_pool_count": 3674,
+        "trigger_lap": 11,
+        "triggered_by": [
+          "ALB"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 25.0,
+        "R_anchoring_mean_points": 24.999000549316406,
+        "added_lap_for_r": 13,
+        "computable": true,
+        "r_pool_count": 5794,
+        "trigger_lap": 12,
+        "triggered_by": [
+          "BOT",
+          "SAR",
+          "STR"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 25.0,
+        "R_anchoring_mean_points": 25.0,
+        "added_lap_for_r": 14,
+        "computable": true,
+        "r_pool_count": 3674,
+        "trigger_lap": 13,
+        "triggered_by": [
+          "GAS",
+          "HUL"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 25.0,
+        "R_anchoring_mean_points": 25.0,
+        "added_lap_for_r": 19,
+        "computable": true,
+        "r_pool_count": 6642,
+        "trigger_lap": 18,
+        "triggered_by": [
+          "PER"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 25.0,
+        "R_anchoring_mean_points": 24.999300003051758,
+        "added_lap_for_r": 21,
+        "computable": true,
+        "r_pool_count": 3674,
+        "trigger_lap": 20,
+        "triggered_by": [
+          "LEC"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 25.0,
+        "R_anchoring_mean_points": 24.997900009155273,
+        "added_lap_for_r": 24,
+        "computable": true,
+        "r_pool_count": 3674,
+        "trigger_lap": 23,
+        "triggered_by": [
+          "ALO",
+          "MAG",
+          "OCO"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 25.0,
+        "R_anchoring_mean_points": 24.98740005493164,
+        "added_lap_for_r": 25,
+        "computable": true,
+        "r_pool_count": 5794,
+        "trigger_lap": 24,
+        "triggered_by": [
+          "VER"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 25.0,
+        "R_anchoring_mean_points": 24.92690086364746,
+        "added_lap_for_r": 26,
+        "computable": true,
+        "r_pool_count": 3674,
+        "trigger_lap": 25,
+        "triggered_by": [
+          "RUS"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 25.0,
+        "R_anchoring_mean_points": 24.436399459838867,
+        "added_lap_for_r": 28,
+        "computable": true,
+        "r_pool_count": 6218,
+        "trigger_lap": 27,
+        "triggered_by": [
+          "HAM"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 25.0,
+        "R_anchoring_mean_points": 24.259700775146484,
+        "added_lap_for_r": 29,
+        "computable": true,
+        "r_pool_count": 3674,
+        "trigger_lap": 28,
+        "triggered_by": [
+          "SAI"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 25.0,
+        "R_anchoring_mean_points": 24.085100173950195,
+        "added_lap_for_r": 30,
+        "computable": true,
+        "r_pool_count": 3674,
+        "trigger_lap": 29,
+        "triggered_by": [
+          "HUL",
+          "PER",
+          "RIC",
+          "STR",
+          "TSU",
+          "ZHO"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 25.0,
+        "R_anchoring_mean_points": 19.379100799560547,
+        "added_lap_for_r": 55,
+        "computable": true,
+        "r_pool_count": 6642,
+        "trigger_lap": 54,
+        "triggered_by": [
+          "ALB"
+        ]
+      }
+    ],
+    "context": {
+      "caution_lap_count": 129,
+      "completed_full_distance": true,
+      "observed_final_position": 1,
+      "race_length_laps": 57,
+      "subject_max_lap": 57,
+      "used_wet_or_intermediate": false
+    },
     "race": {
       "archetype": "Street",
       "event_name": "Miami Grand Prix",
@@ -331,7 +1256,7 @@
   },
   {
     "B_unconditioned_first_pit_lap": 55,
-    "B_unconditioned_mean_points": 21.969999313354492,
+    "B_unconditioned_mean_points": 21.878400802612305,
     "B_unconditioned_strategy": {
       "baseline_pace_s": 75.572,
       "event_name": "Monaco Grand Prix",
@@ -346,7 +1271,7 @@
       "year": 2023
     },
     "R_SC_static_prior_first_pit_lap": 55,
-    "R_SC_static_prior_mean_points": 21.16666603088379,
+    "R_SC_static_prior_mean_points": 21.020099639892578,
     "R_SC_static_prior_strategy": {
       "baseline_pace_s": 75.572,
       "event_name": "Monaco Grand Prix",
@@ -361,7 +1286,7 @@
       "year": 2023
     },
     "X_actual_first_pit_lap": 55,
-    "X_actual_mean_points": 14.29,
+    "X_actual_mean_points": 14.277999877929688,
     "X_actual_strategy": {
       "baseline_pace_s": 75.572,
       "event_name": "Monaco Grand Prix",
@@ -379,6 +1304,220 @@
       ],
       "year": 2023
     },
+    "anchoring_pairs": [
+      {
+        "B_anchoring_mean_points": 22.54199981689453,
+        "R_anchoring_mean_points": 13.262299537658691,
+        "added_lap_for_r": 3,
+        "computable": true,
+        "r_pool_count": 7671,
+        "trigger_lap": 2,
+        "triggered_by": [
+          "HUL",
+          "PER",
+          "ZHO"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 22.54199981689453,
+        "R_anchoring_mean_points": 19.340999603271484,
+        "added_lap_for_r": 20,
+        "computable": true,
+        "r_pool_count": 7671,
+        "trigger_lap": 19,
+        "triggered_by": [
+          "ALB"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 22.54199981689453,
+        "R_anchoring_mean_points": 19.910600662231445,
+        "added_lap_for_r": 22,
+        "computable": true,
+        "r_pool_count": 13341,
+        "trigger_lap": 21,
+        "triggered_by": [
+          "SAR"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 22.54199981689453,
+        "R_anchoring_mean_points": 20.5856990814209,
+        "added_lap_for_r": 25,
+        "computable": true,
+        "r_pool_count": 13341,
+        "trigger_lap": 24,
+        "triggered_by": [
+          "SAR"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 22.54199981689453,
+        "R_anchoring_mean_points": 22.081199645996094,
+        "added_lap_for_r": 33,
+        "computable": true,
+        "r_pool_count": 7671,
+        "trigger_lap": 32,
+        "triggered_by": [
+          "HAM"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 22.54199981689453,
+        "R_anchoring_mean_points": 22.54199981689453,
+        "added_lap_for_r": 34,
+        "computable": true,
+        "r_pool_count": 12081,
+        "trigger_lap": 33,
+        "triggered_by": [
+          "OCO"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 22.54199981689453,
+        "R_anchoring_mean_points": 22.048099517822266,
+        "added_lap_for_r": 35,
+        "computable": true,
+        "r_pool_count": 7671,
+        "trigger_lap": 34,
+        "triggered_by": [
+          "SAI"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 22.54199981689453,
+        "R_anchoring_mean_points": 22.081100463867188,
+        "added_lap_for_r": 36,
+        "computable": true,
+        "r_pool_count": 7671,
+        "trigger_lap": 35,
+        "triggered_by": [
+          "PER"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 22.54199981689453,
+        "R_anchoring_mean_points": 21.65180015563965,
+        "added_lap_for_r": 46,
+        "computable": true,
+        "r_pool_count": 13341,
+        "trigger_lap": 45,
+        "triggered_by": [
+          "LEC"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 22.54199981689453,
+        "R_anchoring_mean_points": 21.284500122070312,
+        "added_lap_for_r": 49,
+        "computable": true,
+        "r_pool_count": 13341,
+        "trigger_lap": 48,
+        "triggered_by": [
+          "GAS"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 22.54199981689453,
+        "R_anchoring_mean_points": 20.67060089111328,
+        "added_lap_for_r": 52,
+        "computable": true,
+        "r_pool_count": 12711,
+        "trigger_lap": 51,
+        "triggered_by": [
+          "NOR"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 22.54199981689453,
+        "R_anchoring_mean_points": 20.451099395751953,
+        "added_lap_for_r": 53,
+        "computable": true,
+        "r_pool_count": 7671,
+        "trigger_lap": 52,
+        "triggered_by": [
+          "BOT"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 22.54199981689453,
+        "R_anchoring_mean_points": 21.31290054321289,
+        "added_lap_for_r": 54,
+        "computable": true,
+        "r_pool_count": 7671,
+        "trigger_lap": 53,
+        "triggered_by": [
+          "ALB",
+          "SAR",
+          "ZHO"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 22.54199981689453,
+        "R_anchoring_mean_points": 22.15290069580078,
+        "added_lap_for_r": 55,
+        "computable": true,
+        "r_pool_count": 12711,
+        "trigger_lap": 54,
+        "triggered_by": [
+          "DEV",
+          "PER",
+          "TSU"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 22.54199981689453,
+        "R_anchoring_mean_points": 20.90850067138672,
+        "added_lap_for_r": 58,
+        "computable": true,
+        "r_pool_count": 12711,
+        "trigger_lap": 57,
+        "triggered_by": [
+          "MAG"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 22.54199981689453,
+        "R_anchoring_mean_points": 19.390399932861328,
+        "added_lap_for_r": 59,
+        "computable": true,
+        "r_pool_count": 7671,
+        "trigger_lap": 58,
+        "triggered_by": [
+          "PER"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 22.54199981689453,
+        "R_anchoring_mean_points": 18.49880027770996,
+        "added_lap_for_r": 61,
+        "computable": true,
+        "r_pool_count": 13341,
+        "trigger_lap": 60,
+        "triggered_by": [
+          "HUL"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 22.54199981689453,
+        "R_anchoring_mean_points": 14.323599815368652,
+        "added_lap_for_r": 72,
+        "computable": true,
+        "r_pool_count": 7671,
+        "trigger_lap": 71,
+        "triggered_by": [
+          "PER"
+        ]
+      }
+    ],
+    "context": {
+      "caution_lap_count": 163,
+      "completed_full_distance": true,
+      "observed_final_position": 2,
+      "race_length_laps": 78,
+      "subject_max_lap": 78,
+      "used_wet_or_intermediate": false
+    },
     "race": {
       "archetype": "Street",
       "event_name": "Monaco Grand Prix",
@@ -389,28 +1528,9 @@
     "subject_driver": "ALO"
   },
   {
-    "B_unconditioned_first_pit_lap": 37,
-    "B_unconditioned_mean_points": 1.090000033378601,
+    "B_unconditioned_first_pit_lap": 46,
+    "B_unconditioned_mean_points": 1.0565999746322632,
     "B_unconditioned_strategy": {
-      "baseline_pace_s": 116.533,
-      "event_name": "Singapore Grand Prix",
-      "round": 17,
-      "starting_compound": "INTERMEDIATE",
-      "stops": [
-        [
-          37,
-          "SOFT"
-        ],
-        [
-          46,
-          "MEDIUM"
-        ]
-      ],
-      "year": 2022
-    },
-    "R_SC_static_prior_first_pit_lap": 46,
-    "R_SC_static_prior_mean_points": 0.8899999856948853,
-    "R_SC_static_prior_strategy": {
       "baseline_pace_s": 116.533,
       "event_name": "Singapore Grand Prix",
       "round": 17,
@@ -427,8 +1547,27 @@
       ],
       "year": 2022
     },
+    "R_SC_static_prior_first_pit_lap": 52,
+    "R_SC_static_prior_mean_points": 0.8191999793052673,
+    "R_SC_static_prior_strategy": {
+      "baseline_pace_s": 116.533,
+      "event_name": "Singapore Grand Prix",
+      "round": 17,
+      "starting_compound": "INTERMEDIATE",
+      "stops": [
+        [
+          52,
+          "HARD"
+        ],
+        [
+          55,
+          "SOFT"
+        ]
+      ],
+      "year": 2022
+    },
     "X_actual_first_pit_lap": 37,
-    "X_actual_mean_points": 2.966666666666667,
+    "X_actual_mean_points": 2.8496999740600586,
     "X_actual_strategy": {
       "baseline_pace_s": 116.533,
       "event_name": "Singapore Grand Prix",
@@ -442,6 +1581,92 @@
       ],
       "year": 2022
     },
+    "anchoring_pairs": [
+      {
+        "B_anchoring_mean_points": 7.969099998474121,
+        "R_anchoring_mean_points": 2.8954999446868896,
+        "added_lap_for_r": 23,
+        "computable": true,
+        "r_pool_count": 4296,
+        "trigger_lap": 22,
+        "triggered_by": [
+          "RUS"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 7.969099998474121,
+        "R_anchoring_mean_points": 3.3689000606536865,
+        "added_lap_for_r": 35,
+        "computable": true,
+        "r_pool_count": 4296,
+        "trigger_lap": 34,
+        "triggered_by": [
+          "BOT",
+          "GAS",
+          "MAG",
+          "TSU"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 7.969099998474121,
+        "R_anchoring_mean_points": 3.7651000022888184,
+        "added_lap_for_r": 36,
+        "computable": true,
+        "r_pool_count": 4296,
+        "trigger_lap": 35,
+        "triggered_by": [
+          "HAM",
+          "LEC",
+          "MSC",
+          "VET"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 7.969099998474121,
+        "R_anchoring_mean_points": 4.167600154876709,
+        "added_lap_for_r": 37,
+        "computable": true,
+        "r_pool_count": 5700,
+        "trigger_lap": 36,
+        "triggered_by": [
+          "PER",
+          "SAI",
+          "STR",
+          "VER"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 7.969099998474121,
+        "R_anchoring_mean_points": 6.420199871063232,
+        "added_lap_for_r": 42,
+        "computable": true,
+        "r_pool_count": 4296,
+        "trigger_lap": 41,
+        "triggered_by": [
+          "VER"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 7.969099998474121,
+        "R_anchoring_mean_points": 6.7982001304626465,
+        "added_lap_for_r": 43,
+        "computable": true,
+        "r_pool_count": 5700,
+        "trigger_lap": 42,
+        "triggered_by": [
+          "MSC",
+          "RUS"
+        ]
+      }
+    ],
+    "context": {
+      "caution_lap_count": 297,
+      "completed_full_distance": true,
+      "observed_final_position": 4,
+      "race_length_laps": 59,
+      "subject_max_lap": 59,
+      "used_wet_or_intermediate": false
+    },
     "race": {
       "archetype": "Street",
       "event_name": "Singapore Grand Prix",
@@ -453,7 +1678,7 @@
   },
   {
     "B_unconditioned_first_pit_lap": 13,
-    "B_unconditioned_mean_points": 5.699999809265137,
+    "B_unconditioned_mean_points": 5.6682000160217285,
     "B_unconditioned_strategy": {
       "baseline_pace_s": 88.883,
       "event_name": "Abu Dhabi Grand Prix",
@@ -468,7 +1693,7 @@
       "year": 2022
     },
     "R_SC_static_prior_first_pit_lap": 13,
-    "R_SC_static_prior_mean_points": 5.613333225250244,
+    "R_SC_static_prior_mean_points": 5.662799835205078,
     "R_SC_static_prior_strategy": {
       "baseline_pace_s": 88.883,
       "event_name": "Abu Dhabi Grand Prix",
@@ -483,7 +1708,7 @@
       "year": 2022
     },
     "X_actual_first_pit_lap": 16,
-    "X_actual_mean_points": 3.6466666666666665,
+    "X_actual_mean_points": 3.486599922180176,
     "X_actual_strategy": {
       "baseline_pace_s": 88.883,
       "event_name": "Abu Dhabi Grand Prix",
@@ -501,6 +1726,185 @@
       ],
       "year": 2022
     },
+    "anchoring_pairs": [
+      {
+        "B_anchoring_mean_points": 5.9120001792907715,
+        "R_anchoring_mean_points": 5.9120001792907715,
+        "added_lap_for_r": 14,
+        "computable": true,
+        "r_pool_count": 3674,
+        "trigger_lap": 13,
+        "triggered_by": [
+          "ALB"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 5.9120001792907715,
+        "R_anchoring_mean_points": 5.833199977874756,
+        "added_lap_for_r": 15,
+        "computable": true,
+        "r_pool_count": 3674,
+        "trigger_lap": 14,
+        "triggered_by": [
+          "STR"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 5.9120001792907715,
+        "R_anchoring_mean_points": 4.462800025939941,
+        "added_lap_for_r": 16,
+        "computable": true,
+        "r_pool_count": 7490,
+        "trigger_lap": 15,
+        "triggered_by": [
+          "GAS",
+          "MSC",
+          "OCO",
+          "TSU"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 5.9120001792907715,
+        "R_anchoring_mean_points": 4.512800216674805,
+        "added_lap_for_r": 19,
+        "computable": true,
+        "r_pool_count": 7490,
+        "trigger_lap": 18,
+        "triggered_by": [
+          "SAI"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 5.9120001792907715,
+        "R_anchoring_mean_points": 4.523399829864502,
+        "added_lap_for_r": 20,
+        "computable": true,
+        "r_pool_count": 3674,
+        "trigger_lap": 19,
+        "triggered_by": [
+          "HAM"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 5.9120001792907715,
+        "R_anchoring_mean_points": 4.42080020904541,
+        "added_lap_for_r": 21,
+        "computable": true,
+        "r_pool_count": 3674,
+        "trigger_lap": 20,
+        "triggered_by": [
+          "ALO"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 5.9120001792907715,
+        "R_anchoring_mean_points": 4.462800025939941,
+        "added_lap_for_r": 27,
+        "computable": true,
+        "r_pool_count": 3674,
+        "trigger_lap": 26,
+        "triggered_by": [
+          "VET"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 5.9120001792907715,
+        "R_anchoring_mean_points": 4.465199947357178,
+        "added_lap_for_r": 30,
+        "computable": true,
+        "r_pool_count": 3674,
+        "trigger_lap": 29,
+        "triggered_by": [
+          "MAG"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 5.9120001792907715,
+        "R_anchoring_mean_points": 4.512700080871582,
+        "added_lap_for_r": 32,
+        "computable": true,
+        "r_pool_count": 3674,
+        "trigger_lap": 31,
+        "triggered_by": [
+          "BOT"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 5.9120001792907715,
+        "R_anchoring_mean_points": 4.486299991607666,
+        "added_lap_for_r": 36,
+        "computable": true,
+        "r_pool_count": 3674,
+        "trigger_lap": 35,
+        "triggered_by": [
+          "MSC"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 5.9120001792907715,
+        "R_anchoring_mean_points": 4.505199909210205,
+        "added_lap_for_r": 37,
+        "computable": true,
+        "r_pool_count": 7490,
+        "trigger_lap": 36,
+        "triggered_by": [
+          "ALB"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 5.9120001792907715,
+        "R_anchoring_mean_points": 4.494200229644775,
+        "added_lap_for_r": 40,
+        "computable": true,
+        "r_pool_count": 7490,
+        "trigger_lap": 39,
+        "triggered_by": [
+          "LAT",
+          "TSU"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 5.9120001792907715,
+        "R_anchoring_mean_points": 4.534599781036377,
+        "added_lap_for_r": 41,
+        "computable": true,
+        "r_pool_count": 3674,
+        "trigger_lap": 40,
+        "triggered_by": [
+          "RUS"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 5.9120001792907715,
+        "R_anchoring_mean_points": 4.506499767303467,
+        "added_lap_for_r": 42,
+        "computable": true,
+        "r_pool_count": 3674,
+        "trigger_lap": 41,
+        "triggered_by": [
+          "STR"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 5.9120001792907715,
+        "R_anchoring_mean_points": 4.444399833679199,
+        "added_lap_for_r": 46,
+        "computable": true,
+        "r_pool_count": 7914,
+        "trigger_lap": 45,
+        "triggered_by": [
+          "ZHO"
+        ]
+      }
+    ],
+    "context": {
+      "caution_lap_count": 19,
+      "completed_full_distance": true,
+      "observed_final_position": 6,
+      "race_length_laps": 58,
+      "subject_max_lap": 58,
+      "used_wet_or_intermediate": false
+    },
     "race": {
       "archetype": "Technical",
       "event_name": "Abu Dhabi Grand Prix",
@@ -511,8 +1915,8 @@
     "subject_driver": "NOR"
   },
   {
-    "B_unconditioned_first_pit_lap": 4,
-    "B_unconditioned_mean_points": 6.793333530426025,
+    "B_unconditioned_first_pit_lap": 7,
+    "B_unconditioned_mean_points": 6.837900161743164,
     "B_unconditioned_strategy": {
       "baseline_pace_s": 82.48599999999999,
       "event_name": "Hungarian Grand Prix",
@@ -520,7 +1924,7 @@
       "starting_compound": "SOFT",
       "stops": [
         [
-          4,
+          7,
           "HARD"
         ],
         [
@@ -531,7 +1935,7 @@
       "year": 2022
     },
     "R_SC_static_prior_first_pit_lap": 13,
-    "R_SC_static_prior_mean_points": 7.233333110809326,
+    "R_SC_static_prior_mean_points": 7.134099960327148,
     "R_SC_static_prior_strategy": {
       "baseline_pace_s": 82.48599999999999,
       "event_name": "Hungarian Grand Prix",
@@ -546,7 +1950,7 @@
       "year": 2022
     },
     "X_actual_first_pit_lap": 15,
-    "X_actual_mean_points": 6.006666666666667,
+    "X_actual_mean_points": 6.03439998626709,
     "X_actual_strategy": {
       "baseline_pace_s": 82.48599999999999,
       "event_name": "Hungarian Grand Prix",
@@ -564,6 +1968,230 @@
       ],
       "year": 2022
     },
+    "anchoring_pairs": [
+      {
+        "B_anchoring_mean_points": 6.936999797821045,
+        "R_anchoring_mean_points": 6.859600067138672,
+        "added_lap_for_r": 4,
+        "computable": true,
+        "r_pool_count": 11966,
+        "trigger_lap": 3,
+        "triggered_by": [
+          "ALB"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 6.936999797821045,
+        "R_anchoring_mean_points": 6.7932000160217285,
+        "added_lap_for_r": 8,
+        "computable": true,
+        "r_pool_count": 5630,
+        "trigger_lap": 7,
+        "triggered_by": [
+          "MAG"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 6.936999797821045,
+        "R_anchoring_mean_points": 6.588099956512451,
+        "added_lap_for_r": 15,
+        "computable": true,
+        "r_pool_count": 5630,
+        "trigger_lap": 14,
+        "triggered_by": [
+          "TSU"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 6.936999797821045,
+        "R_anchoring_mean_points": 6.327000141143799,
+        "added_lap_for_r": 17,
+        "computable": true,
+        "r_pool_count": 5630,
+        "trigger_lap": 16,
+        "triggered_by": [
+          "VET"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 6.936999797821045,
+        "R_anchoring_mean_points": 6.450799942016602,
+        "added_lap_for_r": 18,
+        "computable": true,
+        "r_pool_count": 5630,
+        "trigger_lap": 17,
+        "triggered_by": [
+          "GAS",
+          "RUS",
+          "VER"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 6.936999797821045,
+        "R_anchoring_mean_points": 6.3653998374938965,
+        "added_lap_for_r": 20,
+        "computable": true,
+        "r_pool_count": 5630,
+        "trigger_lap": 19,
+        "triggered_by": [
+          "PER"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 6.936999797821045,
+        "R_anchoring_mean_points": 6.466000080108643,
+        "added_lap_for_r": 23,
+        "computable": true,
+        "r_pool_count": 5630,
+        "trigger_lap": 22,
+        "triggered_by": [
+          "ALO",
+          "MSC"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 6.936999797821045,
+        "R_anchoring_mean_points": 6.480400085449219,
+        "added_lap_for_r": 25,
+        "computable": true,
+        "r_pool_count": 11966,
+        "trigger_lap": 24,
+        "triggered_by": [
+          "OCO"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 6.936999797821045,
+        "R_anchoring_mean_points": 6.556300163269043,
+        "added_lap_for_r": 28,
+        "computable": true,
+        "r_pool_count": 11438,
+        "trigger_lap": 27,
+        "triggered_by": [
+          "BOT"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 6.936999797821045,
+        "R_anchoring_mean_points": 6.570400238037109,
+        "added_lap_for_r": 29,
+        "computable": true,
+        "r_pool_count": 5630,
+        "trigger_lap": 28,
+        "triggered_by": [
+          "ZHO"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 6.936999797821045,
+        "R_anchoring_mean_points": 6.623899936676025,
+        "added_lap_for_r": 35,
+        "computable": true,
+        "r_pool_count": 5630,
+        "trigger_lap": 34,
+        "triggered_by": [
+          "TSU"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 6.936999797821045,
+        "R_anchoring_mean_points": 6.64769983291626,
+        "added_lap_for_r": 37,
+        "computable": true,
+        "r_pool_count": 11966,
+        "trigger_lap": 36,
+        "triggered_by": [
+          "MAG"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 6.936999797821045,
+        "R_anchoring_mean_points": 6.936999797821045,
+        "added_lap_for_r": 41,
+        "computable": true,
+        "r_pool_count": 5630,
+        "trigger_lap": 40,
+        "triggered_by": [
+          "LAT",
+          "LEC"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 6.936999797821045,
+        "R_anchoring_mean_points": 6.793499946594238,
+        "added_lap_for_r": 42,
+        "computable": true,
+        "r_pool_count": 5630,
+        "trigger_lap": 41,
+        "triggered_by": [
+          "ALB"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 6.936999797821045,
+        "R_anchoring_mean_points": 6.61899995803833,
+        "added_lap_for_r": 43,
+        "computable": true,
+        "r_pool_count": 11438,
+        "trigger_lap": 42,
+        "triggered_by": [
+          "MSC"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 6.936999797821045,
+        "R_anchoring_mean_points": 6.543799877166748,
+        "added_lap_for_r": 48,
+        "computable": true,
+        "r_pool_count": 5630,
+        "trigger_lap": 47,
+        "triggered_by": [
+          "GAS",
+          "STR"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 6.936999797821045,
+        "R_anchoring_mean_points": 6.566199779510498,
+        "added_lap_for_r": 49,
+        "computable": true,
+        "r_pool_count": 11438,
+        "trigger_lap": 48,
+        "triggered_by": [
+          "SAI"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 6.936999797821045,
+        "R_anchoring_mean_points": 6.390100002288818,
+        "added_lap_for_r": 56,
+        "computable": true,
+        "r_pool_count": 5630,
+        "trigger_lap": 55,
+        "triggered_by": [
+          "LEC"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 6.936999797821045,
+        "R_anchoring_mean_points": NaN,
+        "added_lap_for_r": 69,
+        "computable": false,
+        "r_pool_count": 0,
+        "trigger_lap": 68,
+        "triggered_by": [
+          "MAG"
+        ]
+      }
+    ],
+    "context": {
+      "caution_lap_count": 166,
+      "completed_full_distance": true,
+      "observed_final_position": 7,
+      "race_length_laps": 70,
+      "subject_max_lap": 70,
+      "used_wet_or_intermediate": false
+    },
     "race": {
       "archetype": "Technical",
       "event_name": "Hungarian Grand Prix",
@@ -575,7 +2203,7 @@
   },
   {
     "B_unconditioned_first_pit_lap": 22,
-    "B_unconditioned_mean_points": 1.90666663646698,
+    "B_unconditioned_mean_points": 1.7785999774932861,
     "B_unconditioned_strategy": {
       "baseline_pace_s": 106.522,
       "event_name": "Japanese Grand Prix",
@@ -584,17 +2212,17 @@
       "stops": [
         [
           22,
-          "HARD"
+          "SOFT"
         ],
         [
           25,
-          "SOFT"
+          "HARD"
         ]
       ],
       "year": 2022
     },
     "R_SC_static_prior_first_pit_lap": 16,
-    "R_SC_static_prior_mean_points": 0.800000011920929,
+    "R_SC_static_prior_mean_points": 0.679099977016449,
     "R_SC_static_prior_strategy": {
       "baseline_pace_s": 106.522,
       "event_name": "Japanese Grand Prix",
@@ -603,11 +2231,11 @@
       "stops": [
         [
           16,
-          "HARD"
+          "SOFT"
         ],
         [
           22,
-          "SOFT"
+          "HARD"
         ]
       ],
       "year": 2022
@@ -631,6 +2259,74 @@
       ],
       "year": 2022
     },
+    "anchoring_pairs": [
+      {
+        "B_anchoring_mean_points": 5.4654998779296875,
+        "R_anchoring_mean_points": 5.045899868011475,
+        "added_lap_for_r": 7,
+        "computable": true,
+        "r_pool_count": 1029,
+        "trigger_lap": 6,
+        "triggered_by": [
+          "LAT",
+          "VET"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 5.4654998779296875,
+        "R_anchoring_mean_points": 5.136199951171875,
+        "added_lap_for_r": 8,
+        "computable": true,
+        "r_pool_count": 831,
+        "trigger_lap": 7,
+        "triggered_by": [
+          "BOT",
+          "NOR"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 5.4654998779296875,
+        "R_anchoring_mean_points": 5.021299839019775,
+        "added_lap_for_r": 10,
+        "computable": true,
+        "r_pool_count": 1029,
+        "trigger_lap": 9,
+        "triggered_by": [
+          "ALO",
+          "RIC"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 5.4654998779296875,
+        "R_anchoring_mean_points": 4.905399799346924,
+        "added_lap_for_r": 11,
+        "computable": true,
+        "r_pool_count": 831,
+        "trigger_lap": 10,
+        "triggered_by": [
+          "ZHO"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 5.4654998779296875,
+        "R_anchoring_mean_points": 5.428199768066406,
+        "added_lap_for_r": 13,
+        "computable": true,
+        "r_pool_count": 1227,
+        "trigger_lap": 12,
+        "triggered_by": [
+          "MSC"
+        ]
+      }
+    ],
+    "context": {
+      "caution_lap_count": 38,
+      "completed_full_distance": false,
+      "observed_final_position": 4,
+      "race_length_laps": 29,
+      "subject_max_lap": 28,
+      "used_wet_or_intermediate": false
+    },
     "race": {
       "archetype": "Technical",
       "event_name": "Japanese Grand Prix",
@@ -641,8 +2337,8 @@
     "subject_driver": "OCO"
   },
   {
-    "B_unconditioned_first_pit_lap": 43,
-    "B_unconditioned_mean_points": 10.609999656677246,
+    "B_unconditioned_first_pit_lap": 40,
+    "B_unconditioned_mean_points": 10.619500160217285,
     "B_unconditioned_strategy": {
       "baseline_pace_s": 77.959,
       "event_name": "Spanish Grand Prix",
@@ -650,14 +2346,14 @@
       "starting_compound": "SOFT",
       "stops": [
         [
-          43,
+          40,
           "MEDIUM"
         ]
       ],
       "year": 2023
     },
     "R_SC_static_prior_first_pit_lap": 40,
-    "R_SC_static_prior_mean_points": 11.243332862854004,
+    "R_SC_static_prior_mean_points": 11.236599922180176,
     "R_SC_static_prior_strategy": {
       "baseline_pace_s": 77.959,
       "event_name": "Spanish Grand Prix",
@@ -672,7 +2368,7 @@
       "year": 2023
     },
     "X_actual_first_pit_lap": 35,
-    "X_actual_mean_points": 10.32,
+    "X_actual_mean_points": 10.259499549865723,
     "X_actual_strategy": {
       "baseline_pace_s": 77.959,
       "event_name": "Spanish Grand Prix",
@@ -685,6 +2381,301 @@
         ]
       ],
       "year": 2023
+    },
+    "anchoring_pairs": [
+      {
+        "B_anchoring_mean_points": 10.619500160217285,
+        "R_anchoring_mean_points": 5.47130012512207,
+        "added_lap_for_r": 3,
+        "computable": true,
+        "r_pool_count": 5102,
+        "trigger_lap": 2,
+        "triggered_by": [
+          "NOR"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 10.619500160217285,
+        "R_anchoring_mean_points": 6.532299995422363,
+        "added_lap_for_r": 7,
+        "computable": true,
+        "r_pool_count": 13636,
+        "trigger_lap": 6,
+        "triggered_by": [
+          "BOT"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 10.619500160217285,
+        "R_anchoring_mean_points": 7.03849983215332,
+        "added_lap_for_r": 10,
+        "computable": true,
+        "r_pool_count": 13134,
+        "trigger_lap": 9,
+        "triggered_by": [
+          "HUL"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 10.619500160217285,
+        "R_anchoring_mean_points": 7.013899803161621,
+        "added_lap_for_r": 11,
+        "computable": true,
+        "r_pool_count": 5102,
+        "trigger_lap": 10,
+        "triggered_by": [
+          "DEV",
+          "ZHO"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 10.619500160217285,
+        "R_anchoring_mean_points": 6.924699783325195,
+        "added_lap_for_r": 12,
+        "computable": true,
+        "r_pool_count": 5102,
+        "trigger_lap": 11,
+        "triggered_by": [
+          "MAG",
+          "TSU"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 10.619500160217285,
+        "R_anchoring_mean_points": 7.197500228881836,
+        "added_lap_for_r": 15,
+        "computable": true,
+        "r_pool_count": 5102,
+        "trigger_lap": 14,
+        "triggered_by": [
+          "OCO"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 10.619500160217285,
+        "R_anchoring_mean_points": 7.46750020980835,
+        "added_lap_for_r": 17,
+        "computable": true,
+        "r_pool_count": 5102,
+        "trigger_lap": 16,
+        "triggered_by": [
+          "SAI"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 10.619500160217285,
+        "R_anchoring_mean_points": 8.10509967803955,
+        "added_lap_for_r": 18,
+        "computable": true,
+        "r_pool_count": 5102,
+        "trigger_lap": 17,
+        "triggered_by": [
+          "ALB",
+          "LEC"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 10.619500160217285,
+        "R_anchoring_mean_points": 8.856399536132812,
+        "added_lap_for_r": 19,
+        "computable": true,
+        "r_pool_count": 13134,
+        "trigger_lap": 18,
+        "triggered_by": [
+          "PIA",
+          "SAR"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 10.619500160217285,
+        "R_anchoring_mean_points": 9.30090045928955,
+        "added_lap_for_r": 21,
+        "computable": true,
+        "r_pool_count": 5102,
+        "trigger_lap": 20,
+        "triggered_by": [
+          "GAS"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 10.619500160217285,
+        "R_anchoring_mean_points": 9.682000160217285,
+        "added_lap_for_r": 24,
+        "computable": true,
+        "r_pool_count": 5102,
+        "trigger_lap": 23,
+        "triggered_by": [
+          "NOR"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 10.619500160217285,
+        "R_anchoring_mean_points": 9.512299537658691,
+        "added_lap_for_r": 26,
+        "computable": true,
+        "r_pool_count": 5102,
+        "trigger_lap": 25,
+        "triggered_by": [
+          "HAM",
+          "MAG"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 10.619500160217285,
+        "R_anchoring_mean_points": 9.828100204467773,
+        "added_lap_for_r": 27,
+        "computable": true,
+        "r_pool_count": 5102,
+        "trigger_lap": 26,
+        "triggered_by": [
+          "RUS"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 10.619500160217285,
+        "R_anchoring_mean_points": 9.62440013885498,
+        "added_lap_for_r": 28,
+        "computable": true,
+        "r_pool_count": 12632,
+        "trigger_lap": 27,
+        "triggered_by": [
+          "HUL",
+          "VER"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 10.619500160217285,
+        "R_anchoring_mean_points": 10.01159954071045,
+        "added_lap_for_r": 29,
+        "computable": true,
+        "r_pool_count": 5102,
+        "trigger_lap": 28,
+        "triggered_by": [
+          "PER"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 10.619500160217285,
+        "R_anchoring_mean_points": 10.32979965209961,
+        "added_lap_for_r": 37,
+        "computable": true,
+        "r_pool_count": 13636,
+        "trigger_lap": 36,
+        "triggered_by": [
+          "OCO"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 10.619500160217285,
+        "R_anchoring_mean_points": 10.529199600219727,
+        "added_lap_for_r": 39,
+        "computable": true,
+        "r_pool_count": 5102,
+        "trigger_lap": 38,
+        "triggered_by": [
+          "ALB"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 10.619500160217285,
+        "R_anchoring_mean_points": 10.619500160217285,
+        "added_lap_for_r": 40,
+        "computable": true,
+        "r_pool_count": 12632,
+        "trigger_lap": 39,
+        "triggered_by": [
+          "DEV"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 10.619500160217285,
+        "R_anchoring_mean_points": 10.571399688720703,
+        "added_lap_for_r": 41,
+        "computable": true,
+        "r_pool_count": 5102,
+        "trigger_lap": 40,
+        "triggered_by": [
+          "GAS",
+          "PIA"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 10.619500160217285,
+        "R_anchoring_mean_points": 10.496500015258789,
+        "added_lap_for_r": 43,
+        "computable": true,
+        "r_pool_count": 13134,
+        "trigger_lap": 42,
+        "triggered_by": [
+          "LEC",
+          "SAI"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 10.619500160217285,
+        "R_anchoring_mean_points": 10.449000358581543,
+        "added_lap_for_r": 44,
+        "computable": true,
+        "r_pool_count": 5102,
+        "trigger_lap": 43,
+        "triggered_by": [
+          "MAG"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 10.619500160217285,
+        "R_anchoring_mean_points": 10.449999809265137,
+        "added_lap_for_r": 45,
+        "computable": true,
+        "r_pool_count": 5102,
+        "trigger_lap": 44,
+        "triggered_by": [
+          "HUL"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 10.619500160217285,
+        "R_anchoring_mean_points": 10.15149974822998,
+        "added_lap_for_r": 47,
+        "computable": true,
+        "r_pool_count": 5102,
+        "trigger_lap": 46,
+        "triggered_by": [
+          "RUS"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 10.619500160217285,
+        "R_anchoring_mean_points": 9.976400375366211,
+        "added_lap_for_r": 52,
+        "computable": true,
+        "r_pool_count": 13636,
+        "trigger_lap": 51,
+        "triggered_by": [
+          "HAM",
+          "NOR",
+          "PER"
+        ]
+      },
+      {
+        "B_anchoring_mean_points": 10.619500160217285,
+        "R_anchoring_mean_points": 9.959600448608398,
+        "added_lap_for_r": 54,
+        "computable": true,
+        "r_pool_count": 5102,
+        "trigger_lap": 53,
+        "triggered_by": [
+          "VER"
+        ]
+      }
+    ],
+    "context": {
+      "caution_lap_count": 0,
+      "completed_full_distance": true,
+      "observed_final_position": 6,
+      "race_length_laps": 66,
+      "subject_max_lap": 66,
+      "used_wet_or_intermediate": false
     },
     "race": {
       "archetype": "Technical",

@@ -5,8 +5,16 @@ from __future__ import annotations
 import math
 from typing import Any, Dict, Mapping
 
+from .config import MATERIALITY_THRESHOLD_ABS_B_MINUS_R
 
-def compute_r_b(X: float, B: float, R_b: float, epsilon: float) -> Dict[str, Any]:
+
+def compute_r_b(
+    X: float,
+    B: float,
+    R_b: float,
+    epsilon: float,
+    materiality_threshold: float = MATERIALITY_THRESHOLD_ABS_B_MINUS_R,
+) -> Dict[str, Any]:
     """Compute signed bias ratio and identifiability guard.
 
     r_b = (X - R_b) / (B - R_b)
@@ -14,12 +22,17 @@ def compute_r_b(X: float, B: float, R_b: float, epsilon: float) -> Dict[str, Any
     """
 
     denom = B - R_b
-    unidentifiable = abs(denom) < float(epsilon)
-    if unidentifiable:
+    abs_gap = abs(denom)
+    unidentifiable_strict = abs_gap < float(epsilon)
+    unidentifiable_materiality = abs_gap < float(materiality_threshold)
+    if unidentifiable_strict:
         return {
             "r_b": math.nan,
             "magnitude": 0.0,
             "unidentifiable": True,
+            "unidentifiable_strict": True,
+            "unidentifiable_materiality": bool(unidentifiable_materiality),
+            "abs_B_minus_R_b": abs_gap,
             "denominator": denom,
             "X": X,
             "B": B,
@@ -32,6 +45,9 @@ def compute_r_b(X: float, B: float, R_b: float, epsilon: float) -> Dict[str, Any
         "r_b": r_b,
         "magnitude": magnitude,
         "unidentifiable": False,
+        "unidentifiable_strict": False,
+        "unidentifiable_materiality": bool(unidentifiable_materiality),
+        "abs_B_minus_R_b": abs_gap,
         "denominator": denom,
         "X": X,
         "B": B,
