@@ -85,7 +85,10 @@ def partition_cost(total_cost: float, r_b_dict: Mapping[str, Mapping[str, Any]])
     if denom <= 0.0:
         for bias_name in r_b_dict.keys():
             components.setdefault(bias_name, 0.0)
-        components["_sum"] = 0.0
+        components["cost_unattributed"] = float(total_cost)
+        components["_sum"] = sum(
+            float(value) for key, value in components.items() if not key.startswith("_")
+        )
         components["_total_cost"] = float(total_cost)
         return components
 
@@ -95,6 +98,10 @@ def partition_cost(total_cost: float, r_b_dict: Mapping[str, Mapping[str, Any]])
     for bias_name in r_b_dict.keys():
         components.setdefault(bias_name, 0.0)
 
-    components["_sum"] = sum(value for key, value in components.items() if not key.startswith("_"))
+    named_sum = sum(float(value) for value in components.values())
+    components["cost_unattributed"] = float(total_cost) - named_sum
+    components["_sum"] = sum(
+        float(value) for key, value in components.items() if not key.startswith("_")
+    )
     components["_total_cost"] = float(total_cost)
     return components

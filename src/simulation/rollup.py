@@ -203,7 +203,8 @@ def compute_driver_race_cost_partition(
 
         split = partition_cost(total_cost, eligible_inputs)
         costs = {bias_name: float(split.get(bias_name, 0.0)) for bias_name in BIAS_KEYS}
-        split_sum = sum(costs.values())
+        unattributed_cost = float(split.get("cost_unattributed", 0.0))
+        split_sum = sum(costs.values()) + unattributed_cost
 
         row_copy = dict(row)
         row_copy["r_b_inputs"] = r_b_by_bias
@@ -211,6 +212,7 @@ def compute_driver_race_cost_partition(
         row_copy["cost_conservatism"] = costs["conservatism"]
         row_copy["cost_anchoring"] = costs["anchoring"]
         row_copy["cost_sc_underweighting"] = costs["sc_underweighting"]
+        row_copy["cost_unattributed"] = unattributed_cost
         row_copy["cost_sum"] = split_sum
         row_copy["cost_sum_matches_total_cost"] = abs(split_sum - total_cost) < 1e-9
         out_rows.append(row_copy)
@@ -254,6 +256,7 @@ def rollup_team_race(driver_race_rows: Iterable[Mapping[str, Any]]) -> List[Dict
                 "cost_conservatism": 0.0,
                 "cost_anchoring": 0.0,
                 "cost_sc_underweighting": 0.0,
+                "cost_unattributed": 0.0,
                 "source_teams": set(),
             }
 
@@ -264,6 +267,7 @@ def rollup_team_race(driver_race_rows: Iterable[Mapping[str, Any]]) -> List[Dict
         agg_row["cost_conservatism"] += float(row["cost_conservatism"])
         agg_row["cost_anchoring"] += float(row["cost_anchoring"])
         agg_row["cost_sc_underweighting"] += float(row["cost_sc_underweighting"])
+        agg_row["cost_unattributed"] += float(row.get("cost_unattributed", 0.0))
 
     rows = []
     for row in agg.values():
@@ -307,6 +311,7 @@ def rollup_team_archetype(team_race_rows: Iterable[Mapping[str, Any]]) -> List[D
                 "avg_cost_conservatism": float(mean(float(r["cost_conservatism"]) for r in rows)),
                 "avg_cost_anchoring": float(mean(float(r["cost_anchoring"]) for r in rows)),
                 "avg_cost_sc_underweighting": float(mean(float(r["cost_sc_underweighting"]) for r in rows)),
+                "avg_cost_unattributed": float(mean(float(r["cost_unattributed"]) for r in rows)),
             }
         )
 
@@ -331,6 +336,7 @@ def sanity_checks(
         and float(row["cost_conservatism"]) >= -tolerance
         and float(row["cost_anchoring"]) >= -tolerance
         and float(row["cost_sc_underweighting"]) >= -tolerance
+        and float(row.get("cost_unattributed", 0.0)) >= -tolerance
         for row in driver_rows
     )
     team_non_negative = all(
@@ -338,6 +344,7 @@ def sanity_checks(
         and float(row["cost_conservatism"]) >= -tolerance
         and float(row["cost_anchoring"]) >= -tolerance
         and float(row["cost_sc_underweighting"]) >= -tolerance
+        and float(row.get("cost_unattributed", 0.0)) >= -tolerance
         for row in team_rows
     )
     archetype_non_negative = all(
@@ -345,6 +352,7 @@ def sanity_checks(
         and float(row["avg_cost_conservatism"]) >= -tolerance
         and float(row["avg_cost_anchoring"]) >= -tolerance
         and float(row["avg_cost_sc_underweighting"]) >= -tolerance
+        and float(row["avg_cost_unattributed"]) >= -tolerance
         for row in archetype_rows
     )
 
@@ -354,6 +362,7 @@ def sanity_checks(
                 float(row["cost_conservatism"])
                 + float(row["cost_anchoring"])
                 + float(row["cost_sc_underweighting"])
+                + float(row.get("cost_unattributed", 0.0))
             )
             - float(row["total_cost"])
         )
