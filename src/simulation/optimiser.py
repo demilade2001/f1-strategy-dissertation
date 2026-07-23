@@ -562,25 +562,7 @@ def _enumerate_unconditioned_subject_strategies(
 
     grid_candidate_laps = set(range(1, race_length, GRID_SPACING))
     filtered = [s for s in base_materialized if _is_grid_spaced_strategy(s, grid_candidate_laps)]
-    out = [_with_subject_metadata(s, subject_actual) for s in filtered]
-
-    # Preserve realizability: if the historical subject strategy is no-stop,
-    # ensure it exists in the candidate pool even when constrained grid/dry
-    # enumeration would otherwise exclude it.
-    actual_stops = [(int(lap), str(comp)) for lap, comp in subject_actual.get("stops", [])]
-    if len(actual_stops) == 0:
-        actual_candidate = _with_subject_metadata(
-            {
-                "starting_compound": str(subject_actual["starting_compound"]),
-                "stops": [],
-            },
-            subject_actual,
-        )
-        existing_keys = {_strategy_key(s) for s in out}
-        if _strategy_key(actual_candidate) not in existing_keys:
-            out.append(actual_candidate)
-
-    return out
+    return [_with_subject_metadata(s, subject_actual) for s in filtered]
 
 
 def _precompute_subject_inputs(

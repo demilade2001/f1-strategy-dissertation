@@ -90,6 +90,15 @@ def derive_real_subject_roster(locked_races: Iterable[Mapping[str, Any]]) -> Lis
         if race_df.empty:
             raise ValueError(f"No rows found in base_df for Year={year}, Round={rnd}, Event={event_name}")
 
+        race_length_laps = int(pd.to_numeric(race_df["LapNumber"], errors="coerce").max())
+
+        driver_max_laps = (
+            race_df.groupby("Driver", dropna=False)["LapNumber"]
+            .max()
+            .reset_index()
+            .rename(columns={"LapNumber": "MaxLapNumber"})
+        )
+
         # Driver-team list as actually present in race rows.
         entry_df = (
             race_df[["Driver", "Team"]]
@@ -97,11 +106,35 @@ def derive_real_subject_roster(locked_races: Iterable[Mapping[str, Any]]) -> Lis
             .drop_duplicates()
             .sort_values(["Team", "Driver"])
         )
+        entry_df = entry_df.merge(driver_max_laps, on="Driver", how="left")
+        entry_df["is_classified_finish"] = entry_df["MaxLapNumber"].apply(
+            lambda x: sim_config.is_classified_finish(int(x), race_length_laps)
+            if pd.notna(x)
+            else False
+        )
 
-        valid_df = entry_df[entry_df["Team"].map(sim_config.is_valid_subject)].copy()
+        valid_df = entry_df[
+            entry_df["Team"].map(sim_config.is_valid_subject)
+            & entry_df["is_classified_finish"].astype(bool)
+        ].copy()
         subjects = [
             {"driver": str(r["Driver"]), "team": str(r["Team"])}
             for _, r in valid_df.iterrows()
+        ]
+
+        excluded_non_classified_df = entry_df[
+            entry_df["Team"].map(sim_config.is_valid_subject)
+            & ~entry_df["is_classified_finish"].astype(bool)
+        ].copy()
+        excluded_non_classified = [
+            {
+                "driver": str(r["Driver"]),
+                "team": str(r["Team"]),
+                "max_lap": int(r["MaxLapNumber"]),
+                "race_length_laps": int(race_length_laps),
+                "lap_fraction": float(int(r["MaxLapNumber"]) / race_length_laps),
+            }
+            for _, r in excluded_non_classified_df.iterrows()
         ]
 
         team_counts = (
@@ -120,9 +153,11 @@ def derive_real_subject_roster(locked_races: Iterable[Mapping[str, Any]]) -> Lis
                     "event_name": event_name,
                     "archetype": archetype,
                 },
+                "race_length_laps": int(race_length_laps),
                 "subjects": subjects,
                 "valid_subject_driver_count": len(subjects),
                 "team_valid_driver_counts": {str(k): int(v) for k, v in team_counts.items()},
+                "excluded_non_classified_subjects": excluded_non_classified,
                 "anomaly_teams": anomaly_teams,
                 "anomaly_note": (
                     "Team has other-than-2 valid subject drivers; both/all listed drivers still count individually at driver-race level, and team-race sums whichever actually raced."
@@ -140,8 +175,13 @@ def compute_runtime_estimate(
     target_archetype: str,
     lambda_values: Iterable[float],
     parallel_workers: int,
+    per_driver_race_seconds_override: float | None = None,
 ) -> Dict[str, Any]:
-    per_driver_race_seconds = float(PILOT_REFERENCE_SECONDS) / float(PILOT_REFERENCE_DRIVER_RACES)
+    per_driver_race_seconds = (
+        float(per_driver_race_seconds_override)
+        if per_driver_race_seconds_override is not None
+        else float(PILOT_REFERENCE_SECONDS) / float(PILOT_REFERENCE_DRIVER_RACES)
+    )
     lambda_count = len(list(lambda_values))
 
     roster_rows = list(roster_rows)
@@ -329,10 +369,12 @@ def _count_meaningful_shift(values: List[float], abs_threshold: float = 0.25, re
     return bool(spread >= abs_threshold and (spread / baseline) >= rel_threshold)
 
 
-def run_phase3_technical_first_pass(
+def run_phase3_archetype_first_pass(
+    target_archetype: str,
     output_path: Path,
-    cache_path: Path = DEFAULT_TECHNICAL_CACHE_PATH,
+    cache_path: Path,
     max_workers: int | None = None,
+    runtime_estimate_per_driver_race_seconds: float | None = None,
 ) -> Dict[str, Any]:
     output_path.parent.mkdir(parents=True, exist_ok=True)
     cache_path.parent.mkdir(parents=True, exist_ok=True)
@@ -343,36 +385,38 @@ def run_phase3_technical_first_pass(
     locked_races = [
         dict(r)
         for r in sim_config.LOCKED_ARCHETYPE_RACES
+        if str(r["archetype"]) == str(target_archetype)
     ]
+
+    archetype_label = str(target_archetype)
+    archetype_slug = archetype_label.lower()
 
     with output_path.open("w", encoding="utf-8") as out:
         emit(out, "=" * 100)
-        emit(out, "Phase 3 run.py orchestrator - Technical archetype first full execution")
+        emit(out, f"Phase 3 run.py orchestrator - {archetype_label} archetype first full execution")
         emit(out, "=" * 100)
         emit(out, f"n_iterations={sim_config.N_ITERATIONS}")
         emit(out, f"lambda_grid={list(sim_config.LAMBDA_GRID)}")
         emit(out, f"parallel_workers={workers}")
 
-        technical_race_keys = {
+        archetype_race_keys = {
             _race_key_from_spec(r)
             for r in locked_races
-            if str(r["archetype"]) == TECHNICAL_ARCHETYPE
         }
 
         emit(out, "")
-        emit(out, "Step 1 - Real per-race subject roster from base_df.csv (Technical races only)")
+        emit(out, f"Step 1 - Real per-race subject roster from base_df.csv ({archetype_label} races only)")
         roster_rows = derive_real_subject_roster(locked_races)
-        technical_roster = [
-            row for row in roster_rows if _race_key_from_spec(row["race"]) in technical_race_keys
+        archetype_roster = [
+            row for row in roster_rows if _race_key_from_spec(row["race"]) in archetype_race_keys
         ]
-        for row in technical_roster:
+        for row in archetype_roster:
             emit(
                 out,
-                "race_subject_roster="
+                f"{archetype_slug}_race_subject_roster="
                 + json.dumps(
                     {
                         "race": row["race"],
-                        "valid_subject_driver_count": row["valid_subject_driver_count"],
                         "subjects": row["subjects"],
                         "team_valid_driver_counts": row["team_valid_driver_counts"],
                         "anomaly_teams": row["anomaly_teams"],
@@ -387,9 +431,10 @@ def run_phase3_technical_first_pass(
         emit(out, "Step 2 - Grounded time/resource estimate before scale")
         estimate = compute_runtime_estimate(
             roster_rows=roster_rows,
-            target_archetype=TECHNICAL_ARCHETYPE,
+            target_archetype=archetype_label,
             lambda_values=sim_config.LAMBDA_GRID,
             parallel_workers=workers,
+            per_driver_race_seconds_override=runtime_estimate_per_driver_race_seconds,
         )
         emit(out, "runtime_estimate=" + json.dumps(estimate, sort_keys=True, default=str))
         emit(out, "runtime_estimate_formula_note=Projected wall seconds = (driver_race_count x lambda_count x per_driver_race_seconds_from_pilot) / parallel_workers")
@@ -404,9 +449,9 @@ def run_phase3_technical_first_pass(
         )
 
         emit(out, "")
-        emit(out, "Step 3 - Execute Technical archetype fully over real subject roster and full lambda grid")
+        emit(out, f"Step 3 - Execute {archetype_label} archetype fully over real subject roster and full lambda grid")
         tasks: List[Dict[str, Any]] = []
-        for race_row in technical_roster:
+        for race_row in archetype_roster:
             race = dict(race_row["race"])
             for subject in race_row["subjects"]:
                 for lambda_value in sim_config.LAMBDA_GRID:
@@ -419,7 +464,7 @@ def run_phase3_technical_first_pass(
                         }
                     )
 
-        emit(out, f"technical_task_count_driver_race_lambda={len(tasks)}")
+        emit(out, f"{archetype_slug}_task_count_driver_race_lambda={len(tasks)}")
         steps_3_to_5_start = time.perf_counter()
 
         cache_rows: List[Dict[str, Any]] = []
@@ -445,7 +490,7 @@ def run_phase3_technical_first_pass(
                 persist_cache_rows_partial()
                 emit(
                     out,
-                    "technical_cache_row_summary="
+                    f"{archetype_slug}_cache_row_summary="
                     + json.dumps(
                         {
                             "race": row["race"],
@@ -461,14 +506,14 @@ def run_phase3_technical_first_pass(
                         default=str,
                     ),
                 )
-                emit(out, f"technical_cache_rows_written_so_far={len(cache_rows)}")
+                emit(out, f"{archetype_slug}_cache_rows_written_so_far={len(cache_rows)}")
 
         persist_cache_rows_partial()
-        emit(out, f"technical_cache_written={cache_path}")
-        emit(out, f"technical_cache_row_count={len(cache_rows)}")
+        emit(out, f"{archetype_slug}_cache_written={cache_path}")
+        emit(out, f"{archetype_slug}_cache_row_count={len(cache_rows)}")
 
         emit(out, "")
-        emit(out, "Step 4 - Compute bias and run full rollup on technical full cache")
+        emit(out, f"Step 4 - Compute bias and run full rollup on {archetype_slug} full cache")
         driver_bias_rows = compute_driver_race_bias_summary(
             cache_rows,
             epsilon=float(sim_config.UNIDENTIFIABLE_EPSILON),
@@ -525,7 +570,7 @@ def run_phase3_technical_first_pass(
         for row in rb_source_rows:
             emit(
                 out,
-                "rb_canonical_source_trace="
+                f"{archetype_slug}_rb_canonical_source_trace="
                 + json.dumps(
                     {
                         "race": row["race"],
@@ -540,7 +585,7 @@ def run_phase3_technical_first_pass(
             )
 
         emit(out, "")
-        emit(out, "Step 5 - Lambda sensitivity on Technical team x archetype cells")
+        emit(out, f"Step 5 - Lambda sensitivity on {archetype_label} team x archetype cells")
         by_team_arch: Dict[Tuple[str, str], Dict[float, Dict[str, Any]]] = defaultdict(dict)
         for row in team_archetype_rows:
             by_team_arch[(str(row["team"]), str(row["archetype"]))][float(row.get("lambda", 1.0))] = row
@@ -614,7 +659,7 @@ def run_phase3_technical_first_pass(
                 "interpretation": interpretation,
             }
             sensitivity_rows.append(row_out)
-            emit(out, "technical_lambda_sensitivity_row=" + json.dumps(row_out, sort_keys=True, default=str))
+            emit(out, f"{archetype_slug}_lambda_sensitivity_row=" + json.dumps(row_out, sort_keys=True, default=str))
 
         checks = sanity_checks(partitioned_rows, team_race_rows, team_archetype_rows)
         emit(out, "sanity_checks=" + json.dumps(checks, sort_keys=True, default=str))
@@ -625,8 +670,8 @@ def run_phase3_technical_first_pass(
         emit(out, "Step 6 - Actual runtime and refined projection")
         emit(out, f"steps_3_to_5_wall_clock_seconds={steps_3_to_5_seconds:.3f}")
 
-        technical_task_count = max(1, len(tasks))
-        realized_wall_seconds_per_driver_race_lambda_task = steps_3_to_5_seconds / float(technical_task_count)
+        archetype_task_count = max(1, len(tasks))
+        realized_wall_seconds_per_driver_race_lambda_task = steps_3_to_5_seconds / float(archetype_task_count)
         full_driver_races = int(sum(int(r["valid_subject_driver_count"]) for r in roster_rows))
         full_task_count = full_driver_races * len(sim_config.LAMBDA_GRID)
         refined_full_wall_seconds = realized_wall_seconds_per_driver_race_lambda_task * float(full_task_count)
@@ -636,7 +681,7 @@ def run_phase3_technical_first_pass(
             "runtime_refinement="
             + json.dumps(
                 {
-                    "technical_tasks_completed": int(technical_task_count),
+                    "technical_tasks_completed": int(archetype_task_count),
                     "realized_wall_seconds_per_driver_race_lambda_task": realized_wall_seconds_per_driver_race_lambda_task,
                     "full_driver_races": int(full_driver_races),
                     "full_task_count_driver_race_lambda": int(full_task_count),
@@ -649,12 +694,25 @@ def run_phase3_technical_first_pass(
         )
 
         emit(out, "")
-        emit(out, "Step 7 - Completed technical-only execution (no other archetypes run)")
-        emit(out, "execution_scope_note=Only Technical archetype executed in this step by design.")
-        emit(out, f"technical_cache_path={cache_path}")
+        emit(out, f"Step 7 - Completed {archetype_slug}-only execution (no other archetypes run)")
+        emit(out, f"execution_scope_note=Only {archetype_label} archetype executed in this step by design.")
+        emit(out, f"{archetype_slug}_cache_path={cache_path}")
         emit(out, f"output_path={output_path}")
 
     return {
         "output_path": output_path,
         "cache_path": cache_path,
     }
+
+
+def run_phase3_technical_first_pass(
+    output_path: Path,
+    cache_path: Path = DEFAULT_TECHNICAL_CACHE_PATH,
+    max_workers: int | None = None,
+) -> Dict[str, Any]:
+    return run_phase3_archetype_first_pass(
+        TECHNICAL_ARCHETYPE,
+        output_path=output_path,
+        cache_path=cache_path,
+        max_workers=max_workers,
+    )

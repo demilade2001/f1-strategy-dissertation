@@ -22,6 +22,9 @@ MAX_STOPS = 3
 # Reconciled with step5g: global default is 2 laps to block only pathological
 # 1-lap exploit stints while preserving realistic historical short-stint cases.
 MIN_STINT_LENGTH_LAPS = 2
+# FIA classification guideline for race results: a driver is classified after
+# completing at least 90% of the winner's race distance.
+MIN_CLASSIFIED_DISTANCE_FRACTION = 0.90
 # Conservatism rule anchor used for bias-threshold design.
 CONSERVATISM_REFERENCE = "REGULATORY_MAX_FEASIBLE_LAP"
 # Optional hard cutoff for insufficiency; None keeps continuous r_b reporting.
@@ -86,3 +89,9 @@ XGB_TEST_PREDICTIONS_PATH = ROOT / "data" / "models" / "classweight_test_predict
 # driver/subject argument to optimiser.py's argmax_strategy once that module exists.
 def is_valid_subject(team: str) -> bool:
     return team in MIDFIELD_CONSTRUCTORS
+
+
+def is_classified_finish(max_lap: int, race_length_laps: int) -> bool:
+    if race_length_laps <= 0:
+        return False
+    return (float(max_lap) / float(race_length_laps)) >= float(MIN_CLASSIFIED_DISTANCE_FRACTION)
