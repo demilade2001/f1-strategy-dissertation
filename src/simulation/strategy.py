@@ -32,7 +32,8 @@ def is_strategy_feasible(
     min_stint_length_laps: int = MIN_STINT_LENGTH_LAPS,
 ) -> bool:
     stop_count = len(stops)
-    if stop_count < 1 or stop_count > max_stops:
+    min_stops = 0 if is_wet_race else 1
+    if stop_count < min_stops or stop_count > max_stops:
         return False
 
     prev_lap = None
@@ -98,7 +99,8 @@ class FeasibleStrategySpace(list):
         total = 0
         pit_lap_choices = range(1, self.race_length)
         starting_is_wet = self.starting_compound in WET_COMPOUNDS
-        for stop_count in range(1, self.max_stops + 1):
+        stop_count_start = 0 if self.is_wet_race else 1
+        for stop_count in range(stop_count_start, self.max_stops + 1):
             valid_pit_lap_sequences = 0
             for pit_laps in combinations(pit_lap_choices, stop_count):
                 stint_boundaries = [0] + list(pit_laps) + [self.race_length]
@@ -146,7 +148,8 @@ class FeasibleStrategySpace(list):
                 f"Strategy space has {self._size} elements, above materialization limit {limit}"
             )
 
-        for stop_count in range(1, self.max_stops + 1):
+        stop_count_start = 0 if self.is_wet_race else 1
+        for stop_count in range(stop_count_start, self.max_stops + 1):
             for pit_laps in combinations(range(1, self.race_length), stop_count):
                 for compounds in product(self.dry_compounds, repeat=stop_count):
                     stops = list(zip(pit_laps, compounds))

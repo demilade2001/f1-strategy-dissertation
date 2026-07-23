@@ -547,11 +547,12 @@ def _resolve_probability_by_source(race_state: dict, prob_source: str) -> Dict[i
 def _enumerate_unconditioned_subject_strategies(
     race_length: int,
     subject_actual: Dict[str, object],
+    is_wet_race: bool,
 ) -> List[Dict[str, object]]:
     base_space = enumerate_feasible_strategies(
         race_length=race_length,
         starting_compound=str(subject_actual["starting_compound"]),
-        is_wet_race=False,
+        is_wet_race=bool(is_wet_race),
         max_stops=MAX_STOPS,
     )
     if hasattr(base_space, "materialize"):
@@ -561,7 +562,25 @@ def _enumerate_unconditioned_subject_strategies(
 
     grid_candidate_laps = set(range(1, race_length, GRID_SPACING))
     filtered = [s for s in base_materialized if _is_grid_spaced_strategy(s, grid_candidate_laps)]
-    return [_with_subject_metadata(s, subject_actual) for s in filtered]
+    out = [_with_subject_metadata(s, subject_actual) for s in filtered]
+
+    # Preserve realizability: if the historical subject strategy is no-stop,
+    # ensure it exists in the candidate pool even when constrained grid/dry
+    # enumeration would otherwise exclude it.
+    actual_stops = [(int(lap), str(comp)) for lap, comp in subject_actual.get("stops", [])]
+    if len(actual_stops) == 0:
+        actual_candidate = _with_subject_metadata(
+            {
+                "starting_compound": str(subject_actual["starting_compound"]),
+                "stops": [],
+            },
+            subject_actual,
+        )
+        existing_keys = {_strategy_key(s) for s in out}
+        if _strategy_key(actual_candidate) not in existing_keys:
+            out.append(actual_candidate)
+
+    return out
 
 
 def _precompute_subject_inputs(
@@ -608,11 +627,16 @@ def argmax_strategy(
 
     subject_actual = dict(actual_strategies[subject_driver])
     race_length = int(pd.to_numeric(laps["LapNumber"], errors="coerce").max())
+    wet_race = _is_wet_race(actual_strategies)
 
     prob_by_lap = _resolve_probability_by_source(race_state, prob_source)
     caution_schedules = _build_caution_schedule_matrix(prob_by_lap, int(n_iterations), rng)
 
-    subject_strategies = _enumerate_unconditioned_subject_strategies(race_length, subject_actual)
+    subject_strategies = _enumerate_unconditioned_subject_strategies(
+        race_length,
+        subject_actual,
+        is_wet_race=wet_race,
+    )
     if not subject_strategies:
         raise ValueError("No feasible unconditioned subject strategies found")
 
