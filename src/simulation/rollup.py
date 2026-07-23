@@ -13,6 +13,7 @@ from typing import Any, Dict, Iterable, List, Mapping, Tuple
 
 from .bias import compute_r_b, partition_cost
 from .references import r_conservatism
+from src.utils import canonical_constructor_group
 
 
 BIAS_KEYS = ("conservatism", "anchoring", "sc_underweighting")
@@ -135,7 +136,8 @@ def compute_driver_race_bias_summary(
             {
                 "race": race,
                 "subject_driver": subject_driver,
-                "subject_team": None,
+                "subject_team": row.get("subject_team"),
+                "lambda": float(row.get("lambda", 1.0)),
                 "total_cost_raw": total_cost_raw,
                 "total_cost": total_cost,
                 "X_actual_mean_points": x_points,
@@ -219,7 +221,7 @@ def compute_driver_race_cost_partition(
 def rollup_team_race(driver_race_rows: Iterable[Mapping[str, Any]]) -> List[Dict[str, Any]]:
     """Aggregate driver-race costs to team-race level via summation."""
 
-    agg: Dict[Tuple[int, int, str, str, str], Dict[str, Any]] = {}
+    agg: Dict[Tuple[int, int, str, str, str, float], Dict[str, Any]] = {}
 
     for row in driver_race_rows:
         race = row["race"]
@@ -227,12 +229,15 @@ def rollup_team_race(driver_race_rows: Iterable[Mapping[str, Any]]) -> List[Dict
         if team is None:
             raise ValueError("subject_team must be populated before team-race rollup")
 
+        canonical_team = canonical_constructor_group(team)
+
         key = (
             int(race["year"]),
             int(race["round"]),
             str(race["event_name"]),
             str(race["archetype"]),
-            str(team),
+            str(canonical_team),
+            float(row.get("lambda", 1.0)),
         )
         if key not in agg:
             agg[key] = {
@@ -242,24 +247,32 @@ def rollup_team_race(driver_race_rows: Iterable[Mapping[str, Any]]) -> List[Dict
                     "event_name": str(race["event_name"]),
                     "archetype": str(race["archetype"]),
                 },
-                "team": str(team),
+                "team": str(canonical_team),
+                "lambda": float(row.get("lambda", 1.0)),
                 "driver_race_count": 0,
                 "total_cost": 0.0,
                 "cost_conservatism": 0.0,
                 "cost_anchoring": 0.0,
                 "cost_sc_underweighting": 0.0,
+                "source_teams": set(),
             }
 
         agg_row = agg[key]
+        agg_row["source_teams"].add(str(team))
         agg_row["driver_race_count"] += 1
         agg_row["total_cost"] += float(row["total_cost"])
         agg_row["cost_conservatism"] += float(row["cost_conservatism"])
         agg_row["cost_anchoring"] += float(row["cost_anchoring"])
         agg_row["cost_sc_underweighting"] += float(row["cost_sc_underweighting"])
 
-    rows = list(agg.values())
+    rows = []
+    for row in agg.values():
+        row_copy = dict(row)
+        row_copy["source_teams"] = sorted(row_copy["source_teams"])
+        rows.append(row_copy)
     rows.sort(
         key=lambda r: (
+            float(r.get("lambda", 1.0)),
             int(r["race"]["year"]),
             int(r["race"]["round"]),
             str(r["team"]),
@@ -271,18 +284,23 @@ def rollup_team_race(driver_race_rows: Iterable[Mapping[str, Any]]) -> List[Dict
 def rollup_team_archetype(team_race_rows: Iterable[Mapping[str, Any]]) -> List[Dict[str, Any]]:
     """Average team-race costs to team-by-archetype cells."""
 
-    groups: Dict[Tuple[str, str], List[Mapping[str, Any]]] = defaultdict(list)
+    groups: Dict[Tuple[str, str, float], List[Mapping[str, Any]]] = defaultdict(list)
     for row in team_race_rows:
-        key = (str(row["team"]), str(row["race"]["archetype"]))
+        key = (
+            str(row["team"]),
+            str(row["race"]["archetype"]),
+            float(row.get("lambda", 1.0)),
+        )
         groups[key].append(row)
 
     out: List[Dict[str, Any]] = []
-    for (team, archetype), rows in groups.items():
+    for (team, archetype, lambda_value), rows in groups.items():
         support = len(rows)
         out.append(
             {
                 "team": team,
                 "archetype": archetype,
+                "lambda": float(lambda_value),
                 "race_support_count": support,
                 "low_confidence_support": bool(support == 1),
                 "avg_total_cost": float(mean(float(r["total_cost"]) for r in rows)),
@@ -292,7 +310,7 @@ def rollup_team_archetype(team_race_rows: Iterable[Mapping[str, Any]]) -> List[D
             }
         )
 
-    out.sort(key=lambda r: (str(r["archetype"]), str(r["team"])))
+    out.sort(key=lambda r: (float(r.get("lambda", 1.0)), str(r["archetype"]), str(r["team"])))
     return out
 
 

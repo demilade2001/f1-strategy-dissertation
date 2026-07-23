@@ -1,0 +1,557 @@
+FULL_PIPELINE_REBUILD_BEGIN
+
+======================================================================
+Processing 2022...
+======================================================================
+
+Laps: loaded 23577 rows
+Pits: loaded 836 rows
+
+Adding Team column via get_constructor()...
+Dropped 0 rows where get_constructor() failed
+Laps after Team filtering: 23577 rows
+
+Decoding TrackStatus...
+
+Building is_strategic_stop from native pits TyreCompoundOld/TyreCompoundNew...
+
+Investigating TyreCompound nulls...
+Total TyreCompound nulls before forward-fill: 334
+  - Pit-in laps: 1
+  - Pit-out laps: 9
+  - IsAccurate=False: 39
+  - No obvious explanation: 295
+Forward-filling TyreCompound within stint groups...
+TyreCompound nulls remaining after forward-fill: 334
+
+Derive PitDuration_s from consecutive laps...
+Found 803 pit-in laps with corresponding pit-out times
+
+Matching pit durations to pits file...
+Successfully derived 803 pit durations
+
+======================================================================
+Processing 2023...
+======================================================================
+
+Laps: loaded 24422 rows
+Pits: loaded 943 rows
+
+Adding Team column via get_constructor()...
+
+Breakdown of 69 dropped rows:
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+  Driver RIC Round 11: RIC was not on the grid in 2023 before Round 12 (requested round 11)
+Dropped 69 rows where get_constructor() failed
+Laps after Team filtering: 24353 rows
+
+Decoding TrackStatus...
+
+Building is_strategic_stop from native pits TyreCompoundOld/TyreCompoundNew...
+
+Investigating TyreCompound nulls...
+Total TyreCompound nulls before forward-fill: 35
+Forward-filling TyreCompound within stint groups...
+TyreCompound nulls remaining after forward-fill: 35
+
+Derive PitDuration_s from consecutive laps...
+Found 910 pit-in laps with corresponding pit-out times
+
+Matching pit durations to pits file...
+Successfully derived 910 pit durations
+
+======================================================================
+Processing 2024...
+======================================================================
+
+Laps: loaded 26606 rows
+Pits: loaded 849 rows
+
+Adding Team column via get_constructor()...
+Dropped 0 rows where get_constructor() failed
+Laps after Team filtering: 26606 rows
+
+Decoding TrackStatus...
+
+Building is_strategic_stop from native pits TyreCompoundOld/TyreCompoundNew...
+
+Investigating TyreCompound nulls...
+Total TyreCompound nulls before forward-fill: 0
+Forward-filling TyreCompound within stint groups...
+TyreCompound nulls remaining after forward-fill: 0
+
+Derive PitDuration_s from consecutive laps...
+Found 824 pit-in laps with corresponding pit-out times
+
+Matching pit durations to pits file...
+Successfully derived 824 pit durations
+
+======================================================================
+Concatenating all years...
+======================================================================
+
+Combined laps: 74536 rows
+Combined pits: 2628 rows
+
+Adding compound_known flag...
+Compound_known = False (nulls) per year:
+  2022:  334 nulls ( 1.42%)
+  2023:   35 nulls ( 0.14%)
+  2024:    0 nulls ( 0.00%)
+
+Adding is_midfield flag...
+Midfield rows: 51,541
+Big Three rows: 22,995
+
+======================================================================
+Saving to data/processed/base_df.csv...
+======================================================================
+
+Final DataFrame shape: (74536, 29)
+
+Pit Duration Derivation Summary (Fix 1):
+  2022:  803 /  836 pit stops ( 96.1%)
+  2023:  910 /  943 pit stops ( 96.5%)
+  2024:  824 /  849 pit stops ( 97.1%)
+  Total: 2537 pit durations successfully derived
+
+Strategic stop validation (native pits compounds):
+  Total pit stop events identified: 2,628
+  is_strategic_stop = False (excluded): 387
+  is_strategic_stop = True (retained): 215
+  Retained stop breakdown:
+    Under SC: 180
+    Under VSC: 35
+    Compound change alone: 0
+  Pit stop events failing merge against pit-in lap rows: 2
+  Delta vs expected excluded (368): +19
+  Delta vs expected retained-under-caution (204): +11
+
+Diagnostic 2 — Native TyreCompoundOld/TyreCompoundNew audit:
+  TyreCompoundOld: nulls=113
+  TyreCompoundOld value distribution (including NaN):
+TyreCompoundOld
+MEDIUM          1110
+HARD             741
+SOFT             408
+INTERMEDIATE     206
+NaN              113
+WET               50
+  TyreCompoundNew: nulls=102
+  TyreCompoundNew value distribution (including NaN):
+TyreCompoundNew
+HARD            1180
+MEDIUM           672
+SOFT             456
+INTERMEDIATE     188
+NaN              102
+WET               30
+
+Diagnostic 3 — Pit stop clustering during caution periods:
+  Same-compound-under-caution stops: 215
+  Stops on a Year/Round/Lap shared with at least one other pit stop: 181
+  Distinct clustered Year/Round/Lap events: 29
+
+Diagnostic 4 — Failed merge investigation:
+  Failed merge count: 2
+  2023 R11 RIC Lap 18 -> No matching pit-in lap row in processed laps
+  2023 R11 RIC Lap 29 -> No matching pit-in lap row in processed laps
+
+Null summary for core columns:
+  Year                :      0 nulls ( 0.00%)
+  Round               :      0 nulls ( 0.00%)
+  Driver              :      0 nulls ( 0.00%)
+  Team                :      0 nulls ( 0.00%)
+  LapNumber           :      0 nulls ( 0.00%)
+  TyreCompound        :    369 nulls ( 0.50%)
+  TrackStatus         :      0 nulls ( 0.00%)
+  IsAccurate          :      0 nulls ( 0.00%)
+  PitInTime           :  71910 nulls (96.48%)
+  PitOutTime          :  71934 nulls (96.51%)
+  sc_active           :      0 nulls ( 0.00%)
+  vsc_active          :      0 nulls ( 0.00%)
+  compound_known      :      0 nulls ( 0.00%)
+
+Processing complete!
+after_build_base_df (74536, 29)
+
+======================================================================
+Building tyre degradation rates...
+======================================================================
+
+Step 1: Creating eligibility mask for clean laps...
+Eligible laps: 51,121 / 74,536 (68.6%)
+
+Step 2: Fitting degradation curves per compound/circuit/season...
+Linear models: 94
+Quadratic models: 76
+Insufficient data groups: 6
+
+Step 3: Assigning degradation rates to all rows...
+
+Step 3.5: Flagging unreliable deg_rate values...
+
+Step 3.6: Capping extreme outliers (|deg_rate| > 1.0 s/lap)...
+Capped 1 groups with extreme outliers:
+  SOFT @ Miami Grand Prix 2023: -1.1877 s/lap
+
+deg_rate_reliable summary:
+  Unreliable: 40,868 rows (54.8%)
+  Reliable:   33,668 rows (45.2%)
+
+Step 4: Sanity checks...
+
+Top 5 highest degradation rates:
+  SOFT @ Mexico City Grand Prix         2024:  0.7492 s/lap
+  SOFT @ United States Grand Prix       2023:  0.4356 s/lap
+  SOFT @ Canadian Grand Prix            2023:  0.3689 s/lap
+  MEDIUM @ Belgian Grand Prix             2023:  0.3502 s/lap
+  MEDIUM @ Bahrain Grand Prix             2023:  0.2354 s/lap
+
+Top 5 lowest degradation rates:
+  SOFT @ Emilia Romagna Grand Prix      2024: -0.2470 s/lap
+  SOFT @ Austrian Grand Prix            2024: -0.2311 s/lap
+  MEDIUM @ Singapore Grand Prix           2022: -0.2301 s/lap
+  SOFT @ Australian Grand Prix          2024: -0.2085 s/lap
+  SOFT @ Saudi Arabian Grand Prix       2024: -0.2010 s/lap
+
+WARNING: 82 groups with negative deg_rate (physically implausible):
+  MEDIUM @ Saudi Arabian Grand Prix 2022: -0.0477
+  HARD @ Saudi Arabian Grand Prix 2022: -0.0878
+  HARD @ Australian Grand Prix 2022: -0.0668
+  MEDIUM @ Emilia Romagna Grand Prix 2022: -0.0736
+  HARD @ Emilia Romagna Grand Prix 2022: -0.0254
+  MEDIUM @ Miami Grand Prix 2022: -0.0923
+  HARD @ Miami Grand Prix 2022: -0.0294
+  SOFT @ Miami Grand Prix 2022: -0.1188
+  HARD @ Azerbaijan Grand Prix 2022: -0.0569
+  MEDIUM @ Canadian Grand Prix 2022: -0.0812
+  ... and 72 more
+
+Rows with NaN deg_rate: 7,504 (10.1%)
+
+Final deg_rate_reliable breakdown by compound:
+  SOFT    : reliable= 4,693 ( 49.6%), unreliable= 4,763 ( 50.4%)
+  MEDIUM  : reliable=12,591 ( 47.7%), unreliable=13,808 ( 52.3%)
+  HARD    : reliable=16,384 ( 48.9%), unreliable=17,119 ( 51.1%)
+
+======================================================================
+Saving updated DataFrame to data/processed/base_df.csv...
+======================================================================
+
+Final DataFrame shape: (74536, 31)
+Columns (31): ['Year', 'Round', 'EventName', 'Driver', 'CarNumber', 'LapNumber', 'LapTime_s', 'Sector1_s', 'Sector2_s', 'Sector3_s', 'SpeedI1', 'SpeedI2', 'SpeedFL', 'TyreCompound', 'TyreLife', 'Stint', 'FreshTyre', 'Position', 'TrackStatus', 'IsAccurate', 'PitInTime', 'PitOutTime', 'PitTime', 'Team', 'sc_active', 'vsc_active', 'is_strategic_stop', 'compound_known', 'is_midfield', 'deg_rate', 'deg_rate_reliable']
+
+Degradation rate building complete!
+after_build_tyre_degradation (74536, 31)
+
+======================================================================
+Building pit window delta features...
+======================================================================
+
+Pit window delta summary:
+  Non-null pit_window_delta rows: 33,668
+  pit_window_delta distribution: mean=21.2212, median=21.6523, min=-4.1161, max=27.9841
+  Proportion of laps where pit_delta_3 is negative: 0.03%
+
+Saving updated DataFrame to data/processed/base_df.csv...
+
+Final DataFrame shape: (74536, 36)
+Columns (36): ['Year', 'Round', 'EventName', 'Driver', 'CarNumber', 'LapNumber', 'LapTime_s', 'Sector1_s', 'Sector2_s', 'Sector3_s', 'SpeedI1', 'SpeedI2', 'SpeedFL', 'TyreCompound', 'TyreLife', 'Stint', 'FreshTyre', 'Position', 'TrackStatus', 'IsAccurate', 'PitInTime', 'PitOutTime', 'PitTime', 'Team', 'sc_active', 'vsc_active', 'is_strategic_stop', 'compound_known', 'is_midfield', 'deg_rate', 'deg_rate_reliable', 'pit_loss_s', 'pit_delta_1', 'pit_delta_3', 'pit_delta_5', 'pit_window_delta']
+
+Pit window delta building complete!
+after_build_pit_window_delta (74536, 36)
+
+======================================================================
+Building undercut/overcut threat features...
+======================================================================
+  Note: undercut threshold hit cap; using 75th percentile of values below cap
+  Note: overcut threshold hit cap; using 75th percentile of values below cap
+
+Undercut/overcut threshold values: undercut=12.0000, overcut=11.3314
+
+EventName -> archetype mapping dictionary:
+  Abu Dhabi Grand Prix -> Technical
+  Australian Grand Prix -> Power
+  Austrian Grand Prix -> Power
+  Azerbaijan Grand Prix -> Street
+  Bahrain Grand Prix -> Power
+  Belgian Grand Prix -> Power
+  British Grand Prix -> Power
+  Canadian Grand Prix -> Power
+  Hungarian Grand Prix -> Technical
+  Italian Grand Prix -> Power
+  Japanese Grand Prix -> Technical
+  Mexico City Grand Prix -> Power
+  Miami Grand Prix -> Street
+  Monaco Grand Prix -> Street
+  Singapore Grand Prix -> Street
+  Spanish Grand Prix -> Technical
+  São Paulo Grand Prix -> Power
+  United States Grand Prix -> Power
+
+EventName presence check for Technical assignment targets:
+  Spanish Grand Prix: True
+  Hungarian Grand Prix: True
+  Abu Dhabi Grand Prix: True
+  Japanese Grand Prix: True
+
+Undercut/overcut threat summary:
+  Non-null undercut_threat_index rows: 74,536
+  Proportion with undercut_threat_flag=True: 30.09%
+  Proportion with overcut_threat_flag=True: 27.25%
+  Mean undercut_threat_index by archetype: Street=7.8687, Power=7.1089
+
+Undercut threat index deciles (10-90): 2.0000, 4.0000, 6.0000, 8.0000, 11.2360, 15.0952, 20.0000, 20.0000, 20.0000
+
+Top 5 highest undercut_threat_index:
+  Hungarian Grand Prix | ALO | Lap 21 | 20.0000
+  Miami Grand Prix | OCO | Lap 21 | 20.0000
+  Singapore Grand Prix | TSU | Lap 16 | 20.0000
+  Singapore Grand Prix | TSU | Lap 15 | 20.0000
+  Singapore Grand Prix | TSU | Lap 14 | 20.0000
+
+Saving updated DataFrame to data/processed/base_df.csv...
+
+Final DataFrame shape: (74536, 41)
+Columns (41): ['Year', 'Round', 'EventName', 'Driver', 'CarNumber', 'LapNumber', 'LapTime_s', 'Sector1_s', 'Sector2_s', 'Sector3_s', 'SpeedI1', 'SpeedI2', 'SpeedFL', 'TyreCompound', 'TyreLife', 'Stint', 'FreshTyre', 'Position', 'TrackStatus', 'IsAccurate', 'PitInTime', 'PitOutTime', 'PitTime', 'Team', 'sc_active', 'vsc_active', 'is_strategic_stop', 'compound_known', 'is_midfield', 'deg_rate', 'deg_rate_reliable', 'pit_loss_s', 'pit_delta_1', 'pit_delta_3', 'pit_delta_5', 'pit_window_delta', 'undercut_threat_index', 'overcut_threat_index', 'undercut_threat_flag', 'overcut_threat_flag', 'circuit_archetype']
+
+Undercut/overcut threat building complete!
+after_build_undercut_overcut_threat (74536, 41)
+
+======================================================================
+Building safety car exposure rate features...
+======================================================================
+
+Top 5 circuits by circuit_sc_rate:
+  Qatar Grand Prix: 0.2105
+  Canadian Grand Prix: 0.2048
+  Monaco Grand Prix: 0.2034
+  Chinese Grand Prix: 0.1964
+  São Paulo Grand Prix: 0.1956
+
+Bottom 5 circuits by circuit_sc_rate:
+  Spanish Grand Prix: 0.0253
+  Abu Dhabi Grand Prix: 0.0460
+  Austrian Grand Prix: 0.0516
+  Italian Grand Prix: 0.0566
+  Emilia Romagna Grand Prix: 0.0635
+
+Top 5 circuits by circuit_vsc_rate:
+  Singapore Grand Prix: 0.0670
+  Australian Grand Prix: 0.0632
+  Azerbaijan Grand Prix: 0.0588
+  French Grand Prix: 0.0566
+  Austrian Grand Prix: 0.0469
+
+high_sc_circuit rows: 33,017, low_sc_circuit rows: 41,519
+
+Saving updated DataFrame to data/processed/base_df.csv...
+
+Final DataFrame shape: (74536, 46)
+Columns (46): ['Year', 'Round', 'EventName', 'Driver', 'CarNumber', 'LapNumber', 'LapTime_s', 'Sector1_s', 'Sector2_s', 'Sector3_s', 'SpeedI1', 'SpeedI2', 'SpeedFL', 'TyreCompound', 'TyreLife', 'Stint', 'FreshTyre', 'Position', 'TrackStatus', 'IsAccurate', 'PitInTime', 'PitOutTime', 'PitTime', 'Team', 'sc_active', 'vsc_active', 'is_strategic_stop', 'compound_known', 'is_midfield', 'deg_rate', 'deg_rate_reliable', 'pit_loss_s', 'pit_delta_1', 'pit_delta_3', 'pit_delta_5', 'pit_window_delta', 'undercut_threat_index', 'overcut_threat_index', 'undercut_threat_flag', 'overcut_threat_flag', 'circuit_archetype', 'circuit_sc_rate', 'circuit_vsc_rate', 'circuit_sc_events_per_race', 'circuit_vsc_events_per_race', 'high_sc_circuit']
+
+Safety car exposure rate building complete!
+after_build_sc_exposure_rate (74536, 46)
+
+======================================================================
+Building fuel-corrected pace features...
+======================================================================
+
+Fuel-corrected pace summary:
+  Non-null fuel_corrected_laptime rows: 73,345
+  Original reliable groups: 87
+  Fuel-corrected reliable groups: 120
+  Groups newly reliable after fuel correction: 35
+  SOFT   mean deg_rate_corrected: 0.0351
+  MEDIUM mean deg_rate_corrected: 0.0292
+  HARD   mean deg_rate_corrected: 0.0154
+
+pace_differential distribution: mean=0.4962, median=0.0000
+
+Saving updated DataFrame to data/processed/base_df.csv...
+
+Final DataFrame shape: (74536, 52)
+Columns (52): ['Year', 'Round', 'EventName', 'Driver', 'CarNumber', 'LapNumber', 'LapTime_s', 'Sector1_s', 'Sector2_s', 'Sector3_s', 'SpeedI1', 'SpeedI2', 'SpeedFL', 'TyreCompound', 'TyreLife', 'Stint', 'FreshTyre', 'Position', 'TrackStatus', 'IsAccurate', 'PitInTime', 'PitOutTime', 'PitTime', 'Team', 'sc_active', 'vsc_active', 'is_strategic_stop', 'compound_known', 'is_midfield', 'deg_rate', 'deg_rate_reliable', 'pit_loss_s', 'pit_delta_1', 'pit_delta_3', 'pit_delta_5', 'pit_window_delta', 'undercut_threat_index', 'overcut_threat_index', 'undercut_threat_flag', 'overcut_threat_flag', 'circuit_archetype', 'circuit_sc_rate', 'circuit_vsc_rate', 'circuit_sc_events_per_race', 'circuit_vsc_events_per_race', 'high_sc_circuit', 'starting_fuel_kg', 'fuel_load_kg', 'fuel_corrected_laptime', 'deg_rate_corrected', 'deg_rate_corrected_reliable', 'pace_differential']
+
+Fuel-corrected pace building complete!
+after_build_fuel_corrected_pace (74536, 52)
+
+======================================================================
+Building position-at-stake features...
+======================================================================
+
+Investigation — legacy null pressure_weight distribution:
+  Affected rows: 2,303
+  By Year:
+    2022: 785
+    2023: 731
+    2024: 787
+  By Round:
+    R1: 2,303
+  By Team:
+    Haas        : 395
+    Sauber      : 339
+    Williams    : 338
+    Alpine      : 324
+    McLaren     : 296
+    Aston Martin: 285
+    AlphaTauri  : 214
+    RB          : 112
+
+Mean position_at_stake per midfield team across all laps:
+  McLaren     : 0.8681
+  Aston Martin: 0.6669
+  Alpine      : 0.5907
+  AlphaTauri  : 0.4582
+  RB          : 0.4467
+  Haas        : 0.4183
+  Sauber      : 0.2541
+  Williams    : 0.1948
+  [Check] McLaren  mean position_at_stake = 0.8681
+  [Check] Haas     mean position_at_stake = 0.4183
+  [Check] Williams mean position_at_stake = 0.1948
+
+Count of laps where points_delta > 0: 40,571
+Count of laps where position_at_stake is null: 23,077
+
+Top 5 highest position_at_stake rows:
+  2022 R9 | Alpine       | ALO | Lap 1 | P2 | 7.0000
+  2022 R9 | Alpine       | ALO | Lap 2 | P2 | 7.0000
+  2022 R9 | Alpine       | ALO | Lap 9 | P2 | 7.0000
+  2022 R9 | Alpine       | ALO | Lap 10 | P2 | 7.0000
+  2022 R9 | Alpine       | ALO | Lap 11 | P2 | 7.0000
+
+======================================================================
+Position-at-stake verification checks...
+======================================================================
+
+Check 1 — Year breakdown for McLaren:
+  2022: mean=0.5169 (n=2,453 laps)
+  2023: mean=1.0442 (n=2,460 laps)
+  2024: mean=1.0166 (n=2,881 laps)
+  2024 vs 2022 difference: 0.4996 (96.6% change)
+  Materially higher in 2024 vs 2022 (>=10% uplift): True
+
+Check 2 — Null count reconciliation:
+  is_midfield=False rows (expected baseline nulls): 22,995
+  is_midfield=True & Position is null rows (additional nulls): 82
+  Reconciled sum: 23,077
+  Total null position_at_stake count: 23,077
+  Reconciliation exact match (zero discrepancy): True
+  Reconciliation status: OK (component counts sum to total nulls)
+  Round 1 midfield pressure_weight all equal to 1.0: True
+
+Check 3 — Confirm Dutch GP context:
+  Full EventName for 2023 Round 13: Dutch Grand Prix
+  No ZHO laps found in Top 5 position_at_stake rows
+
+Check 4 — Full-dataset distribution:
+  position_at_stake describe() for midfield non-null rows:
+    count: 51459.000000
+     mean: 0.498543
+      std: 0.787575
+      min: 0.000000
+      25%: 0.000000
+      50%: 0.000000
+      75%: 0.833333
+      max: 7.000000
+  95th percentile: 2.000000
+  99th percentile: 3.043478
+  99.9th percentile: 6.363636
+  Rows at max value (7.000000): 15
+  Top 3 rows by position_at_stake:
+    2022 | Canadian Grand Prix | ALO | Lap 1 | 7.000000 | sc_active=False | vsc_active=False
+    2022 | Canadian Grand Prix | ALO | Lap 2 | 7.000000 | sc_active=False | vsc_active=False
+    2022 | Canadian Grand Prix | ALO | Lap 9 | 7.000000 | sc_active=False | vsc_active=True
+
+Check 5 — Archetype breakdown:
+  Overall midfield mean (non-null): 0.498543
+  By circuit_archetype (mean, std, count):
+    Other     : mean=0.477211, std=0.727257, count=10,371, >15% diff=False
+    Power     : mean=0.523576, std=0.791859, count=22,849, >15% diff=False
+    Street    : mean=0.521674, std=0.807444, count=9,000, >15% diff=False
+    Technical : mean=0.438045, std=0.818044, count=9,239, >15% diff=False
+
+Check 6 — points_delta sign convention:
+  Worked example -> Team=AlphaTauri, Position=8, points_delta=2.000000, pressure_weight=1.000000
+
+Saving updated DataFrame to data/processed/base_df.csv...
+
+Final DataFrame shape: (74536, 55)
+Columns (55): ['Year', 'Round', 'EventName', 'Driver', 'CarNumber', 'LapNumber', 'LapTime_s', 'Sector1_s', 'Sector2_s', 'Sector3_s', 'SpeedI1', 'SpeedI2', 'SpeedFL', 'TyreCompound', 'TyreLife', 'Stint', 'FreshTyre', 'Position', 'TrackStatus', 'IsAccurate', 'PitInTime', 'PitOutTime', 'PitTime', 'Team', 'sc_active', 'vsc_active', 'is_strategic_stop', 'compound_known', 'is_midfield', 'deg_rate', 'deg_rate_reliable', 'pit_loss_s', 'pit_delta_1', 'pit_delta_3', 'pit_delta_5', 'pit_window_delta', 'undercut_threat_index', 'overcut_threat_index', 'undercut_threat_flag', 'overcut_threat_flag', 'circuit_archetype', 'circuit_sc_rate', 'circuit_vsc_rate', 'circuit_sc_events_per_race', 'circuit_vsc_events_per_race', 'high_sc_circuit', 'starting_fuel_kg', 'fuel_load_kg', 'fuel_corrected_laptime', 'deg_rate_corrected', 'deg_rate_corrected_reliable', 'pace_differential', 'points_delta', 'pressure_weight', 'position_at_stake']
+
+Position-at-stake building complete!
+after_build_position_at_stake (74536, 55)
+FULL_PIPELINE_REBUILD_END
+final_shape_in_memory 74536x55
+is_strategic_stop_true 215
+is_strategic_stop_false 387
+is_strategic_stop_nonnull 602

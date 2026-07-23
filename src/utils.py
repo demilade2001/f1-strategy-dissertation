@@ -42,10 +42,10 @@ CONSTRUCTOR_MAPPINGS_BY_YEAR = {
         'RUS': 'Mercedes',
         'NOR': 'McLaren',
         'RIC': 'McLaren',
-        'ALO': 'Aston Martin',
+        'ALO': 'Alpine',
         'STR': 'Aston Martin',
         'OCO': 'Alpine',
-        'GAS': 'Alpine',
+        'GAS': 'AlphaTauri',
         'TSU': 'AlphaTauri',
         'DEV': 'AlphaTauri',
         'ZHO': 'Sauber',
@@ -110,6 +110,16 @@ CONSTRUCTOR_MAPPINGS_BY_YEAR = {
 }
 
 
+CANONICAL_CONSTRUCTOR_GROUP = {
+    # Keep historical Team values in base_df intact, but allow unified grouping
+    # keys for cross-year team-level aggregation in simulation rollups.
+    'ALPHATAURI': 'RB',
+    'RB': 'RB',
+    'ALFA ROMEO': 'Sauber',
+    'SAUBER': 'Sauber',
+}
+
+
 def decode_track_status_label(status_int: Any) -> str:
     """Decode a raw FastF1 TrackStatus code to a human-readable label."""
     if status_int is None or (isinstance(status_int, float) and pd.isna(status_int)):
@@ -163,6 +173,21 @@ def get_constructor(driver_code: Any, year: int, round_number: int) -> str:
     raise ValueError(
         f'Unknown constructor mapping for driver code {driver_code_str} in {year} round {round_number}'
     )
+
+
+def canonical_constructor_group(team_name: Any) -> str:
+    """Return canonical constructor grouping label used for rollup aggregation.
+
+    This is intentionally separate from get_constructor() so base_df Team remains
+    historically accurate by season while team-level summaries can unify renamed
+    constructors across seasons (e.g., AlphaTauri/RB).
+    """
+    if team_name is None:
+        return ''
+    raw = str(team_name).strip()
+    if not raw:
+        return ''
+    return CANONICAL_CONSTRUCTOR_GROUP.get(raw.upper(), raw)
 
 
 def decode_track_status(raw_status: Any) -> Dict[str, bool]:

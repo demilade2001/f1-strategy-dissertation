@@ -1,0 +1,15 @@
+DEV_ROWS_TOTAL 616
+DEV_YEAR_ROUND_TEAMS_BEGIN
+year=2022 round=16 observed=['AlphaTauri'] expected=['AlphaTauri'] mismatch=False
+year=2023 round=1 observed=['AlphaTauri'] expected=['AlphaTauri'] mismatch=False
+year=2023 round=2 observed=['AlphaTauri'] expected=['AlphaTauri'] mismatch=False
+year=2023 round=3 observed=['AlphaTauri'] expected=['AlphaTauri'] mismatch=False
+year=2023 round=4 observed=['AlphaTauri'] expected=['AlphaTauri'] mismatch=False
+year=2023 round=5 observed=['AlphaTauri'] expected=['AlphaTauri'] mismatch=False
+year=2023 round=6 observed=['AlphaTauri'] expected=['AlphaTauri'] mismatch=False
+year=2023 round=7 observed=['AlphaTauri'] expected=['AlphaTauri'] mismatch=False
+year=2023 round=8 observed=['AlphaTauri'] expected=['AlphaTauri'] mismatch=False
+year=2023 round=9 observed=['AlphaTauri'] expected=['AlphaTauri'] mismatch=False
+year=2023 round=10 observed=['AlphaTauri'] expected=['AlphaTauri'] mismatch=False
+DEV_YEAR_ROUND_TEAMS_END
+DEV_ANY_MISMATCH False

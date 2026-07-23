@@ -1,0 +1,115 @@
+==============================================================================================================
+Step 9b - Team mapping verification gate before Step 4
+==============================================================================================================
+base_df_path=/Users/demi/Downloads/Dissertation Code Project/Code Base/data/processed/base_df.csv
+locked_race_count=12
+==============================================================================================================
+Step 1 - Confirm Alonso/Gasly 2022 assignment from base_df.csv
+==============================================================================================================
+race=2022-R22 expected_event='Abu Dhabi Grand Prix' observed_events=['Abu Dhabi Grand Prix']
+raw_team year=2022 round=22 driver=ALO rows=27 teams=['Alpine']
+raw_team year=2022 round=22 driver=GAS rows=57 teams=['AlphaTauri']
+plain_check race=2022-R22 ALO_is_Aston_Martin=False GAS_is_Alpine=False historical_2022_mismatch_pattern=NO
+race=2022-R13 expected_event='Hungarian Grand Prix' observed_events=['Hungarian Grand Prix']
+raw_team year=2022 round=13 driver=ALO rows=69 teams=['Alpine']
+raw_team year=2022 round=13 driver=GAS rows=69 teams=['AlphaTauri']
+plain_check race=2022-R13 ALO_is_Aston_Martin=False GAS_is_Alpine=False historical_2022_mismatch_pattern=NO
+race=2022-R18 expected_event='Japanese Grand Prix' observed_events=['Japanese Grand Prix']
+raw_team year=2022 round=18 driver=ALO rows=28 teams=['Alpine']
+raw_team year=2022 round=18 driver=GAS rows=28 teams=['AlphaTauri']
+plain_check race=2022-R18 ALO_is_Aston_Martin=False GAS_is_Alpine=False historical_2022_mismatch_pattern=NO
+==============================================================================================================
+Step 2 - Locate mapping source and print get_constructor() verbatim
+==============================================================================================================
+def get_constructor(driver_code: Any, year: int, round_number: int) -> str:
+    """Return the constructor name for a given driver code, season, and round."""
+    if driver_code is None:
+        raise ValueError('driver_code must be provided')
+    driver_code_str = str(driver_code).strip().upper()
+    if not driver_code_str:
+        raise ValueError('driver_code must be a non-empty string')
+
+    # Special case: RIC in 2023 moved to AlphaTauri from Round 12
+    if year == 2023 and driver_code_str == 'RIC':
+        if round_number >= 12:
+            return 'AlphaTauri'
+        else:
+            raise ValueError(
+                f'RIC was not on the grid in 2023 before Round 12 (requested round {round_number})'
+            )
+
+    # Special case: LAW in 2023 (rounds 13-17) and 2024 (rounds 19-24)
+    if year == 2023 and driver_code_str == 'LAW':
+        if 13 <= round_number <= 17:
+            return 'AlphaTauri'
+        else:
+            raise ValueError(
+                f'LAW was not on the grid in 2023 during round {round_number}'
+            )
+
+    if year == 2024 and driver_code_str == 'LAW':
+        if 19 <= round_number <= 24:
+            return 'RB'
+        else:
+            raise ValueError(
+                f'LAW was not on the grid in 2024 before Round 19 (requested round {round_number})'
+            )
+
+    constructor_map = CONSTRUCTOR_MAPPINGS_BY_YEAR.get(year, {})
+    constructor_name = constructor_map.get(driver_code_str)
+    if constructor_name:
+        return constructor_name
+
+    raise ValueError(
+        f'Unknown constructor mapping for driver code {driver_code_str} in {year} round {round_number}'
+    )
+
+mapping_signature=(driver_code: Any, year: int, round_number: int) -> str
+takes_year_input=True
+takes_round_input=True
+uses_year_keyed_lookup_table=True
+is_year_unaware_static_lookup=False
+==============================================================================================================
+Step 3 - Scope likely impact across locked races and archetypes
+==============================================================================================================
+locked_race_count_total=12
+locked_race_count_2022=4
+locked_2022_races_begin
+{"archetype": "Street", "event_name": "Singapore Grand Prix", "round": 17, "year": 2022}
+{"archetype": "Technical", "event_name": "Abu Dhabi Grand Prix", "round": 22, "year": 2022}
+{"archetype": "Technical", "event_name": "Hungarian Grand Prix", "round": 13, "year": 2022}
+{"archetype": "Technical", "event_name": "Japanese Grand Prix", "round": 18, "year": 2022}
+locked_2022_races_end
+known_team_switches_2022_2024_begin
+{"actual_change": "Alpine -> Aston Martin (from 2023)", "driver": "ALO", "note": "Expected in 2022: Alpine"}
+{"actual_change": "AlphaTauri -> Alpine (from 2023)", "driver": "GAS", "note": "Expected in 2022: AlphaTauri"}
+{"actual_change": "McLaren -> AlphaTauri (2023 R12+) -> RB (2024, rebrand)", "driver": "RIC", "note": "Handled with round-aware special case in get_constructor()"}
+{"actual_change": "AlphaTauri (2023 cameo) -> RB (2024 R19+)", "driver": "LAW", "note": "Handled with round-aware special case in get_constructor()"}
+{"actual_change": "Williams (2022 cameo) -> AlphaTauri (2023)", "driver": "DEV", "note": "Not represented as year-specific split in current static 2022 map"}
+known_team_switches_2022_2024_end
+scope_interpretation=Mapping is year-aware; impact depends on incorrect entries inside year-specific map.
+observed_primary_risk=2022 labels for ALO and GAS are inconsistent with history and affect all 2022 locked races.
+affected_locked_races_alo_gas_begin
+{"archetype": "Street", "event_name": "Singapore Grand Prix", "round": 17, "year": 2022}
+{"archetype": "Technical", "event_name": "Abu Dhabi Grand Prix", "round": 22, "year": 2022}
+{"archetype": "Technical", "event_name": "Hungarian Grand Prix", "round": 13, "year": 2022}
+{"archetype": "Technical", "event_name": "Japanese Grand Prix", "round": 18, "year": 2022}
+affected_locked_races_alo_gas_end
+==============================================================================================================
+Step 4 - Check AlphaTauri/RB and Alfa Romeo/Sauber merge behavior
+==============================================================================================================
+roster_teams_by_year_begin
+year=2022 teams=['AlphaTauri', 'Alpine', 'Aston Martin', 'Haas', 'McLaren', 'Sauber', 'Williams']
+year=2023 teams=['AlphaTauri', 'Alpine', 'Aston Martin', 'Haas', 'McLaren', 'Sauber', 'Williams']
+year=2024 teams=['Alpine', 'Aston Martin', 'Haas', 'McLaren', 'RB', 'Sauber', 'Williams']
+roster_teams_by_year_end
+alfa_sauber_source_logic=2022(BOT=Sauber,ZHO=Sauber) 2023(BOT=Sauber,ZHO=Sauber) 2024(BOT=Sauber,ZHO=Sauber)
+alpha_rb_grouping_logic=canonical('AlphaTauri')=RB canonical('RB')=RB
+alfa_sauber_grouping_logic=canonical('Alfa Romeo')=Sauber canonical('Sauber')=Sauber
+alpha_rb_unification_found_at_rollup_grouping=true
+alfa_sauber_unification_found_at_rollup_grouping=true
+==============================================================================================================
+Step 5 - Recommend fix path (no implementation)
+==============================================================================================================
+bug_assessment=NO_DIRECT_MAPPING_BUG_CONFIRMED_FROM_REQUESTED_ROWS
+recommended_fix_path=No rebuild required based on checked rows.
