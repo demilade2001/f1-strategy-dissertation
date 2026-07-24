@@ -1,0 +1,98 @@
+====================================================================================================
+Phase 3 cross-archetype synthesis and signed bias distributions
+====================================================================================================
+
+Step 1 - Fresh load and recompute for Technical, Power, Street
+cache_count_check={"archetype": "Technical", "path": "/Users/demi/Downloads/Dissertation Code Project/Code Base/data/diagnostics/phase3_technical_archetype_full_cache.json", "expected": 162, "actual": 162, "matches": true}
+fresh_recompute_summary={"archetype": "Technical", "driver_race_rows": 162, "sanity_checks": {"costs_non_negative": true, "driver_race_cost_sum_matches_total_cost": true, "row_count_accounting": {"driver_race_rows_in": 162, "driver_race_support_summed_at_team_race": 162, "driver_to_team_accounting_ok": true, "team_race_rows_in": 84, "team_race_support_summed_at_team_archetype": 84, "team_to_archetype_accounting_ok": true}}, "team_archetype_rows": 21, "team_race_rows": 84}
+cache_count_check={"archetype": "Power", "path": "/Users/demi/Downloads/Dissertation Code Project/Code Base/data/diagnostics/phase3_power_archetype_full_cache.json", "expected": 153, "actual": 153, "matches": true}
+fresh_recompute_summary={"archetype": "Power", "driver_race_rows": 153, "sanity_checks": {"costs_non_negative": true, "driver_race_cost_sum_matches_total_cost": true, "row_count_accounting": {"driver_race_rows_in": 153, "driver_race_support_summed_at_team_race": 153, "driver_to_team_accounting_ok": true, "team_race_rows_in": 81, "team_race_support_summed_at_team_archetype": 81, "team_to_archetype_accounting_ok": true}}, "team_archetype_rows": 21, "team_race_rows": 81}
+cache_count_check={"archetype": "Street", "path": "/Users/demi/Downloads/Dissertation Code Project/Code Base/data/diagnostics/phase3_street_archetype_full_cache.json", "expected": 135, "actual": 135, "matches": true}
+fresh_recompute_summary={"archetype": "Street", "driver_race_rows": 135, "sanity_checks": {"costs_non_negative": true, "driver_race_cost_sum_matches_total_cost": true, "row_count_accounting": {"driver_race_rows_in": 135, "driver_race_support_summed_at_team_race": 135, "driver_to_team_accounting_ok": true, "team_race_rows_in": 78, "team_race_support_summed_at_team_archetype": 78, "team_to_archetype_accounting_ok": true}}, "team_archetype_rows": 21, "team_race_rows": 78}
+
+Step 2 - Master team x archetype x lambda table
+team,archetype,lambda,avg_total_cost,avg_cost_conservatism,avg_cost_anchoring,avg_cost_sc_underweighting,avg_cost_unattributed,avg_cost_unattributed_fraction_of_avg_total_cost,race_support_count,low_confidence_support,dominant_bias
+Alpine,Power,1.0,4.74583332054317,0.23630300515065084,4.373763655218785,0.0,0.13576666017373404,0.028607549191844623,3,False,anchoring
+Alpine,Power,0.75,4.578733157987396,0.20424373939361834,4.2659894247131875,0.0,0.10849999388058988,0.023696509522795943,3,False,anchoring
+Alpine,Power,0.5,4.336366509708266,0.17817844836604418,4.07648806415556,0.0,0.08169999718666077,0.018840657726636033,3,False,anchoring
+Aston Martin,Power,1.0,13.797724509669933,2.4167505055746106,11.323924003219135,0.0,0.05705000087618789,0.004134739814250186,4,False,anchoring
+Aston Martin,Power,0.75,13.483525108953472,2.430975114004671,10.995599995765383,0.0,0.056949999183417255,0.0042236728691668855,4,False,anchoring
+Aston Martin,Power,0.5,13.091899796039797,2.4111443820853253,10.624155413245177,0.0,0.05660000070929527,0.004323283984072071,4,False,anchoring
+Haas,Power,1.0,7.581899897893891,0.6131536162061214,6.966621281572285,0.0,0.0021250001154838882,0.00028027277385634877,4,False,anchoring
+Haas,Power,0.75,7.373149957158603,0.2735403835437877,7.098609573567318,0.0,0.0010000000474975623,0.00013562724931786592,4,False,anchoring
+Haas,Power,0.5,7.164799884893,0.27786751803567966,6.886557366854062,0.0,0.0003750000032591849,5.2339215230543066e-05,4,False,anchoring
+McLaren,Power,1.0,18.362850189208984,2.2768403377116906,16.086009851497295,0.0,-2.220446049250313e-16,-1.2092055570736882e-17,4,False,anchoring
+McLaren,Power,0.75,18.19589936733246,2.3364214531865812,15.859477914145877,0.0,-6.661338147750939e-16,-3.6609007410264106e-17,4,False,anchoring
+McLaren,Power,0.5,17.97244954109192,1.9795305175751148,15.992919023516805,0.0,-8.326672684688674e-16,-4.633020482628539e-17,4,False,anchoring
+RB,Power,1.0,6.9486500935818185,0.1243036037486569,6.578846521304414,0.0,0.24549996852874756,0.035330598781410184,4,False,anchoring
+RB,Power,0.75,6.4564500361302635,0.119666648590316,6.0890334032755735,0.0,0.24774998426437372,0.03837247758101836,4,False,anchoring
+RB,Power,0.5,5.96687488500902,0.11653524500853277,5.598364669898177,0.0,0.2519749701023102,0.042228968255286166,4,False,anchoring
+Sauber,Power,1.0,6.839500021189451,1.3210875577747752,5.518412463414676,0.0,0.0,0.0,4,False,anchoring
+Sauber,Power,0.75,6.134950011968613,1.1922661402714358,4.942683871697177,0.0,0.0,0.0,4,False,anchoring
+Sauber,Power,0.5,5.433124992996454,1.0445670597641987,4.3885579332322555,0.0,0.0,0.0,4,False,anchoring
+Williams,Power,1.0,8.622149870730937,1.679429516140268,6.942720354590668,0.0,0.0,0.0,4,False,anchoring
+Williams,Power,0.75,8.145275053568184,1.6172417113439521,6.528033342224232,0.0,3.885780586188048e-16,4.7705946829699896e-17,4,False,anchoring
+Williams,Power,0.5,7.674349841661751,1.5406465239201772,6.133703317741574,0.0,0.0,0.0,4,False,anchoring
+Alpine,Street,1.0,1.7111666798591614,0.42320922975168035,1.287957450107481,0.0,-1.4802973661668753e-16,-8.650807566500255e-17,3,False,anchoring
+Alpine,Street,0.75,1.760700101653735,0.37675047426807395,1.383949627385661,0.0,-1.4802973661668753e-16,-8.407436137343936e-17,3,False,anchoring
+Alpine,Street,0.5,1.9401333779096603,0.3531099607073408,1.5870234172023197,0.0,-1.4802973661668753e-16,-7.62987422937787e-17,3,False,anchoring
+Aston Martin,Street,1.0,10.53774944320321,2.158158649758981,8.37959079344423,0.0,0.0,0.0,4,False,anchoring
+Aston Martin,Street,0.75,10.077799797058105,2.053892417153301,8.023907379904804,0.0,0.0,0.0,4,False,anchoring
+Aston Martin,Street,0.5,9.811899716034532,1.9758636809975956,7.836036035036937,0.0,-4.440892098500626e-16,-4.526026790962156e-17,4,False,anchoring
+Haas,Street,1.0,9.297449596226215,2.2679337653778777,7.029515830848338,0.0,0.0,0.0,4,False,anchoring
+Haas,Street,0.75,8.727699741721153,2.1756607487993653,6.552038992921788,0.0,0.0,0.0,4,False,anchoring
+Haas,Street,0.5,8.26667469739914,2.0873245873748583,6.179350110024281,0.0,4.440892098500626e-16,5.3720416746262183e-17,4,False,anchoring
+McLaren,Street,1.0,14.476325199007988,2.8087147020066836,11.667610497001306,0.0,-1.6653345369377348e-16,-1.1503848622106489e-17,4,False,anchoring
+McLaren,Street,0.75,13.92055007815361,2.6677105400896233,11.252839538063988,0.0,-4.440892098500626e-16,-3.190169981479393e-17,4,False,anchoring
+McLaren,Street,0.5,13.530174866318703,2.6040267011822236,10.926148165136478,0.0,3.885780586188048e-16,2.8719367078256346e-17,4,False,anchoring
+RB,Street,1.0,3.4850748982280493,1.137829296444696,2.3472456017833534,0.0,0.0,0.0,4,False,anchoring
+RB,Street,0.75,3.244050147011876,1.0487294566908574,2.1953206903210187,0.0,0.0,0.0,4,False,anchoring
+RB,Street,0.5,3.106175258755684,1.0018362036526283,2.1043390551030554,0.0,0.0,0.0,4,False,anchoring
+Sauber,Street,1.0,4.808274935465306,1.029300413540208,3.61474951777736,0.0,0.16422500414773822,0.034154661776187686,4,False,anchoring
+Sauber,Street,0.75,4.738300023134798,1.0077152853997853,3.5715847363529294,0.0,0.1590000013820827,0.033556338899133356,4,False,anchoring
+Sauber,Street,0.5,4.654299824964255,0.983180816045832,3.5207940016474013,0.0,0.1503250072710216,0.0322980927151972,4,False,anchoring
+Williams,Street,1.0,3.4837000221014023,0.37541023697510023,2.783756456712339,0.0,0.3245333284139633,0.09315765604244007,3,False,anchoring
+Williams,Street,0.75,3.3466333094984293,0.3730182995362141,2.652215008938009,0.0,0.32140000102420646,0.09603681410568872,3,False,anchoring
+Williams,Street,0.5,3.2517000436782837,0.3940378639854963,2.5408621814094015,0.0,0.31679999828338623,0.09742595996801288,3,False,anchoring
+Alpine,Technical,1.0,3.1135500073432922,0.08591079274797908,2.4422642036280586,0.47635000944137573,0.1090250015258789,0.035016300129673196,4,False,anchoring
+Alpine,Technical,0.75,3.1385998129844666,0.08128063308083958,2.471944168936372,0.47635000944137573,0.1090250015258789,0.034736827892119196,4,False,anchoring
+Alpine,Technical,0.5,3.15134996175766,0.07449465357605432,2.491480297214351,0.47635000944137573,0.1090250015258789,0.03459628503622949,4,False,anchoring
+Aston Martin,Technical,1.0,3.772250145673752,0.10918819524983225,3.115436945178711,0.34997498989105225,0.19765001535415627,0.05239578705585934,4,False,anchoring
+Aston Martin,Technical,0.75,3.7569752652198076,0.10588562028969367,3.1034646396849053,0.34997498989105225,0.1976500153541565,0.052608814645095266,4,False,anchoring
+Aston Martin,Technical,0.5,3.741124969907105,0.10245521450092412,3.091044750160972,0.34997498989105225,0.1976500153541565,0.052831706223132206,4,False,anchoring
+Haas,Technical,1.0,2.6943499324843287,0.19164999667555094,2.4914249358698726,0.0,0.011274999938905239,0.004184682844261848,4,False,anchoring
+Haas,Technical,0.75,2.679175012744963,0.17207499779760838,2.497200015000999,0.0,0.00989999994635582,0.0036951673180217973,4,False,anchoring
+Haas,Technical,0.5,2.665524967480451,0.1537500019185245,2.5027749659493566,0.0,0.008999999612569809,0.0033764454365914002,4,False,anchoring
+McLaren,Technical,1.0,3.1606001146137714,0.992614748362289,2.153485366668715,0.0,0.014499999582767598,0.0045877362073498225,4,False,anchoring
+McLaren,Technical,0.75,3.1061000302433968,0.9775338873228846,2.1140661433377446,0.0,0.014499999582767487,0.00466823329628288,4,False,anchoring
+McLaren,Technical,0.5,3.020924996584654,0.9540732727700979,2.0523517242317886,0.0,0.014499999582767487,0.004799854216559713,4,False,anchoring
+RB,Technical,1.0,3.872350076213479,0.3525127721650859,3.2330577093986204,0.268279594411354,0.01850000023841858,0.004777460682611768,4,False,anchoring
+RB,Technical,0.75,3.884200030937791,0.3585822057405269,3.2387132302941715,0.268279594411354,0.01862500049173832,0.004795067283710811,4,False,anchoring
+RB,Technical,0.5,3.895899986848235,0.3579765398354988,3.250893851856324,0.268279594411354,0.01875000074505806,0.004812752074836172,4,False,anchoring
+Sauber,Technical,1.0,2.633774981070019,0.1917747849709889,2.427500196516262,0.0,0.014499999582767598,0.005505405620064289,4,False,anchoring
+Sauber,Technical,0.75,2.6171750399189477,0.19307774076043294,2.409597299575747,0.0,0.014499999582767487,0.005540324724790491,4,False,anchoring
+Sauber,Technical,0.5,2.5990000120782497,0.19801662412558385,2.386483388369898,0.0,0.014499999582767487,0.005579068686180109,4,False,anchoring
+Williams,Technical,1.0,1.3303749971091747,0.3161250054836273,0.7278499864041805,0.0,0.2864000052213669,0.2152776516724209,4,False,anchoring
+Williams,Technical,0.75,1.322750004939735,0.3143500089645386,0.7212749980390072,0.0,0.2871249979361892,0.21706671469585118,4,False,anchoring
+Williams,Technical,0.5,1.3112500072456896,0.07712794014159251,0.9466970757311244,0.0,0.2874249913729727,0.21919922957843518,4,False,anchoring
+
+Step 3 - Cross-archetype descriptive comparison (no significance testing)
+descriptive_archetype_summary={"archetype": "Power", "dominant_bias_most_often": "anchoring", "mean_avg_total_cost_across_teams": 9.186021716538923, "note": "Descriptive effect sizes only; no p-values, CIs, or significance tests computed.", "team_cost_range_max": 18.362850189208984, "team_cost_range_min": 4.336366509708266, "team_cost_range_span": 14.026483679500718}
+descriptive_archetype_summary={"archetype": "Street", "dominant_bias_most_often": "anchoring", "mean_avg_total_cost_across_teams": 6.579834845589682, "note": "Descriptive effect sizes only; no p-values, CIs, or significance tests computed.", "team_cost_range_max": 14.476325199007988, "team_cost_range_min": 1.7111666798591614, "team_cost_range_span": 12.765158519148827}
+descriptive_archetype_summary={"archetype": "Technical", "dominant_bias_most_often": "anchoring", "mean_avg_total_cost_across_teams": 2.927014302542808, "note": "Descriptive effect sizes only; no p-values, CIs, or significance tests computed.", "team_cost_range_max": 3.895899986848235, "team_cost_range_min": 1.3112500072456896, "team_cost_range_span": 2.5846499796025455}
+
+Step 4/5 - Signed bias distributions (SC, Conservatism, Anchoring)
+bias,archetype,scope,total_rows,rb_lt_1_count,rb_gt_1_count,rb_approx_1_count,unidentifiable_strict_count,unidentifiable_materiality_count,finite_identifiable_count,materially_identifiable_count,directional_skew_materially_identifiable,materially_identifiable_lt_1_count,materially_identifiable_gt_1_count,materially_identifiable_approx_1_count
+anchoring,Power,per_archetype,1779,1643,0,0,136,1110,1643,669,toward_lt_1,669,0,0
+anchoring,Street,per_archetype,1674,1123,71,0,480,1246,1194,428,toward_lt_1,414,14,0
+anchoring,Technical,per_archetype,2616,2211,0,0,405,1945,2211,671,toward_lt_1,671,0,0
+anchoring,Pooled,pooled,6069,4977,71,0,1021,4301,5048,1768,toward_lt_1,1754,14,0
+conservatism,Power,per_archetype,147,114,27,6,0,0,147,147,toward_lt_1,114,27,6
+conservatism,Street,per_archetype,114,94,20,0,0,0,114,114,toward_lt_1,94,20,0
+conservatism,Technical,per_archetype,162,84,72,6,0,0,162,162,toward_lt_1,84,72,6
+conservatism,Pooled,pooled,423,292,119,12,0,0,423,423,toward_lt_1,292,119,12
+sc_underweighting,Power,per_archetype,153,24,120,0,9,114,144,39,toward_gt_1,0,39,0
+sc_underweighting,Street,per_archetype,135,32,73,0,30,115,105,20,toward_gt_1,1,19,0
+sc_underweighting,Technical,per_archetype,162,59,82,0,21,140,141,22,toward_lt_1,12,10,0
+sc_underweighting,Pooled,pooled,450,115,275,0,60,369,390,81,toward_gt_1,13,68,0
+directional_hypothesis_note=Directional skew is evaluated from materially identifiable rows (strict=false and materiality=false) by comparing counts with r_b<1 vs r_b>1.

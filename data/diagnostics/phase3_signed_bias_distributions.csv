@@ -1,0 +1,13 @@
+bias,archetype,scope,total_rows,rb_lt_1_count,rb_gt_1_count,rb_approx_1_count,unidentifiable_strict_count,unidentifiable_materiality_count,finite_identifiable_count,materially_identifiable_count,directional_skew_materially_identifiable,materially_identifiable_lt_1_count,materially_identifiable_gt_1_count,materially_identifiable_approx_1_count
+anchoring,Power,per_archetype,1779,1643,0,0,136,1110,1643,669,toward_lt_1,669,0,0
+anchoring,Street,per_archetype,1674,1123,71,0,480,1246,1194,428,toward_lt_1,414,14,0
+anchoring,Technical,per_archetype,2616,2211,0,0,405,1945,2211,671,toward_lt_1,671,0,0
+anchoring,Pooled,pooled,6069,4977,71,0,1021,4301,5048,1768,toward_lt_1,1754,14,0
+conservatism,Power,per_archetype,147,114,27,6,0,0,147,147,toward_lt_1,114,27,6
+conservatism,Street,per_archetype,114,94,20,0,0,0,114,114,toward_lt_1,94,20,0
+conservatism,Technical,per_archetype,162,84,72,6,0,0,162,162,toward_lt_1,84,72,6
+conservatism,Pooled,pooled,423,292,119,12,0,0,423,423,toward_lt_1,292,119,12
+sc_underweighting,Power,per_archetype,153,24,120,0,9,114,144,39,toward_gt_1,0,39,0
+sc_underweighting,Street,per_archetype,135,32,73,0,30,115,105,20,toward_gt_1,1,19,0
+sc_underweighting,Technical,per_archetype,162,59,82,0,21,140,141,22,toward_lt_1,12,10,0
+sc_underweighting,Pooled,pooled,450,115,275,0,60,369,390,81,toward_gt_1,13,68,0
