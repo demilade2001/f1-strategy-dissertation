@@ -6,3 +6,12 @@ __pycache__/
 .ipynb_checkpoints/
 .env
 .DS_Store
+
+# Local run artifacts and model binaries
+data/diagnostics/*.log
+data/diagnostics/*nohup.log
+data/models/*.pkl
+
+# Ad hoc local-only figure exports
+data/eda_outputs_phase1_base_df/figures/Claude.pdf
+data/eda_outputs_phase1_base_df/figures/file.png
