@@ -1,0 +1,25 @@
+====================================================================================================
+Step 9j - Classification rebuild addendum checks
+====================================================================================================
+source_step9i_output=/Users/demi/Downloads/Dissertation Code Project/Code Base/data/diagnostics/simulation_step9i_classification_rule_cache_rebuild_output.txt
+
+Step 1 - Two rows failing 90% but not in legacy 15
+legacy_fail_count=15
+fails_90_count=17
+extra_rows_count=2
+extra_rows_begin
+extra_row={"fails_90_rule": true, "fails_legacy_85": false, "lap_fraction": 0.8846153846153846, "max_lap": 46, "present_in_power_cache_after_rebuild": false, "present_in_technical_cache_after_rebuild": false, "race": {"archetype": "Power", "event_name": "British Grand Prix", "round": 10, "year": 2023}, "race_length_laps": 52, "stop_count": 1, "subject_driver": "GAS", "subject_team": "Alpine"}
+extra_row={"fails_90_rule": true, "fails_legacy_85": false, "lap_fraction": 0.8823529411764706, "max_lap": 45, "present_in_power_cache_after_rebuild": false, "present_in_technical_cache_after_rebuild": false, "race": {"archetype": "Street", "event_name": "Azerbaijan Grand Prix", "round": 17, "year": 2024}, "race_length_laps": 51, "stop_count": 1, "subject_driver": "STR", "subject_team": "Aston Martin"}
+extra_rows_end
+
+Step 2 - Support counts for cells losing a full race of subjects
+alpine_power_rows_begin
+alpine_power_row={"avg_total_cost": 4.336366509708266, "lambda": 0.5, "low_confidence_support": false, "race_support_count": 3}
+alpine_power_row={"avg_total_cost": 4.578733157987396, "lambda": 0.75, "low_confidence_support": false, "race_support_count": 3}
+alpine_power_row={"avg_total_cost": 4.74583332054317, "lambda": 1.0, "low_confidence_support": false, "race_support_count": 3}
+alpine_power_rows_end
+full_race_subject_loss_cells_begin
+full_race_subject_loss_cell={"archetype": "Power", "race": "British Grand Prix 2023", "team": "Alpine"}
+full_race_subject_loss_cells_end
+other_full_race_loss_cells=none
+diagnostic_complete=true

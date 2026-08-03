@@ -417,8 +417,11 @@ def run_phase3_archetype_first_pass(
                 + json.dumps(
                     {
                         "race": row["race"],
+                        "race_length_laps": row.get("race_length_laps"),
                         "subjects": row["subjects"],
+                        "valid_subject_driver_count": row["valid_subject_driver_count"],
                         "team_valid_driver_counts": row["team_valid_driver_counts"],
+                        "excluded_non_classified_subjects": row.get("excluded_non_classified_subjects", []),
                         "anomaly_teams": row["anomaly_teams"],
                         "anomaly_note": row["anomaly_note"],
                     },

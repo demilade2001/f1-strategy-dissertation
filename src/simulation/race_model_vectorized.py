@@ -167,7 +167,7 @@ def evaluate_strategy_batch(
             )
 
     # State arrays over strategies x iterations.
-    cumulative_time = np.zeros((n_strategies, n_iterations), dtype=np.float32)
+    cumulative_time = np.zeros((n_strategies, n_iterations), dtype=np.float64)
     effective_age = np.ones((n_strategies, n_iterations), dtype=np.float32)
 
     baseline = np.float32(baseline_pace_s)
@@ -181,18 +181,24 @@ def evaluate_strategy_batch(
     for lap in range(1, race_length + 1):
         caution_mask = schedules[:, lap - 1][None, :]  # 1 x n_iterations
 
-        stops_completed = (stop_laps <= lap).sum(axis=1)  # n_strategies
-        has_stopped = stops_completed > 0
-        last_stop_idx = np.maximum(stops_completed - 1, 0)
+        if max_stops == 0:
+            has_stopped = np.zeros(n_strategies, dtype=bool)
+            current_compound_idx = starting_compound_idx
+            is_pit_lap = np.zeros((n_strategies, 1), dtype=bool)
+        else:
+            stops_completed = (stop_laps <= lap).sum(axis=1)  # n_strategies
+            has_stopped = stops_completed > 0
+            last_stop_idx = np.maximum(stops_completed - 1, 0)
 
-        current_compound_idx = np.where(
-            has_stopped,
-            stop_compound_idx[strategy_indices, last_stop_idx],
-            starting_compound_idx,
-        )
+            current_compound_idx = np.where(
+                has_stopped,
+                stop_compound_idx[strategy_indices, last_stop_idx],
+                starting_compound_idx,
+            )
+
+            is_pit_lap = (stop_laps == lap).any(axis=1)[:, None]
+
         degradation_rate = rates_by_strategy_compound[strategy_indices, current_compound_idx][:, None]
-
-        is_pit_lap = (stop_laps == lap).any(axis=1)[:, None]
 
         lap_time_green = baseline + (degradation_rate * effective_age)
         lap_time_caution = baseline * caution_ratio

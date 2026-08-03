@@ -17,17 +17,17 @@ n_100_mean_points=5.800000000000
 n_100_std_points=0.603022689156
 n_100_mean_position=7.100000000000
 n_100_n_iterations=100
-n_100_wall_clock_seconds=0.209251750000
+n_100_wall_clock_seconds=0.218309958000
 n_1000_mean_points=5.792000000000
 n_1000_std_points=0.610826578588
 n_1000_mean_position=7.104000000000
 n_1000_n_iterations=1000
-n_1000_wall_clock_seconds=1.397190500000
+n_1000_wall_clock_seconds=1.464889459000
 n_10000_mean_points=5.774400000000
 n_10000_std_points=0.640269970062
 n_10000_mean_position=7.112800000000
 n_10000_n_iterations=10000
-n_10000_wall_clock_seconds=13.249041625000
+n_10000_wall_clock_seconds=14.090332125000
 mean_points_abs_diff_1000_vs_10000=0.017600000000
 mean_points_rel_diff_1000_vs_10000=0.304793571626%
 mean_stabilized_1000_vs_10000=True
@@ -41,7 +41,7 @@ seed_46_mean_points=5.787200000000
 seed_mean_std=0.007922625827
 
 Step 4 - Runtime check for a single-strategy 10,000-iteration run
-single_strategy_10k_wall_clock_seconds=13.249041625000
+single_strategy_10k_wall_clock_seconds=14.090332125000
 comparison_to_step2h_full_sweep=This should be dramatically faster than the ~86-second full-strategy sweep because the Monte Carlo loop evaluates one fixed strategy against shared caution schedules, not tens of thousands of candidate strategies.
 
 Step 5 - Probability source distinguishability

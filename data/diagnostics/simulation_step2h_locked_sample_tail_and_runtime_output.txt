@@ -182,3 +182,37 @@ Technical    Spanish Grand Prix  2023      7    SAR     Williams           1
 Technical    Spanish Grand Prix  2023      7    STR Aston Martin           1
 Technical    Spanish Grand Prix  2023      7    TSU   AlphaTauri           2
 Technical    Spanish Grand Prix  2023      7    ZHO       Sauber           1
+
+Step 3 - Locked-sample 4+ stop cases
+flagged_4plus_count=0
+No 4+ stop cases in the locked sample.
+
+Step 4 + Step 5 - Contamination flags and classification
+Skipped because there are zero flagged 4+ stop cases.
+
+Step 6 - Real 10,000-schedule runtime benchmark on longest locked race
+locked_race_lengths:
+           event_name  year  round  race_length
+    Monaco Grand Prix  2023      6           78
+ Hungarian Grand Prix  2022     13           70
+   Spanish Grand Prix  2023      7           66
+ Singapore Grand Prix  2022     17           59
+ Abu Dhabi Grand Prix  2022     22           58
+   Bahrain Grand Prix  2024      1           57
+     Miami Grand Prix  2024      6           57
+   Italian Grand Prix  2024     16           53
+   British Grand Prix  2023     10           52
+Azerbaijan Grand Prix  2024     17           51
+   Belgian Grand Prix  2024     14           44
+  Japanese Grand Prix  2022     18           29
+benchmark_race=Monaco Grand Prix
+benchmark_year=2023
+benchmark_round=6
+benchmark_driver=ALO
+benchmark_team=Aston Martin
+benchmark_race_length=78
+benchmark_strategy_count=73203
+benchmark_schedule_count=10000
+benchmark_wall_clock_seconds=86.019160
+benchmark_vectorized_checksum=36602.001380
+previous_linear_extrapolation_note=No prior linear extrapolation for this exact race-year among Monaco/Monza/Hungary 2024; this is a fresh measurement.

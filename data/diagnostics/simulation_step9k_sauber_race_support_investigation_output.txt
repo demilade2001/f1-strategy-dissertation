@@ -1,0 +1,63 @@
+Step 1 - BOT rows in Street cache
+================================================================================
+{"B": 18.185199737548828, "R_SC": 18.415300369262695, "X": 0.0, "all_non_null": true, "anchoring_pairs": 6, "lambda": 1.0, "present": true, "race": {"archetype": "Street", "event_name": "Singapore Grand Prix", "round": 17, "year": 2022}, "subject_team": "Sauber"}
+{"B": 17.978300094604492, "R_SC": 18.17530059814453, "X": 0.0, "all_non_null": true, "anchoring_pairs": 6, "lambda": 0.75, "present": true, "race": {"archetype": "Street", "event_name": "Singapore Grand Prix", "round": 17, "year": 2022}, "subject_team": "Sauber"}
+{"B": 17.72909927368164, "R_SC": 17.98270034790039, "X": 0.0, "all_non_null": true, "anchoring_pairs": 6, "lambda": 0.5, "present": true, "race": {"archetype": "Street", "event_name": "Singapore Grand Prix", "round": 17, "year": 2022}, "subject_team": "Sauber"}
+{"B": 0.0, "R_SC": 0.0, "X": 0.0, "all_non_null": true, "anchoring_pairs": 19, "lambda": 1.0, "present": true, "race": {"archetype": "Street", "event_name": "Monaco Grand Prix", "round": 6, "year": 2023}, "subject_team": "Sauber"}
+{"B": 0.0, "R_SC": 0.0, "X": 0.0, "all_non_null": true, "anchoring_pairs": 19, "lambda": 0.75, "present": true, "race": {"archetype": "Street", "event_name": "Monaco Grand Prix", "round": 6, "year": 2023}, "subject_team": "Sauber"}
+{"B": 0.0, "R_SC": 0.0, "X": 0.0, "all_non_null": true, "anchoring_pairs": 19, "lambda": 0.5, "present": true, "race": {"archetype": "Street", "event_name": "Monaco Grand Prix", "round": 6, "year": 2023}, "subject_team": "Sauber"}
+{"B": 0.2870999872684479, "R_SC": 0.2815000116825104, "X": 0.0, "all_non_null": true, "anchoring_pairs": 11, "lambda": 1.0, "present": true, "race": {"archetype": "Street", "event_name": "Azerbaijan Grand Prix", "round": 17, "year": 2024}, "subject_team": "Sauber"}
+{"B": 0.23549999296665192, "R_SC": 0.2632000148296356, "X": 0.0, "all_non_null": true, "anchoring_pairs": 11, "lambda": 0.75, "present": true, "race": {"archetype": "Street", "event_name": "Azerbaijan Grand Prix", "round": 17, "year": 2024}, "subject_team": "Sauber"}
+{"B": 0.18469999730587006, "R_SC": 0.24130000174045563, "X": 0.0, "all_non_null": true, "anchoring_pairs": 11, "lambda": 0.5, "present": true, "race": {"archetype": "Street", "event_name": "Azerbaijan Grand Prix", "round": 17, "year": 2024}, "subject_team": "Sauber"}
+{"B": 0.6797000169754028, "R_SC": 0.6531000137329102, "X": 0.02280000038444996, "all_non_null": true, "anchoring_pairs": 12, "lambda": 1.0, "present": true, "race": {"archetype": "Street", "event_name": "Miami Grand Prix", "round": 6, "year": 2024}, "subject_team": "Sauber"}
+{"B": 0.6588000059127808, "R_SC": 0.5896999835968018, "X": 0.02280000038444996, "all_non_null": true, "anchoring_pairs": 12, "lambda": 0.75, "present": true, "race": {"archetype": "Street", "event_name": "Miami Grand Prix", "round": 6, "year": 2024}, "subject_team": "Sauber"}
+{"B": 0.6241000294685364, "R_SC": 0.520799994468689, "X": 0.02280000038444996, "all_non_null": true, "anchoring_pairs": 12, "lambda": 0.5, "present": true, "race": {"archetype": "Street", "event_name": "Miami Grand Prix", "round": 6, "year": 2024}, "subject_team": "Sauber"}
+
+Step 3 - Sauber Street Singapore team-race-lambda rows
+================================================================================
+{"avg_total_cost": 0.0, "driver_race_count": 1, "lambda": 1.0, "present": true, "race": {"archetype": "Street", "event_name": "Singapore Grand Prix", "round": 17, "year": 2022}, "team": "Sauber"}
+{"avg_total_cost": 0.0, "driver_race_count": 1, "lambda": 0.75, "present": true, "race": {"archetype": "Street", "event_name": "Singapore Grand Prix", "round": 17, "year": 2022}, "team": "Sauber"}
+{"avg_total_cost": 0.0, "driver_race_count": 1, "lambda": 0.5, "present": true, "race": {"archetype": "Street", "event_name": "Singapore Grand Prix", "round": 17, "year": 2022}, "team": "Sauber"}
+
+Step 4 - driver_race_count==1 team-race rows support audit across archetypes
+================================================================================
+{"archetype": "Power", "team": "Haas", "lambda": 0.5, "race_support_count_expected_from_team_race_rows": 4, "single_driver_team_race_count": 1}
+{"archetype": "Power", "team": "Haas", "lambda": 0.75, "race_support_count_expected_from_team_race_rows": 4, "single_driver_team_race_count": 1}
+{"archetype": "Power", "team": "Haas", "lambda": 1.0, "race_support_count_expected_from_team_race_rows": 4, "single_driver_team_race_count": 1}
+{"archetype": "Power", "team": "RB", "lambda": 0.5, "race_support_count_expected_from_team_race_rows": 3, "single_driver_team_race_count": 1}
+{"archetype": "Power", "team": "RB", "lambda": 0.75, "race_support_count_expected_from_team_race_rows": 3, "single_driver_team_race_count": 1}
+{"archetype": "Power", "team": "RB", "lambda": 1.0, "race_support_count_expected_from_team_race_rows": 3, "single_driver_team_race_count": 1}
+{"archetype": "Power", "team": "Sauber", "lambda": 0.5, "race_support_count_expected_from_team_race_rows": 4, "single_driver_team_race_count": 1}
+{"archetype": "Power", "team": "Sauber", "lambda": 0.75, "race_support_count_expected_from_team_race_rows": 4, "single_driver_team_race_count": 1}
+{"archetype": "Power", "team": "Sauber", "lambda": 1.0, "race_support_count_expected_from_team_race_rows": 4, "single_driver_team_race_count": 1}
+{"archetype": "Street", "team": "AlphaTauri", "lambda": 0.5, "race_support_count_expected_from_team_race_rows": 2, "single_driver_team_race_count": 1}
+{"archetype": "Street", "team": "AlphaTauri", "lambda": 0.75, "race_support_count_expected_from_team_race_rows": 2, "single_driver_team_race_count": 1}
+{"archetype": "Street", "team": "AlphaTauri", "lambda": 1.0, "race_support_count_expected_from_team_race_rows": 2, "single_driver_team_race_count": 1}
+{"archetype": "Street", "team": "Aston Martin", "lambda": 0.5, "race_support_count_expected_from_team_race_rows": 4, "single_driver_team_race_count": 2}
+{"archetype": "Street", "team": "Aston Martin", "lambda": 0.75, "race_support_count_expected_from_team_race_rows": 4, "single_driver_team_race_count": 2}
+{"archetype": "Street", "team": "Aston Martin", "lambda": 1.0, "race_support_count_expected_from_team_race_rows": 4, "single_driver_team_race_count": 2}
+{"archetype": "Street", "team": "Haas", "lambda": 0.5, "race_support_count_expected_from_team_race_rows": 4, "single_driver_team_race_count": 1}
+{"archetype": "Street", "team": "Haas", "lambda": 0.75, "race_support_count_expected_from_team_race_rows": 4, "single_driver_team_race_count": 1}
+{"archetype": "Street", "team": "Haas", "lambda": 1.0, "race_support_count_expected_from_team_race_rows": 4, "single_driver_team_race_count": 1}
+{"archetype": "Street", "team": "RB", "lambda": 0.5, "race_support_count_expected_from_team_race_rows": 2, "single_driver_team_race_count": 1}
+{"archetype": "Street", "team": "RB", "lambda": 0.75, "race_support_count_expected_from_team_race_rows": 2, "single_driver_team_race_count": 1}
+{"archetype": "Street", "team": "RB", "lambda": 1.0, "race_support_count_expected_from_team_race_rows": 2, "single_driver_team_race_count": 1}
+{"archetype": "Street", "team": "Sauber", "lambda": 0.5, "race_support_count_expected_from_team_race_rows": 4, "single_driver_team_race_count": 1}
+{"archetype": "Street", "team": "Sauber", "lambda": 0.75, "race_support_count_expected_from_team_race_rows": 4, "single_driver_team_race_count": 1}
+{"archetype": "Street", "team": "Sauber", "lambda": 1.0, "race_support_count_expected_from_team_race_rows": 4, "single_driver_team_race_count": 1}
+{"archetype": "Street", "team": "Williams", "lambda": 0.5, "race_support_count_expected_from_team_race_rows": 3, "single_driver_team_race_count": 1}
+{"archetype": "Street", "team": "Williams", "lambda": 0.75, "race_support_count_expected_from_team_race_rows": 3, "single_driver_team_race_count": 1}
+{"archetype": "Street", "team": "Williams", "lambda": 1.0, "race_support_count_expected_from_team_race_rows": 3, "single_driver_team_race_count": 1}
+{"archetype": "Technical", "team": "Alpine", "lambda": 0.5, "race_support_count_expected_from_team_race_rows": 4, "single_driver_team_race_count": 1}
+{"archetype": "Technical", "team": "Alpine", "lambda": 0.75, "race_support_count_expected_from_team_race_rows": 4, "single_driver_team_race_count": 1}
+{"archetype": "Technical", "team": "Alpine", "lambda": 1.0, "race_support_count_expected_from_team_race_rows": 4, "single_driver_team_race_count": 1}
+{"archetype": "Technical", "team": "Williams", "lambda": 0.5, "race_support_count_expected_from_team_race_rows": 4, "single_driver_team_race_count": 1}
+{"archetype": "Technical", "team": "Williams", "lambda": 0.75, "race_support_count_expected_from_team_race_rows": 4, "single_driver_team_race_count": 1}
+{"archetype": "Technical", "team": "Williams", "lambda": 1.0, "race_support_count_expected_from_team_race_rows": 4, "single_driver_team_race_count": 1}
+
+Sauber Street support summary
+{"archetype": "Street", "team": "Sauber", "lambda": 1.0, "race_support_count_expected_from_team_race_rows": 4}
+{"archetype": "Street", "team": "Sauber", "lambda": 0.75, "race_support_count_expected_from_team_race_rows": 4}
+{"archetype": "Street", "team": "Sauber", "lambda": 0.5, "race_support_count_expected_from_team_race_rows": 4}
+
+Diagnostic complete=true

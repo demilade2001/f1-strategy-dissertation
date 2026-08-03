@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Any, Dict, List, Mapping, Sequence, Tuple
+from typing import Any, Dict, List, Mapping, Optional, Sequence, Tuple
 
 import numpy as np
 import pandas as pd
@@ -143,6 +143,8 @@ def simulate_car_race(
     pit_loss_s,
     caution_pit_loss_s,
     caution_pace_ratio,
+    degradation_lookup: Optional[Mapping[Tuple[Any, ...], float]] = None,
+    collect_trace: bool = True,
 ) -> dict:
     """Simulate one deterministic race for a single car.
 
@@ -154,7 +156,8 @@ def simulate_car_race(
     starting_compound = _strategy_starting_compound(strategy)
     stops = _strategy_stops(strategy)
     baseline_pace_s = _strategy_baseline_pace(strategy)
-    degradation_lookup = _build_degradation_lookup(degradation_stats)
+    if degradation_lookup is None:
+        degradation_lookup = _build_degradation_lookup(degradation_stats)
 
     compound_by_lap = _compound_by_lap(starting_compound, stops, int(race_length))
     stop_map = {int(lap): str(compound) for lap, compound in stops}
@@ -179,19 +182,20 @@ def simulate_car_race(
             lap_time_s += pit_loss_added
 
         cumulative_time_s += float(lap_time_s)
-        lap_trace.append(
-            {
-                "lap_number": lap_number,
-                "compound": compound,
-                "is_caution": is_caution,
-                "effective_age": float(effective_age),
-                "degradation_rate": float(degradation_rate),
-                "baseline_pace_s": float(baseline_pace_s),
-                "pit_loss_s": float(pit_loss_added),
-                "lap_time_s": float(lap_time_s),
-                "cumulative_time_s": float(cumulative_time_s),
-            }
-        )
+        if collect_trace:
+            lap_trace.append(
+                {
+                    "lap_number": lap_number,
+                    "compound": compound,
+                    "is_caution": is_caution,
+                    "effective_age": float(effective_age),
+                    "degradation_rate": float(degradation_rate),
+                    "baseline_pace_s": float(baseline_pace_s),
+                    "pit_loss_s": float(pit_loss_added),
+                    "lap_time_s": float(lap_time_s),
+                    "cumulative_time_s": float(cumulative_time_s),
+                }
+            )
 
         if lap_number in stop_map:
             effective_age = 1.0
@@ -200,7 +204,7 @@ def simulate_car_race(
 
     return {
         "race_time_s": float(cumulative_time_s),
-        "lap_trace": lap_trace,
+        "lap_trace": lap_trace if collect_trace else [],
         "starting_compound": starting_compound,
         "stops": stops,
         "baseline_pace_s": float(baseline_pace_s),
@@ -266,11 +270,76 @@ def _driver_pit_loss(driver_laps: pd.DataFrame) -> float:
     return 0.0
 
 
+def simulate_race_from_prepared(
+    race_length: int,
+    prepared_strategies: Mapping[str, Mapping[str, Any]],
+    pit_loss_by_driver: Mapping[str, float],
+    caution_schedule: Mapping[int, bool],
+    degradation_lookup: Mapping,
+    lambda_: float,
+    collect_trace: bool = False,
+) -> dict:
+    """Low-overhead race simulation using only pre-computed inputs.
+
+    All per-driver data (``baseline_pace_s``, compound sequence, ``pit_loss_s``,
+    ``event_name``, ``year``) must already be resolved by the caller. This
+    function calls ``simulate_car_race`` directly for every driver without any
+    DataFrame access, making it suitable as the inner body of a Monte Carlo loop
+    where these values are invariant across iterations.
+    """
+    driver_results: Dict[str, Dict[str, Any]] = {}
+    for driver, strategy in prepared_strategies.items():
+        driver_results[driver] = simulate_car_race(
+            strategy=strategy,
+            caution_schedule=caution_schedule,
+            degradation_stats=None,
+            race_length=race_length,
+            lambda_=lambda_,
+            pit_loss_s=float(pit_loss_by_driver[driver]),
+            caution_pit_loss_s=CAUTION_PIT_LOSS_S,
+            caution_pace_ratio=CAUTION_PACE_RATIO,
+            degradation_lookup=degradation_lookup,
+            collect_trace=collect_trace,
+        )
+
+    ranking = sorted(driver_results.items(), key=lambda item: (item[1]["race_time_s"], item[0]))
+    finishing_order = [driver for driver, _ in ranking]
+    position_by_driver = {driver: idx + 1 for idx, driver in enumerate(finishing_order)}
+    points_by_driver = {driver: _points_for_position(position) for driver, position in position_by_driver.items()}
+
+    return {
+        "driver_results": driver_results,
+        "finishing_order": finishing_order,
+        "position_by_driver": position_by_driver,
+        "points_by_driver": points_by_driver,
+        "race_length": race_length,
+    }
+
+
 def simulate_race(race_state, strategies_by_driver, caution_schedule, lambda_) -> dict:
     """Simulate a whole race and rank drivers by cumulative time."""
 
+    return simulate_race_with_driver_laps(race_state, strategies_by_driver, caution_schedule, lambda_)
+
+
+def simulate_race_with_driver_laps(
+    race_state,
+    strategies_by_driver,
+    caution_schedule,
+    lambda_,
+    driver_laps_by_driver: Optional[Mapping[str, pd.DataFrame]] = None,
+    collect_trace: bool = True,
+) -> dict:
+    """Simulate a whole race and rank drivers by cumulative time.
+
+    When ``driver_laps_by_driver`` is supplied, each driver's lap slice is reused
+    directly instead of re-filtering the full race dataframe on every call. That
+    keeps repeated Monte Carlo evaluations practical.
+    """
+
     laps = race_state["laps"].copy()
     deg_stats = race_state.get("deg_stats")
+    degradation_lookup = _build_degradation_lookup(deg_stats)
 
     required_drivers = sorted(laps["Driver"].dropna().astype(str).unique().tolist())
     missing = [driver for driver in required_drivers if driver not in strategies_by_driver]
@@ -285,7 +354,10 @@ def simulate_race(race_state, strategies_by_driver, caution_schedule, lambda_) -
 
     driver_results: Dict[str, Dict[str, Any]] = {}
     for driver in required_drivers:
-        driver_laps = laps[laps["Driver"].astype(str) == driver].copy()
+        if driver_laps_by_driver is not None and driver in driver_laps_by_driver:
+            driver_laps = driver_laps_by_driver[driver].copy()
+        else:
+            driver_laps = laps[laps["Driver"].astype(str) == driver].copy()
         strategy = dict(strategies_by_driver[driver])
         strategy.setdefault("event_name", event_name)
         strategy.setdefault("year", year)
@@ -306,6 +378,8 @@ def simulate_race(race_state, strategies_by_driver, caution_schedule, lambda_) -
             pit_loss_s=pit_loss_s,
             caution_pit_loss_s=CAUTION_PIT_LOSS_S,
             caution_pace_ratio=CAUTION_PACE_RATIO,
+            degradation_lookup=degradation_lookup,
+            collect_trace=collect_trace,
         )
 
     ranking = sorted(driver_results.items(), key=lambda item: (item[1]["race_time_s"], item[0]))

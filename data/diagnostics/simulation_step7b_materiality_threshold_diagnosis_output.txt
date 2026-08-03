@@ -1,0 +1,35 @@
+====================================================================================================
+Step 7b - Materiality threshold diagnosis (report only, no formula change)
+====================================================================================================
+
+Step 1 - Repeatability check on B
+n_iterations_300=300
+n_iterations_10000=10000
+{"B_mean_points_n10000_reference": 14.113499641418457, "B_mean_points_n300_run1": 14.430000305175781, "B_mean_points_n300_run2": 14.130000114440918, "B_mean_points_n300_run3": 13.949999809265137, "B_mean_points_n300_spread": 0.48000049591064453, "race": {"event_name": "Bahrain Grand Prix", "round": 1, "subject_driver": "NOR", "year": 2024}}
+{"B_mean_points_n10000_reference": 6.775199890136719, "B_mean_points_n300_run1": 6.776666641235352, "B_mean_points_n300_run2": 6.763333320617676, "B_mean_points_n300_run3": 6.896666526794434, "B_mean_points_n300_spread": 0.1333332061767578, "race": {"event_name": "Hungarian Grand Prix", "round": 13, "subject_driver": "NOR", "year": 2022}}
+{"B_mean_points_n10000_reference": 24.998600006103516, "B_mean_points_n300_run1": 25.0, "B_mean_points_n300_run2": 25.0, "B_mean_points_n300_run3": 25.0, "B_mean_points_n300_spread": 0.0, "race": {"event_name": "Miami Grand Prix", "round": 6, "subject_driver": "NOR", "year": 2024}}
+n300_noise_floor_max_spread=0.48000049591064453
+comparison_target_gap_band_points=[0.07, 2.0]
+n300_noise_statement=At least part of the observed B-R gap band (0.07 to ~2 points) is within MC spread at n=300.
+
+Step 2 - Distribution of |B-R| across pilot
+anchoring_rows_parsed=159
+sc_rows_parsed=12
+anchoring_abs_B_minus_R_distribution={"count": 159, "max": 10.25333309173584, "median": 0.9566659927368164, "min": 0.0, "p10": 0.04199867248535158, "p25": 0.3299994468688965, "p75": 1.9533333778381348, "p90": 4.364665508270265}
+sc_abs_B_minus_R_distribution={"count": 12, "max": 1.106666624546051, "median": 0.4416661262512207, "min": 0.0, "p10": 0.08866667747497559, "p25": 0.17666691541671753, "p75": 0.6758332252502441, "p90": 0.9893335342407227}
+
+Step 3 - Propose percentile-derived materiality threshold
+materiality_threshold_percentile=p50
+materiality_threshold_abs_B_minus_R=0.8799991607666016
+required_min_from_noise_floor(1.5x)=0.7200007438659668
+materiality_justification=Selected the lowest percentile whose abs(B-R) value is at least 1.5x the measured n=300 noise floor.
+
+Step 4 - Materiality impact and post-filter r_b distribution
+anchoring_materiality_impact={"abs_gap_distribution": {"count": 159, "max": 10.25333309173584, "median": 0.9566659927368164, "min": 0.0, "p10": 0.04199867248535158, "p25": 0.3299994468688965, "p75": 1.9533333778381348, "p90": 4.364665508270265}, "combined_unidentifiable_count": 75, "materiality_flag_count": 75, "materiality_only_count": 61, "materially_identifiable_count": 84, "outlier_abs_rb_gt_5_after": 7, "outlier_abs_rb_gt_5_before": 37, "r_b_identifiable_distribution": {"count": 84, "max": 0.9068563725858502, "median": -0.6685101330630076, "min": -11.924803188281716, "p10": -3.9239291053252816, "p25": -1.7439337466149865, "p75": -0.08101114426955394, "p90": 0.7632143569766218}, "strict_unidentifiable_count": 14, "total_rows": 159}
+sc_materiality_impact={"abs_gap_distribution": {"count": 12, "max": 1.106666624546051, "median": 0.4416661262512207, "min": 0.0, "p10": 0.08866667747497559, "p25": 0.17666691541671753, "p75": 0.6758332252502441, "p90": 0.9893335342407227}, "combined_unidentifiable_count": 10, "materiality_flag_count": 10, "materiality_only_count": 9, "materially_identifiable_count": 2, "outlier_abs_rb_gt_5_after": 1, "outlier_abs_rb_gt_5_before": 8, "r_b_identifiable_distribution": {"count": 2, "max": 12.346531805188617, "median": 5.811820100318901, "min": -0.7228916045508148, "p10": 0.5840507364231285, "p25": 2.544464247884043, "p75": 9.079175952753758, "p90": 11.039589464214673}, "strict_unidentifiable_count": 1, "total_rows": 12}
+outlier_statement=|r_b|>5 outliers persist after materiality filtering; this indicates a deeper modelling issue.
+combined_outliers_abs_rb_gt_5_before=45
+combined_outliers_abs_rb_gt_5_after=8
+
+Step 5 - Recommendation (do not implement)
+recommendation={"note": "Use the existing vectorized/single-strategy evaluation path where available to keep runtime tractable.", "rationale": "n=300 spread is large enough to contaminate low-gap rows; keep validated standard for reference computations.", "recommended_n_iterations_for_B_and_R_reference_computations": 10000}

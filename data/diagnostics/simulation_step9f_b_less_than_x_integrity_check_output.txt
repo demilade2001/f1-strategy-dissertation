@@ -1,0 +1,51 @@
+====================================================================================================
+Step 9f - B < X integrity diagnosis (cache-only)
+====================================================================================================
+power_cache_path=/Users/demi/Downloads/Dissertation Code Project/Code Base/data/diagnostics/phase3_power_archetype_full_cache.json
+technical_cache_path=/Users/demi/Downloads/Dissertation Code Project/Code Base/data/diagnostics/phase3_technical_archetype_full_cache.json
+grid_spacing=3
+power_row_count=168
+technical_row_count=168
+
+Step 1 - Check whether OCO British 2023 actual strategy is on the grid
+target_rows_found=3
+target_race_length_laps=52
+target_grid_points_count=17
+target_grid_points_sample_start=[1, 4, 7, 10, 13, 16, 19, 22, 25, 28]
+target_grid_points_sample_end=[22, 25, 28, 31, 34, 37, 40, 43, 46, 49]
+x_actual_stops=[]
+actual_lap_grid_distance=none (no pit stops in actual strategy)
+actual_strategy_on_grid_via_pit_laps=True
+
+Step 2 - Off-grid quantification (conditional)
+off_grid_detected=false
+step2_result=not_applicable
+
+Step 3 - On-grid inclusion and bug trace
+enumerated_strategy_count=430712
+no_stop_strategy_present_in_enumerated_space=False
+target_lambda_rows_begin
+target_lambda_row={"B_minus_X": -9.954999923706055, "B_strategy_stops": [[49, "HARD"]], "B_unconditioned_mean_points": 9.234399795532227, "X_actual_mean_points": 19.18939971923828, "lambda": 0.5}
+target_lambda_row={"B_minus_X": -9.856999397277832, "B_strategy_stops": [[49, "HARD"]], "B_unconditioned_mean_points": 10.166600227355957, "X_actual_mean_points": 20.02359962463379, "lambda": 0.75}
+target_lambda_row={"B_minus_X": -9.550800323486328, "B_strategy_stops": [[49, "HARD"]], "B_unconditioned_mean_points": 11.095399856567383, "X_actual_mean_points": 20.64620018005371, "lambda": 1.0}
+target_lambda_rows_end
+step3_finding=BUG_SCOPE_CANDIDATE_GENERATION
+step3_reason=X actual has zero stops, but B search space excludes zero-stop strategies by construction.
+
+Step 4 - Broader integrity scan across Power + Technical
+power_summary={"b_less_than_x_count": 3, "row_count": 168, "worst_gap": -9.954999923706055}
+technical_summary={"b_less_than_x_count": 1, "row_count": 168, "worst_gap": -0.007199764251708984}
+combined_b_less_than_x_count=4
+combined_worst_rows_begin
+combined_worst_row={"b_stops": [[49, "HARD"]], "cache": "Power", "gap_b_minus_x": -9.954999923706055, "lambda": 0.5, "race": {"archetype": "Power", "event_name": "British Grand Prix", "round": 10, "year": 2023}, "subject_driver": "OCO", "subject_team": "Alpine", "x_stops": []}
+combined_worst_row={"b_stops": [[49, "HARD"]], "cache": "Power", "gap_b_minus_x": -9.856999397277832, "lambda": 0.75, "race": {"archetype": "Power", "event_name": "British Grand Prix", "round": 10, "year": 2023}, "subject_driver": "OCO", "subject_team": "Alpine", "x_stops": []}
+combined_worst_row={"b_stops": [[49, "HARD"]], "cache": "Power", "gap_b_minus_x": -9.550800323486328, "lambda": 1.0, "race": {"archetype": "Power", "event_name": "British Grand Prix", "round": 10, "year": 2023}, "subject_driver": "OCO", "subject_team": "Alpine", "x_stops": []}
+combined_worst_row={"b_stops": [[13, "HARD"]], "cache": "Technical", "gap_b_minus_x": -0.007199764251708984, "lambda": 1.0, "race": {"archetype": "Technical", "event_name": "Abu Dhabi Grand Prix", "round": 22, "year": 2022}, "subject_driver": "OCO", "subject_team": "Alpine", "x_stops": [[15, "HARD"]]}
+combined_worst_rows_end
+
+Step 5 - Report recommendation (no code fix in this step)
+recommendation=GENUINE_BUG
+recommendation_detail=Fix candidate generation to include zero-stop strategies before proceeding to Street.
+
+Step 6 - Completion
+diagnostic_complete=true
