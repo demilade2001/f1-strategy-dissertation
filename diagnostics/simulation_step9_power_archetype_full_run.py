@@ -7,7 +7,7 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from src.simulation.run import run_phase3_archetype_first_pass  # noqa: E402
+from source_code.simulation.run import run_phase3_archetype_first_pass  # noqa: E402
 
 
 DIAG_DIR = ROOT / "data" / "diagnostics"

@@ -114,7 +114,7 @@ def main() -> None:
     XGBClassifier = load_xgb_classifier()
 
     print_header("Step 0 - Exact original training hyperparameters")
-    print("Training reference: src/phase2_model_classweight_check.py")
+    print("Training reference: source_code/phase2_model_classweight_check.py")
     print(f"Reference artifact trained there: {MODEL_PATH_REFERENCE}")
     print("XGBClassifier hyperparameters (replicated identically):")
     print("- scale_pos_weight = neg_count / pos_count (computed from training data per fit)")

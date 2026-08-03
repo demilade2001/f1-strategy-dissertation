@@ -12,17 +12,17 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from src.simulation.config import GRID_SPACING, LOCKED_ARCHETYPE_RACES, MAX_STOPS
-from src.simulation.monte_carlo import build_actual_strategies, select_midfield_subject_driver
-from src.simulation.optimiser import (
+from source_code.simulation.config import GRID_SPACING, LOCKED_ARCHETYPE_RACES, MAX_STOPS
+from source_code.simulation.monte_carlo import build_actual_strategies, select_midfield_subject_driver
+from source_code.simulation.optimiser import (
     ARGMAX_BATCH_SIZE,
     _build_caution_schedule_matrix,
     _precompute_subject_inputs,
     _resolve_probability_by_source,
 )
-from src.simulation.race_model_vectorized import evaluate_strategy_batch, rank_and_score_batch
-from src.simulation.race_state import load_race_state
-from src.simulation.strategy import enumerate_feasible_strategies, is_strategy_feasible
+from source_code.simulation.race_model_vectorized import evaluate_strategy_batch, rank_and_score_batch
+from source_code.simulation.race_state import load_race_state
+from source_code.simulation.strategy import enumerate_feasible_strategies, is_strategy_feasible
 
 RAW_DEG_PATH = ROOT / "data" / "diagnostics" / "deg_rate_full_peryear_stats.csv"
 SHRUNK_DEG_PATH = ROOT / "data" / "diagnostics" / "deg_rate_corrected_shrunk_full_peryear_stats.csv"

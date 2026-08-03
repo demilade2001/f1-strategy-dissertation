@@ -6,8 +6,8 @@ from typing import Any, Dict, List, Tuple
 
 import pandas as pd
 
-from src.simulation import config as sim_config
-from src.simulation.monte_carlo import build_actual_strategies
+from source_code.simulation import config as sim_config
+from source_code.simulation.monte_carlo import build_actual_strategies
 
 
 BASE_DF_PATH = Path("data/processed/base_df.csv")

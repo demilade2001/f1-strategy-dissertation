@@ -7,7 +7,7 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from src.simulation.run import (  # noqa: E402
+from source_code.simulation.run import (  # noqa: E402
     DEFAULT_TECHNICAL_CACHE_PATH,
     run_phase3_technical_first_pass,
 )

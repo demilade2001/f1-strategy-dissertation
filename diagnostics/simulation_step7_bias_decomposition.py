@@ -15,12 +15,12 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from src.simulation import config as sim_config  # noqa: E402
-from src.simulation.bias import compute_r_b, partition_cost  # noqa: E402
-from src.simulation.monte_carlo import build_actual_strategies, build_probability_sources, run_monte_carlo  # noqa: E402
-from src.simulation.optimiser import argmax_strategy, detect_rival_trigger_events  # noqa: E402
-from src.simulation.race_state import load_race_state  # noqa: E402
-from src.simulation.references import r_conservatism  # noqa: E402
+from source_code.simulation import config as sim_config  # noqa: E402
+from source_code.simulation.bias import compute_r_b, partition_cost  # noqa: E402
+from source_code.simulation.monte_carlo import build_actual_strategies, build_probability_sources, run_monte_carlo  # noqa: E402
+from source_code.simulation.optimiser import argmax_strategy, detect_rival_trigger_events  # noqa: E402
+from source_code.simulation.race_state import load_race_state  # noqa: E402
+from source_code.simulation.references import r_conservatism  # noqa: E402
 
 
 DIAG_DIR = ROOT / "data" / "diagnostics"
@@ -141,7 +141,7 @@ def _compute_trigger_rows(race: Mapping[str, Any], state: dict, cache_row: Mappi
     )
     events = trigger_data["trigger_events"]
 
-    from src.simulation.optimiser import build_reactive_candidate_sets, score_subject_strategy_pool
+    from source_code.simulation.optimiser import build_reactive_candidate_sets, score_subject_strategy_pool
 
     candidate_sets = build_reactive_candidate_sets(
         race_state=state,
@@ -224,7 +224,7 @@ def main() -> None:
             state = _load_race_state_with_corrected_deg(race_info)
             subject_driver = race_info.get("subject_driver")
             if not subject_driver:
-                from src.simulation.monte_carlo import select_midfield_subject_driver
+                from source_code.simulation.monte_carlo import select_midfield_subject_driver
 
                 subject_driver = select_midfield_subject_driver(state["laps"])
             race_info["subject_driver"] = str(subject_driver)

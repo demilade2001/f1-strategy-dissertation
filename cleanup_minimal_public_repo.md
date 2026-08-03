@@ -6,7 +6,7 @@ No files were deleted, committed, or pushed.
 
 ## Core
 
-- `src/` (all current simulation modules and feature/model scripts)
+- `source_code/` (all current simulation modules and feature/model scripts)
 - `diagnostics/` (step-by-step validation and correction scripts used in methodology trail)
 - `tests/`
 - `README.md`

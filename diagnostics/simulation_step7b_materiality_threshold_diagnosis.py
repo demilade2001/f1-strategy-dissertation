@@ -13,9 +13,9 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from src.simulation import config as sim_config  # noqa: E402
-from src.simulation.optimiser import argmax_strategy  # noqa: E402
-from src.simulation.race_state import load_race_state  # noqa: E402
+from source_code.simulation import config as sim_config  # noqa: E402
+from source_code.simulation.optimiser import argmax_strategy  # noqa: E402
+from source_code.simulation.race_state import load_race_state  # noqa: E402
 
 
 STEP7_OUTPUT = ROOT / "data" / "diagnostics" / "simulation_step7_bias_decomposition_output.txt"

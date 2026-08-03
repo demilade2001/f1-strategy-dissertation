@@ -3,8 +3,8 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from src.simulation.bias import partition_cost
-from src.simulation.rollup import compute_driver_race_bias_summary, compute_driver_race_cost_partition
+from source_code.simulation.bias import partition_cost
+from source_code.simulation.rollup import compute_driver_race_bias_summary, compute_driver_race_cost_partition
 
 
 ROOT = Path(__file__).resolve().parents[1]

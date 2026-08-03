@@ -14,15 +14,15 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 import src.simulation.monte_carlo as mc
-from src.simulation.config import CAUTION_PACE_RATIO, CAUTION_PIT_LOSS_S
-from src.simulation.monte_carlo import (
+from source_code.simulation.config import CAUTION_PACE_RATIO, CAUTION_PIT_LOSS_S
+from source_code.simulation.monte_carlo import (
     build_actual_strategies,
     build_probability_sources,
     run_monte_carlo,
     select_midfield_subject_driver,
 )
-from src.simulation.race_model import _build_degradation_lookup, _driver_pit_loss, simulate_car_race
-from src.simulation.race_model_vectorized import (
+from source_code.simulation.race_model import _build_degradation_lookup, _driver_pit_loss, simulate_car_race
+from source_code.simulation.race_model_vectorized import (
     evaluate_strategy_batch,
     precompute_rival_times,
     rank_and_score_batch,
@@ -128,7 +128,7 @@ def _vectorized_trace_single(
     pit_loss_s: float,
     lambda_: float,
 ) -> List[dict]:
-    from src.simulation.race_model import _lookup_degradation_rate, _strategy_starting_compound, _strategy_stops
+    from source_code.simulation.race_model import _lookup_degradation_rate, _strategy_starting_compound, _strategy_stops
 
     race_length = schedule_row.shape[0]
     starting_compound = _strategy_starting_compound(strategy)
@@ -379,6 +379,6 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    from src.simulation.race_state import load_race_state
+    from source_code.simulation.race_state import load_race_state
 
     main()

@@ -12,15 +12,15 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from src.simulation.monte_carlo import (
+from source_code.simulation.monte_carlo import (
     build_actual_strategies,
     build_probability_sources,
     run_monte_carlo,
     select_midfield_subject_driver,
 )
-from src.simulation.race_model import simulate_race_with_driver_laps
-from src.simulation.race_state import load_race_state
-from src.simulation.sc_sampler import sample_caution_schedule
+from source_code.simulation.race_model import simulate_race_with_driver_laps
+from source_code.simulation.race_state import load_race_state
+from source_code.simulation.sc_sampler import sample_caution_schedule
 
 OUTPUT_PATH = ROOT / "data" / "diagnostics" / "simulation_step4_validation_output.txt"
 RACE_YEAR = 2022

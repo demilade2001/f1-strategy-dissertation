@@ -5,7 +5,7 @@ This repository contains the data pipeline, feature engineering, and simulation 
 Project structure:
 
 - data/: raw and processed datasets and outputs
-- src/: source code (data fetching, utils, features, models, simulations)
+- source_code/: source code (data fetching, utils, features, models, simulations)
 - notebooks/: exploratory analysis and visualisations
 - results/: model outputs and evaluation artifacts
 
@@ -23,7 +23,7 @@ Archived superseded scripts:
 
 Notes:
 
-- `src/simulation/race_model.py` and `src/simulation/race_model_vectorized.py` are both actively relevant and should be retained.
+- `source_code/simulation/race_model.py` and `source_code/simulation/race_model_vectorized.py` are both actively relevant and should be retained.
 - The current `.gitignore` includes `*.csv`, so CSV artifacts are not pushed unless explicitly unignored.
 
 For a structured keep/archive checklist, see `cleanup_minimal_public_repo.md`.

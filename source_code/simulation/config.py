@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from src.utils import MIDFIELD_CONSTRUCTORS
+from source_code.utils import MIDFIELD_CONSTRUCTORS
 
 
 # Added seconds to pit-loss window when scanning for nearby rivals.

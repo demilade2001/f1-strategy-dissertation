@@ -16,17 +16,17 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from src.simulation import config as sim_config  # noqa: E402
-from src.simulation.bias import compute_r_b  # noqa: E402
-from src.simulation.monte_carlo import build_actual_strategies  # noqa: E402
-from src.simulation.optimiser import (  # noqa: E402
+from source_code.simulation import config as sim_config  # noqa: E402
+from source_code.simulation.bias import compute_r_b  # noqa: E402
+from source_code.simulation.monte_carlo import build_actual_strategies  # noqa: E402
+from source_code.simulation.optimiser import (  # noqa: E402
     argmax_strategy,
     build_reactive_candidate_sets,
     detect_rival_trigger_events,
     score_subject_strategy_pool,
 )
-from src.simulation.race_state import load_race_state  # noqa: E402
-from src.simulation.references import r_conservatism  # noqa: E402
+from source_code.simulation.race_state import load_race_state  # noqa: E402
+from source_code.simulation.references import r_conservatism  # noqa: E402
 
 
 DIAG_DIR = ROOT / "data" / "diagnostics"
@@ -298,7 +298,7 @@ def main() -> None:
             race_info = dict(race)
             if not race_info.get("subject_driver"):
                 # Keep driver mapping aligned with prior Step 7 artifacts.
-                from src.simulation.monte_carlo import select_midfield_subject_driver
+                from source_code.simulation.monte_carlo import select_midfield_subject_driver
 
                 st = _load_race_state_with_corrected_deg(race_info)
                 race_info["subject_driver"] = str(select_midfield_subject_driver(st["laps"]))

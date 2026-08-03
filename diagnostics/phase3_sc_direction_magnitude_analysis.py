@@ -7,8 +7,8 @@ from typing import Any, Dict, Iterable, List, Tuple
 
 import pandas as pd
 
-from src.simulation import config as sim_config
-from src.simulation.bias import compute_r_b
+from source_code.simulation import config as sim_config
+from source_code.simulation.bias import compute_r_b
 
 
 ROOT = Path(__file__).resolve().parents[1]

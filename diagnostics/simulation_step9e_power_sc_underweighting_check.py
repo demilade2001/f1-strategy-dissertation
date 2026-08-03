@@ -9,9 +9,9 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from src.simulation import config as sim_config  # noqa: E402
-from src.simulation.bias import compute_r_b  # noqa: E402
-from src.simulation.rollup import (  # noqa: E402
+from source_code.simulation import config as sim_config  # noqa: E402
+from source_code.simulation.bias import compute_r_b  # noqa: E402
+from source_code.simulation.rollup import (  # noqa: E402
     compute_driver_race_bias_summary,
     compute_driver_race_cost_partition,
     rollup_team_archetype,

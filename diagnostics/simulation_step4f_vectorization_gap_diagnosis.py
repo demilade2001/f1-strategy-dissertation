@@ -11,9 +11,9 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from src.simulation.monte_carlo import run_monte_carlo
-from src.simulation.race_model import simulate_car_race, simulate_race_with_driver_laps
-from src.simulation.race_state import load_race_state
+from source_code.simulation.monte_carlo import run_monte_carlo
+from source_code.simulation.race_model import simulate_car_race, simulate_race_with_driver_laps
+from source_code.simulation.race_state import load_race_state
 
 OUTPUT_PATH = ROOT / "data" / "diagnostics" / "simulation_step4f_vectorization_gap_diagnosis_output.txt"
 STEP2H_SCRIPT_PATH = ROOT / "diagnostics" / "simulation_step2h_locked_sample_tail_and_runtime.py"

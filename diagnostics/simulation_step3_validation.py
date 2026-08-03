@@ -12,14 +12,14 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from src.simulation.config import (
+from source_code.simulation.config import (
     BASE_DF_PATH,
     CAUTION_PACE_RATIO,
     CAUTION_PIT_LOSS_S,
     LOCKED_ARCHETYPE_RACES,
 )
-from src.simulation.race_model import simulate_race
-from src.simulation.race_state import load_race_state
+from source_code.simulation.race_model import simulate_race
+from source_code.simulation.race_state import load_race_state
 
 
 OUTPUT_PATH = ROOT / "data" / "diagnostics" / "simulation_step3_validation_output.txt"
@@ -94,7 +94,7 @@ def main() -> None:
 
     output_lines = []
     output_lines.append("Step 0 - Existing points system check")
-    output_lines.append("The standard F1 points table already exists in src/features.py, so config.py was not modified for points.")
+    output_lines.append("The standard F1 points table already exists in source_code/features.py, so config.py was not modified for points.")
 
     output_lines.append("\nStep 1 - Caution sampler interface")
     output_lines.append("sample_caution_schedule(prob_by_lap, rng) returns a per-lap boolean schedule and accepts any per-lap probability source.")

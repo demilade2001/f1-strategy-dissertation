@@ -12,8 +12,8 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from src.simulation.config import BASE_DF_PATH, LOCKED_ARCHETYPE_RACES
-from src.simulation.config import is_valid_subject
+from source_code.simulation.config import BASE_DF_PATH, LOCKED_ARCHETYPE_RACES
+from source_code.simulation.config import is_valid_subject
 
 
 WET_COMPOUNDS = {"INTERMEDIATE", "WET"}

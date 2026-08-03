@@ -2,7 +2,7 @@
 import pandas as pd
 import numpy as np
 from pathlib import Path
-from src.utils import get_constructor, decode_track_status, MIDFIELD_CONSTRUCTORS
+from source_code.utils import get_constructor, decode_track_status, MIDFIELD_CONSTRUCTORS
 
 
 def build_base_df():

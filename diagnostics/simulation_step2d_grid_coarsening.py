@@ -10,8 +10,8 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from src.simulation.config import BASE_DF_PATH, is_valid_subject
-from src.simulation.race_state import load_race_state
+from source_code.simulation.config import BASE_DF_PATH, is_valid_subject
+from source_code.simulation.race_state import load_race_state
 
 
 VALIDATION_RACES = [

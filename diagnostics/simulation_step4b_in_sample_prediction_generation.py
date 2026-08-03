@@ -123,7 +123,7 @@ def main() -> None:
     _ = load_xgb_classifier()
 
     print_header("Step 1 - Exact preprocessing path used for classweight_test_predictions.csv")
-    print("Source script located: src/phase2_model_classweight_check.py")
+    print("Source script located: source_code/phase2_model_classweight_check.py")
     print("Exact sequence replicated for scoring rows:")
     print("1) Load data/processed/phase2_features_final.csv")
     print("2) Cast: is_strategic_stop -> BooleanDtype, sc_active -> bool, vsc_active -> bool, caution_active -> bool")

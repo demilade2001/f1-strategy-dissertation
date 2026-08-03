@@ -4,8 +4,8 @@ import json
 from pathlib import Path
 from typing import Dict, List, Tuple
 
-from src.simulation.config import GRID_SPACING
-from src.simulation.strategy import enumerate_feasible_strategies
+from source_code.simulation.config import GRID_SPACING
+from source_code.simulation.strategy import enumerate_feasible_strategies
 
 
 POWER_CACHE_PATH = Path("data/diagnostics/phase3_power_archetype_full_cache.json")

@@ -17,9 +17,9 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from src.simulation import config as sim_config
-from src.simulation.run import derive_real_subject_roster
-from src.utils import CONSTRUCTOR_MAPPINGS_BY_YEAR, canonical_constructor_group, get_constructor
+from source_code.simulation import config as sim_config
+from source_code.simulation.run import derive_real_subject_roster
+from source_code.utils import CONSTRUCTOR_MAPPINGS_BY_YEAR, canonical_constructor_group, get_constructor
 
 
 BASE_DF_PATH = ROOT / "data" / "processed" / "base_df.csv"

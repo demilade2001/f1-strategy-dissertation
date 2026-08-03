@@ -11,10 +11,10 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from src.simulation import race_model as race_model_module
-from src.simulation.config import BASE_DF_PATH, LOCKED_ARCHETYPE_RACES
-from src.simulation.race_model import simulate_race
-from src.simulation.race_state import load_race_state
+from source_code.simulation import race_model as race_model_module
+from source_code.simulation.config import BASE_DF_PATH, LOCKED_ARCHETYPE_RACES
+from source_code.simulation.race_model import simulate_race
+from source_code.simulation.race_state import load_race_state
 
 OUTPUT_PATH = ROOT / "data" / "diagnostics" / "simulation_step3b_recalibration_and_clean_validation_output.txt"
 

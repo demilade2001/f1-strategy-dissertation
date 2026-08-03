@@ -226,25 +226,25 @@ def main() -> None:
         for path, line_no in context_targets:
             print_context(path, line_no, radius=10)
 
-    print_section("Step 4 - src/simulation.py check")
+    print_section("Step 4 - source_code/simulation.py check")
     src_dir = REPO_ROOT / "src"
     src_entries = sorted([p.name for p in src_dir.iterdir()])
-    print("ls src/")
+    print("ls source_code/")
     for name in src_entries:
         print(name)
 
     simulation_path = src_dir / "simulation.py"
     if simulation_path.exists():
-        print("\nFile exists: src/simulation.py")
+        print("\nFile exists: source_code/simulation.py")
         sim_lines = simulation_path.read_text(encoding="utf-8", errors="ignore").splitlines()
         degrad_hits = [i for i, ln in enumerate(sim_lines, start=1) if "degrad" in ln.lower()]
         if not degrad_hits:
-            print("No matches for grep -n -i \"degrad\" src/simulation.py")
+            print("No matches for grep -n -i \"degrad\" source_code/simulation.py")
         else:
             for ln in degrad_hits:
                 print_context(simulation_path, ln, radius=5)
     else:
-        print("simulation.py not found; see ls src/ output above.")
+        print("simulation.py not found; see ls source_code/ output above.")
 
     print_section("Step 5 - Two-path N/slope comparison table")
     base_df_path = REPO_ROOT / "data" / "processed" / "base_df.csv"

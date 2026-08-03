@@ -6,16 +6,16 @@ from typing import Any, Dict, Iterable, List, Mapping, Tuple
 
 import pandas as pd
 
-from src.simulation import config as sim_config
-from src.simulation.monte_carlo import build_actual_strategies
-from src.simulation.rollup import (
+from source_code.simulation import config as sim_config
+from source_code.simulation.monte_carlo import build_actual_strategies
+from source_code.simulation.rollup import (
     compute_driver_race_bias_summary,
     compute_driver_race_cost_partition,
     rollup_team_archetype,
     rollup_team_race,
     sanity_checks,
 )
-from src.simulation.run import derive_real_subject_roster
+from source_code.simulation.run import derive_real_subject_roster
 
 
 BASE_DF_PATH = Path("data/processed/base_df.csv")

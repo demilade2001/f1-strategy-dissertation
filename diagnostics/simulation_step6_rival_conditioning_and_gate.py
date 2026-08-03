@@ -14,7 +14,7 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from src.simulation.config import (  # noqa: E402
+from source_code.simulation.config import (  # noqa: E402
     GRID_SPACING,
     INCLUDE_BIG_THREE_AS_RIVALS,
     LOCKED_ARCHETYPE_RACES,
@@ -25,14 +25,14 @@ from src.simulation.config import (  # noqa: E402
     RNG_SEED,
     UNIDENTIFIABLE_EPSILON,
 )
-from src.simulation.monte_carlo import select_midfield_subject_driver  # noqa: E402
-from src.simulation.optimiser import (  # noqa: E402
+from source_code.simulation.monte_carlo import select_midfield_subject_driver  # noqa: E402
+from source_code.simulation.optimiser import (  # noqa: E402
     build_reactive_candidate_sets,
     compute_benchmarks_for_trigger_events,
     detect_rival_trigger_events,
     score_subject_strategy_pool,
 )
-from src.simulation.race_state import load_race_state  # noqa: E402
+from source_code.simulation.race_state import load_race_state  # noqa: E402
 
 PROB_SOURCE = "lap_level"
 LAMBDA_VALUE = 1.0

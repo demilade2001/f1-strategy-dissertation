@@ -13,21 +13,21 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from src.simulation.config import GRID_SPACING, LOCKED_ARCHETYPE_RACES, MAX_STOPS
-from src.simulation.monte_carlo import (
+from source_code.simulation.config import GRID_SPACING, LOCKED_ARCHETYPE_RACES, MAX_STOPS
+from source_code.simulation.monte_carlo import (
     build_actual_strategies,
     build_probability_sources,
     select_midfield_subject_driver,
 )
-from src.simulation.optimiser import argmax_strategy
-from src.simulation.race_model import _build_degradation_lookup, _driver_pit_loss
-from src.simulation.race_model_vectorized import (
+from source_code.simulation.optimiser import argmax_strategy
+from source_code.simulation.race_model import _build_degradation_lookup, _driver_pit_loss
+from source_code.simulation.race_model_vectorized import (
     evaluate_strategy_batch,
     precompute_rival_times,
     rank_and_score_batch,
 )
-from src.simulation.race_state import load_race_state
-from src.simulation.sc_sampler import sample_caution_schedule
+from source_code.simulation.race_state import load_race_state
+from source_code.simulation.sc_sampler import sample_caution_schedule
 
 OUTPUT_PATH = ROOT / "data" / "diagnostics" / "simulation_step5_validation_output.txt"
 

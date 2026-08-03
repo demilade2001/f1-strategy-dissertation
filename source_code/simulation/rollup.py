@@ -13,7 +13,7 @@ from typing import Any, Dict, Iterable, List, Mapping, Tuple
 
 from .bias import compute_r_b, partition_cost
 from .references import r_conservatism
-from src.utils import canonical_constructor_group
+from source_code.utils import canonical_constructor_group
 
 
 BIAS_KEYS = ("conservatism", "anchoring", "sc_underweighting")

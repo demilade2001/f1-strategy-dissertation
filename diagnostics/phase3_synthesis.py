@@ -7,10 +7,10 @@ from typing import Any, Dict, Iterable, List, Tuple
 
 import pandas as pd
 
-from src.simulation import config as sim_config
-from src.simulation.bias import compute_r_b
-from src.simulation.references import r_conservatism
-from src.simulation.rollup import (
+from source_code.simulation import config as sim_config
+from source_code.simulation.bias import compute_r_b
+from source_code.simulation.references import r_conservatism
+from source_code.simulation.rollup import (
     compute_driver_race_bias_summary,
     compute_driver_race_cost_partition,
     rollup_team_archetype,

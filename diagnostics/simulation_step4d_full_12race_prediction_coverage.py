@@ -10,8 +10,8 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from src.simulation.config import LOCKED_ARCHETYPE_RACES
-from src.simulation.race_state import load_race_state
+from source_code.simulation.config import LOCKED_ARCHETYPE_RACES
+from source_code.simulation.race_state import load_race_state
 TARGET_7_RACES: List[Tuple[int, int, str]] = [
     (2023, 10, "British Grand Prix"),
     (2023, 6, "Monaco Grand Prix"),
