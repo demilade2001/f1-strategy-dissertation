@@ -184,7 +184,7 @@ def main() -> None:
     fig.text(
         0.06, 0.92,
         "Anchoring was the biggest cost for every team",
-        fontsize=29, fontweight="bold", color="black",
+        fontsize=25, fontweight="bold", color="black",
         va="top", ha="left"
     )
     
@@ -194,7 +194,7 @@ def main() -> None:
     subtitle_line2 = f"vs all other biases (grey). Overall: {overall_pct}%."
     
     fig.text(
-        0.06, 0.88,
+        0.06, 0.865,
         subtitle_line1,
         fontsize=19, color=grey_text,
         va="top", ha="left"
