@@ -719,3 +719,16 @@ def run_phase3_technical_first_pass(
         cache_path=cache_path,
         max_workers=max_workers,
     )
+
+
+if __name__ == "__main__":
+    output_dir = ROOT / "data" / "diagnostics"
+    output_dir.mkdir(parents=True, exist_ok=True)
+    output_path = output_dir / "phase3_simulation_output.txt"
+    result = run_phase3_technical_first_pass(
+        output_path=output_path,
+        cache_path=DEFAULT_TECHNICAL_CACHE_PATH,
+    )
+    print(f"Phase 3 simulation complete.")
+    print(f"Output: {result['output_path']}")
+    print(f"Cache: {result['cache_path']}")
