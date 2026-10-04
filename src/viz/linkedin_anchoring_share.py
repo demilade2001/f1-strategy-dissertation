@@ -134,6 +134,9 @@ def main() -> None:
     fig.patch.set_facecolor("white")
     ax.set_facecolor("white")
     
+    # Adjust layout to reserve space for titles and labels
+    fig.subplots_adjust(left=0.20, right=0.90, top=0.79, bottom=0.15)
+    
     # Colors
     grey_bg = "#d9d9de"
     navy_fg = "#23264a"
@@ -145,10 +148,10 @@ def main() -> None:
     shares = team_stats["anchoring_share"].tolist()
     
     # Background grey bars
-    ax.barh(y_pos, [1.0] * len(team_stats), color=grey_bg, height=0.6)
+    ax.barh(y_pos, [1.0] * len(team_stats), color=grey_bg, height=0.66)
     
     # Navy anchoring share bars
-    bars = ax.barh(y_pos, shares, color=navy_fg, height=0.6)
+    bars = ax.barh(y_pos, shares, color=navy_fg, height=0.66)
     
     # Add percentage labels inside the right end of navy bars
     for i, (team, share) in enumerate(zip(teams, shares)):
@@ -164,6 +167,7 @@ def main() -> None:
     ax.set_yticks(y_pos)
     ax.set_yticklabels(teams, fontsize=20)
     ax.set_ylim(-0.5, len(team_stats) - 0.5)
+    ax.tick_params(left=False)
     
     # X-axis styling
     ax.set_xlim(0, 1.0)
@@ -178,7 +182,7 @@ def main() -> None:
     
     # Title
     fig.text(
-        0.07, 0.93,
+        0.06, 0.92,
         "Anchoring was the biggest cost for every team",
         fontsize=29, fontweight="bold", color="black",
         va="top", ha="left"
@@ -190,13 +194,13 @@ def main() -> None:
     subtitle_line2 = f"vs all other biases (grey). Overall: {overall_pct}%."
     
     fig.text(
-        0.07, 0.87,
+        0.06, 0.88,
         subtitle_line1,
         fontsize=19, color=grey_text,
         va="top", ha="left"
     )
     fig.text(
-        0.07, 0.83,
+        0.06, 0.84,
         subtitle_line2,
         fontsize=19, color=grey_text,
         va="top", ha="left"
@@ -207,13 +211,13 @@ def main() -> None:
     footer_line2 = "Monte Carlo race simulation vs model-optimal strategy · Demilade Alatise, MSc Business Analytics"
     
     fig.text(
-        0.07, 0.04,
+        0.06, 0.05,
         footer_line1,
         fontsize=13, color=grey_text,
         va="bottom", ha="left"
     )
     fig.text(
-        0.07, 0.01,
+        0.06, 0.01,
         footer_line2,
         fontsize=13, color=grey_text,
         va="bottom", ha="left"
@@ -224,8 +228,7 @@ def main() -> None:
     out_dir.mkdir(exist_ok=True)
     out_path = out_dir / "linkedin_anchoring_share.png"
     
-    # Adjust layout and save without tight_layout to preserve exact dimensions
-    plt.subplots_adjust(left=0.08, right=0.98, top=0.95, bottom=0.08)
+
     plt.savefig(out_path, dpi=dpi, facecolor="white", pad_inches=0)
     print(f"\n✓ Saved figure to {out_path}")
     
